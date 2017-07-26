@@ -1,0 +1,49 @@
+.configure_container .province_agency{
+	width: 84%;
+	height: 22px;
+	background-color: #c0cfdb;
+	float: left;
+	text-indent: 12px;
+	font-size: 12px;
+	color: #333333;
+	line-height: 22px;
+}
+.province_to{
+	display: block;
+	width: 84%;
+	height: 22px;
+	background-color: #c0cfdb;
+	float: left;
+}
+.province_to li{
+	float: left;
+	font-size: 12px;
+	color: #333333;
+	line-height: 22px;
+	margin-right: 40px;
+}
+.configure_container .divided_tabs{
+	border: 1px solid #9a9a9a;
+    width: 96%;
+    margin:0 auto;
+    padding:0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 20px;
+    color: #535353;
+}
+.configure_container .divided_tabs thead{
+	font-size: 12px;
+	font-weight: 100;
+}
+.configure_container .divided_tabs tr{
+	border: 1px solid #9a9a9a;
+    padding: 5px;
+    font-size: 12px;
+}
+.configure_container .divided_tabs td{
+	padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid #9a9a9a;
+}

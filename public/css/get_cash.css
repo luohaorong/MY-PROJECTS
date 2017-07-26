@@ -1,0 +1,96 @@
+.configure_left{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background-color: #d0e3fb;
+}
+.configure_left .configure_left_head{
+	width: 100%;
+	height: 34px;
+	background-image: url(/images/head_left/days.png);
+	position: relative;
+}
+.configure_left .configure_left_head .configure_head_content{
+	width: 90%;
+	height: 22px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -11px;
+	margin-left: -45%;
+
+}
+.configure_left .configure_left_head .configure_head_content .head_content_left{
+	width: 10%;
+	height: 100%;
+	background-color: #fdf8cb;
+	color: #333333;
+	font-size: 12px;
+	text-indent: 10px;
+	line-height: 22px;
+	border-radius: 4px 0 0 4px;
+}
+.configure_left .configure_left_head .configure_head_content .head_content_right{
+	width: 90%;
+	height: 100%;
+	background-color: #c0cfdb;
+	border-radius: 0 4px 4px 0;
+}
+.configure_left .configure_left_head .configure_head_content .head_content_right .status{
+	padding-left: 50px;
+	color: #333333;
+	font-size: 12px;
+	text-indent: 12px;
+	line-height: 22px;
+}
+.status_table .layer_tabs{
+	border: 1px solid #9a9a9a;
+    width: 98%;
+    margin:0 auto;
+    padding:0;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+}
+.status_table .layer_tabs{
+	background-color: #ffffff;
+	margin: 10px auto; 
+}
+.status_table .layer_tabs thead{
+	font-size: 12px;
+	font-weight: 100;
+	background-color: #c5c5c5;
+	color: #ffffff;
+}
+.status_table .layer_tabs tr{
+	border: 1px solid #9a9a9a;
+    padding: 5px;
+    font-size: 12px;
+}
+.status_table .layer_tabs th{
+	padding: 6px;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid #9a9a9a;
+}
+.status_table .layer_tabs td{
+	padding: 6px;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid #9a9a9a;
+}
+.normal{
+	color: #2a942a;
+}
+.dateoff{
+	color: #fda854;
+}
+.stop{
+	color: #ff0000;
+}
+.empty{
+	color: #999999;
+}
+.color_red{
+	color:#ea0000;
+}

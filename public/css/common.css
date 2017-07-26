@@ -1,0 +1,67 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+ul,ol,dl,li{
+	list-style: none;
+}
+.clearfix:after{
+     content:".";        
+     display:block;        
+     height:0;        
+     clear:both;        
+     visibility:hidden;        
+}
+a{
+	text-decoration: none;
+}
+.float_left{
+	float:left;
+}
+.float_right{
+	float: right;
+}
+
+.content {
+	width: calc(100% - 230px);
+    height: calc(100% - 102px);
+    position: absolute;
+    top: 56px;
+    left: 230px;
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 12px;  
+    height: 16px;  
+    // background-color: #d3e6ff;  
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);  
+    border-radius: 10px;  
+    background-color: #d3e6ff;  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    border-radius: 10px;  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+    background-color: #d3e6ff;  
+}  
+
+.normal{
+    color: #2a942a;
+}
+.dateoff{
+    color: #fda854;
+}
+.stop{
+    color: #ff0000;
+}
+.empty{
+    color: #999999;
+}

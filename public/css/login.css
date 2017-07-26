@@ -1,0 +1,160 @@
+#login{
+	width:100%;
+	height:100%;
+	background-image: url(/images/login/login_bg.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-size: 100%;
+	background-color: #0645b3;
+}
+#login .login_banner{
+	position: absolute;
+	top:50%;
+	left: 50%;
+	margin-top: -120px;
+	margin-left: -960px;
+
+}
+#login .logincontainer{
+	width: 1200px;
+	margin: 0 auto;
+	height: 906px;
+	
+
+}
+#login .logincontainer .login_content{
+	width: 390px;
+	height: 306px;
+	position: absolute;
+	top: 50%;
+	margin-top: -153px;
+	right: 20%;
+	border-radius: 4px;
+	box-shadow: 0 0 40px 0 rgba(14, 55, 138, 0.54);
+}
+#login .logincontainer .login_content .login_head{
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #e6f5fe;
+	background:linear-gradient(to bottom,#c9e8ff,#b3ddfc,#88c7f6,#7ec1f4,#94ccf5,#95cef5);
+	position: relative;
+	border-radius: 4px 4px 0 0;
+}
+#login .logincontainer .login_content .login_head .login_logo{
+	width: 32px;
+	height: 28px;
+	position: absolute;
+	top:50%;
+	margin-top: -14px;
+	left: 14px;
+}
+#login .logincontainer .login_content .login_head .login_head_p{
+	color: #333333;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 50px;
+	margin-left: 54px;
+}
+#login .logincontainer .login_content .login_body{
+	width: 100%;
+	height: 255px;
+	background:linear-gradient(135deg,#c9e8ff,#b3ddfc,#88c7f6,#7ec1f4);
+	overflow: hidden;
+	border-radius: 0 0 4px 4px;
+	position: relative;
+}
+#login .logincontainer .login_content .login_body .login_form{
+	display: block;
+	width: 300px;
+	height: 190px;
+	margin-top: 42px;
+	margin-left: 55px;
+}
+#login .logincontainer .login_content .login_body .login_layer{
+	width: 216px;
+    height: 116px;
+    position: absolute;
+    left: 127px;
+    top: 42px;
+    background-color: #ffffff;
+}
+#login .logincontainer .login_content .login_body .login_layer .layer_tip{
+	text-align: center;
+	color: #333333;
+	font-size: 15px;
+    line-height: 32px;
+}
+#login .logincontainer .login_content .login_body .login_layer .layer_sure{
+	width: 62px;
+	height: 32px;
+	border:none;
+	text-align: center;
+	line-height: 32px;
+	background:linear-gradient(to bottom,#c9e8ff,#b3ddfc,#88c7f6,#7ec1f4,#94ccf5,#95cef5);
+	display: block;
+    margin: 10px auto;
+}
+#login .logincontainer .login_content .login_body .login_layer .layer_tip span{
+	color:#ea0000;
+}
+#login .logincontainer .login_content .login_body .login_form .input_common{
+	display: block;
+	width: 100%;
+	height: 32px;
+	margin-bottom: 10px;
+}
+#login .logincontainer .login_content .login_body .login_form .input_common .input_title{
+	color: #333333;
+	font-size: 18px;
+	float: left;
+	line-height: 32px;
+}
+#login .logincontainer .login_content .login_body .login_form .input_common .maohao{
+	line-height: 32px;
+	margin-left: -11px;
+}
+#login .logincontainer .login_content .login_body .login_form .input_common .small{
+	width: 72px;
+	letter-spacing: 18px;
+}
+#login .logincontainer .login_content .login_body .login_form .input_common .big{
+	width: 72px;
+}
+#login .logincontainer .login_content .login_body .login_form .input_common .txt_common{
+	float: left;
+	display: block;
+	width: 216px;
+	height: 32px;
+	background-color: #fdf8cb;
+	border:none;
+	outline: none;
+	text-indent: 12px;
+}
+#login .logincontainer .login_content .login_body .login_form .yanzheng{
+	width: 90px;
+	height: 32px;
+	background-color: #fdf8cb;
+	border:none;
+	outline: none;
+	float: left;
+	margin-right: 20px;
+	text-indent: 12px;
+}
+#login .logincontainer .login_content .login_body .login_form .yanzheng_img{
+	float: left;
+	cursor: pointer;
+}
+#login .logincontainer .login_content .login_body .login_form .login_sub{
+	width: 217px;
+	height: 41px;
+	margin-top: 15px;
+	margin-left: 72px;
+	background-image: url(/images/login/login_sub.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	border: none;
+	cursor: pointer;
+}

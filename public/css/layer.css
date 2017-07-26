@@ -1,0 +1,87 @@
+.query_table_layer{
+  	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+	z-index: 10000;
+  }
+.query_table_layer .query_layer_container{
+	width: 840px;
+	height: 450px;
+	overflow: auto;
+	background: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -420px;
+	margin-top: -225px;
+	background-color: #d0e3fb;
+}
+.query_table_layer .query_layer_container .layer_container_head{
+	width: 100%;
+	height: 36px;
+	background-image:url(/images/head_left/days.png);
+	margin-bottom: 10px;
+	position: relative;
+}
+.query_table_layer .query_layer_container .layer_container_head .head_p{
+	line-height: 36px;
+	color:#ffffff;
+	text-indent: 12px;
+	font-size: 12px;
+	margin:0;
+	float: left;
+}
+.query_table_layer .query_layer_container .layer_container_head .head_p span{
+	margin-right:14px; 
+}
+.query_table_layer .query_layer_container .layer_container_head .export_excel{
+	display: block;
+	float: left;
+	width: 94px;
+	height: 24px;
+	text-align:center;
+	line-height: 24px;
+	background-color: #f6f6f6;
+	border: none;
+	cursor: pointer;
+	margin-top:6px;
+}
+.query_table_layer .query_layer_container .layer_container_head .layer_cancel{
+	position: absolute;
+	right: 6px;
+	top: 6px;
+	cursor: pointer;
+}
+.query_table_layer .query_layer_container .layer_tabs{
+	border: 1px solid #9a9a9a;
+    width: 98%;
+    margin:0 auto;
+    padding:0;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+}
+.query_table_layer .query_layer_container .layer_tabs thead th{
+	font-size: 12px;
+	font-weight: 100;
+	background-color: #c5c5c5;
+	color: #ffffff;
+	text-align: center;
+	padding: 8px;
+	border: 1px solid #9a9a9a;
+}
+.query_table_layer .query_layer_container .layer_tabs tr{
+	border: 1px solid #9a9a9a;
+    font-size: 12px;
+}
+.query_table_layer .query_layer_container .layer_tabs tbody td{
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid #9a9a9a;
+    padding: 8px;
+    background-color: #ffffff;
+}

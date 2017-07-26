@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'flows_type_income' => 'income',
+    'flows_type_outcome' => 'outcome',
+    'flows_category_balance' => 'balance',
+    'flows_status_freeze' => 'freeze',
+    'flows_status_normal' => 'normal',
+    'staffs_status_normal' => 'normal',
+    'staffs_status_locked' => 'locked',
+    'agencies_agent_type_province' => 'province',
+    'agencies_agent_type_city' => 'city',
+    'agencies_agent_type_district' => 'district',
+    'agencies_bonus_case_ip' => 'ip',
+    'agencies_bonus_case_pbc' => 'pbc',
+    'agencies_bonus_case_ic' => 'ic',
+    'agencies_bonus_case_cbp' => 'cbp',
+    'agencies_status_normal' => 'normal',
+    'agencies_status_locked' => 'locked',
+    'bonus_bonus_source_agency' => 'agency',
+    'bonus_bonus_source_company' => 'company',
+    'withdrawals_status_ing' => 'ing',
+    'withdrawals_status_yes' => 'yes',
+    'withdrawals_status_no' => 'no',
+];
