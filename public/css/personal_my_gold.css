@@ -1,0 +1,293 @@
+#my_gold{
+	background: #f3554a;
+}
+#my_gold .inc{
+	display: none;
+}
+#my_gold .inc1{
+	display: block;
+}
+#my_gold .inc3{
+	display: none;
+}
+#my_gold .words{
+	color: #FFFFFF;
+}
+#my_gold .icn_right{
+	display: block;
+}
+
+
+.my_gold_account{
+	width: 420px;
+	height: 70px;
+	margin-top: 40px;
+	margin-bottom: 30px;
+	font-weight: bold;
+	font-size: 18px;
+	color: #333333;
+}
+.my_gold_amounts{
+	font-size: 30px;
+	color: #EA0000;
+	margin-left: 0px;
+}
+.my_gold_help{
+	color: #f3554a;
+	font-size: 12px;
+	text-decoration: underline;
+}
+.my_gold_details{
+	margin-top: 16px;
+	font-size: 14px;
+	
+}
+.my_gold_intotal{
+	color: #EA0000;
+	font-size: 16px;
+}
+.my_gold_already_use{
+	color: #999999;
+	font-size: 16px;
+}
+
+
+.my_gold_level3{
+	width: 950px;
+	height: 22px;
+	margin-bottom: 20px;
+	line-height: 22px;
+}
+.my_gold_usage{
+	width: 370px;
+	height: 18px;
+	padding-left: 20px;
+	
+	float: left;
+}
+.gold_common{
+	float: left;
+	height: 18px;
+	width: 108px;
+	margin-right: 10px;
+	cursor: pointer;
+	position: relative;
+}
+.gold_ck{
+	margin-top: 4px;
+	float: left;
+	width: 14px;
+	height: 14px;
+	border:1px solid #CCCCCC;
+	border-radius: 4px;
+}
+.gold_situation{
+	float: left;
+	font-size: 14px;
+	margin-left: 6px;
+	font-weight: bold;
+	color: #999999;
+}
+.add_gold{
+	color: #661b18;
+}
+.add_gold_ck{
+	border: 0;
+    background-image: url(../images/register/icons.png);
+    background-position: 56px -123px;
+}
+
+.gold_timleft{
+	width: 520px;
+	height: 22px;
+	float: left;
+	padding-left: 20px;
+	margin-left: 40px;
+	
+}
+.vip_timebox {
+    float: left;
+    width: 132px;
+    height: 20px;
+    border: 1px solid #e6e6e6;
+    margin-left: 16px;
+}
+.gold_timleft p{
+	float: left;
+	color: #333333;
+	font-size: 14px;
+	line-height: 22px;
+}
+.gold_timebox{
+	float: left;
+	width: 100px;
+	height: 20px;
+	border: 1px solid #e6e6e6;
+	margin-left:20px;
+	cursor: pointer;
+}
+.gold_timebox img{
+	margin-top: 2px;
+	margin-right: 4px;
+	float: right;
+	cursor: pointer;
+}
+.gold_filter{
+	float: left;
+	width: 70px;
+	height: 20px;
+	border: 1px solid #661B18;
+	border-radius: 4px;
+	line-height: 20px;
+	text-align: center;
+	color: #661B18;
+	cursor: pointer;
+	font-size: 14px;
+	margin-left: 10px;
+}
+.my_gold_list{
+	width: 950px;
+	height: 34px;
+	line-height: 34px;
+	background: #E6E6E6;
+}
+.my_gold_list li{
+	color: #666666;
+	font-size: 14px;
+	line-height: 34px;
+	text-align: center;
+	float: left;
+}
+.my_gold_list_long{
+	width: 218px;
+}
+.my_gold_list_short{
+	width: 148px;
+}
+.gold_container_common{
+	position: relative;
+	width: 950px;
+	height: 750px;
+	
+	top: 10px;
+	
+	
+}	
+.gold_container_income{
+	left: -118px;
+}
+.gold_container_pay{
+	left: -236px;
+}
+.my_gold_orderlists{
+	width: 950px;
+	height: 100px;
+	margin-bottom: 10px;
+	-webkit-box-shadow:0px 0px 8px #EEEEEE;
+	-moz-box-shadow:0px 0px 8px #eeeeee;
+	box-shadow: 0px 0px 8px #EEEEEE ;
+}
+.my_gold_orderlists li{
+	float: left;
+	color: #333333;
+	font-size: 14px;
+	line-height: 100px;
+	text-align: center;
+	height: 100%;
+}
+.gold_lookfor{
+	color: #f3554a;
+}
+
+
+
+
+.sub_pages {
+	width: 980px;
+	height: 78px;
+	position: relative;
+	overflow: hidden;
+}
+
+.sub_pages .btn {
+	width: 24px;
+	height: 24px;
+	border: 1px solid #E6E6E6;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+}
+
+.sub_pages .btn_pre {
+	position: absolute;
+	top: 34px;
+	left: 10px;
+}
+
+.sub_pages .btn_aft {
+	position: absolute;
+	top: 34px;
+	left: 218px;
+}
+
+.sub_pages .page_btn {
+	list-style: none;
+	width: auto;
+	height: 25px;
+	float: left;
+	margin-top: 44px;
+}
+.page_container{
+	width: 120px;
+	height: 30px;
+	padding-left: 20px;
+	margin-top: 42px;
+	float: left;
+}
+.suer_btn {
+	width: 50px;
+	height: 29px;
+	border: 1px solid #E6E6E6;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+	background-color: #FFFFFF;
+}
+
+.sub_pages .page_btn li {
+	float: left;
+	width: 24px;
+	height: 24px;
+	border: 1px solid #E6E6E6;
+	margin-left: 8px;
+	text-align: center;
+	line-height: 24px;
+	cursor: pointer;
+}
+
+.sub_pages .page_btn li a,
+.sub_pages .page_btn li span {
+	color: #999;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+
+.sub_pages .page_btn .ellipsis {
+	border: 0;
+}
+
+#page_num {
+	width: 44px;
+	height: 24px;
+	margin-right: 12px;
+}
+
+.current_pages {
+	background-color: #f3554a;
+	border: 1px solid #f3554a !important;
+}
+
+.current_pages span {
+	color: #FFFFFF !important;
+}

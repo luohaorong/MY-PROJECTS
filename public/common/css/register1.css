@@ -1,0 +1,122 @@
+html,body{
+	position: relative;
+	
+}
+*{
+	outline:0;
+}
+#nav{
+	width: 100%;
+	height: 62px;
+	position: absolute;
+	top: 120px;
+	background: blue;
+}
+
+#content{
+	width: 100%;
+	height: 778px;
+	background-image: url(../img/bk_1.png);
+}
+.content-container{
+	padding-left: 115px;
+	padding-right: 80px;
+	width: 1085px;
+	padding-top: 73px;
+	height: 705px;
+	margin: 0 auto;
+	
+}
+.left{
+	width: 781px;
+	height: 705px;
+	float: left;
+	background: pink;
+	margin-right: 89px;
+}
+.left label{
+	display: block;
+	margin-bottom: 18px;
+}
+.cur1{
+	margin-right: 14px;
+}
+.cur2{
+	margin-right: 20px;
+}
+.three{
+	margin-left: 62px;
+}
+.must{
+	color: #ea0000;
+	margin-right: 10px;
+}
+.names{
+	color: #333333;
+	font-size: 16px;
+	margin-right: 14px;
+}
+.tellphone{
+	width: 378px;
+	height: 32px;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+}
+.pin{
+	width: 160px;
+	height:32px;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+}
+.pin-box{
+	width: 62px;
+	height: 30px;
+	border: 2px solid #661B18;
+	display: block;
+}
+
+
+
+.right{
+	padding-top: 2px;
+	padding-left: 20px;
+	width:194px;
+	height: 268px;
+	float: left;
+	
+	border-left: 1px solid #CCCCCC;
+}
+.right span{
+	
+	font-size: 14px;
+	color: #661b18;
+	font-weight: bolder;
+	margin-bottom: 32px;
+}
+.list{
+	margin-top: 22px;
+	width: 121px;
+	height: 150px;
+	list-style-type:disc ;
+	list-style-position: inside;
+	margin-bottom: 30px;
+}
+.list li{
+	height: 30px;
+	line-height: 30px;
+	color: #CCCCCC;
+	font-size: 14px;
+	
+}
+.soon{
+	width: 186px;
+	height: 36px;
+	border: 1px solid #661B18;
+	border-radius: 5px;
+	line-height: 36px;
+	text-align: center;
+	color: #661B18;
+	font-size: 14px;
+	background: white;
+	z-index: 99;
+}

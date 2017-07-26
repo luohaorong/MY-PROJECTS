@@ -1,0 +1,91 @@
+*{
+	margin:0;
+	padding:0;
+}
+#registerNav{
+	width: 100%;
+	height:800px;
+	border-top:1px solid #d3bbb3;
+	background-image:url(/images/register/Shading.png); 
+}
+#links{
+	display: none;
+}
+.registerNavContainer{
+	width: 645px;
+	height: 100%;
+	margin:0 auto;
+}
+.registerNav_title{
+	width: 100%;
+	height: 126px;
+	text-align: center;
+}
+.registerNav_title .nav_cname{
+	font-size: 24px;
+	color: #000000;
+	margin-top: 50px;
+}
+.registerNav_title .nav_egname{
+	font-size: 16px;
+	color: #000000;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+.registerNav_box{
+	width: 100%;
+	height: 240px;
+}
+.registerNav_box .nav_box_common{
+	width: 310px;
+	height: 244px;
+	background: #fff;
+	border-radius: 4px;
+	float: left;
+	text-align: center;
+}
+.nav_box_common:hover{
+	 box-shadow:0px 14px 16px #ccc;
+	 filter: progid:DXImageTransform.Microsoft.Shadow(color='#ccc', Direction=135, Strength=5);/*for ie6,7,8*/ 
+	/*background-color: #ccc;*/
+	-moz-box-shadow:0px 14px 16px #ccc;/*firefox*/ 
+	-webkit-box-shadow:0px 14px 16px #ccc;/*webkit*/ 
+}
+.registerNav_box .nav_box_right{
+	float: right;
+}
+.registerNav_box .nav_box_common img{
+	text-align: center;
+	margin-top: 10px;
+}
+.registerNav_box .nav_box_common .nav_box_title{
+	width: 100%;
+	text-align: center;
+}
+.registerNav_box .nav_box_common .nav_box_title .nav_box_cname{
+	color: #000000;
+	font-size: 16px;
+}
+.registerNav_box .nav_box_common .nav_sure{
+	display: block;
+	width: 89px;
+	height: 30px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	margin-left: 111px;
+	margin-top: 6px;
+}
+.nav_sure_left{
+	background-image: url(/images/left_button.png);
+
+}
+.nav_sure_right{
+	background-image: url(/images/right_button.png);
+}
+.add_hover{
+	 box-shadow:0px 14px 16px #ccc;
+	 filter: progid:DXImageTransform.Microsoft.Shadow(color='#ccc', Direction=135, Strength=5);/*for ie6,7,8*/ 
+	background-color: #ccc;
+	-moz-box-shadow:0px 14px 16px #ccc;/*firefox*/ 
+	-webkit-box-shadow:0px 14px 16px #ccc;/*webkit*/ 
+}

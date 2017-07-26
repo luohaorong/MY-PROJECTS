@@ -1,0 +1,68 @@
+/*物流破损content2*/
+.list1 #logistics_damage{
+	background: #f3554a;
+}
+#logistics_damage .inc{
+	display: none;
+}
+#logistics_damage .inc1{
+	display: block;
+}
+#logistics_damage .inc3{
+	display: none;
+}
+#logistics_damage .words{
+	color: #FFFFFF;
+}
+#logistics_damage .icn_right{
+	display: block;
+}
+.damage_title{
+	width: 240px;
+	font-size: 16px;
+	line-height: 22px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 48px;
+	margin-bottom: 30px;
+	
+	height:22px ;
+	font-weight: bold;
+	color: #333333;
+}
+.damage_vip{
+	width: 200px;
+	height: 14px;
+	font-size: 14px;
+	color:#333333;
+	margin-bottom: 26px;
+}
+.damage_list1,.damage_list2{
+	margin-left: 30px;
+}
+.damage_list1 li{
+	font-size: 14px;
+	color: #333333;
+	line-height: 50px;
+	height: 50px;
+}
+.damage_list2 li{
+	height: 28px;
+	line-height: 28px;
+	font-size: 14px;
+	color: #333333;
+}
+.damage_special{
+	font-size: 14px;
+	color: #333333;
+}
+.damage_number{
+	margin-top: 40px;
+	margin-left: 30px;
+	font-size: 14px;
+	color: #333333;
+}
+.box_h{
+	margin-bottom: 40px !important;
+
+}

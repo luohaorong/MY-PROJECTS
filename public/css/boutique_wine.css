@@ -1,0 +1,459 @@
+/*logo开始*/
+
+#login_container {
+	overflow: hidden;
+}
+
+#login_container .nav_search {
+	width: 600px;
+	height: 100px;
+	margin-left: 400px;
+	float: left;
+	text-align: center;
+	position: relative;
+}
+#login_container .nav_search .nav_top {
+	overflow: hidden;
+	width: 600px;
+	height: 40px;
+	margin-top: 16px;
+	padding-left: 138px;
+}
+
+#login_container .nav_search ul li {
+	float: left;
+	list-style: none;
+	padding-left: 6px;
+}
+
+#login_container .nav_search ul li a {
+	color: #999;
+	font-size: 14px;
+}
+
+#login_container .nav_search ul li .first_list {
+	color: #333;
+	font-weight: bold;
+}
+
+#login_container .shoping {
+	width: 200px;
+	/*height: 100px;*/
+	margin-right: 20px;
+	float: right;
+	list-style: none;
+	text-align: center;
+	overflow: hidden;
+}
+
+#login_container .shoping li a {
+	color: #FFFFFF;
+	line-height: 36px;
+	font-size: 20px;
+}
+
+#login_container .shoping .shoping_car {
+	width: 80px;
+	height: 36px;
+	border-radius: 4px 0 0 4px;
+	background-image: url(/images/index/shopping_cars.png);
+	background-position: 12px 8px;
+	background-repeat: no-repeat;
+	margin-top: 10px;
+	float: left;
+	background-color: #FFFFFF;
+}
+
+#login_container .shoping .shoping_num {
+	float: left;
+	width: 62px;
+	height: 36px;
+	background-color: #f3554a;
+	border-radius: 0 4px 4px 0;
+	margin-top: 10px;
+}
+
+
+/*主体部分*/
+
+#index_container {
+	width: 100%;
+	height: auto;
+	background-image: url(/images/index/shading.png);
+}
+
+
+/*导航开始*/
+
+#index_container .nav_wrap {
+	width: 100%;
+	height: auto;
+	position: relative;
+	background-image: url(../images/boutique_wine/repeat2_03.gif);
+	z-index: 200;
+}
+
+#index_container .nav_wrap .nav_list {
+	width: 1280px;
+	height: 44px;
+	/*overflow: hidden;*/
+	list-style: none;
+	margin: 0 auto;
+	position: relative;
+	z-index: 200;
+}
+
+#index_container .nav_wrap .nav_list>li {
+	height: 44px;
+	line-height: 44px;
+	font-size: 18px;
+	float: left;
+	z-index: 200;
+	margin-top: 1px;
+	padding: 0;
+	position: relative;
+}
+
+#index_container .nav_wrap .nav_list>li>a {
+	position: relative;
+	height: 44px;
+	color: #b7885a;
+	text-align: center;
+	display: block;
+	padding: 0 42px;
+}
+
+.img_crrent {
+	background-image: url(/images/boutique_wine/repeat1_05.png) !important;
+	color: #FFFFFF !important;
+}
+
+.purchase_sub {
+	background-color: #333;
+}
+
+#index_container .nav_wrap .nav_list li.nav_first {
+	padding-left: 50px;
+	padding-right: 54px;
+	color: #b7885a;
+	cursor: pointer;
+	position: relative;
+	margin-left: 33px;
+}
+
+.line_left {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.line_right {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.line {
+	display: none;
+}
+
+.shape {
+	display: block;
+	width: 40px;
+	height: 50px;
+	position: absolute;
+	left: 14px;
+	top: 0;
+	background-image: url(../images/boutique_wine/shape.png);
+	background-position: 0 17px;
+	background-repeat: no-repeat;
+}
+
+#index_container {
+	width: 100%;
+	height: auto;
+}
+
+#index_container .sub_list {
+	width: 198px;
+	list-style: none;
+	position: absolute;
+	left: 0px;
+	top: 43px;
+	display: none;
+}
+
+#index_container .sub_list li {
+	width: 100%;
+	height: 50.5px;
+	text-align: center;
+	line-height: 48px;
+}
+
+#index_container .sub_list li a {
+	padding-left: 2px;
+	color: #FFFFFF;
+	font-size: 16px;
+}
+
+.boutique_product {
+	width: 1280px;
+	height: auto;
+	background-image: url(/images/index/shading.png);
+	margin: 0 auto;
+	
+}
+
+.product_list {
+	width: 1280px;
+	height: auto;
+	margin: 0 auto;
+	overflow: hidden;
+	margin-top: 30px;
+}
+
+.product_list>li {
+	width: 598px;
+	height: 348px;
+	overflow: hidden;
+	margin-right: 22px;
+	float: left;
+	position: relative;
+}
+
+.list_container {
+	width: 560px;
+	height: 300px;
+	border: 1px solid #E6E6E6;
+	background-color: #FFFFFF;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+
+.product_wap {
+	width: 900px;
+	height: 300px;
+	overflow: hidden;
+	position: absolute;
+	z-index: 2;
+}
+
+.product_left {
+	width: 560px;
+	height: 300px;
+	overflow: hidden;
+	float: left;
+}
+
+.product_right {
+	width: 306px;
+	height: 300px;
+	float: left;
+	padding-left: 20px;
+}
+
+.right_describe {
+	width: 222px;
+	height: 300px;
+	float: left;
+	padding-left: 42px;
+}
+
+.top_img {
+	width: 134px;
+	height: 70px;
+	margin: 0 auto;
+	padding-top: 22px;
+}
+
+.top_img img {
+	width: 134px;
+	height: 70px;
+	display: block;
+}
+
+.sub_text {
+	width: 222px;
+	height: 200px;
+	word-wrap: break-word;
+	font-size: 12px;
+	color: #d20000;
+	line-height: 20px;
+	text-align: justify;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+    overflow: hidden;
+}
+
+.left_wine {
+	width: 218px;
+	height: 300px;
+	float: left;
+	padding-left: 78px;
+}
+
+.left_wine_img {
+	position: absolute;
+	left: 340px;
+	top: 4px;
+}
+
+.left_wine img {
+	display: block;
+	width: 168px;
+	height: 240px;
+}
+
+.wine_top {
+	font-size: 14px;
+	color: #d20000;
+	font-weight: bold;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 160px;
+    height: 20px;
+    text-align: center;
+}
+
+.wine_sub {
+	font-size: 12px;
+	color: #999999;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 160px;
+    height: 16px;
+    text-align: center;
+}
+
+.top_title {
+	width: 306px;
+	height: auto;
+	text-align: left;
+	font-size: 14px;
+	color: #ff7303;
+	padding-top: 40px;
+}
+
+.top_title>p {
+	width: 306px;
+	height: 20px;
+	line-height: 20px;
+}
+
+.middle_text {
+	word-wrap: break-word;
+	font-size: 12px;
+	color: #999;
+	line-height: 20px;
+	text-align: justify;
+	width: 285px;
+	height: 120px;
+	padding-top: 15px;
+}
+
+.sub_price {
+	width: 306px;
+	height: 62px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	bottom: 1px;
+}
+
+.price_sub {
+	width: 114px;
+	height: 30px;
+	text-align: center;
+	font-size: 24px;
+	color: #ea0000;
+	float: left;
+}
+
+.boutique_btn a {
+	width: 130px;
+	height: 40px;
+	font-size: 18px;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 40px;
+	float: left;
+	background-image: url(../images/boutique_wine/repeat2_13.png);
+	border-radius: 4px;
+	margin-left: 16px;
+	cursor: pointer;
+	display: block;
+}
+
+.falg {
+	position: absolute;
+	right: 66px;
+	top: 42px;
+	z-index: 222;
+}
+
+.flower {
+	display: none;
+}
+
+.flower_top {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.flower_top {
+	position: absolute;
+	top: 3px;
+	left: 0;
+}
+
+.flower_sub {
+	position: absolute;
+	top: 242px;
+	right: 0;
+}
+
+.flower_1 {
+	position: absolute;
+	bottom: 18px;
+	right: 156px;
+}
+
+.flower_2 {
+	position: absolute;
+	bottom: 156px;
+	right: 11px;
+}
+
+.flower3 {
+	position: absolute;
+	top: 156px;
+	left: 11px;
+}
+
+.flower4 {
+	position: absolute;
+	top: 15px;
+	left: 156px;
+}
+
+.li_border {
+	border: 1px solid #cc9966;
+}
+
+.flower_aside {
+	display: none;
+	z-index: 9999;
+}
+
+#toolbar {
+	top: 550px;
+}

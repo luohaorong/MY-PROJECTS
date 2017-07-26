@@ -1,0 +1,266 @@
+#pay_records{
+	background: #f3554a;
+}
+#pay_records .inc{
+	display: none;
+}
+#pay_records .inc1{
+	display: block;
+	
+}
+#pay_records .inc3{
+	display: none;
+}
+#pay_records .words{
+	color: #FFFFFF;
+	
+}
+#pay_records .icn_right{
+	display: block;
+	
+}
+.history_records{
+	margin-top:20px;
+	width: 946px;
+	height: 32px;
+	border-bottom: 1px solid #E6E6E6;
+}
+.history_consume,.history_recharge{
+	width: 120px;
+	height: 32px;
+	float: left;
+	line-height: 32px;
+	text-align: center;
+	color: #999999;
+	font-size: 14px;
+	cursor: pointer;
+}
+.add_history{
+	background: #E6E6E6;
+	font-size: 18px;
+	color: #661b18;
+}
+
+.vip_time{
+	margin-top: 25px;
+	width: 940px;
+	height: 22px;
+	margin-bottom: 12px;
+}
+.vip_timleft{
+	width: 480px;
+	height: 22px;
+	float: left;
+	
+	margin-left: 20px;
+}
+.vip_timleft p{
+	float: left;
+	color: #333333;
+	font-size: 14px;
+	line-height: 22px;
+}
+.vip_timebox{
+	float: left;
+	width: 100px;
+	height: 20px;
+	border: 1px solid #e6e6e6;
+	margin-left:20px;
+	cursor: pointer;
+}
+.vip_timebox img{
+	margin-top: 2px;
+	margin-right: 4px;
+	float: right;
+	cursor: pointer;
+}
+.vip_filter{
+	float: left;
+	width: 70px;
+	height: 20px;
+	border: 1px solid #661B18;
+	border-radius: 4px;
+	line-height: 20px;
+	text-align: center;
+	color: #661B18;
+	cursor: pointer;
+	font-size: 14px;
+	margin-left: 10px;
+}
+
+
+.vip_timright{
+	width:440px;
+	height: 22px;
+	float: left;
+	
+}
+.vip_timright li{
+	float: left;
+	height: 22px;
+	line-height: 22px;
+	padding: 0 20px;
+	font-size: 12px;
+	color: #999999;
+	cursor: pointer;
+}
+.vip_timright_a{
+	color: #999;
+}
+.vip_timright_a{
+	color: #999999;
+}
+.cur,.cur1{
+	color: #661B18;
+}
+.purchase_history_headbar{
+	width: 946px;
+	height: 34px;
+	background: #E6E6E6;
+	margin-bottom: 4px;
+}
+.purchase_history_headbar li{
+	float: left;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	color: #333333;
+	font-size: 14px;
+}
+.purchase_history_ordernum,.purchase_history_ordertime{
+	width: 200px;
+}
+.purchase_history_ordermoney{
+	width: 190px;
+}
+.purchase_history_orderway{
+	width: 120px;
+}
+.purchase_history_orderemark{
+	width: 236px;
+}
+
+.purchase_history_container{
+	width: 946px;
+	height: 800px;
+}
+.purchase_record_list{
+	width: 946px;
+	height: 60px;
+	margin: 10px 0;
+	-webkit-box-shadow:0px 0px 8px #EEEEEE;
+	-moz-box-shadow:0px 0px 8px #eeeeee;
+	box-shadow: 0px 0px 8px #EEEEEE ;
+}
+.purchase_record_list li{
+	float: left;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 14px;
+	color: #333333;
+}
+.purchase_number,.purchase_time{
+	width: 200px;
+}
+.purchase_money{
+	width: 190px;
+}
+.purchase_payway{
+	width: 120px;
+}
+.purchase_remarks{
+	width: 236px;
+}
+
+
+.sub_pages {
+	width: 980px;
+	height: 78px;
+	position: relative;
+	overflow: hidden;
+	clear: both;
+}
+
+.sub_pages .btn {
+	width: 24px;
+	height: 24px;
+	border: 1px solid #E6E6E6;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+}
+
+.sub_pages .btn_pre {
+	position: absolute;
+	top: 34px;
+	left: 10px;
+}
+
+.sub_pages .btn_aft {
+	position: absolute;
+	top: 34px;
+	left: 218px;
+}
+
+.sub_pages .page_btn {
+	list-style: none;
+	width: auto;
+	height: 25px;
+	float: left;
+	margin-top: 44px;
+}
+.page_container{
+	width: 120px;
+	height: 30px;
+	padding-left: 20px;
+	margin-top: 42px;
+	float: left;
+}
+.suer_btn {
+	width: 50px;
+	height: 29px;
+	border: 1px solid #E6E6E6;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+	background-color: #FFFFFF;
+}
+
+.sub_pages .page_btn li {
+	float: left;
+	width: 24px;
+	height: 24px;
+	border: 1px solid #E6E6E6;
+	margin-left: 8px;
+	text-align: center;
+	line-height: 24px;
+	cursor: pointer;
+}
+
+.sub_pages .page_btn li a,
+.sub_pages .page_btn li span {
+	color: #999;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+
+.sub_pages .page_btn .ellipsis {
+	border: 0;
+}
+
+#page_num {
+	width: 44px;
+	height: 24px;
+	margin-right: 12px;
+}
+
+.current_pages {
+	background-color: #f3554a;
+	border: 1px solid #f3554a !important;
+}
+
+.current_pages span {
+	color: #FFFFFF !important;
+}

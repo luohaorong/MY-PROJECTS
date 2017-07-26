@@ -1,0 +1,230 @@
+#personal_my_custom{
+	background: #f3554a;
+}
+#personal_my_custom .inc{
+	display: none;
+}
+#personal_my_custom .inc1{
+	display: block;
+	
+}
+#personal_my_custom .inc3{
+	display: none;
+}
+#personal_my_custom .words{
+	color: #FFFFFF;
+	
+}
+#personal_my_custom .icn_right{
+	display: block;
+	
+}
+.my_custom_headebar{
+	width: 950px;
+	height: 32px;
+	background: #cdcdcd;
+	margin-bottom: 10px;
+}
+.my_custom_headebar li{
+	float: left;
+	line-height: 32px;
+	font-size: 14px;
+	color: #666666;
+	text-align: center;
+}
+.my_custom_product_name{
+	width: 232px;
+}
+.my_custom_common{
+	width: 130px;
+}
+.my_custom_money{
+	width: 188px;
+}
+.my_custom_all{
+	width: 140px;
+}
+.my_custom_orderlist_container{
+	width: 950px;
+	height: 150px;
+	border-radius: 4px;
+    box-shadow: 0 0 8px #cdcdcd;
+    -webkit-box-shadow: 0px 0px 8px #cdcdcd;
+    -moz-box-shadow: 0px 0px 8px #cdcdcd;
+    margin-bottom: 15px;
+    
+}
+
+
+
+.my_custom_container{
+	width: 950px;
+	height: 944px;
+}
+.my_custom_orderlist_time{
+	width: 950px;
+	height: 28px;
+	border-bottom: 1px solid #cdcdcd;
+	line-height: 28px;
+	text-indent: 14px;
+	color: #666666;
+	font-size: 12px;
+}
+.my_custom_orderlist_bottom{
+	width: 950px;
+	height: 121px;
+}
+.my_custom_orderlist_bottom li{
+	float: left;
+	color: #333333;
+	font-size: 14px;
+	line-height: 121px;
+	height: 121px;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.orderlist_product_name{
+	width: 229px;
+	border-right: 1px solid #cdcdcd;
+}
+.orderlist_product_price,.orderlist_product_amount,.orderlist_product_already_pay{
+	width: 130px;
+	border-right: 1px solid #cdcdcd;
+}
+.orderlist_product_money{
+	width: 188px;
+	border-right: 1px solid #cdcdcd;
+}
+.orderlist_product_money_top{
+	margin-left: 10px;
+	width: 173px;
+	height: 58px;
+	line-height: 88px;
+	border-bottom: 1px solid #cdcdcd;
+	
+}
+.orderlist_product_money_bottom{
+	margin-left: 26px;
+	width: 142px;
+	height: 20px;
+	line-height: 20px;
+}
+.orderlist_product_money_intotal,.orderlist_product_money_firstpay{
+	color: #EA0000;
+}
+
+
+
+
+.orderlist_product_allsituation{
+	width: 138px;
+	
+}
+.orderlist_product_allsituation p{
+	color: #661b18;
+	font-size: 14px;
+	line-height: 14px;
+	margin-top:42px;
+	margin-bottom: 8px;
+}
+.my_custom_orderlist_detail{
+	color: #333333;
+	font-size: 14px;
+	line-height: 14px;
+	display: block;
+	
+}
+
+
+.sub_pages {
+	width: 980px;
+	height: 78px;
+	position: relative;
+	overflow: hidden;
+}
+
+.sub_pages .btn {
+	width: 24px;
+	height: 24px;
+	border: 1px solid #cdcdcd;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+}
+
+.sub_pages .btn_pre {
+	position: absolute;
+	top: 34px;
+	left: 10px;
+}
+
+.sub_pages .btn_aft {
+	position: absolute;
+	top: 34px;
+	left: 218px;
+}
+
+.sub_pages .page_btn {
+	list-style: none;
+	width: auto;
+	height: 25px;
+	float: left;
+	margin-top: 44px;
+}
+.page_container{
+	width: 120px;
+	height: 30px;
+	padding-left: 20px;
+	margin-top: 42px;
+	float: left;
+}
+.suer_btn {
+	width: 50px;
+	height: 29px;
+	border: 1px solid #cdcdcd;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+	background-color: #FFFFFF;
+}
+
+.sub_pages .page_btn li {
+	float: left;
+	width: 24px;
+	height: 24px;
+	border: 1px solid #cdcdcd;
+	margin-left: 8px;
+	text-align: center;
+	line-height: 24px;
+	cursor: pointer;
+}
+
+.sub_pages .page_btn li a,
+.sub_pages .page_btn li span {
+	color: #999;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+
+.sub_pages .page_btn .ellipsis {
+	border: 0;
+}
+
+#page_num {
+	width: 44px;
+	height: 24px;
+	margin-right: 12px;
+}
+
+.current_pages {
+	background-color: #f3554a;
+	border: 1px solid #f3554a !important;
+}
+
+.current_pages span {
+	color: #FFFFFF !important;
+}

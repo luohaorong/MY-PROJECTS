@@ -1,0 +1,501 @@
+/*******账户余额content5**********/
+#account_balance{
+	background: #f3554a;
+}
+#account_balance .inc{
+	display: none;
+}
+#account_balance .inc1{
+	display: block;
+	
+}
+#account_balance .inc3{
+	display: none;
+}
+#account_balance .words{
+	color: #FFFFFF;
+	
+}
+#account_balance .icn_right{
+	display: block;
+	
+}
+
+.vip_level1{
+	width: 940px;
+	height: 22px;
+	border-bottom: 1px solid #CCCCCC;
+	margin-bottom: 30px;
+}
+.vip_head{
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	color: #333333;
+}
+.gold_vip{
+	float: left;
+	width: 440px;
+	height: 22px;
+	background-image:url(../img/gold-card.png) ;
+	background-repeat: no-repeat;
+	background-position-y: 3px;
+	
+}
+.vip_clas{
+	margin-left: 18px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #333333;
+	float: left;
+	
+}
+.commplete_level{
+	
+	margin-left: 10px;
+	margin-right: 8px;
+	margin-top: 4px;
+	float: left;
+	width: 330px;
+	height: 8px;
+	border: 1px solid #CCCCCC;
+	border-radius: 4px;
+}
+.under_commplete{
+	height: 8px;
+	background: #661B18;
+	width: 280px;
+	
+	border-radius: 4px 0 0 4px;
+}
+.vip_integral1{
+	float: left;
+	color: #5D5D5D;
+	font-size: 12px;
+	
+}
+.vip_integral2{
+	margin-left: 10px;
+	float: left;
+	font-size: 12px;
+	color: #CCCCCC;
+}
+.vip_level2{
+	width: 940px;
+	height: 30px;
+	margin-bottom: 48px;
+}
+.vip_leveleft{
+	float: left;
+	width: 415px;
+	height: 60px;
+	background-image: url(../img/vip_yang.png);
+	background-repeat: no-repeat;
+	background-position: 12px 4px;
+	
+}
+.vip_letop{
+	margin-left: 94px;
+	width:320px;
+	height: 28px;
+	
+}
+.vip_letop{
+	color: #333333;
+	font-size: 18px;
+}
+.account_balance{
+	font-size: 24px;
+	font-weight: bold;
+	color: #ea0000;
+}
+.vip_lebottom{
+	display: block;
+	width: 90px;
+	height: 26px;
+	border: 1px solid #661B18;
+	border-radius: 4px;
+	background-image: url(../img/recharge.png);
+	background-repeat: no-repeat;
+	background-position: 16px 6px;
+	margin-left: 94px;
+	color: #661B18;
+	line-height: 26px;
+	text-indent: 42px;
+	font-size: 14px;
+	cursor: pointer;
+	margin-top: 6px;
+}
+
+
+
+.vip_levelright{
+	float: left;
+	width: 340px;
+	height: 60px;
+	background-image: url(../img/vip_safe.png);
+	background-repeat: no-repeat;
+	
+}
+.vip_rigtop{
+	margin-left: 70px;
+	width: 245px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 18px;
+	color: #333333;
+}
+.vip_safe{
+	color: #661B18;
+}
+.vip_rigbottom{
+	width: 245px;
+	height: 30px;
+	margin-left: 70px;
+	
+}
+.vip_rigbottom li{
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	color: #f3554a;
+	text-indent: 17px;
+	cursor: pointer;
+}
+.rigbottom1{
+	
+	
+	background-image:url(../img/rigbottom1.png) ;
+	background-repeat: no-repeat;
+	background-position:0 6px ;
+	
+}
+.rigbottom2{
+	margin: 0 30px;
+	background-image:url(../img/rigbottom2.png) ;
+	background-repeat: no-repeat;
+	background-position: 0 6px;
+}
+.rigbottom3{
+	
+	
+	background-image:url(../img/rigbottom3.png) ;
+	background-repeat: no-repeat;
+	background-position:0 6px ;
+	
+}
+
+.vip_records{
+	width: 940px;
+	height: 26px;
+	border-bottom: 1px solid #CCCCCC;
+	margin-bottom: 26px;
+}
+.vip_records li{
+	float: left;
+	height: 26px;
+	line-height: 26px;
+	font-size: 14px;
+	color: #999999;
+	padding-right:20px;
+	padding-left: 12px;
+	cursor: pointer;
+	
+}
+.vip_records li p{
+	float: left;
+}
+.vip_add{
+	background: #e6e6e6;
+	color: #333333;
+}
+
+.deal_img{
+	margin-top: 4px;
+	margin-right: 8px;
+	float: left;
+	width: 15px;
+	height: 15px;
+	
+}
+.rencent_img{
+	margin-top: 4px;
+	margin-right: 8px;
+	float: left;
+	width: 15px;
+	height: 15px;
+	
+}
+.recharge_img{
+	margin-top: 4px;
+	margin-right: 8px;
+	float: left;
+	width: 15px;
+	height: 15px;
+	
+}
+.vip_time{
+	width: 940px;
+	height: 22px;
+	margin-bottom: 12px;
+}
+.vip_timleft{
+	width: 400px;
+	height: 22px;
+	float: left;
+	
+	margin-left: 20px;
+}
+.vip_timleft p{
+	float: left;
+	color: #333333;
+	font-size: 14px;
+	line-height: 22px;
+}
+.vip_timebox{
+	float: left;
+	width: 96px;
+	height: 20px;
+	border: 1px solid #e6e6e6;
+	margin-left:6px;
+}
+.vip_timebox img{
+	margin-top: 2px;
+	margin-right: 4px;
+	float: right;
+	cursor: pointer;
+}
+.vip_filter1{
+	float: left;
+	width: 70px;
+	height: 20px;
+	border: 1px solid #661B18;
+	border-radius: 4px;
+	line-height: 20px;
+	text-align: center;
+	color: #661B18;
+	cursor: pointer;
+	font-size: 14px;
+	margin-left: 10px;
+}
+
+
+.vip_timright{
+	width:440px;
+	height: 22px;
+	float: left;
+	
+}
+.vip_timright li{
+	float: left;
+	height: 22px;
+	line-height: 22px;
+	padding: 0 20px;
+	font-size: 12px;
+	
+	cursor: pointer;
+}
+.vip_timright_a{
+	color: #999999;
+}
+.cur,.cur1{
+	color: #661B18;
+}
+.vip_headbar{
+	width:940px;
+	height: 34px;
+	background: #e6e6e6;
+	margin-bottom: 14px;
+}
+.vip_headbar li{
+	float: left;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	color: #333333;
+	font-size: 14px;
+}
+.headbar1{
+	width: 176px;	
+}
+.headbar2{
+	width: 260px;	
+}
+.headbar3{
+	width: 168px;	
+}
+.headbar4{
+	width: 124px;	
+}
+.headbar5{
+	width: 212px;	
+}
+.account_balance_container{
+	width: 940px;
+	height: 720px;
+}
+.no_deal{
+	width: 940px;
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	
+}
+.vip_orderlist{
+	
+	width: 940px;
+	height: 100px;
+	margin-bottom: 10px;
+	-webkit-box-shadow:0px 0px 8px #EEEEEE;
+	-moz-box-shadow:0px 0px 8px #eeeeee;
+	box-shadow: 0px 0px 8px #EEEEEE ;
+}
+.vip_deal_time{
+	float: left;
+	width:176px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	font-size: 14px;
+	color: #333333;
+}
+.vip_deal_detail{
+	width:260px;
+	height:100px;
+	float: left;
+}
+.deal_detail{
+	width: 260px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+	font-size: 14px;
+	color: #333333;
+	margin-top: 20px;
+}
+.deal_number{
+	width: 260px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+	font-size: 14px;
+	color: #333333;
+}
+.vip_deal_money{
+	width: 168px;
+	height: 100px;
+	float: left;
+	line-height: 100px;
+	color: #333333;
+	font-size: 14px;
+	text-align: center;
+}
+.vip_deal_platform{
+	width: 124px;
+	height: 100px;
+	float: left;
+	line-height: 100px;
+	color: #333333;
+	font-size: 14px;
+	text-align: center;
+}
+.vip_deal_remark{
+	width: 212px;
+	height: 100px;
+	float: left;
+	line-height: 100px;
+	color: #333333;
+	font-size: 14px;
+	text-align: center;
+}
+.sub_pages {
+	width: 980px;
+	height: 78px;
+	position: relative;
+	overflow: hidden;
+	clear: both;
+}
+
+.sub_pages .btn {
+	width: 24px;
+	height: 24px;
+	border: 1px solid #E6E6E6;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+}
+
+.sub_pages .btn_pre {
+	position: absolute;
+	top: 34px;
+	left: 10px;
+}
+
+.sub_pages .btn_aft {
+	position: absolute;
+	top: 34px;
+	left: 218px;
+}
+
+.sub_pages .page_btn {
+	list-style: none;
+	width: auto;
+	height: 25px;
+	float: left;
+	margin-top: 44px;
+}
+.page_container{
+	width: 120px;
+	height: 30px;
+	padding-left: 20px;
+	margin-top: 42px;
+	float: left;
+}
+.suer_btn {
+	width: 50px;
+	height: 29px;
+	border: 1px solid #E6E6E6;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+	background-color: #FFFFFF;
+}
+
+.sub_pages .page_btn li {
+	float: left;
+	width: 24px;
+	height: 24px;
+	border: 1px solid #E6E6E6;
+	margin-left: 8px;
+	text-align: center;
+	line-height: 24px;
+	cursor: pointer;
+}
+
+.sub_pages .page_btn li a,
+.sub_pages .page_btn li span {
+	color: #999;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+
+.sub_pages .page_btn .ellipsis {
+	border: 0;
+}
+
+#page_num {
+	width: 44px;
+	height: 24px;
+	margin-right: 12px;
+}
+
+.current_pages {
+	background-color: #f3554a;
+	border: 1px solid #f3554a !important;
+}
+
+.current_pages span {
+	color: #FFFFFF !important;
+}

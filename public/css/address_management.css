@@ -1,0 +1,399 @@
+#address_management{
+	background: #f3554a;
+}
+#address_management .inc{
+	display: none;
+}
+#address_management .inc1{
+	display: block;
+	
+}
+#address_management .inc3{
+	display: none;
+}
+#address_management .words{
+	color: #FFFFFF;
+	
+}
+#address_management .icn_right{
+	display: block;
+	
+}
+.address_records{
+	margin-top:20px;
+	width: 946px;
+	height: 32px;
+	border-bottom: 1px solid #E6E6E6;
+	margin-bottom: 47px;
+}
+.address_consume,.address_recharge{
+	width: 120px;
+	height: 32px;
+	float: left;
+	line-height: 32px;
+	text-align: center;
+	color: #999999;
+	font-size: 14px;
+	cursor: pointer;
+}
+.add_address{
+	background: #E6E6E6;
+	font-size: 18px;
+	color: #661b18;
+}
+
+.personal_address_container{
+	width: 946px;
+	height: 830px;
+	display:block;
+}
+.main_sale_container{
+	width: 946px;
+	height: 830px;
+	
+	
+	display: none;
+}
+
+
+.address_information,.address_information1{
+	margin-right: 20px;
+	float: left;
+	width: 200px;
+	height: 200px;
+	-webkit-box-shadow:0px 0px 20px #EEEEEE;
+	-moz-box-shadow:0px 0px 20px #eeeeee;
+	box-shadow: 0px 0px 20px #EEEEEE ;
+	border-radius: 16px;
+	margin-bottom: 20px;
+}
+.address_information_top{
+	padding: 12px 12px;
+	width: 176px;
+	height: 42px;
+	border-bottom: 1px solid #E6E6E6;
+	position: relative;
+	cursor: pointer;
+}
+.personal_address_receiver,.personal_main_address{
+	font-size: 18px;
+	margin-bottom: 8px;
+	color: #333333;
+}
+
+.personal_address_number{
+	font-size: 14px;
+	color: #333333;
+}
+.personal_address_status{
+	font-size: 14px;
+	color: #999999;
+}
+.personal_address_status .status_check{
+	color: #EA0000;
+}
+.personal_address_select{
+	display: none;
+	position: absolute;
+	top: 14px;
+	right: 14px;
+}
+
+.address_information_bottom{
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-bottom: 18px;
+	padding-top: 10px;
+	width: 176px;
+	height: 106px;
+	position: relative;
+}
+.personal_address_content{
+	line-height: 22px;
+	color: #333333;
+	font-size: 14px;
+	margin-top: 10px;
+}
+.personal_address_edit{
+	position: absolute;
+	bottom: 18px;
+	cursor: pointer;
+}
+.personal_address_delete{
+	position: absolute;
+	right: 12px;
+	bottom: 18px;
+	cursor: pointer;
+}
+
+.address_information_add,.address_main_address{
+	margin-right: 20px;
+	float: left;
+	width: 200px;
+	height: 200px;
+	-webkit-box-shadow:0px 0px 20px #EEEEEE;
+	-moz-box-shadow:0px 0px 20px #eeeeee;
+	box-shadow: 0px 0px 20px #EEEEEE ;
+	border-radius: 16px;
+	background-image: url(../img/add.png);
+	background-position:44px 40px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	color: #CCCCCC;
+	font-size: 18px;
+	line-height: 354px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+
+html,body{
+	position: relative;
+}
+.templete,.templete1{
+	display: none;
+}
+.layer{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+	z-index: 10000;
+}
+
+.layer_container_common{
+	width: 800px;
+	height: auto;
+	background-color: #FFFFFF;
+	position: absolute;
+	left: 50%;
+	top: 200px;
+	opacity: 0;
+	filter: "alpha(opacity=57)";   /* IE 8 */ 
+	filter: alpha(opacity=57);  /* IE 4-7 */ 
+	margin-left: -400px;
+}
+.sub_wap{
+	width: 750px;
+	height: auto;
+	margin: 0 auto;
+}
+.company_name,.regions_exclusive,.explicit,.bottom_btn,.receipt_man,.receiver_adress{
+	overflow: hidden;
+	width: 963px;
+	height: 30px;
+	margin: 0 auto;
+	padding-top: 14px;
+}
+.receiver_adress{
+	overflow: hidden;
+	width: 963px;
+	height: 30px;
+	margin: 0 auto;
+	padding-top: 14px;
+	display: block;
+}
+
+.num_wap{
+	overflow: hidden;
+	width: 963px;
+	height: 30px;
+	margin: 0 auto;
+	padding-top: 14px;
+} 
+.sub_wap .licence_wap{
+	overflow: hidden;
+	width: 963px;
+	height: auto;
+	margin: 0 auto;
+	padding-top: 14px;
+}
+.container_title{
+	width: 800px;
+	height: 50px;
+	border-bottom: 1px solid #f3554a;
+	font-size: 18px;
+	color: #f3554a;
+	text-align: center;
+	line-height: 50px;
+}
+.star{
+	color: #ea0000;
+}
+.edit_text,.select_text{
+	font-size: 16px;
+	color: #333333;
+}
+.layer_container input{
+	width: 180px;
+	height: 20px;
+	outline: none;
+	border: 1px solid #E6E6E6;
+}
+.receiver_adress select{
+	width: 90px;
+    height: 23px;
+    text-align: center;
+    line-height: 23px;
+    font-size: 16px;
+}
+.province, .city, .region {
+    margin-left: 0px;
+}
+.itme_wap{
+	width: 200px;
+	height: 30px;
+	text-align: right;
+	line-height: 30px;
+	float: left;
+	padding-right: 16px;
+}
+.exclusive_common{
+	float: left;
+	cursor: pointer;
+}
+.order_top{
+	width: 14px;
+    height: 14px;
+   	float: left;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-right: 4px;
+    margin-top: 6px;
+    
+}
+.exclusive_words_common{
+	float: left;
+	margin-top: 4px;
+	margin-right: 10px;
+}
+.checkbox_change {
+    width: 16px;
+    border: 0;
+    background-image: url(../images/register/icons.png);
+    background-position: 58px -122px;
+    height: 16px;
+}
+#file{
+	margin-top: 6px;
+}
+.tip{
+	color: #999999;
+	margin-left: 6px;
+	font-size: 12px;
+}
+.company_box{
+	width: 400px;
+    height: auto;
+   
+    margin-left: 216px;
+    margin-top: 14px;
+   
+}
+.input_wap{
+	width: 382px;
+	height: 30px;
+	text-align: left;
+	line-height: 30px;
+	float: left;
+}
+.mobile_phone{
+	width: 530px;
+	overflow: hidden;
+}
+.bottom_btn{
+	width: 250px;
+	height: 66px;
+	margin: 0 auto;
+	overflow: hidden;
+	padding-top: 20px;
+}
+.ensure_common{
+	width: 100px;
+	height: 40px;
+	background-color: #f3554a;
+	color: #FFFFFF;
+	font-size: 18px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 4px;
+	float: left;
+	cursor: pointer;
+}
+.ensure2{
+	outline: 0;
+	border: 0;
+} 
+.cancel_common{
+	width: 100px;
+	height: 40px;
+	background-color: #FFFFFF;
+	color: #333;
+	font-size: 18px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 4px;
+	border: 1px solid #E6E6E6;
+	float: right;
+	cursor: pointer;
+}
+.transport_summary{
+	width: 1200px;
+	height: 66px;
+	border-radius: 2px;
+	box-shadow: 0 0 8px 4px #E6E6E6;
+	background-color: #FFFFFF;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.transport_clone{
+	display: none;
+}
+.transport_content{
+	width: 900px;
+	height: 66px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #333333;
+	line-height: 66px;
+	float: left;
+}
+.summary_mode{
+	padding-left: 30px;
+	color: #661B18;
+	font-weight: normal;
+}
+.door{
+	color: #EA0000;
+}
+.color_set{
+	color: #f3554a;
+}
+.summary_edite{
+	background-image: url(../images/shopping_car/edit.png);
+	background-repeat: no-repeat;
+	background-position:0,0;
+	padding-left: 14px;
+	cursor: pointer;
+}
+.summary_text{
+	padding-right: 32px
+}
+.pay,.since{
+	color: #EA0000;
+}
+.edit_content{
+	width: 300px;
+	height: 66px;
+	float: right;
+	text-align: center;
+    line-height: 66px;
+}
+
+.add_select{
+	display: block;
+}

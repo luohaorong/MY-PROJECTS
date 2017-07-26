@@ -1,0 +1,73 @@
+
+.prompt_box {
+	width: 502px;
+	height: 386px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -250px;
+	margin-top: -220px;
+	border:1px solid #eeeeee;
+}
+.text_wap{
+	color: #4f4f4f;
+	font-size: 22px;
+	font-family: "微软雅黑";
+	padding-top: 40px;
+	padding-left: 30px;
+}
+.prompt_text{
+	margin:0;
+}
+.browser{
+	width: 354px;
+	height: 60px;
+	margin: 20px auto;
+	overflow: hidden;
+}
+.browser a{
+	width: 142px;
+	height: 50px;
+	display: block;
+	float: left;
+	background-color: #ff715c;
+	color: #FFFFFF;
+	font-size: 22px;
+	line-height: 50px;
+	text-align: center;
+	margin-left: 10px;
+	
+}
+.app_container{
+	color: #4f4f4f;
+	font-size: 22px;
+	font-family: "微软雅黑";
+	padding-left: 30px;
+	overflow: hidden;
+}
+.android_ios{
+	float: left;
+	padding-top: 10px;
+	text-align: center;
+}
+.android_ios p{
+	margin: 0;
+	padding: 0;
+}
+.android{
+	padding-left: 20px;
+}
+.ios{
+	padding-left: 70px;
+}
+.logo_3d{
+	display: block;
+	position: absolute;
+	bottom: -130px;
+	right: -130px;
+}
+.big_box{
+	width: 1280px;
+	height: 10000px;
+	background-color: chartreuse;
+}
