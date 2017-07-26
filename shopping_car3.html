@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车3</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/shopping_car3.css"/>
+	</head>
+	<body>
+		<!--头部开始-->
+		<div id="head">
+			<div id="head-container">
+				<span class="welcome">您好，欢迎来到酒品荟网！</span>
+				<div class="work">
+					<div class="work-left"><a href="login.html">登录</a></div>
+					<div class="work-right"><a href="register.html">注册</a></div>
+				</div>
+				<ul id="head-left" style="list-style: none;">
+					<li><span class="hotline">客服热线:</span><span class="number">400-080-5959</span></li>
+					<li><a class="online" href="#">在线客服</a></li>
+					<li id="help"><a class="help" href="#">帮助中心</a></li>
+					<li class="cur phone_jiupinhui" onmouseover="$('.sa').show()" onmouseout="$('.sa').hide()" >
+						<a href="#">
+							<div class="phone-img">
+								<img src="images/iphone.png" />
+							</div>
+							<span class="phone_login">手机登录</span>
+							<div class="phone-img1">
+								<img src="images/jiantou1.png" />
+							</div>
+							<div class="sa" style="display: none; background: white;">
+								<div class="phone-img">
+								<img src="images/iphone.png" />
+								</div>
+								<span class="phone_login">手机登录</span>
+								<div class="phone-img1">
+									<img src="images/jiantou2.png" />
+								</div>
+								<div class="two"></div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--头部结束-->
+		<!--logo开始-->
+		<div id="login_container">
+			<div id="login_logo">
+				<div class="logo_container">
+					<img src="images/logo.png"/>
+					<span class="logo_text">
+						品味最好的美酒！
+					</span>
+				</div>
+			</div>
+		</div>	
+		<!--logo结束-->
+		<!--购物车确认付款开始-->
+		<div id="shopping_container">
+			<div class="step_container">
+				<img class="step_img" src="images/register/nav3.png"/>
+				<div class="left_side"></div>
+				<div class="right_side"></div>
+			</div>
+			<div class="register_mian">
+				<ul class="step_nodes">
+					<li class="last3">购物车</li>
+					<li>核对订单</li>
+					<li>确认付款</li>
+				</ul>
+			</div>
+			<div class="payment_main">
+				<div class="payment_head">
+					<div class="pay_money" >
+						<p class="pay_wap">
+							<span class="pay_text">
+							支付金额：
+							</span>
+							<span class="pay_num">
+								￥36,496
+							</span>
+						</p>
+						
+					</div>
+					<p class="pay_explain">请您尽快完成支付以免库存不足。已生成的订单将在24小时后自动取消，订单使用的优惠、挖酒卡金额将在订单取消时返还。</p>
+				</div>
+				<div class="payment_body">
+					<div class="body_title">
+						<p class="title_text">支付方式：</p>
+					</div>
+					<ul class="pay_list">
+						<li class="mode_list">
+							<div class="list_title firs_list" data_active="1">
+								账户余额
+							</div>
+							<div class="list_content sub_content">
+								<div class="available">
+									<p class="available_text">
+										可用余额：
+										<span class="available_num">
+											￥1,237
+										</span>
+									</p>
+									<a href="###" class="recharge">前往充值</a>
+								</div>
+							</div>
+						</li>
+						<li class="mode_list">
+							<div class="list_title">
+								网上银行
+							</div>
+							<div class="e_bank sub_content" style="display: none;">
+								<ul class="e_bank_list">
+									<li>
+										<span class="chk"></span>
+										<span class="selected"></span>
+										<img class="eback_img" src="images/shopping_car/acbc.png"/>
+									</li>
+									<li>
+										<span class="chk"></span>
+										<span class="selected"></span>
+										<img class="eback_img" src="images/shopping_car/aboc.png"/>
+									</li>
+									<li>
+										<span class="chk"></span>
+										<span class="selected"></span>
+										<img class="eback_img" src="images/shopping_car/boc (2).png"/>
+									</li>
+									<li>
+										<span class="chk"></span>
+										<span class="selected"></span>
+										<img class="eback_img" src="images/shopping_car/boc.png"/>
+									</li>
+									<li>
+										<span class="chk"></span>
+										<span class="selected"></span>
+										<img class="eback_img" src="images/shopping_car/ccb (2).png"/>
+									</li>
+									<li>
+										<span class="chk"></span>
+										<span class="selected"></span>
+										<img class="eback_img" src="images/shopping_car/ccb.png"/>
+									</li>
+									<li>
+										<span class="chk"></span>
+										<span class="selected"></span>
+										<img class="eback_img" src="images/shopping_car/cmb.png"/>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="mode_list">
+							<div class="list_title">
+								第三方支付
+							</div>
+							<div class="third_pay sub_content" style="display: none;">
+								<ul class="third_pay_list">
+									<li>
+										<span class="chk"></span>
+										<span class="selected"></span>
+										<img class="eback_img" src="images/shopping_car/pay.png"/>
+									</li>
+									<li>
+										<span class="chk"></span>
+										<span class="selected"></span>
+										<img class="eback_img" src="images/shopping_car/weichart.png"/>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="payment_foot">
+					立即支付
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<!--底部开始-->
+		<div id="links">
+			<div id="links-container">
+				<div class="links-box">
+					<div class="links-top">
+						<span>关于我们</span>
+						<span>购物指南</span>
+						<span>支付方式</span>
+						<span>物流配送</span>
+						<span>专业特色</span>
+						<span id="service">服务保障</span>
+					</div>
+					<div class="links-bottom">
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="foot">
+			<div id="foot-container">
+				Copyright 2016-2017 四川鑫亚泰贸易有限公司 版权所有|京ICP备14007454号
+			</div>
+		</div>
+		<!--底部结束-->
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/shopping_car3.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

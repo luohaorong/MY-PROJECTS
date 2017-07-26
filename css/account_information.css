@@ -1,0 +1,309 @@
+/*账户信息content10*/
+#account_information{
+	background: #57E6D3;
+}
+#account_information .inc{
+	display: none;
+}
+#account_information .inc1{
+	display: block;
+}
+#account_information .inc3{
+	display: none;
+}
+#account_information .words{
+	color: #FFFFFF;
+}
+#account_information .icn_right{
+	display: block;
+}
+/*******第一部分*******/
+.account_info1{
+	margin-top: 8px;
+	margin-bottom: 50px;
+	padding-left: 20px;
+	width: 926px;
+	height: 96px;
+	
+}
+.info1_left{
+	float: left;
+	width: 100px;
+	height: 96px;
+	margin-right: 14px;
+}
+.info1_right{
+	padding-top: 40px;
+	width: 812px;
+	height: 56px;
+	float: left;
+	
+}
+.info1_complete{
+	width:100%;
+	height: 22px;
+	border-bottom: 1px solid #e6e6e6;
+	margin-bottom: 8px;
+	
+}
+.complete_words{
+	width: 200px;
+	height: 22px;
+	font-size: 14px;
+	font-weight: bold;
+	font-weight: bolder;
+	color: #333333;
+	float: left;
+}
+.commplete_pic{
+	position: relative;
+	margin-right: 8px;
+	margin-top: 4px;
+	float: left;
+	width: 340px;
+	height: 8px;
+	border: 1px solid #CCCCCC;
+	border-radius: 4px;
+}
+.cp_pic60{
+	width: 204px;
+	background: #661B18;
+	height: 8px;
+	display: block;
+	border-radius: 4px 0 0 4px;
+	
+}
+.cp_pic80{
+	width: 272px;
+	background: #661B18;
+	height: 8px;
+	display: none;
+	border-radius: 4px 0 0 4px;
+}
+.cp_pic100{
+	width: 340px;
+	background: #661B18;
+	height: 8px;
+	display: none;
+	border-radius: 4px;
+}
+.complete_percent{
+	
+	width: 32px;
+	height: 22px;
+	float: left;
+	font-size: 12px;
+	color: #333333;
+	line-height: 16px;
+}
+.info1_service{
+	color: #5d5d5d;
+	font-size: 14px;
+}
+/******第一部分结束******/
+
+
+
+/********第二部分**************/
+.account_info2{
+	padding-left: 20px;
+	width: 926px;
+	height: 238px;
+	margin-bottom: 32px;
+	
+}
+.info2_person{
+	line-height: 20px;
+	font-size: 12px;
+	color: #c6c6c6;
+	width: 100%;
+	height: 20px;
+	border-bottom: 1px solid #CCCCCC;
+	margin-bottom: 20px;
+}
+.info2_lab{
+	width: 660px;
+	height: 26px;
+	position: relative;
+	margin-bottom: 8px;
+}
+.info2_head{
+	float: left;
+	width: 75px;
+	height: 26px;
+	line-height: 26px;
+	font-size: 14px;
+	color: #333333;
+}
+.info2_name{
+	float: left;
+	width: 80px;
+	height: 26px;
+	line-height: 26px;
+	font-size: 14px;
+	color: #333333;
+}
+.info2_revise{
+	float: left;
+	padding-top: 4px;
+	width: 60px;
+	height: 24px;
+	cursor: pointer;
+}
+
+
+.info2_box{
+	position: absolute;
+	left:75px ;
+	width: 320px;
+	height: 24px;
+	border: 1px solid #57E6D3;
+	display: none;
+	outline: 0;
+}
+.info2_save{
+	position: absolute;
+	left: 410px;
+	padding-top: 4px;
+	width: 60px;
+	height: 24px;
+	cursor: pointer;
+	display: none;
+}
+.info2name_error,.info2num_error,.info2email_error{
+	position: absolute;
+	right: 0;
+	width: 170px;
+	height: 24px;
+	line-height: 24px;
+	font-size: 12px;
+	
+	color: #EA0000;
+}
+.info2_reaccount{
+	float: left;
+	width: 80px;
+	height: 26px;
+	line-height: 26px;
+	font-size: 14px;
+	color: #333333;
+}
+.bind_iphone,.info2_regtime{
+	float: left;
+	width: 100px;
+	height: 26px;
+	line-height: 26px;
+	font-size: 14px;
+	color: #333333;
+}
+.info2_email{
+	float: left;
+	width: 160px;
+	height: 26px;
+	line-height: 26px;
+	font-size: 14px;
+	color: #333333;
+}
+.info2_regtime{
+	float: left;
+	width: 180px;
+	height: 26px;
+	line-height: 26px;
+	font-size: 14px;
+	color: #333333;
+}
+.info2_region{
+	float: left;
+	position: relative;
+	width: 420px;
+	height: 24px;
+	border: 1px solid #CCCCCC;
+	cursor: pointer;
+}
+.info2_region p{
+	margin-left: 8px;
+	line-height: 26px;
+	font-size: 14px;
+	color: #333333;
+}
+.info2_img1,.info2_img2{
+	position: absolute;
+	right: 8px;
+	top: 0px;
+}
+.info2_img2{
+	display: none;
+}
+.info2_regionshow{
+	width: 420px;
+	height: 80px;
+	overflow: auto;
+	border: 1px solid #CCCCCC;
+	border-top: 0;
+	position: absolute;
+	top: 24px;
+	left: 75px;
+	display: none;
+}
+.info2_regionshow li{
+	height:20px;
+	line-height:20px;
+	font-size: 14px;
+	color: #333333;
+}
+/*******第二部分结束****************/
+
+
+/***********第三部分**************/
+.account_info3{
+	margin-top: 70px;
+	width: 926px;
+	height: 280px;
+	
+	padding-left: 20px;
+}
+.account_info3 label{
+	display: block;
+	width: 920px;
+	height: 26px;
+	margin-bottom: 22px;
+}
+.info3_common{
+	text-indent: 12px;
+	outline: 0;
+	width: 220px;
+	height: 24px;
+	float: left;
+	display: block;
+	border: 1px solid #CCCCCC;
+	margin-right:34px;
+}
+
+.fo3err_common{
+	
+	width: 400px;
+	height: 26px;
+	font-size: 12px;
+	line-height: 26px;
+	float: left;
+	color: #CCCCCC;
+}
+.fo3err_add{
+	color: #EA0000;
+}
+.info3_ok{
+	border: 0;
+	outline: 0;
+	width: 220px;
+	height: 40px;
+	border-radius:5px ;
+	background: #CCCCCC;
+	font-size: 16px;
+	color: white;
+	line-height: 40px;
+	text-align: center;
+	margin-left: 75px;
+	margin-top: 20px;
+}
+
+/**********第三部分结束***************/

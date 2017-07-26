@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>404页面</title>
+	</head>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+	<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+		body{
+			
+			background-color: #52abd6;
+			
+		}
+		a{
+			text-decoration: none;
+			color: #FFFFFF;
+			font-size: 22px;
+		}
+		.container_notfound{
+			position: relative;
+			width: 1920px;
+			margin: 0 auto;
+			
+		}
+		.container_notfound img{
+			width: 100%;
+		}
+		.tips{
+			width: 540px;
+			height: 180px;
+			
+			position: absolute;
+			    top: 416px;
+    			right: 316px;
+		}
+		.tips p{
+			font-size: 22px;
+			color: #FFFFFF;
+			line-height: 34px;
+		}
+		.tips .back_pre{
+			background-image: url(img/go.png);
+			background-repeat: no-repeat;
+			background-position: 6px 6px;
+			padding-left: 22px;
+			width: 100px;
+			height: 22px;
+			margin-top: 30px;
+		}
+		.tips .go_index{
+			margin-top: 20px;
+			background-image: url(img/go.png);
+			background-repeat: no-repeat;
+			background-position: 6px 6px;
+			padding-left: 22px;
+			width: 320px;
+			height: 22px;
+		}
+		.tips .go_index span{
+			font-size: 22px;
+			color: #FFFFFF;
+		}
+		.tips .go_index .go_index_sec{
+			margin-left: 10px;
+			color: yellow;
+		}
+	</style>
+	<body>
+		<div class="container_notfound">
+			<img src="img/img404.png" alt="" />
+			<div class="tips">
+				<p>您访问的页面走丢啦，小伙伴们正在努力ing...</p>
+				<p>点击以下链接继续浏览网站：</p>
+				<div class="back_pre"><a href="##">返回上页</a></div>
+				<div class="go_index">
+					<a href="##">返回首页</a>
+					<span class="go_index_sec">6</span>
+					<span>秒之后将自动跳转</span>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+	<script>
+		$(function(){
+			
+			var sec=parseInt($('.go_index_sec').text());
+			var time=setInterval(showtime,1000);
+			function showtime(){
+				sec--;
+				$('.go_index_sec').text(sec);
+				if (sec<=0) {
+					clearInterval(time);
+					//跳转到首页写在此处
+				}
+			}
+		});
+	</script>
+</html>

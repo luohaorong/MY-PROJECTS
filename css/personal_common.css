@@ -1,0 +1,328 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+ a { text-decoration:none; }
+ul,ol,dl{
+	list-style: none;
+}
+img{
+	border: 0
+	;
+}
+
+#main,#links,#foot{
+	width: 100%;
+}
+#main-container,#links-container,#foot-container{
+	margin: 0 auto;
+	width: 1280px;
+}
+
+/*main*/
+#main{
+	padding-top: 14px;
+	
+	min-height:1126px; 
+	height:auto!important; 
+	height:1126px;
+	_height:1126px;
+	background-image: url(../common/img/bk_1.png);
+}
+#main-container{
+	
+	
+	min-height:1126px; 
+	height:auto!important; 
+	height:1126px;
+	_height:1126px;
+}
+/*左边*/
+.main-left{
+	float: left;
+	width: 160px;
+	height: 1126px;
+	margin-right: 15px;
+	
+}
+.add{
+	background: #57e6d3;
+}
+.after_hover,.after_hover1{
+	
+	background: #57e6d3;
+}
+
+.personal{
+	position: relative;
+	width: 160px;
+	height: 32px;
+	font-size: 16px;
+	font-weight: bolder;
+	background: #661b18;
+	color: #FFFFFF;
+	line-height: 32px;
+	text-align: center;
+}
+.person{
+	width: 18px;
+	height: 20px;
+	position: absolute;
+	left: 18px;
+	top: 4px;
+	
+}
+.personal-container{
+	width: 158px;
+	height: 1093px;
+	background: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	border-top:none;
+}
+.list-name{
+	width: 158px;
+	height: 36px;
+	background: #f6f6f6;
+	font-size: 12px;
+	color: #999999;
+	line-height: 43px;
+	text-indent: 14px;
+}
+.listings{
+	margin-top: 22px;
+}
+/*.list2{
+	height: 210px;
+	width: 158px;
+	overflow: hidden;
+}*/
+.list2 li:nth-child(3){
+	color: red;
+	
+	
+}
+.listings li{
+	
+	
+	width: 158px;
+	height: 30px;
+	line-height: 30px;
+	
+	margin: 10px 0;
+	position: relative;
+}
+.listings li a{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.inc{
+	margin-top: 7px;
+	width: 16px;
+	height: 16px;
+	
+	display: block;
+	float: left;
+	margin-left: 20px;
+	margin-right: 8px;
+	}
+	.inc3{
+	margin-top: 7px;
+	width: 16px;
+	height: 16px;
+	
+	display: block;
+	float: left;
+	margin-left: 20px;
+	margin-right: 8px;
+	}
+.inc1{
+	margin-top: 7px;
+	width: 16px;
+	height: 16px;
+	
+	display: none;
+	float: left;
+	margin-left: 20px;
+	margin-right: 8px;
+}
+.inc2{
+	margin-top: 7px;
+	width: 16px;
+	height: 16px;
+	
+	display: block;
+	float: left;
+	margin-left: 20px;
+	margin-right: 8px;
+}
+.icn_right{
+	display: none;
+	width: 6px;
+	height: 10px;
+	
+	margin-right: 10px;
+	margin-top: 10px;
+	float: right;
+}
+.words{
+	color: #661b18;
+	font-size: 14px;
+	
+	line-height: 30px;
+	float: left;
+	cursor:default;
+}
+.words1{
+	color: white;
+	font-size: 14px;
+	
+	line-height: 30px;
+	float: left;
+	cursor:default;
+}
+.words2{
+	color: white;
+	font-size: 14px;
+	
+	line-height: 30px;
+	float: left;
+	cursor:default;
+}
+
+
+
+/*右边*/
+.main-right{
+	float: left;
+	padding-left: 40px;
+	padding-top: 18px;
+	width: 986px;
+	min-height:1108px; 
+	height:auto!important; 
+	
+	_height:1108px;
+	height: 1108px;
+	background: #FFFFFF;
+	position: relative;
+}
+/*右边内容显示的div公共样式*/
+.content_common{
+	position: absolute;
+	width: 986px;
+	min-height:1108px; 
+	height:auto!important; 
+	_height:1108px;
+	height: 1108px;
+	left: 40px;
+	top: 18px;
+	
+}
+.box_h{
+	width: 986px;
+	height:20px;
+	border-bottom: 2px solid #57e6d3;
+	color: #57e6d3;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: bolder;
+	margin-bottom: 20px;
+}
+.box_h_sub{
+	color: #999999;
+	font-size: 14px;
+}
+#box_red{
+	width: 374px;
+	height: 30px;
+	border: 1px solid #eb7878;
+	font-size: 12px;
+	line-height: 30px;
+	color: #bd1a21;
+	background: #ffefef;
+	text-indent: 6px;
+	margin-bottom: 18px;
+}
+/*links*/
+#links{
+	height:336px;
+	background-image: url(../img/bk_1.png);
+}
+#links-container{
+	
+	height:184px;
+	
+	padding-top: 152px;
+	
+}
+.links-box{
+	margin: 0 auto;
+	width: 1002px;
+	height: 138px;
+	}
+.links-top{
+	width: 1002px;
+	height: 52px;
+	border-top:1px solid #b00601 ;
+	border-bottom:1px solid #b00601 ;
+	line-height: 52px;
+	margin-bottom: 22px;
+}
+.links-top span{
+	
+	font-size: 18px;
+	color: #333333;
+	margin-right: 106px;
+}
+#service{
+	margin-right:0 ;
+}
+.links-bottom{
+	width: 1002px;
+	height: 78px;
+	
+}
+.links-a{
+	width: 1002px;
+	
+	height: 14px;
+	margin-bottom: 12px;
+}
+.links-a a{
+	font-size: 14px;
+	color: #666666;
+	margin-right: 125px;
+}
+#last{
+	margin-right:0 ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,267 @@
+#personal_my_points{
+	background: #57E6D3;
+}
+#personal_my_points .inc{
+	display: none;
+}
+#personal_my_points .inc1{
+	display: block;
+	
+}
+#personal_my_points .inc3{
+	display: none;
+}
+#personal_my_points .words{
+	color: #FFFFFF;
+	
+}
+#personal_my_points .icn_right{
+	display: block;
+	
+}
+.my_points_level1{
+	width: 940px;
+	height: 100px;
+	border-bottom:1px solid #CCCCCC;
+}
+.my_points_level1_top{
+	width: 520px;
+	padding-left: 420px;
+	height: 18px;
+	line-height: 18px;
+	
+}
+.my_points_vip_level{
+	width: 90px;
+	height: 18px;
+	float: left;
+	background-image: url(../img/gold-card.png);
+	background-repeat: no-repeat;
+	background-position-y: 3px;
+	color: #333333;
+	font-weight: bold;
+	font-size: 14px;
+	text-indent: 14px;
+}
+.my_points_growup{
+	float: left;
+	line-height: 18px;
+	font-size: 12px;
+	color: #333333;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.grow_up_common{
+	color: #EA0000;
+	
+}
+.my_points_rules{
+	
+	display: block;
+	color: #57E6D3;
+	font-size: 12px;
+	text-decoration: underline;
+}
+.my_points_level1_bottom{
+	width: 940px;
+	height:44px;
+	
+}
+.my_growup{
+	color: #333333;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 34px;
+	float: left;
+	margin-right: 25px;
+}
+.my_points_all{
+	float: left;
+	width: 822px;
+	height: 44px;
+	
+}
+.my_points_white{
+	
+	width: 822px;
+	height: 8px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+.my_points_color{
+	
+	
+	width: 274px;
+	height: 8px;
+    background: #661B18;
+    border-radius: 4px 0 0 4px;
+    
+}
+.my_points_all span{
+	margin-right: 240px;
+	font-size: 12px;
+	color: #333333;
+}
+#my_points_full{
+	margin-right: 0;
+	margin-left: -30px;
+}
+.my_points_level2{
+	width: 940px;
+	height: 54px;
+	
+}
+.my_points_level2_left{
+	float: left;
+	width: 300px;
+	height: 54px;
+	line-height: 54px;
+	font-size: 14px;
+	color: #333333;
+}
+.my_points_number{
+	width: 200px;
+	height: 22px;
+	border: 1px solid #CCCCCC;
+	outline: 0;
+	text-indent: 10px;
+}
+.vip_timleft{
+	width: 500px;
+	height: 22px;
+	float: left;
+	margin-top: 16px;
+	margin-left: 20px;
+}
+.vip_timleft p{
+	float: left;
+	color: #333333;
+	font-size: 14px;
+	line-height: 22px;
+}
+.vip_timebox{
+	float: left;
+	width: 118px;
+	height: 20px;
+	border: 1px solid #e6e6e6;
+	margin-left:20px;
+	cursor: pointer;
+}
+.vip_timebox img{
+	margin-top: 2px;
+	margin-right: 4px;
+	float: right;
+	cursor: pointer;
+}
+.vip_filter{
+	float: left;
+	width: 70px;
+	height: 20px;
+	border: 1px solid #661B18;
+	border-radius: 4px;
+	line-height: 20px;
+	text-align: center;
+	color: #661B18;
+	cursor: pointer;
+	font-size: 14px;
+	margin-left: 10px;
+}
+.my_points_headbar{
+	width: 940px;
+	height: 32px;
+	background: #E6E6E6;
+	margin-bottom: 6px;
+}
+.my_points_headbar li{
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	color: #333333;
+	font-size: 14px;
+	float: left;
+}
+.my_points_dealtime,.my_points_lose,.my_points_contime,.my_points_conlose{
+	width: 170px;
+}
+.my_points_resrouce,.my_points_conresrouce{
+	width: 284px;
+}
+.my_points_get,.my_points_conget{
+	width: 134px;
+}
+.my_points_remarks,.my_points_conremarks{
+	width: 182px;
+}
+.my_points_all_container{
+	width: 940px;
+	height: 730px;
+}
+.my_points_container{
+	margin: 12px 0;
+	width: 940px;
+	height: 104px;
+	-webkit-box-shadow: 0px 0px 8px #EEEEEE;
+    -moz-box-shadow: 0px 0px 8px #eeeeee;
+    box-shadow: 0px 0px 8px #EEEEEE;
+}
+.my_points_container li{
+	font-size: 14px;
+	color: #333333;
+	float: left;
+	line-height: 104px;
+	text-align: center;
+}
+.vip_pages{
+	width: 100%;
+	height:22px;
+	margin-top: 20px;
+}
+.vip_pages span,.vip_pages_curent{
+	display: block;
+	float: left;
+	width: 22px;
+	height: 22px;
+	border: 1px solid #CCCCCC;
+	line-height: 22px;
+	text-align: center;
+	margin-right: 10px;
+	font-size: 14px;
+	color: #CCCCCC;
+	cursor: pointer;
+}
+.vip_add_pages{
+	display: block;
+	float: left;
+	width: 24px;
+	height: 24px;
+	
+	line-height: 24px;
+	text-align: center;
+	margin-right: 10px;
+	font-size: 14px;
+	
+	background: #57E6D3;
+	color: #FFFFFF;
+}
+.vip_pages_txt{
+	width: 42px;
+	border: 1px solid #CCCCCC;
+	display: block;
+	float: left;
+	height: 22px;
+	margin-right: 10px;
+	outline: 0;
+	text-indent: 12px;
+}
+.vip_pages_btn{
+	width: 50px;
+	height: 24px;
+	border: 1px solid #CCCCCC;
+	display: block;
+	background: #FFFFFF;
+	outline: 0;
+	float: left;
+	color: #CCCCCC;
+}

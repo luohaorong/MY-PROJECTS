@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>商品列表</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/common2.css" />
+		<link rel="stylesheet" type="text/css" href="css/commodity_list.css" />
+		<link rel="stylesheet" type="text/css" href="css/slide.css" />
+	</head>
+
+	<body>
+		<!--头部开始-->
+		<div id="head">
+			<div id="head-container">
+				<div class="not_login">
+					<span class="welcome">您好，欢迎来到酒品荟网！</span>
+					<div class="work">
+						<div class="work-left">
+							<a href="login.html">登录</a>
+						</div>
+						<div class="work-right">
+							<a href="register.html">注册</a>
+						</div>
+					</div>
+				</div>
+				<ul class="head_list">
+					<li>
+						<a href="###">18702818816</a>|</li>
+					<li>
+						<a href="###">退出</a>|</li>
+					<li>
+						<a href="###"> 我的挖酒</a>|</li>
+					<li>
+						<a href="###">账户余额: ￥0元</a>|</li>
+					<li>
+						<a href="###">充值</a>|</li>
+					<li>
+						<a href="###">待支付订单:(0)</a>
+					</li>
+				</ul>
+				<ul id="head-left" style="list-style: none;">
+					<li><span class="hotline">客服热线:</span><span class="number">400-080-5959</span></li>
+					<li>
+						<a class="online" href="#">在线客服</a>
+					</li>
+					<li id="help">
+						<a class="help" href="#">帮助中心</a>
+					</li>
+					<li class="cur phone_jiupinhui" onmouseover="$('.sa').show()" onmouseout="$('.sa').hide()">
+						<a href="#">
+							<div class="phone-img">
+								<img src="images/iphone.png" />
+							</div>
+							<span class="phone_login">手机登录</span>
+							<div class="phone-img1">
+								<img src="images/jiantou1.png" />
+							</div>
+							<div class="sa" style="display: none; background: white;">
+								<div class="phone-img">
+									<img src="images/iphone.png" />
+								</div>
+								<span class="phone_login">手机登录</span>
+								<div class="phone-img1">
+									<img src="images/jiantou2.png" />
+								</div>
+								<div class="two"></div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--头部结束-->
+		<!--logo开始-->
+		<div id="login_container">
+			<div id="login_logo">
+				<div class="logo_container">
+					<a href="index.html"><img src="images/logo.png" /></a>
+					<div class="nav_search">
+						<input type="text" name="search_input" id="search_input" data_content='热门搜索：葡萄酒干红' />
+						<div id="seach_inco"></div>
+						<ul class="nav_top">
+							<li>
+								<a href="###" class="first_list">预售 |</a>
+							</li>
+							<li>
+								<a href="###">赛琳娜|</a>
+							</li>
+							<li>
+								<a href="###">专属|</a>
+							</li>
+							<li>
+								<a href="###">星云|</a>
+							</li>
+							<li>
+								<a href="###">大航海|</a>
+							</li>
+							<li>
+								<a href="###">金鱼|</a>
+							</li>
+							<li>
+								<a href="###">阿曼莎|</a>
+							</li>
+							<li>
+								<a href="###">普乐|</a>
+							</li>
+							<li>
+								<a href="###">专属</a>
+							</li>
+						</ul>
+					</div>
+					<ul class="shoping">
+						<li class="shoping_car">
+							<a href="###"></a>
+						</li>
+						<li class="shoping_num">
+							<a href="###">225</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--logo结束-->
+		</div>
+		<!--主体部分-->
+		<div id="index_container">
+			<div class="nav_wrap">
+				<ul class="nav_list">
+					<li class="nav_first">
+						采购导航
+						<ul class="sub_list">
+							<li><img src="images/index/hot.png" />
+								<a href="###">新品预热</a>
+							</li>
+							<li><img src="images/index/red_wine.png" />
+								<a href="###">入门红酒</a>
+							</li>
+							<li><img src="images/index/Foaming.png" />
+								<a href="###">起泡甜型</a>
+							</li>
+							<li><img src="images/index/quality.png" />
+								<a href="###">优质红酒</a>
+							</li>
+							<li><img src="images/index/Foaming.png" />
+								<a href="###">流通行货</a>
+							</li>
+							<li><img src="images/index/red_wine.png" />
+								<a href="###">千百桃红</a>
+							</li>
+							<li><img src="images/index/hot.png" />
+								<a href="###">啤酒烈酒</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="###">首页</a>
+					</li>
+					<li class="sec_nav">
+						<a class="nav_current" href="###">精品酒</a>
+					</li>
+					<li>
+						<a href="###">葡萄酒</a>
+					</li>
+					<li>
+						<a href="###">烈酒</a>
+					</li>
+					<li>
+						<a href="###">酒周边</a>
+					</li>
+					<li>
+						<a href="###">挖酒金融</a>
+					</li>
+				</ul>
+
+			</div>
+			<div id="list_details">
+				<div class="list_details_left">
+					<div id="heat" data_state='1' class="left_first">
+						<img id="add" class="first_ico" src="images/commodity_list/add.png" />
+						<img id="detract" class="first_ico current" src="images/commodity_list/detract.png" />
+						<p>产品热度榜</p>
+					</div>
+					<ul id="left_list_top" class="left_list">
+						<li class="product_list">
+							<a href="###">
+								<img src="images/commodity_list/product.png" />
+								<p class="product_name">西班牙DOC精品</p>
+								<p class="product_price">¥45.5</p>
+							</a>
+						</li>
+						<li class="product_list">
+							<a href="###">
+								<img src="images/commodity_list/product1.png" />
+								<p class="product_name">西班牙DOC精品</p>
+								<p class="product_price">¥45.5</p>
+							</a>
+						</li>
+						<li class="product_list">
+							<a href="###">
+								<img src="images/commodity_list/product1.png" />
+								<p class="product_name">西班牙DOC精品</p>
+								<p class="product_price">¥45.5</p>
+							</a>
+						</li>
+						<li class="product_list">
+							<a href="###">
+								<img src="images/commodity_list/product1.png" />
+								<p class="product_name">西班牙DOC精品</p>
+								<p class="product_price">¥45.5</p>
+							</a>
+						</li>
+
+					</ul>
+					<div id="browse" data_state='1' class="left_first">
+						<img id="add_sub" class="first_ico" src="images/commodity_list/add.png" />
+						<img id="detract_sub" class="first_ico current" src="images/commodity_list/detract.png" />
+						<p>最近浏览</p>
+					</div>
+					<ul id="left_list_sub" class="left_list">
+						<li class="product_list">
+							<a href="###">
+								<img src="images/commodity_list/product.png" />
+								<p class="product_name">西班牙DOC精品</p>
+								<p class="product_price">¥45.5</p>
+							</a>
+						</li>
+						<li class="product_list">
+							<a href="###">
+								<img src="images/commodity_list/product1.png" />
+								<p class="product_name">西班牙DOC精品</p>
+								<p class="product_price">¥45.5</p>
+							</a>
+						</li>
+						<li class="product_list">
+							<a href="###">
+								<img src="images/commodity_list/product1.png" />
+								<p class="product_name">西班牙DOC精品</p>
+								<p class="product_price">¥45.5</p>
+							</a>
+						</li>
+						<li class="product_list">
+							<a href="###">
+								<img src="images/commodity_list/product1.png" />
+								<p class="product_name">西班牙DOC精品</p>
+								<p class="product_price">¥45.5</p>
+							</a>
+						</li>
+
+					</ul>
+				</div>
+				<div class="list_details_right">
+					<div class="list_right_top">
+						<div class="pptbox" id="ppt">
+							<ul class="innerwrapper">
+								<li>
+									<a href="#"><img src="images/commodity_list/banner.png" /></a>
+								</li>
+								<li>
+									<a href="#"><img src="images/commodity_list/banner1.png" /></a>
+								</li>
+							</ul>
+							<ul class="controls">
+								<li class="current">1</li>
+								<li>2</li>
+							</ul>
+							<span class="btnleft"></span>
+							<span class="btnright"></span>
+						</div>
+					</div>
+					<div class="list_right_sub">
+						<div class="outline">
+							<p class="list_title_left">
+								<span class="sub_title_left">
+									新品预热
+								</span>
+							</p>
+							<p class="list_title_right">
+								<span class="sub_title_right">
+									<span class="gray">
+										共有
+									</span>
+								<span>
+										85
+									</span>
+								<span class="gray">
+										件商品 2/3
+									</span>
+								<span class="pages">
+										上一页 
+									</span>
+								<span class="pages">
+										下一页 
+									</span>
+								</span>
+							</p>
+							<div class="nav_title">
+								<div class="nav_title_wap">
+									<ul class="option">
+										<li class="option_first">综合排序</li>
+										<li>新品</li>
+										<li>价格</li>
+									</ul>
+									<span class="text">
+								筛选:
+							</span>
+									<input type="text" name="screen" id="slid_screen" class="screening" value="全部" readonly="readonly" />
+
+									<span class="text">
+								产地:
+							</span>
+									<input type="text" name="origin" id="origin" class="screening" value="全部" readonly="readonly" />
+
+									<div>
+										<p><span id="chk" class="chk"></span><span class="stock">现货</span></p>
+										<span id="selected" class="selected" data-success=1></span>
+									</div>
+									<div>
+										<p><span id="right" class="chk right"></span><span class="stock sole">可独家</span></p>
+										<span id="next_right" class="selected right" data-success=1></span>
+									</div>
+								</div>
+								<ul id="wine_type" class="select_sub">
+									<li>全部</li>
+									<li>木箱酒</li>
+									<li>获奖酒</li>
+									<li>无醇</li>
+									<li>高度推荐</li>
+								</ul>
+								<ul id="country" class="select_sub next">
+									<li>全部</li>
+									<li>法国</li>
+									<li>保加利亚</li>
+									<li>美国</li>
+									<li>德国</li>
+								</ul>
+							</div>
+							
+						</div>
+						<div class="package package_active">
+							<div class="product_wap">
+								<ul id="sort" class="product_show">
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+
+								</ul>
+								<ul id="new" class="product_show">
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product3_101.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+
+								</ul>
+								<ul id="price" class="product_show">
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product3_11.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a class="single_first" href="###">
+											<img src="images/commodity_list/product1_07.png" class="product_pic" />
+										</a>
+										<img src="images/commodity_list/Projection1.png" class="shadow_top" />
+										<div class="describe_pro">
+											<ul class="describe_text">
+												<li class="first_line">
+													<a class="first" href="###">瓦卡多歌海娜干红</a>
+												</li>
+												<li class="second_line">
+													<a class="second" href="###">Valcanto Garnacha Tintorer</a>
+												</li>
+												<li>
+													<a class="three" href="###">有机庄，金奖，橡木桶陈酿</a>
+													<p class="flag">
+														<img src="images/index/state1.png" />
+													</p>
+												</li>
+											</ul>
+											<img src="images/commodity_list/Projection2.png" />
+											<ul class="describe_price">
+												<li class="price_list">￥27.80</li>
+												<li class="price_sce">阿曼萨D.O.</li>
+												<li class="price_last">境内发货</li>
+											</ul>
+										</div>
+									</li>
+
+								</ul>
+
+								<div class="sub_pages">
+									<div class="btn btn_pre"><img src="images/commodity_list/left.png" /></div>
+									<ul class="page_btn">
+										<li class="current_pages no_option" data_sign='1'>
+											<a href="###">1</a>
+										</li>
+										<li>
+											<a href="###">2</a>
+										</li>
+										<li>
+											<a href="###">3</a>
+										</li>
+										<li>
+											<a href="###">4</a>
+										</li>
+										<li>
+											<a href="###">5</a>
+										</li>
+									</ul>
+									<input type="text" name="page_num" id="page_num" />
+									<div class="btn btn_aft"><img src="images/commodity_list/rightarrow .png" /></div>
+									<button class="suer_btn">确定</button>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!--右侧边栏开始-->
+		<ul id="toolbar">
+			<li><img src="images/index/Speech Bubble- More.png" />
+				<p>
+					<a href="###">在线客服</a>
+				</p>
+			</li>
+			<li><img src="images/index/Money.png" />
+				<p>
+					<a href="###">我的账户</a>
+				</p>
+			</li>
+			<li><img src="images/index/Profile.png" />
+				<p>
+					<a href="###">独家体验</a>
+				</p>
+			</li>
+			<li id="gotop"><img src="images/index/top.png" />
+				<p>回顶端</p>
+			</li>
+		</ul>
+		<!--右侧边栏结束-->
+		<!--底部开始-->
+		<div id="links">
+			<div id="links-container">
+				<div class="links-box">
+					<div class="links-top">
+						<span>关于我们</span>
+						<span>购物指南</span>
+						<span>支付方式</span>
+						<span>物流配送</span>
+						<span>专业特色</span>
+						<span id="service">服务保障</span>
+					</div>
+					<div class="links-bottom">
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="foot">
+			<div id="foot-container">
+				Copyright 2016-2017 四川鑫亚泰贸易有限公司 版权所有|京ICP备14007454号
+			</div>
+		</div>
+		<!--底部结束-->
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/commodity_list.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/slide.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

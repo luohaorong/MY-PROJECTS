@@ -1,0 +1,489 @@
+/*logo开始*/
+
+#login_container {
+	width: 100%;
+	height: auto;
+}
+
+#login_logo {
+	width: 100%;
+	height: 100px;
+	background-color: #f6f6f6;
+}
+
+#login_logo .logo_container {
+	width: 1280px;
+	height: 100px;
+	margin: 0 auto;
+	position: relative;
+}
+
+#login_logo .logo_container img {
+	position: absolute;
+	left: 0;
+	top: 20px;
+	cursor: pointer;
+}
+
+#login_logo .logo_container span {
+	display: inline-block;
+	position: absolute;
+	left: 126px;
+	top: 42px;
+	color: #999999;
+	font-size: 16px;
+}
+
+
+/*logo结束*/
+/*主体开始*/
+#register_container {
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+/*主体部分的步骤开始*/
+#register_container .step_container {
+	width: 100%;
+	height: auto;
+	position: absolute;
+	top: -12px;
+	left: 0;
+}
+
+#register_container .step_container .step_img {
+	width: 1280px;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	z-index: 2;
+}
+
+#register_container .step_container .left_side {
+	width: 50%;
+	height: 42px;
+	background-image: url(../images/register/nav_side02.png);
+	position: absolute;
+	left: 0;
+	top: 0px;
+	z-index: 1;
+}
+
+#register_container .step_container .right_side {
+	width: 50%;
+	height: 42px;
+	background-image: url(../images/register/right_side02.png);
+	position: absolute;
+	right: 0;
+	top: 0px;
+	z-index: 1;
+}
+#register_container .step_container .right_side3{
+	background-image: url(../images/register/nav_side02.png);
+}
+/*主体部分的步骤结束*/
+/*主体部分的主要内容开始*/
+#register_container .register_mian {
+	width: 100%;
+	height:auto;
+	background-image: url(../images/register/Shading.png);
+	margin: 0 auto;
+}
+/*步骤说明开始*/
+#register_container .register_mian .step_nodes {
+	width: 1280px;
+	height: 30px;
+	margin: 0 auto;
+	position: relative;
+	padding-top: 30px;
+}
+
+#register_container .register_mian .step_nodes:after {
+	clear: both;
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+#register_container .register_mian .step_nodes li {
+	float: left;
+	width: 350px;
+	height: 30px;
+	text-align: right;
+	color: #57e6d3;
+	font-size: 18px;
+	padding-top: 5px;
+	list-style: none;
+}
+#register_container .last2{
+	padding-left: 22px;
+	color: #cccccc !important;
+}
+#register_container .last3{
+	padding-left: 22px;
+	color: #57e6d3; !important;
+}
+/*步骤说明结束*/
+/*主要内容左边部分开始*/
+#register_container .register_mian .register_content {
+	width: 1280px;
+	height: auto;
+	margin: 0 auto;
+	
+}
+#register_container .register_mian .register_content:after {
+	clear: both;
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+#register_container .register_mian .register_content .left_content {
+	width: 950px;
+	height: 700px;
+	float: left;
+}
+/*左边部分的上部分*/
+#register_container .left_content .left_content_top{
+	width: 492px;
+	height: 50px;
+	padding-left: 244px;
+}
+
+ 	
+#register_container .left_content .text_top{
+	color: #ea0000;
+	font-size: 16px;
+	padding-top: 10px;
+}
+#register_container .left_content .text_sub{
+	color: #999999;
+	font-size: 14px;
+	
+}
+/*左边部分中间内容*/
+#register_container .left_content .left_content_middle{
+	width: 920px;
+	height: 394px;
+	padding-left: 50px;
+	position: relative;
+}
+#register_container .left_content .left_content_middle .address{
+	width: 380px;
+	height: 68px;
+	border-radius: 4px;
+	border: 1px solid #e5e5e5;
+	resize: none;
+	margin-left: 14px;
+}
+#register_container .left_content .left_content_middle p{
+	padding-bottom: 20px;
+	position: relative;
+}
+#register_container .left_content p b{
+	color: #ea0000;
+	padding-right: 6px;
+}
+#register_container .left_content .left_title{
+	color: #333333;
+	font-size: 18px;
+	text-align: right;
+}
+#register_container .left_content .first{
+	float: left;
+}
+#register_container .left_content .first_title{
+	float: left;
+}
+#register_container .left_content .first_describe{
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 28px;
+}
+#register_container .left_content_middle .icon_pass_1{
+	width: 20px;
+	height: 20px;
+	display: none;
+	position: absolute;
+	right: 324px;
+	top: 27px;
+	background-image: url(../images/icons1.png);
+	background-position: 0px -120px;
+	background-repeat: no-repeat;
+}
+#register_container .left_content_middle .icon_pass_2{
+	width: 20px;
+	height: 20px;
+	display: none;
+	position: absolute;
+	right: 324px;
+	top: 8px;
+	background-image: url(../images/icons1.png);
+	background-position: 0px -120px;
+	background-repeat: no-repeat;
+}
+#register_container .left_content_middle .icon_pass_3{
+	width: 20px;
+	height: 20px;
+	display: none;
+	position: absolute;
+	right: 324px;
+	top: 8px;
+	background-image: url(../images/icons1.png);
+	background-position: 0px -120px;
+	background-repeat: no-repeat;
+}
+.icon_pass_4{
+	width: 20px;
+	height: 20px;
+	display: none;
+	position: absolute;
+	right: 324px;
+	top: 8px;
+	background-image: url(../images/icons1.png);
+	background-position: 0px -120px;
+	background-repeat: no-repeat;
+}
+#register_container .left_content .left_content_middle .user_ad{
+	padding-left: 84px;
+} 
+#register_container .left_content .left_content_middle .user_name{
+	padding-left: 66px;
+}
+#register_container .left_content .left_content_middle .user_id{
+	padding-left: 64px;
+}
+#register_container .left_content .left_content_middle .user_dept{
+	padding-left: 98px;
+}
+#register_container .left_content .left_content_middle .user_tel{
+	padding-left: 62px;
+}
+#register_container .left_content .left_content_middle .user_email{
+	padding-left: 133px;
+}
+#register_container .left_content .left_content_middle input{
+	width: 380px;
+	height: 34px;
+	border-radius: 4px;
+	border: 1px solid #e5e5e5;
+	margin-left: 14px;
+	text-indent: 8px;
+}
+#address{
+	height: 68px !important;
+}
+#register_container .left_content .left_content_middle .describe{
+	width: 322px;
+	padding-left: 26px;
+	color: #999999;
+	font-size: 14px;
+}
+#area{
+	width: 98px !important;
+}
+#tel{
+	width: 266px !important;
+}
+/*左边部分底部*/
+#register_container .left_content .left_content_bottom{
+	width: 380px;
+	position: relative;
+	margin-left: 246px;
+}
+#register_container .left_content .left_content_bottom p span{
+	font-size: 12px;
+	color: #999;
+	margin-left: 30px;
+}
+#register_container .left_content .left_content_bottom p a{
+	font-size: 12px;
+	color: #661b18;
+}
+#register_container .left_content .submit{
+	width: 380px;
+	height: 34px;
+	margin-bottom: 10px;
+	color: #FFFFFF;
+	background-color: #ccc;
+	border-radius: 4px;
+	border-style: none;
+	outline: 0;
+	cursor: pointer;
+}
+
+#chk{
+	width: 14px;
+	height: 14px;
+	display: none;
+	position: absolute;
+	left: -30px;
+	top: 48px;
+	border-radius: 4px;
+	background-color: #ccc;
+	cursor: pointer;
+}
+#selected{
+	width: 14px;
+	height: 14px;
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 48px;
+	border-radius: 4px;
+	background-image: url(../images/register/icons.png);
+	background-position: 56px -123px;
+	cursor: pointer;
+}
+/*主要内容左边部分结束*/
+/*主要内容的右边部分*/
+#register_container .register_mian .register_content .right_content{
+	width: 326px;
+	height: 700px;
+	float: left;
+	overflow: hidden;
+}
+
+#register_container .right_content>div{
+	float: left;
+}
+#register_container .register_content .right_content .left_line{
+	width: 1px;
+	height: 380px;
+	margin-left: 22px;
+	background-color: #cccccc;
+}
+#register_container .right_content .rigth_list{
+	padding-left: 16px;
+}
+#register_container .right_content .list_title{
+	color: #661B18;
+	font-size: 16px;
+	padding-bottom: 32px;
+	padding-top: 4px;
+}
+#register_container .right_content .ifo_list li{
+    margin-left: 20px;
+    padding-bottom: 16px;
+    color:#661B18;
+
+}
+#register_container .right_content .ifo_list li a{
+	color: #999999;
+	font-size: 14px;
+	padding: 12px;
+}
+#register_container .right_content .btn{
+	width: 190px;
+	height: 34px;
+	border-radius: 4px;
+	background-color: #FFFFFF;
+	color: #661b18;
+	cursor: pointer;
+	border: 1px solid #661B18;
+	margin-top: 8px;
+	display: block;
+	text-align: center;
+	line-height: 34px;
+}
+/*主要内容右边部分结束*/
+/************************************************************************/
+/*register_3左边提示框*/
+#register_container .left_content .prompt_box{
+	width: 652px;
+	height: 200px;
+	border-radius: 0 0 4px 4px;
+	margin: 0 auto;
+	margin-top: 102px;
+	background-color: #FFFFFF;
+	overflow: hidden;
+}
+#register_container .prompt_box .prompt_title{
+	width: 604px;
+	height: 30px;
+	padding-left: 48px;
+	border-radius: 4px 4px 0 0;
+	background-color: #57e6d3;
+	color: #FFFFFF;
+	font-size: 16px;
+	line-height: 35px;
+}
+#register_container .prompt_box .prompt_content{
+	list-style: none;
+	width: 522px;
+	height: auto;
+	margin: 0 auto;
+	padding-top: 40px;
+	color: #999999;
+	font-size: 14px;
+	font-weight: bold;
+	overflow: hidden;
+}
+#register_container .prompt_content li{
+	float: left;
+	margin-left: 10px;
+}
+#register_container .prompt_content .prompt_img{
+	width: 56px;
+	height: 50px;
+	background-image: url(../images/register/message.png);
+	background-position: 0 3px;
+	background-repeat: no-repeat;
+}
+#register_container .prompt_content .prompt_ifo p{
+	padding-bottom: 6px;
+}
+#register_container .prompt_box a{
+	color: #57e6d3;
+	font-size: 14px;
+	float: right;
+	padding-right: 68px;
+	padding-top: 32px;
+	
+}
+/*企业注册*/
+
+#register_container .left_content .left_content_middle .com_user_id{
+	padding-left: 12px;
+}
+
+#register_container .left_content .left_content_middle #card_pec{
+	width: 320px;
+	height: 30px;
+	border: 0;
+	margin-left: 30px;
+	margin-bottom: 4px;
+	text-indent: 0;
+}
+#register_container .left_content .left_content_middle #upload{
+	background-color: #57E6D3;
+	font-size: 14px;
+	color: #FFFFFF;
+	width: 70px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+    outline: 0;
+    text-indent: 0;
+}
+#register_container .left_content .con_btn{
+	position: absolute;
+    top: 710px;
+}
+#inner_img{
+	width: 100px;
+	height: 100px;
+	margin-left: 200px;
+	border: 1px dashed #999;
+	margin-top: -21px;
+    margin-bottom: 8px;
+}
+#img_preview{
+	width: 100px;
+	height: 100px;
+}

@@ -1,0 +1,304 @@
+#address_management{
+	background: #57E6D3;
+}
+#address_management .inc{
+	display: none;
+}
+#address_management .inc1{
+	display: block;
+	
+}
+#address_management .inc3{
+	display: none;
+}
+#address_management .words{
+	color: #FFFFFF;
+	
+}
+#address_management .icn_right{
+	display: block;
+	
+}
+.address_records{
+	margin-top:20px;
+	width: 946px;
+	height: 32px;
+	border-bottom: 1px solid #E6E6E6;
+	margin-bottom: 47px;
+}
+.address_consume,.address_recharge{
+	width: 120px;
+	height: 32px;
+	float: left;
+	line-height: 32px;
+	text-align: center;
+	color: #999999;
+	font-size: 14px;
+	cursor: pointer;
+}
+.add_address{
+	background: #E6E6E6;
+	font-size: 18px;
+	color: #661b18;
+}
+
+.personal_address_container{
+	width: 946px;
+	height: 830px;
+	
+}
+
+
+
+.address_information{
+	margin-right: 20px;
+	float: left;
+	width: 200px;
+	height: 200px;
+	-webkit-box-shadow:0px 0px 20px #EEEEEE;
+	-moz-box-shadow:0px 0px 20px #eeeeee;
+	box-shadow: 0px 0px 20px #EEEEEE ;
+	border-radius: 16px;
+	margin-bottom: 10px;
+}
+.address_information_top{
+	padding: 12px 12px;
+	width: 176px;
+	height: 42px;
+	border-bottom: 1px solid #E6E6E6;
+	position: relative;
+	cursor: pointer;
+}
+.personal_address_receiver{
+	font-size: 18px;
+	margin-bottom: 8px;
+	color: #333333;
+}
+.personal_address_number{
+	font-size: 14px;
+	color: #333333;
+}
+.personal_address_select{
+	position: absolute;
+	top: 14px;
+	right: 14px;
+}
+
+.address_information_bottom{
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-bottom: 18px;
+	padding-top: 10px;
+	width: 176px;
+	height: 106px;
+	position: relative;
+}
+.personal_address_content{
+	line-height: 22px;
+	color: #333333;
+	font-size: 14px;
+}
+.personal_address_edit{
+	position: absolute;
+	bottom: 18px;
+	cursor: pointer;
+}
+.personal_address_delete{
+	position: absolute;
+	right: 12px;
+	bottom: 18px;
+	cursor: pointer;
+}
+
+.address_information_add{
+	margin-right: 20px;
+	float: left;
+	width: 200px;
+	height: 200px;
+	-webkit-box-shadow:0px 0px 20px #EEEEEE;
+	-moz-box-shadow:0px 0px 20px #eeeeee;
+	box-shadow: 0px 0px 20px #EEEEEE ;
+	border-radius: 16px;
+	background-image: url(../img/add.png);
+	background-position:44px 40px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	color: #CCCCCC;
+	font-size: 18px;
+	line-height: 354px;
+	text-align: center;
+}
+
+
+html,body{
+	position: relative;
+}
+.templete{
+	display: none;
+}
+.layer{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+	z-index: 10000;
+}
+.layer_container{
+	width: 800px;
+	height: auto;
+	background-color: #FFFFFF;
+	position: absolute;
+	left: 50%;
+	top: -2000px;
+	margin-left: -400px;
+}
+.sub_wap{
+	width: 750px;
+	height: auto;
+	margin: 0 auto;
+}
+.sub_wap>div{
+	overflow: hidden;
+	width: 963px;
+	height: 30px;
+	margin: 0 auto;
+	padding-top: 14px;
+}
+.container_title{
+	width: 800px;
+	height: 50px;
+	border-bottom: 1px solid #57e6d3;
+	font-size: 18px;
+	color: #57E6D3;
+	text-align: center;
+	line-height: 50px;
+}
+.star{
+	color: #ea0000;
+}
+.edit_text,.select_text{
+	font-size: 16px;
+	color: #333333;
+}
+.layer_container input{
+	width: 180px;
+	height: 20px;
+	outline: none;
+	border: 1px solid #E6E6E6;
+}
+.receiver_adress select{
+	width: 90px;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	font-size: 16px;
+}
+.province, .city, .region {
+    margin-left: 0px;
+}
+.itme_wap{
+	width: 200px;
+	height: 30px;
+	text-align: right;
+	line-height: 30px;
+	float: left;
+	padding-right: 16px;
+}
+.input_wap{
+	width: 382px;
+	height: 30px;
+	text-align: left;
+	line-height: 30px;
+	float: left;
+}
+.mobile_phone{
+	width: 500px;
+	overflow: hidden;
+}
+.bottom_btn{
+	width: 250px;
+	height: 66px;
+	margin: 0 auto;
+	overflow: hidden;
+	padding-top: 20px;
+}
+.ensure{
+	width: 100px;
+	height: 40px;
+	background-color: #57E6D3;
+	color: #FFFFFF;
+	font-size: 18px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 4px;
+	float: left;
+	cursor: pointer;
+}
+.cancel{
+	width: 100px;
+	height: 40px;
+	background-color: #FFFFFF;
+	color: #333;
+	font-size: 18px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 4px;
+	border: 1px solid #E6E6E6;
+	float: right;
+	cursor: pointer;
+}
+.transport_summary{
+	width: 1200px;
+	height: 66px;
+	border-radius: 2px;
+	box-shadow: 0 0 8px 4px #E6E6E6;
+	background-color: #FFFFFF;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.transport_clone{
+	display: none;
+}
+.transport_content{
+	width: 900px;
+	height: 66px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #333333;
+	line-height: 66px;
+	float: left;
+}
+.summary_mode{
+	padding-left: 30px;
+	color: #661B18;
+	font-weight: normal;
+}
+.door{
+	color: #EA0000;
+}
+.color_set{
+	color: #57E6D3;
+}
+.summary_edite{
+	background-image: url(../images/shopping_car/edit.png);
+	background-repeat: no-repeat;
+	background-position:0,0;
+	padding-left: 14px;
+	cursor: pointer;
+}
+.summary_text{
+	padding-right: 32px
+}
+.pay,.since{
+	color: #EA0000;
+}
+.edit_content{
+	width: 300px;
+	height: 66px;
+	float: right;
+	text-align: center;
+    line-height: 66px;
+}

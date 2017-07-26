@@ -1,0 +1,171 @@
+#personal_custom_detail{
+	background: #57E6D3;
+}
+#personal_custom_detail .inc{
+	display: none;
+}
+#personal_custom_detail .inc1{
+	display: block;
+	
+}
+#personal_custom_detail .inc3{
+	display: none;
+}
+#personal_custom_detail .words{
+	color: #FFFFFF;
+	
+}
+#personal_custom_detail .icn_right{
+	display: block;
+	
+}
+
+
+.personal_custom_information{
+	width: 950px;
+    height: 150px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #EEEEEE;
+    -webkit-box-shadow: 0px 0px 8px #EEEEEE;
+    -moz-box-shadow: 0px 0px 8px #eeeeee;
+    margin-bottom: 15px;
+}
+.personal_custom_information_top{
+	width: 950px;
+	height: 30px;
+	border-bottom: 1px solid #EEEEEE;
+}
+.personal_custom_information_top li{
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	color: #666666;
+	text-align: center;
+}
+.my_custom_product_name,.custom_detail_name{
+	width: 232px;
+}
+.my_custom_common,.custom_detail_price,.custom_detail_amount,.custom_detail_alreadypay{
+	width: 130px;
+	color: #333333;
+	line-height: 120px;
+}
+.my_custom_money,.custom_detail_money{
+	width: 188px;
+}
+.my_custom_all,.custom_detail_all{
+	width: 140px;
+}
+
+.personal_custom_information_bottom{
+	width: 950px;
+	height:120px;
+	
+}
+.personal_custom_information_bottom li{
+	float: left;
+	height: 120px;
+	
+	font-size: 14px;
+	
+	text-align: center;
+}
+.custom_detail_name{
+	position: relative;
+}
+.custom_detail_name_top{
+	width: 100px;
+	height: 20px;
+	
+	text-align: center;
+	margin-top: 35px;
+	position: absolute;
+	left: 50%;
+	margin-left: -50px;
+	
+	border-bottom: 1px solid #EEEEEE;
+	margin-bottom: 2px;
+}
+.orderlist_product_money_top{
+	margin-left: 34px;
+	width: 120px;
+	height: 58px;
+	line-height: 88px;
+	border-bottom: 1px solid #EEEEEE;
+	
+}
+.orderlist_product_money_bottom{
+	margin-left: 34px;
+	width: 120px;
+	height: 20px;
+	line-height: 20px;
+}
+.orderlist_product_money_intotal,.orderlist_product_money_firstpay{
+	color: #EA0000;
+}
+
+
+.custom_detail_name p{
+	margin-top: 60px;
+	font-size: 12px;
+} 
+.custom_detail_all{
+	color: #661b18;
+	line-height: 120px;
+}
+
+
+
+
+
+.personal_custom_content{
+	width:950px;
+	height: 454px;
+	border-radius: 4px;
+    box-shadow: 0 0 8px #EEEEEE;
+    -webkit-box-shadow: 0px 0px 8px #EEEEEE;
+    -moz-box-shadow: 0px 0px 8px #eeeeee;
+}
+.personal_custom_content_headbar{
+	width: 950px;
+	height: 37px;
+	
+}
+.personal_custom_content_headbar li{
+	float: left;
+	line-height: 37px;
+	height: 37px;
+	text-align: center;
+	font-size: 14px;
+	color: #000000;
+}
+.custom_content_headbar_li1{
+	width: 140px;
+}
+.custom_content_headbar_li2{
+	width: 240px;
+}
+.custom_content_headbar_li3{
+	width: 570px;
+}
+.personal_custom_content_tab{
+	border-collapse:collapse;
+	width: 950px;
+	height: 413px;
+
+}
+.personal_custom_content_tab td{
+	border: 1px solid #EEEEEE;
+	border-right: 0;
+	
+	/*text-align: center;*/
+	text-indent: 104px;
+	font-size: 14px;
+	color: #000000;
+	height: 31px;
+}
+.personal_custom_content_tab .custom_content_wine{
+	text-indent: 54px;
+	color: #999999;
+}

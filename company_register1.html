@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>企事业单位注册1</title>
+		<link rel="stylesheet" href="common/css/common.css" />
+		<link rel="stylesheet" href="css/register1.css" />
+		<script type="text/javascript" src="js/jquery-1.12.4.min.js" ></script>
+		<script type="text/javascript" src="js/company_register1.js" ></script>
+		<script type="text/javascript" src="js/area.js" ></script> 
+		
+	</head>
+	<body>
+		<div id="head">
+			<div id="head-container">
+				<span class="welcome">您好，欢迎来到荟酒网！</span>
+				<div class="work">
+					<div class="work-left"><a href="login.html">登录</a></div>
+					<div class="work-right"><a href="register.html">注册</a></div>
+				</div>
+				<ul id="head-left">
+					<li><span class="hotline">客服热线:</span><span class="number">400-080-5959</span></li>
+					<li><a class="online" href="#">在线客服</a></li>
+					<li id="help"><a class="help" href="#">帮助中心</a></li>
+					<li class="cur phone_jiupinhui" onmouseover="$('.sa').show()" onmouseout="$('.sa').hide()" >
+						<a href="#">
+							<div class="phone-img">
+								<img src="img/iphone.png" />
+							</div>
+							<span class="phone_login">手机登录</span>
+							<div class="phone-img1">
+								<img src="img/jiantou1.png" />
+							</div>
+							<div class="sa" style="display: none; background: white;">
+								<div class="phone-img">
+								<img src="img/iphone.png" />
+								</div>
+								<span class="phone_login">手机登录</span>
+								<div class="phone-img1">
+									<img src="img/jiantou2.png" />
+								</div>
+								<div class="two"></div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="login_logo">
+				<div class="logo_container">
+					<a href="login.html"><img src="img/logo.png"/></a>
+					<span class="logo_text">
+						品味最好的美酒！
+					</span>
+				</div>
+		</div>
+		<div id="process">
+			<div class="process-container">
+				<img src="img/process1.png" />
+			</div>
+			<div class="process-right"></div>
+		</div>
+		
+		<div id="content">
+			
+			<div class="content-container">
+				<ul class="register1_list">
+					<li class="register1_list1">会员信息注册</li>
+					<li class="register1_list2">完善会员资料 </li>
+					<li class="register1_list3">注册成功，等待审核</li>
+				</ul>
+				<div class="left">
+					
+					<form action="" method="post">
+						<label class="three"><span class="must">*</span><span class="names">手机号:</span><input class="change tellphone cur14 longest" type="text"/><span class="tip tip1">11位手机号码格式数字，最长可输入11位数字</span>
+						<span class="tip1_error1 " style="display: none;"><img class="picture" src="img/no-pass.png" /><span class="error">电话号码不能为空</span></span>
+						<span class="tip1_error2 " style="display: none;"><img class="picture" src="img/no-pass.png"/><span class="error">请输入正确的11位手机号码</span></span>
+						<span class="tip1_error3 " style="display: none;"><img class="picture" src="img/pass.png"/></span>
+					</label>
+					<label class="three"><span class="must">*</span><span class="names">验证码:</span><input class="pin1 change cur20" type="text"/><input class="send_pin1 cur14" type="button" value="免费获取验证码"/><span class="tip tip2">手机收到的4位数字验证码</span>
+						<span class="tip2_error1" style="display: none;"><img class="picture" src="img/no-pass.png"/><span class="error">请输入短信验证码</span></span>
+						<span class="tip2_error2" style="display: none;"><img class="picture" src="img/no-pass.png"/><span class="error">请输入正确的短信验证码</span></span>
+						<span class="tip2_error3" style="display: none;"><img class="picture" src="img/pass.png"/>
+					</label>
+					<label class="six"><span class="must">*</span><span class="names">公司或企业名称:</span><input class="company_name change cur14 longest" type="text"/><span class="tip tip3">必选字段</span>
+						<span class="tip3_error1" style="display: none;"><img class="picture" src="img/no-pass.png"/><span class="error">请输入50字以内的公司或企业名称</span></span>
+						<span class="tip3_error2" style="display: none;"><img class="picture" src="img/pass.png"/></span>
+					</label>
+					<label class="company_prov"><span class="must">*</span><span class="names">单位证明(盖公章):</span>
+    										<input class="company_file_upload" id="files" name="files" type="file" value="浏览" />
+										<span class="tip tip_company">图片文件最大6MB，支持jpg、jpeg、png的图片格式。</span>
+						
+						<span class="tip4_error3" style="display: none;"><img class="picture" src="img/pass.png"/>
+					</label>
+					<div class="company_box" id="company_box">
+						
+					</div>
+					
+						
+					<label class="double"><span class="must">*</span><span class="names">密码:</span><input class="change set_password cur14 longest" type="password"/><span class="tip tip6">密码最低6位，由数字、大写字母、小写字母及特殊字符组成</span>
+						<span class="tip6_error1" style="display: none;"><img class="picture" src="img/no-pass.png"/><span class="error">请输入密码</span></span>
+						<span class="tip6_error2" style="display: none;" ><img class="picture" src="img/no-pass.png"/><span class="error error_password">请输入6-12位，由数字、大写字母、小写字母及特殊字符组成的密码</span></span>
+						<span class="tip6_error3" style="display: none;" ><img class="picture" src="img/pass.png"/>
+					</label>
+					<label class="four"><span class="must">*</span><span class="names">确认密码:</span><input class="change check_password cur14 longest" type="password"/><span class="tip tip7">牢记密码，勿将密码告诉他人</span>
+						<span class="tip7_error1" style="display: none;"><img class="picture" src="img/no-pass.png"/><span class="error">请再次输入密码</span></span>
+						<span class="tip7_error2" style="display: none;"><img class="picture" src="img/no-pass.png"/><span class="error">两次密码输入不一致</span></span>
+						<span class="tip7_error3" style="display: none;"><img class="picture" src="img/pass.png"/>
+					</label>
+					<label class="invisit"><span class="names">邀请码:</span><input class="visit_num cur14 longest" type="text"/><span class="tip8">若无可不填写，输入邀请码加快您账户的审核进度</span></label>
+					<input type="submit" value="保存并继续→" class="save_go">
+					</form>
+				</div>
+				<div class="right">
+					<span>注册荟酒网会员，即可享受</span>
+					<ul class="list">
+						<li>一手市场信息</li>
+						<li>海量待选产品</li>
+						<li>便捷采购管理</li>
+						<li>安心价格保护</li>
+						<li>更多高端服务</li>
+					</ul>
+					<a href="login.html" class="soon"  />已是会员，快速登录</a>
+					<a href="register_1.html" class="soon"  />经销商注册入口</a>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		<div id="links">
+			<div id="links-container">
+				<div class="links-box">
+					<div class="links-top">
+						<span>关于我们</span>
+						<span>购物指南</span>
+						<span>支付方式</span>
+						<span>物流配送</span>
+						<span>专业特色</span>
+						<span id="service">服务保障</span>
+					</div>
+					<div class="links-bottom">
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="foot">
+			<div id="foot-container">
+				Copyright 2016-2017 四川鑫亚泰贸易有限公司 版权所有|京ICP备14007454号
+			</div>
+		</div>
+	</body>
+</html>
+

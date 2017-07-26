@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+	</head>
+	<body>
+		<!--头部开始-->
+		<div id="head">
+			<div id="head-container">
+				<span class="welcome">您好，欢迎来到酒品荟网！</span>
+				<div class="work">
+					<div class="work-left"><a href="login.html">登录</a></div>
+					<div class="work-right"><a href="register.html">注册</a></div>
+				</div>
+				<ul id="head-left" style="list-style: none;">
+					<li><span class="hotline">客服热线:</span><span class="number">400-080-5959</span></li>
+					<li><a class="online" href="#">在线客服</a></li>
+					<li id="help"><a class="help" href="#">帮助中心</a></li>
+					<li class="cur phone_jiupinhui" onmouseover="$('.sa').show()" onmouseout="$('.sa').hide()" >
+						<a href="#">
+							<div class="phone-img">
+								<img src="images/iphone.png" />
+							</div>
+							<span class="phone_login">手机登录</span>
+							<div class="phone-img1">
+								<img src="images/jiantou1.png" />
+							</div>
+							<div class="sa" style="display: none; background: white;">
+								<div class="phone-img">
+								<img src="images/iphone.png" />
+								</div>
+								<span class="phone_login">手机登录</span>
+								<div class="phone-img1">
+									<img src="images/jiantou2.png" />
+								</div>
+								<div class="two"></div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--头部结束-->
+		<!--logo开始-->
+		<div id="login_container">
+			<div id="login_logo">
+				<div class="logo_container">
+					<img src="images/logo.png"/>
+					<span class="logo_text">
+						品味最好的美酒！
+					</span>
+				</div>
+			</div>
+			<!--logo结束-->
+			<!--banner开始-->
+			<div id="login_banner">
+				<div id="login_main">
+					<div id="banner_main">
+						<img src="images/banner_00.png"/>
+					</div>
+					<div id="login_input_container">
+						<div id="login_input">
+							<ul class="login_title">
+								<li class="title_current first_tab">账号登录</li>
+								<li>手机快捷登录</li>
+							</ul>
+							<img class="underline" src="images/loginline.png"/>
+							<form action="" method="post">
+								<div class="login_account login_tab">
+								<input type="text" id="username" name="username" data-prompt="请输入用户名" />
+								<span class="username_ico"></span>
+								<p class="prompt user_chk">请输入正确的用户名！</p>
+								<input type="text" id="pwd" name="password" data-prompt="请输入密码" />
+								<span class="pwd_ico"></span>
+								<p class="pwd_prompt">请输入密码！</p>
+								<p class="prompt pwd_chk">密码或用户名输入错误！</p>
+								<p class="forget"><a href="###">忘记密码？</a></p>
+								<button  class="login_btn btn_current btn_account">登录</button>
+								<button  class="login_register"><a href="###">快速注册</a></button>
+							</div>
+							</form>
+							<form action="" method="post">
+							<div class="login_phone login_tab">
+								<input type="text" id="phone" name="phone" data-prompt="请输入手机号" />
+								<span class="phone_ioc"></span>
+								<p class="prompt phone_chk">请输入正确的手机号！</p>
+								<input type="text" id="verification" name="verification" data-prompt="请输入动态码" />
+								<button type="button" id="btnoption">点击获取验证码 </button>
+								<span class="verification_ico"></span>
+								<p class="verification_prompt">请输入验证码！</p>
+								<p class="prompt verification_chk">验证码输入错误！</p>
+								<button  class="btn login_btn btn_current btn_phone">登录</button>
+								<button  class="btn login_register"><a href="###">快速注册</a></button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--banner结束-->
+		</div>
+		<!--底部开始-->
+		<div id="links">
+			<div id="links-container">
+				<div class="links-box">
+					<div class="links-top">
+						<span>关于我们</span>
+						<span>购物指南</span>
+						<span>支付方式</span>
+						<span>物流配送</span>
+						<span>专业特色</span>
+						<span id="service">服务保障</span>
+					</div>
+					<div class="links-bottom">
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="foot">
+			<div id="foot-container">
+				Copyright 2016-2017 四川鑫亚泰贸易有限公司 版权所有|京ICP备14007454号
+			</div>
+		</div>
+		<!--底部结束-->
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

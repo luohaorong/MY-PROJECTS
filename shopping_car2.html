@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车2</title>
+		<link rel="stylesheet" href="common/css/common.css" />
+		<link rel="stylesheet" href="css/common2.css" />
+		<link rel="stylesheet" href="css/register1.css" />
+		<link rel="stylesheet" href="css/shopping_car2.css" />
+	</head>
+
+	<body>
+		<div id="head">
+			<div id="head-container">
+				<span class="welcome">您好，欢迎来到酒品荟网！</span>
+				<div class="work">
+					<div class="work-left">
+						<a href="login.html">登录</a>
+					</div>
+					<div class="work-right">
+						<a href="register.html">注册</a>
+					</div>
+				</div>
+				<ul id="head-left">
+					<li><span class="hotline">客服热线:</span><span class="number">400-080-5959</span></li>
+					<li>
+						<a class="online" href="#">在线客服</a>
+					</li>
+					<li id="help">
+						<a class="help" href="#">帮助中心</a>
+					</li>
+					<li class="cur phone_jiupinhui" onmouseover="$('.sa').show()" onmouseout="$('.sa').hide()">
+						<a href="#">
+							<div class="phone-img">
+								<img src="img/iphone.png" />
+							</div>
+							<span class="phone_login">手机登录</span>
+							<div class="phone-img1">
+								<img src="img/jiantou1.png" />
+							</div>
+							<div class="sa" style="display: none; background: white;">
+								<div class="phone-img">
+									<img src="img/iphone.png" />
+								</div>
+								<span class="phone_login">手机登录</span>
+								<div class="phone-img1">
+									<img src="img/jiantou2.png" />
+								</div>
+								<div class="two"></div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="login_logo">
+			<div class="logo_container">
+				<a href="login.html"><img src="img/logo.png" /></a>
+				<span class="logo_text">
+						品味最好的美酒！
+				</span>
+			</div>
+		</div>
+		<div id="process">
+			<div class="process-container">
+				<img src="images/register/nav2.png" />
+			</div>
+			<div class="process-right"></div>
+		</div>
+		<!--核对订单主要内容-->
+		<div id="shopping_container">
+			<ul class="step_nodes">
+				<li>购物车</li>
+				<li class="last3">核对订单</li>
+				<li class="last2">确认订单</li>
+			</ul>
+			<div class="check_order">
+				<div class="consignee">
+					<div class="consignee_title">
+						<span>收货人信息</span>
+						<span class="add_ifo">新增收货人信息</span>
+					</div>
+					<div class="consignee_content">
+						<ul class="consignee_list consignee_active" data_active='1' data_id="0001">
+							<li class="position font_active position_active">
+								<span class="position_ico">
+									<img src="images/shopping_car/position.png"/>
+								</span>
+								<span class="position_text">
+									寄送至
+								</span>
+							</li>
+							<li class="chk_name font_active">
+								<span class="chk"></span>
+								<span class="selected"></span>
+								<p class="name_text" data_text='朱业群'>朱业群</p>
+							</li>
+							<li class="tle font_active" data_text='18702878816'>18702878816</li>
+							<li class="adress font_active">
+								<span class="probably" data_text='四川成都市金牛区'>四川成都市金牛区 </span>
+								<span class="detailed_adress" data_text='高新西区'>高新西区</span>
+							</li>
+							<li class="operation font_active">
+								<span class="default_address">
+									设为默认地址
+								</span>
+								<span class="edit_ul">
+									编辑 
+								</span>
+								<span class="delete_ul">
+									删除 
+								</span>
+							</li>
+						</ul>
+						<ul class="consignee_list" data_id="0002">
+							<li class="position">
+								<span class="position_ico">
+									<img src="images/shopping_car/position.png"/>
+								</span>
+								<span class="position_text">
+									寄送至
+								</span>
+							</li>
+							<li class="chk_name">
+								<span class="chk" style="display: block;"></span>
+								<span class="selected" style="display: none;"></span>
+								<p class="name_text" data_text='朱业群'>
+									朱业群
+								</p>
+							</li>
+							<li class="tle" data_text='18702878816'>
+								18702878816
+							</li>
+							<li class="adress">
+								<span class="probably" data_text='四川成都市金牛区'>四川成都市金牛区 </span>
+								<span class="detailed_adress" data_text='高新西区'>高新西区</span>
+							</li>
+							<li class="operation">
+								<span class="default_address">
+									设为默认地址
+								</span>
+								<span class="edit_ul">
+									编辑 
+								</span>
+								<span class="delete_ul">
+									删除 
+								</span>
+							</li>
+						</ul>
+						<ul class="consignee_list" data_id="0003">
+							<li class="position">
+								<span class="position_ico">
+									<img src="images/shopping_car/position.png"/>
+								</span>
+								<span class="position_text">
+									寄送至
+								</span>
+							</li>
+							<li class="chk_name">
+								<span class="chk" style="display: block;"></span>
+								<span class="selected" style="display: none;"></span>
+								<p class="name_text" data_text='朱业群'>
+									朱业群
+								</p>
+							</li>
+							<li class="tle" data_text='18702878816'>
+								18702878816
+							</li>
+							<li class="adress">
+								<span class="probably">四川成都市金牛区 </span>
+								<span class="detailed_adress" data_text='高新西区'>高新西区</span>
+							</li>
+							<li class="operation">
+								<span class="default_address">
+									设为默认地址
+								</span>
+								<span class="edit_ul">
+									编辑 
+								</span>
+								<span class="delete_ul">
+									删除 
+								</span>
+							</li>
+						</ul>
+						<!--下面这个ul是新增地址时用来克隆的模板-->
+						<ul class="consignee_clone consignee_list consignee_active" data_active='1' data_id="">
+							<li class="position font_active position_active">
+								<span class="position_ico">
+									<img src="images/shopping_car/position.png"/>
+								</span>
+								<span class="position_text">
+									寄送至
+								</span>
+							</li>
+							<li class="chk_name font_active">
+								<span class="chk"></span>
+								<span class="selected"></span>
+								<p class="name_text" data_text=''></p>
+							</li>
+							<li class="tle font_active" data_text=''></li>
+							<li class="adress font_active">
+								<span class="probably" data_text=''> </span>
+								<span class="detailed_adress" data_text=''></span>
+							</li>
+							<li class="operation font_active">
+								<span class="default_address">
+									设为默认地址
+								</span>
+								<span class="edit_ul">
+									编辑 
+								</span>
+								<span class="delete_ul">
+									删除 
+								</span>
+							</li>
+						</ul>
+						
+					</div>
+				</div>
+				<div class="distribution_mode">
+					<p class="distribution_title">配送方式</p>
+					<div class="distribution">
+						<div class="distribution_content">
+						<div class="invoice_outline">
+							<span class="invoice_num">
+								配货单1：
+							</span>
+							<span class="invoice_mode">
+								天津仓发货 / 物流配送
+							</span>
+							<span class="see_details">
+								<a class="anchor" href="#tianjin">查看商品详情</a>
+							</span>
+						</div>
+						<div class="invoice_details" data_select='1'>
+							<ul class="invoice_itme">
+								<li class="invoice_option">
+									<span class="chk"></span>
+									<span class="selected"></span>
+									<p class="mode_name">
+										云酒物流
+									</p>
+								</li>
+								<li>
+									<p class="describe">
+										葡萄酒、烈酒产品同仓满130箱全国免物流费（新疆、西藏除外）
+									</p>
+									<p class="sub_mode" data_select='1'>
+										<span class="chk chk_1"></span>
+										<span class="selected selected_1"></span>
+										<span class="describe_mode">
+											送货上门
+										</span>
+										<span class="careful careful_text">
+											注意：只配送到成都市的物流站，到货后需自提
+										</span>
+										<span class="careful sure">
+											在原有运价的基础上，加100元全国送货上门
+										</span>
+									</p>
+
+								</li>
+							</ul>
+						</div>
+						<div class="invoice_details">
+							<ul class="invoice_itme">
+								<li class="invoice_option">
+									<span class="chk" style="display: block;"></span>
+									<span class="selected" style="display: none;"></span>
+									<p class="mode_name">
+										其他方式
+									</p>
+								</li>
+								<li>
+									<p class="describe">
+										<span class="prompt">
+											下单后请保持电话畅通，我们的客服人员将与您沟通发货事宜；
+										</span> 
+										<span class="to_pay">运费到付</span>不享受破损赔付！
+									</p>
+								</li>
+							</ul>
+						</div>
+						<div class="invoice_details">
+							<ul class="invoice_itme">
+								<li class="invoice_option">
+									<span class="chk" style="display: block;"></span>
+									<span class="selected" style="display: none;"></span>
+									<p class="mode_name">
+										仓库自提
+									</p>
+								</li>
+								<li>
+									<p class="describe">
+										<span class="prompt">
+											天津仓、上海仓、广州仓可上门自提，选择前请咨询
+										</span> 
+										<span class="to_pay">客服400-800-5959</span>
+									</p>
+								</li>
+							</ul>
+						</div>
+						<div class="confirm">
+							确认收货方式
+						</div>
+					</div>
+					
+					</div>
+					<div class="distribution">
+						<div id="distribution2" class="distribution_content">
+						<div class="invoice_outline">
+							<span class="invoice_num">
+								配货单2：
+							</span>
+							<span class="invoice_mode">
+								精品酒 / 天津仓发货 / 快递配送
+							</span>
+							<span class="see_details">
+								<a class="anchor" href="#jingpin">查看商品详情</a>
+							</span>
+						</div>
+						<div class="invoice_details" data_select='1'>
+							<ul class="invoice_itme">
+								<li class="invoice_option">
+									<span class="chk" style="display: none;"></span>
+									<span class="selected" style="display: block;"></span>
+									<p class="mode_name">
+										普通快递
+									</p>
+								</li>
+								<li>
+									<p class="describe">
+										<span class="prompt">
+											送货上门，破损赔付，收货时请检查完整性；
+										</span> 
+										<span class="to_pay">运费在线支付</span>
+									</p>
+								</li>
+							</ul>
+						</div>
+						<div class="invoice_details">
+							<ul class="invoice_itme">
+								<li class="invoice_option">
+									<span class="chk" style="display: block;"></span>
+									<span class="selected" style="display: none;"></span>
+									<p class="mode_name">
+										仓库自提
+									</p>
+								</li>
+								<li>
+									<p class="describe">
+										<span class="prompt">
+											天津仓、上海仓、广州仓可上门自提，选择前请咨询
+										</span>
+										<span class="to_pay">客服400-800-5959</span> 
+									</p>
+								</li>
+							</ul>
+						</div>
+						<div class="confirm">
+							确认收货方式
+						</div>
+					</div>
+					
+					</div>
+					<div class="transport_summary transport_clone">
+						<div class="transport_content">
+							<span class="summary_mode">
+								
+							</span>
+							<span class="summary_text depot">
+								
+							</span>
+							<span class="summary_text express">
+								
+							</span>
+							<span class="door">
+									
+								</span>
+							<span class="summary_text pay">
+								
+							</span>
+							<span class="summary_text since">
+								
+							</span>
+						</div>
+							<div class="edit_content">
+								<span class="summary_edite color_set">
+								编辑
+								</span>
+								<a href="" class="summary_product color_set">
+									查看商品详情
+								</a>
+							</div>
+							
+						
+					</div>
+				</div>
+				<div class="repertory">
+					<p class="repertory_title">分库详情</p>
+					<ul class="thead">
+						<li class="firs_list">产品</li>
+						<li>类型</li>
+						<li>单价</li>
+						<li>数量（箱）</li>
+						<li>金额</li>
+						<li>单瓶/只 运费</li>
+					</ul>
+					<div id="tianjin" class="product_detail">
+						<div class="invoice_general">
+							<span class="general_num">
+								配货单1：
+							</span>
+							<span class="invoice_mode">
+								天津仓发货 / 物流配送
+							</span>
+							<span class="see_details">
+								<a href="#distribution1">查看配送方式</a>
+							</span>
+						</div>
+						<ul class="details_list">
+							<li class="first_details">
+								<a href="###">
+									<img class="pro_img" src="images/shopping_car/shopping_product.png" />
+								</a>
+								<div class="product_text">
+									<p>
+										<a class="product_name" href="###">蒙特罗萨马尔贝克干红</a>
+									</p>
+									<p class="product_num">6只装</p>
+								</div>
+							</li>
+							<li class="ordinary_text">现货</li>
+							<li class="ordinary_text">￥23.00</li>
+							<li>
+								<div class="amount">
+									<p>10</p>
+									<p class="total">共60瓶</p>
+								</div>
+
+							</li>
+							<li class="ordinary_text">￥1380.00</li>
+							<li>
+								<div class="operation_text">
+									<p class="product_name del">￥1.5</p>
+
+								</div>
+							</li>
+						</ul>
+						<ul class="details_list">
+							<li class="first_details">
+								<a href="###">
+									<img class="pro_img" src="images/shopping_car/shopping_product.png" />
+								</a>
+								<div class="product_text">
+									<p>
+										<a class="product_name" href="###">蒙特罗萨马尔贝克干红</a>
+									</p>
+									<p class="product_num">6只装</p>
+								</div>
+							</li>
+							<li class="ordinary_text">现货</li>
+							<li class="ordinary_text">￥23.00</li>
+							<li>
+								<div class="amount">
+									<p>10</p>
+									<p class="total">共60瓶</p>
+								</div>
+
+							</li>
+							<li class="ordinary_text">￥1380.00</li>
+							<li>
+								<div class="operation_text">
+									<p class="product_name del">￥1.5</p>
+
+								</div>
+							</li>
+						</ul>
+						<ul class="details_list">
+							<li class="first_details">
+								<a href="###">
+									<img class="pro_img" src="images/shopping_car/shopping_product.png" />
+								</a>
+								<div class="product_text">
+									<p>
+										<a class="product_name" href="###">蒙特罗萨马尔贝克干红</a>
+									</p>
+									<p class="product_num">6只装</p>
+								</div>
+							</li>
+							<li class="ordinary_text">现货</li>
+							<li class="ordinary_text">￥23.00</li>
+							<li>
+								<div class="amount">
+									<p>10</p>
+									<p class="total">共60瓶</p>
+								</div>
+
+							</li>
+							<li class="ordinary_text">￥1380.00</li>
+							<li>
+								<div class="operation_text">
+									<p class="product_name del">￥1.5</p>
+
+								</div>
+							</li>
+						</ul>
+						<ul class="details_list">
+							<li class="first_details">
+								<a href="###">
+									<img class="pro_img" src="images/shopping_car/shopping_product.png" />
+								</a>
+								<div class="product_text">
+									<p>
+										<a class="product_name" href="###">蒙特罗萨马尔贝克干红</a>
+									</p>
+									<p class="product_num">6只装</p>
+								</div>
+							</li>
+							<li class="ordinary_text">现货</li>
+							<li class="ordinary_text">￥23.00</li>
+							<li>
+								<div class="amount">
+									<p>10</p>
+									<p class="total">共60瓶</p>
+								</div>
+
+							</li>
+							<li class="ordinary_text">￥1380.00</li>
+							<li>
+								<div class="operation_text">
+									<p class="product_name del">￥1.5</p>
+
+								</div>
+							</li>
+						</ul>
+						
+						<div class="subtotal">
+							<div class="first_p">
+								<p class="subtotal_name">
+									酒产品数量：
+								</p>
+								<p class="subtotal_num">
+									30箱，360瓶
+								</p>
+							</div>
+							<div>
+								<p class="subtotal_name">
+									酒周边产品数量：
+								</p>
+								<p class="subtotal_num">
+									0箱，0只
+								</p>
+							</div>
+							<div>
+								<p class="subtotal_name">
+									商品金额：
+								</p>
+								<p class="subtotal_num">
+									￥14040.00
+								</p>
+							</div>
+							<div>
+								<p class="subtotal_name">
+									物流费：
+								</p>
+								<p class="subtotal_num">
+									￥720.00
+								</p>
+							</div>
+							<div>
+								<p class="subtotal_name">
+									送货上门费：
+								</p>
+								<p class="subtotal_num">
+									￥100
+								</p>
+							</div>
+						</div>
+					</div>
+					<div id="jingpin" class="product_detail">
+						<div class="invoice_general">
+							<span class="general_num">
+								配货单2：
+							</span>
+							<span class="invoice_mode">
+								精品酒 / 天津仓发货 / 快递配送
+							</span>
+							<span class="see_details">
+								<a href="#distribution2">查看配送方式</a>
+							</span>
+						</div>
+						<ul class="details_list">
+							<li class="first_details">
+								<a href="###">
+									<img class="pro_img" src="images/shopping_car/shopping_product.png" />
+								</a>
+								<div class="product_text">
+									<p>
+										<a class="product_name" href="###">蒙特罗萨马尔贝克干红</a>
+									</p>
+									<p class="product_num">6只装</p>
+								</div>
+							</li>
+							<li class="ordinary_text">现货</li>
+							<li class="ordinary_text">￥23.00</li>
+							<li>
+								<div class="amount">
+									<p>10</p>
+									<p class="total">共60瓶</p>
+								</div>
+
+							</li>
+							<li class="ordinary_text">￥1380.00</li>
+							<li>
+								<div class="operation_text">
+									<p class="product_name del">￥1.5</p>
+
+								</div>
+							</li>
+						</ul>
+						<ul class="details_list">
+							<li class="first_details">
+								<a href="###">
+									<img class="pro_img" src="images/shopping_car/shopping_product.png" />
+								</a>
+								<div class="product_text">
+									<p>
+										<a class="product_name" href="###">蒙特罗萨马尔贝克干红</a>
+									</p>
+									<p class="product_num">6只装</p>
+								</div>
+							</li>
+							<li class="ordinary_text">现货</li>
+							<li class="ordinary_text">￥23.00</li>
+							<li>
+								<div class="amount">
+									<p>10</p>
+									<p class="total">共60瓶</p>
+								</div>
+
+							</li>
+							<li class="ordinary_text">￥1380.00</li>
+							<li>
+								<div class="operation_text">
+									<p class="product_name del">￥1.5</p>
+
+								</div>
+							</li>
+						</ul>
+						<div class="subtotal">
+							<div class="first_p">
+								<p class="subtotal_name">
+									酒产品数量：
+								</p>
+								<p class="subtotal_num">
+									30箱，360瓶
+								</p>
+							</div>
+							<div>
+								<p class="subtotal_name">
+									酒周边产品数量：
+								</p>
+								<p class="subtotal_num">
+									0箱，0只
+								</p>
+							</div>
+							<div>
+								<p class="subtotal_name">
+									商品金额：
+								</p>
+								<p class="subtotal_num">
+									￥14040.00
+								</p>
+							</div>
+							<div>
+								<p class="subtotal_name">
+									物流费：
+								</p>
+								<p class="subtotal_num">
+									￥720.00
+								</p>
+							</div>
+							<div>
+								<p class="subtotal_name">
+									送货上门费：
+								</p>
+								<p class="subtotal_num">
+									￥100
+								</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="statistics ">
+					<div class="subtotal bgcolor">
+						<div class="first_p">
+							<p class="subtotal_name">
+								数量：
+							</p>
+							<p class="subtotal_num">
+								30箱，360瓶
+							</p>
+						</div>
+						<div>
+							<p class="subtotal_name">
+								商品总价（不含运费）：
+							</p>
+							<p class="subtotal_num">
+								￥35640.00
+							</p>
+						</div>
+						<div>
+							<p class="subtotal_name">
+								运费（已为您节省108.00元运费）：
+							</p>
+							<p class="subtotal_num">
+								￥14040.00
+							</p>
+						</div>
+						<div>
+							<p class="subtotal_name">
+								优惠金额：
+							</p>
+							<p class="subtotal_num">
+								- ￥0
+							</p>
+						</div>
+						<div>
+							<p class="subtotal_name">
+								保证金：
+							</p>
+							<p class="subtotal_num">
+								￥0.00
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="submit_order">
+					<a href="shopping_car.html" class="return_car">
+						返回购物车
+					</a>
+					<div class="order_btn">
+						提交订单
+					</div>
+					<div class="actual">
+						<span class="actual_text">
+							本次实际支付：
+						</span>
+						<span class="actual_num">
+							￥1728.00
+						</span>
+					</div>
+
+				</div>
+			</div>
+			<!--右侧边栏开始-->
+			<ul id="toolbar">
+				<li><img src="images/index/Speech Bubble- More.png" />
+					<p>
+						<a href="###">在线客服</a>
+					</p>
+				</li>
+				<li><img src="images/index/Money.png" />
+					<p>
+						<a href="###">我的账户</a>
+					</p>
+				</li>
+				<li><img src="images/index/Profile.png" />
+					<p>
+						<a href="###">独家体验</a>
+					</p>
+				</li>
+				<li id="gotop"><img src="images/index/top.png" />
+					<p>回顶端</p>
+				</li>
+			</ul>
+			<!--右侧边栏结束-->
+			<!--编辑弹出层开始-->
+			<div class="layer">
+				<div class="layer_container">
+					<p class="container_title">编辑地址</p>
+					<div class="sub_wap">
+						<div class="receipt_man">
+						<p class="itme_wap">
+							<span class="star">*</span>
+							<span class="edit_text">收货人姓名：</span>
+						</p>
+						
+						<p class="input_wap"><input type="text" name="username" id="username" value=""/></p>
+
+						</div>
+					<div class="receiver_adress">
+						<p class="itme_wap">
+							<span class="star">*</span>
+							<span class="edit_text">收货人地址：</span>
+						</p>
+						<p class="input_wap">
+							<select name="province" class="province">
+								<option value="请选择">请选择</option>
+								<option value="四川">四川</option>
+							</select>
+							<span class="select_text">
+								省
+							</span>
+							<select name="city" class="city">
+								<option value="请选择">请选择</option>
+								<option value="美利坚">美利坚</option>
+							</select>
+							<span class="select_text">
+								市
+							</span>
+							<select name="county"class="county">
+								<option value="请选择">请选择</option>
+								<option value="日本">日本</option>
+							</select>
+							<span class="select_text">
+								区/县
+							</span>
+						</p>
+					</div>
+					<div class="explicit">
+						<p class="itme_wap">
+						<span class="star">*</span>
+						<span class="edit_text">地址详情：</span>
+						</p>
+						<p class="input_wap ">
+						<input type="text" name="explicit_adress" id="explicit_adress" value=""/>
+						</p>
+					</div>
+					<div>
+						<p class="itme_wap">
+						<span class="star">*</span>
+						<span class="edit_text">手机号码：</span>
+						</p>
+						<p class="input_wap mobile_phone">
+						<input type="text" name="mobile" id="mobile" value=""/>
+						</p>
+					</div>
+					</div>
+					<div class="bottom_btn">
+						<div class="ensure">
+							确认
+						</div>
+						<div class="cancel">
+							取消
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+			<!--编辑弹出层结束-->
+			<div id="links">
+				<div id="links-container">
+					<div class="links-box">
+						<div class="links-top">
+							<span>关于我们</span>
+							<span>购物指南</span>
+							<span>支付方式</span>
+							<span>物流配送</span>
+							<span>专业特色</span>
+							<span id="service">服务保障</span>
+						</div>
+						<div class="links-bottom">
+							<div class="links-a">
+								<a href="">公司简介</a>
+								<a href="">账户注册</a>
+								<a href="">在线支付</a>
+								<a href="">挖酒物流</a>
+								<a href="">专业选酒</a>
+								<a id="last" href="">正品保障</a>
+							</div>
+							<div class="links-a">
+								<a href="">公司简介</a>
+								<a href="">账户注册</a>
+								<a href="">在线支付</a>
+								<a href="">挖酒物流</a>
+								<a href="">专业选酒</a>
+								<a id="last" href="">正品保障</a>
+							</div>
+							<div class="links-a">
+								<a href="">公司简介</a>
+								<a href="">账户注册</a>
+								<a href="">在线支付</a>
+								<a href="">挖酒物流</a>
+								<a href="">专业选酒</a>
+								<a id="last" href="">正品保障</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="foot">
+				<div id="foot-container">
+					Copyright 2016-2017 四川鑫亚泰贸易有限公司 版权所有|京ICP备14007454号
+				</div>
+			</div>
+			<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/shopping_car2.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

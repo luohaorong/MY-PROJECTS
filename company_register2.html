@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>注册2</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/register.css" />
+	</head>
+
+	<body>
+		<!--头部开始-->
+		<div id="head">
+			<div id="head-container">
+				<span class="welcome">您好，欢迎来到酒品荟网！</span>
+				<div class="work">
+					<div class="work-left">
+						<a href="login.html">登录</a>
+					</div>
+					<div class="work-right">
+						<a href="register.html">注册</a>
+					</div>
+				</div>
+				<ul id="head-left" style="list-style: none;">
+					<li><span class="hotline">客服热线:</span><span class="number">400-080-5959</span></li>
+					<li>
+						<a class="online" href="#">在线客服</a>
+					</li>
+					<li id="help">
+						<a class="help" href="#">帮助中心</a>
+					</li>
+					<li class="cur phone_jiupinhui" onmouseover="$('.sa').show()" onmouseout="$('.sa').hide()">
+						<a href="#">
+							<div class="phone-img">
+								<img src="images/iphone.png" />
+							</div>
+							<span class="phone_login">手机登录</span>
+							<div class="phone-img1">
+								<img src="images/jiantou1.png" />
+							</div>
+							<div class="sa" style="display: none; background: white;">
+								<div class="phone-img">
+									<img src="images/iphone.png" />
+								</div>
+								<span class="phone_login">手机登录</span>
+								<div class="phone-img1">
+									<img src="images/jiantou2.png" />
+								</div>
+								<div class="two"></div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--头部结束-->
+		<!--logo开始-->
+		<div id="login_container">
+			<div id="login_logo">
+				<div class="logo_container">
+					<img src="images/logo.png" />
+					<span class="logo_text">
+						品味最好的美酒！
+					</span>
+				</div>
+			</div>
+		</div>
+		<!--logo结束-->
+		<!--register主体开始-->
+		<div id="process">
+			<!--<div class="process-container">
+				<img src="img/process1.png" />
+			</div>-->
+			<div class="process-right"></div>
+		</div>
+		<div id="register_container">
+			<div class="step_container">
+				<img class="step_img" src="images/register/nav2.png" />
+				<div class="left_side"></div>
+				<div class="right_side"></div>
+			</div>
+			<div class="register_mian">
+				<ul class="step_nodes">
+					<li>会员信息注册</li>
+					<li>完善会员资料</li>
+					<li class="last2">注册成功，等待审核</li>
+				</ul>
+				<div class="register_content">
+					<div class="left_content">
+						<div class="left_content_top">
+							<p class="text_top">为了维护您自己的利益，请真实，详尽的填写以下信息</p>
+							<p class="text_sub">我们的工作人员将在3个工作日联系您,以便与您完成认证信息</p>
+						</div>
+						<form method='post' action=''>
+							<div class="left_content_middle">
+								<p class="user_ad"><b class="first">*</b><span class="left_title first_title">企业地址:</span><textarea class="address required"></textarea></p>
+								<span class="icon_pass_1"></span>
+								<span class="describe  first_describe">只能输入50字，输入超过不记录后续输入内容</span>
+								<p class="user_name"><b>*</b><span class="left_title">采购人姓名:</span><input type="text" name="username" id="username" class="required" /><span class="icon_pass_2"></span><span class="describe required register_name">请输入采购人姓名</span></p>
+								<p class="com_user_id"><b>*</b><span class="left_title">采购人身份证号码:</span><input type="text" name="card" id="card" class="required" /><span class="icon_pass_3"></span><span class="describe register_card">请输入15-18位身份证号码</span></p>
+								<p class="user_pec"><b>*</b><span class="left_title">采购人身份证照片:</span><input type="file" name="card_pec" id="card_pec" /><span class="icon_pass_4"></span><span class="describe register_card_pre">请选择要上传的文件</span></p>
+								<div id="inner_img"></div>
+								<p class="user_dept"><span class="left_title">部门职位:</span><input type="text" name="department" id="department" /><span class="describe register_dep"></span></p>
+								<p class="user_tel"><span class="left_title">企业座机号码:</span><input type="text" name="area" id="area" data-text='区号' /><input type="text" name="tel" id="tel" data-text='座机号码' /><span class="describe register_tel"></span></p>
+								<p class="user_email"><span class="left_title">邮箱:</span><input type="text" name="e-mail" id="e-mail" /><span class="describe register_email">输入您的常用邮箱地址</span></p>
+							</div>
+							<div class="left_content_bottom con_btn">
+								<input disabled="disabled" class="submit" name="submit_btn" type="submit" value="提交资料→">
+								<p><span id="chk"></span><span>我已阅读并同意</span>
+									<a href="###">《酒品荟购物注册协议》</a>
+								</p>
+								<span id="selected" data-success=1></span>
+							</div>
+						</form>
+
+					</div>
+					<div class="right_content">
+						<div class="left_line"></div>
+						<div class="rigth_list">
+							<p class="list_title">注册酒品荟会员，即刻享受</p>
+							<ul class="ifo_list">
+								<li>
+									<a href="###">一手市场信息</a>
+								</li>
+								<li>
+									<a href="###">海量待选产品</a>
+								</li>
+								<li>
+									<a href="###">便捷采购管理</a>
+								</li>
+								<li>
+									<a href="###">安心价格保护</a>
+								</li>
+								<li>
+									<a href="###">更多高端服务</a>
+								</li>
+							</ul>
+								<a class="btn" href="###">已是会员，快速登录</a>
+								<a class="btn" href="###">经销商注册入口</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--底部开始-->
+		<div id="links">
+			<div id="links-container">
+				<div class="links-box">
+					<div class="links-top">
+						<span>关于我们</span>
+						<span>购物指南</span>
+						<span>支付方式</span>
+						<span>物流配送</span>
+						<span>专业特色</span>
+						<span id="service">服务保障</span>
+					</div>
+					<div class="links-bottom">
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+						<div class="links-a">
+							<a href="">公司简介</a>
+							<a href="">账户注册</a>
+							<a href="">在线支付</a>
+							<a href="">挖酒物流</a>
+							<a href="">专业选酒</a>
+							<a id="last" href="">正品保障</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="foot">
+			<div id="foot-container">
+				Copyright 2016-2017 四川鑫亚泰贸易有限公司 版权所有|京ICP备14007454号
+			</div>
+		</div>
+		<!--底部结束-->
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/complay_register.js" type="text/javascript" charset="utf-8"></script>
+		
+	</body>
+
+</html>

@@ -1,0 +1,155 @@
+#personal_brand_customization{
+	background: #57E6D3;
+}
+#personal_brand_customization .inc{
+	display: none;
+}
+#personal_brand_customization .inc1{
+	display: block;
+	
+}
+#personal_brand_customization .inc3{
+	display: none;
+}
+#personal_brand_customization .words{
+	color: #FFFFFF;
+	
+}
+#personal_brand_customization .icn_right{
+	display: block;
+	
+}
+.kind_reminder{
+	width: 928px;
+	height: 105px;
+	background: #ffecec;
+	border: 1px solid #EA0000;
+	padding-left: 12px;
+	color: #333333;
+	font-size: 14px;
+	line-height: 24px;
+	margin-bottom: 22px;
+}
+.kind_reminder span{
+	color: #EA0000;
+}
+
+
+.check_countries_container{
+	width: 940px;
+	min-height: 150px;
+    height: auto!important;
+    _height: 150px;
+    height: 150px;
+	margin-bottom: 20px;
+}
+.check_country_words_container{
+	width: 200px;
+	height: 30px;
+	color: #333333;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.brand_national_flag{
+	
+	float: left;
+	width: 120px;
+	height: 114px;
+	
+	margin-right: 34px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+.add_brand_national_flag{
+	-webkit-box-shadow: 0px 0px 8px #EEEEEE;
+    -moz-box-shadow: 0px 0px 8px #eeeeee;
+    box-shadow: 0px 0px 8px #EEEEEE;
+}
+
+
+
+.check_country_variety{
+	width: 940px;
+	height: 300px;
+	min-height: 300px;
+    height: auto!important;
+    _height: 300px;
+   
+	float: left;
+}
+.check_country_variety p{
+	font-size: 16px;
+	color: #333333;
+	font-weight: bold;
+	margin-bottom: 14px;
+}
+
+
+.check_country_variety_container{
+	width: 940px;
+	border: 1px solid #E6E6E6;
+	font-size: 14px;
+	margin-bottom: 34px;
+}
+.check_country_variety_headbar{
+	color: #999999;
+	font-weight: bold;
+}
+.variety_headbar1{
+	width: 50px;
+}
+.variety_headbar2{
+	width: 110px;
+}
+.variety_headbar3,.variety_headbar8{
+	width: 150px;
+}
+.variety_headbar4{
+	width: 120px;
+}
+.variety_headbar5,.variety_headbar7{
+	width: 100px;
+}
+.variety_headbar6{
+	width: 160px;
+}
+.check_country_variety_container tr td{
+	text-align: center;
+	height: 32px;
+	line-height: 32px;
+	border-bottom: 1px solid #E6E6E6;
+}
+.variety_content{
+	color: #333333;
+	cursor: pointer;
+}
+.variety_ck_box{
+	margin-left: 14px;
+	
+	width: 16px;
+	height: 16px;
+	border-radius: 4px;
+	border: 1px solid #CCCCCC;
+    
+}
+.checkbox_change {
+    border: 0;
+    background-image: url(../img/personal_agree.png);
+   	background-repeat: no-repeat;
+}
+.brand_nextstep{
+	float: right;
+	width: 220px;
+	height: 40px;
+	border: 0;
+    outline: 0;
+    border-radius: 5px;
+    background: #CCCCCC;
+    color: white;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    
+}

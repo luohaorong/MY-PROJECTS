@@ -1,0 +1,130 @@
+#my_sample_coupons{
+	background: #57E6D3;
+}
+#my_sample_coupons .inc{
+	display: none;
+}
+#my_sample_coupons .inc1{
+	display: block;
+}
+#my_sample_coupons .inc3{
+	display: none;
+}
+#my_sample_coupons .words{
+	color: #FFFFFF;
+}
+#my_sample_coupons .icn_right{
+	display: block;
+}
+
+
+.my_sample_usage{
+	width: 370px;
+	height: 18px;
+	padding-left: 20px;
+	margin-bottom: 20px;
+}
+.sample_common{
+	float: left;
+	height: 18px;
+	width: 108px;
+	margin-right: 10px;
+	cursor: pointer;
+	position: relative;
+}
+.sample_ck{
+	float: left;
+	width: 14px;
+	height: 14px;
+	border:1px solid #CCCCCC;
+	border-radius: 4px;
+}
+.sample_situation{
+	float: left;
+	font-size: 14px;
+	margin-left: 6px;
+	font-weight: bold;
+	color: #999999;
+}
+.add_sample{
+	color: #661b18;
+}
+.add_sample_ck{
+	border: 0;
+    background-image: url(../images/register/icons.png);
+    background-position: 56px -123px;
+}
+.sample_container_common{
+	position: absolute;
+	top: 40px;
+	width: 940px;
+	height: 930px;
+	display: none;
+	
+}
+.sample_container_common_nouse{
+	left: -22px;
+}
+.sample_container_common_aluse{
+	left: -138px;
+}
+.sample_container_common_dateoff{
+	left: -256px;
+}
+
+
+.sample_box_no_use{
+	width: 260px;
+	height: 160px;
+	background-image: url(../img/sample_no_use.png);
+	background-repeat: no-repeat;
+	float: left;
+	margin-right: 45px;
+}
+.sample_box_already_use{
+	width: 260px;
+	height: 160px;
+	background-image: url(../img/sample_already_use.png);
+	background-repeat: no-repeat;
+	float: left;
+	margin-right: 45px;
+}
+.sample_box_date_off{
+	width: 260px;
+	height: 160px;
+	background-image: url(../img/sample_date_off.png);
+	background-repeat: no-repeat;
+	float: left;
+	margin-right: 45px;
+}
+.sample_apply{
+	font-size: 30px;
+	color: #FFFFFF;
+	margin-top: 15px;
+	margin-left: 98px;
+	
+}
+.sample_could{
+	font-size: 14px;
+	color: #FFFFFF;
+	margin-left: 150px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+.sample_limit{
+	font-size: 12px;
+	color: #FFFFFF;
+	margin-left: 130px;
+}
+.sample_number{
+	font-size: 12px;
+	color: #FFFFFF;
+	margin-left: 16px;
+	margin-top: 34px;
+}
+.sample_exipry_date{
+	font-size: 12px;
+	color: #FFFFFF;
+	margin-left: 16px;
+	margin-top: 2px;
+}

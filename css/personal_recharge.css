@@ -1,0 +1,208 @@
+/*充值样式content7*/
+#personal_recharge{
+	background: #57E6D3;
+}
+#personal_recharge .inc{
+	display: none;
+}
+#personal_recharge .inc1{
+	display: block;
+}
+#personal_recharge .inc3{
+	display: none;
+}
+#personal_recharge .words{
+	color: #FFFFFF;
+}
+#personal_recharge .icn_right{
+	display: block;
+}
+#box_red{
+	width: 374px;
+	height: 30px;
+	border: 1px solid #eb7878;
+	font-size: 12px;
+	line-height: 30px;
+	color: #bd1a21;
+	background: #ffefef;
+	text-indent: 6px;
+	margin-bottom: 18px;
+}
+.please_tation{
+	width: 50px;
+	height: 12px;
+	color: #767676;
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+.pay_attention{
+	margin-bottom: 40px;
+}
+.pay_attention li{
+	line-height: 30px;
+	
+	height: 30px;
+	color: #767676;
+	font-size: 12px;
+}
+.recharge_word{
+	color: #ea0000;
+	font-size: 16px;
+}
+.recharge_money{
+	width: 188px;
+	height: 30px;
+	border: 1px solid #EA0000;
+	outline: 0;
+	
+	text-indent: 10px;
+}
+.chose_pay{
+	width: 300px;
+	height: 18px;
+	color: #333333;
+	font-size: 12px;
+	font-weight: bolder;
+	margin-top: 45px;
+	
+}
+.alipay{
+	color: #ea0000;
+	font-weight: bolder;
+}
+.alipay_way{
+	margin-left: 70px;
+	width: 100%;
+	height: 300px;
+	position: relative;
+}
+.zhifubao{
+	width: 190px;
+	height: 60px;
+	border:1px solid #CCCCCC ;
+	background-image: url(../img/alipay.png);
+	background-repeat: no-repeat;
+	background-position:56px 15px ;
+	position: relative;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+.pay_border{
+	border: 2px solid #57e6d3;
+}
+.wangshang{
+	width: 916px;
+	height: 30px;
+	border-bottom: 2px solid #CCCCCC;
+	color:red;
+	font-size: 12px;
+	font-weight: bolder;
+	line-height: 30px; 
+	margin-bottom: 10px;
+	}
+.checkbox_common{
+	width: 14px;
+	height: 14px;
+	top: 22px;
+	left: 18px;
+	position: absolute;
+	border: 1px solid #CCCCCC;
+	border-radius:4px ;
+	
+	
+}
+.checkbox_change{
+	border: 0;
+	background-image: url(../images/register/icons.png);
+	background-position: 56px -123px;
+}
+.checkbox_border{
+	border: 2px solid #57E6D3;
+}
+.bank_card{
+	cursor: pointer;
+	width: 190px;
+	height: 60px;
+	border: 1px solid #CCCCCC;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	position: absolute;
+}
+.gongshang{
+	background-image: url(../img/gongshang.png);
+	background-repeat: no-repeat;
+	background-position:50px 10px ;
+}
+.nongye{
+	
+	left: 210px;
+	top: 114px;
+	background-image: url(../img/nongye.png);
+	background-repeat: no-repeat;
+	background-position:50px 14px ;
+}
+.zhongguo{
+	
+	left: 420px;
+	top: 114px;
+	background-image: url(../img/zhongguo.png);
+	background-repeat: no-repeat;
+	background-position:50px 10px ;
+}
+.jianshe{
+	
+	left: 630px;
+	top: 114px;
+	background-image: url(../img/jianshe.png);
+	background-repeat: no-repeat;
+	background-position:40px 13px ;
+}
+.jiaotong{
+	left: 0px;
+	top: 200px;
+	background-image: url(../img/jiaotong.png);
+	background-repeat: no-repeat;
+	background-position:50px 14px ;
+}
+.zhaoshang{
+	left: 210px;
+	top: 200px;
+	background-image: url(../img/zhaoshang.png);
+	background-repeat: no-repeat;
+	background-position:50px 12px ;
+}
+.zhongxin{
+	left: 420px;
+	top: 200px;
+	background-image: url(../img/zhongxin.png);
+	background-repeat: no-repeat;
+	background-position:50px 12px ;
+}
+.sure{
+	margin-left: 70px;
+	margin-top: 6px;
+	margin-bottom: 5px;
+	width: 190px;
+	height: 40px;
+	border: 0;
+	outline: 0;
+	border-radius: 5px;
+	background: #CCCCCC;
+	color: white;
+	line-height: 40px;
+	text-align: center;
+	font-size: 16px;
+}
+.success_pay{
+	width: 560px;
+	height: 16px;
+	font-size: 12px;
+	color: #cc0000;
+	line-height: 16px;
+	margin-left: 78px;
+	margin-top: 10px;
+	margin-bottom: 14px;
+}
+.bk_cards{
+	margin-left: 70px;
+}
