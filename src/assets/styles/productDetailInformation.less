@@ -1,0 +1,59 @@
+@import 'base';
+.tabs{
+    background:transparent;
+}
+.proDeInfoContainer{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    .tabs-nav{
+        position: absolute;
+        top: 1rem;
+        left: 50%;
+        margin-left: -5.25rem !important;
+        z-index: 999;
+    }
+    .btn-group{
+        display: block;
+        width: 45%;
+        margin: 0 auto;
+        height:1.68rem;
+        line-height:1.68rem;
+        margin-bottom: 3rem;
+    }
+    .btn-primary:nth-child(1){
+        border-right:none;
+        border-radius: 0.84rem 0 0 0.84rem;
+    }
+    .btn-primary:nth-child(2){
+        margin-left:0;
+        border-left:none;
+        border-radius: 0 0.84rem 0.84rem 0;
+    }
+    .btn-primary{
+        border:none;
+        display: block;
+        height:calc(100% - 2px);
+        float: left;
+        width: 50%;
+        color:#f2785c !important;
+        line-height:1.68rem;
+        padding:0;
+        border: 1px solid #fff;
+    }
+    .active{
+        background-color:#fff !important;
+        color: #f2785c !important;
+        display: block;
+    }
+    .tabs-body{
+        width: 100%;
+        .active{
+        background-color:transparent !important;
+    }
+        .tab-panel{
+            padding: 0 0;
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,43 @@
+@import 'base';
+.inputContainer{
+    width: 100%;
+    height: auto;
+    float: right;
+    border-bottom: 1px solid #ffc6b2;
+    &::after{
+        content: '';
+        clear: both;
+        display: block;
+    }
+    .promptText{
+        width: auto;
+        height: 3.75rem;
+        float: left;
+        color: #ffc6b2;
+        font-size: 1rem;
+        text-align: left;
+        line-height: 3.75rem;
+        display: block;
+        text-indent: 1rem;
+    }
+    .registerInput{
+        width: auto;
+        height: 3.75rem;
+        float: right;
+        margin: 0 2rem 0 0;
+        border: 0;
+        outline: none;
+        background-color: transparent;
+        padding: 0;
+        text-align: right;
+        font-size: 1rem;
+        color: #ffffff;
+        &:hover,&:focus{
+            border: 0;
+            outline: none;
+            background-color: transparent; 
+            text-indent: 1rem;
+            color: #ffffff;
+        }
+    }
+}

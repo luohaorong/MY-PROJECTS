@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>跳转中...</title>
+		<script type="text/javascript" src="common.js"></script>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+		    (function() {
+		    	bee.post('/autoLogin', { code: bee.getQueryString('code') }, function (data) {
+		    		if (data.code) {
+		    			alert(data.info);
+		    			window.location.href = bee.link.weixin + '/error.html';
+		    			return;
+		    		}
+		    		bee.cache('token', data.data.token);
+		    		bee.cache('salt', data.data.salt);
+		    		bee.cache('diffTimestamp', data.data.timestamp - Math.floor(new Date().getTime() / 1000));
+		    		window.location.href = bee.cache('redirectUri');
+		    	});
+//		    	console.log(bee.getQueryString('code'))
+		    })();
+		</script>
+	</body>
+
+</html>

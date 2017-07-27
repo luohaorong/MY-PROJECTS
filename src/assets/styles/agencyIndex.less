@@ -1,0 +1,274 @@
+
+@keyframes mycoin
+            {
+                0%  {transform: translateY(30px);}
+                10% {transform:translateY(-20px);}
+                20% {transform:translateY(20px);}
+                30% {transform:translateY(-5px);}
+                40% {transform:translateY(10px);}
+                50% {transform:translateY(-3.5px);}
+                60% {transform:translateY(5px);}
+                70% {transform:translateY(-2.28px);}
+                80% {transform:translateY(2.5px);}
+                90% {transform:translateY(-1px);}
+                100% {transform:translateY(0px);}
+            }
+            @keyframes myleft
+            {
+                0%  {transform:rotate(6deg);}
+                10% {transform:rotate(-1.7deg);} 
+                20% {transform:rotate(3.63deg);}
+                30% {transform:rotate(-0.46deg);}
+                40% {transform:rotate(0.5deg);}
+                50% {transform:rotate(-0.4deg);}
+                60% {transform:rotate(0.45deg);}
+                70% {transform:rotate(0.02deg);}
+                80% {transform:rotate(0.99deg);}
+                90% {transform:rotate(0.023deg);}
+                100% {transform:rotate(0deg);}
+            }
+            @keyframes myright
+            {
+                0%  {transform:rotate(354deg);}
+                10% {transform:rotate(361.7deg);} 
+                20% {transform:rotate(356.3deg);}
+                30% {transform:rotate(360.46deg);}
+                40% {transform:rotate(358.05deg);}
+                50% {transform:rotate(360.45deg);}
+                60% {transform:rotate(358.8deg);}
+                70% {transform:rotate(359.08deg);}
+                80% {transform:rotate(359.01deg);}
+                90% {transform:rotate(359.97deg);}
+                100% {transform:rotate(360deg);}
+            }
+            @keyframes mymoney
+            {
+                0%  {top:-100%;}
+                50% {top:110%;display: none;}
+                99% {top: 110%;display: none;}
+                100% {top:-100%;display: block;}
+                
+            }
+            @keyframes myweek
+            {
+                0%  {transform:rotate(0deg);}
+                10%  {transform:rotate(10deg);}
+                20%  {transform:rotate(-5deg);}
+                30%  {transform:rotate(8deg);}
+                40%  {transform:rotate(-4deg);}
+                50%  {transform:rotate(5deg);}
+                60%  {transform:rotate(-3deg);}
+                70%  {transform:rotate(3deg);}
+                80%  {transform:rotate(-2deg);}
+                90%  {transform:rotate(2deg);}
+                100%  {transform:rotate(0deg);}
+               
+            }
+            @keyframes mycurrent
+            {
+                0%   {transform:rotate(0deg);}
+                10%  {transform:rotate(-10deg);}
+                20%  {transform:rotate(5deg);}
+                30%  {transform:rotate(-8deg);}
+                40%  {transform:rotate(4deg);}
+                50%  {transform:rotate(-5deg);}
+                60%  {transform:rotate(3deg);}
+                70%  {transform:rotate(-3deg);}
+                80%  {transform:rotate(2deg);}
+                90%  {transform:rotate(-2deg);}
+                100%  {transform:rotate(0deg);}
+                
+            }
+        @keyframes totalNum{
+            0% {zoom: 1;}
+            30% {zoom: 1.2;}
+            60% {zoom: 1.1;}
+            90% {zoom: 1.2;}
+            100% {zoom: 1;}
+        }
+.wraper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    .bonusTitle{
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 0.875rem;
+        color: #ffc6b2;
+        margin-top: 11%;
+    }
+    .totalNumWrap{
+        width: 100%;
+        height: 8rem;
+        position: absolute;
+        top: 10%;
+        left: 0;
+        text-align: center;
+        font-size: 3.125rem;
+        color: #fff;
+        line-height: 6rem;
+        .totalNum{
+            padding: 0 1rem;
+        }
+        .bonusIfo{
+            width: 100%;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #ffa9a9;
+        }
+    }
+    .Detailed{
+        width: 5.16rem;
+        height: 1.9375rem;
+        margin: 0 auto;
+        display: block;
+        background-image: url(../images/agencyIndex/search.png);
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        margin-top: 38%;
+    }
+      .coin {
+        width: 6.0625rem;
+        height: 6.0625rem;
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        margin-top: -2.63125rem;
+        margin-left: -3.03125rem;
+      }
+      .leftWraper{
+          width: 56%;
+          height: 50%;
+           position: absolute;
+           top: 50%;
+           left: 0;
+           margin-top: -1.875rem;
+           overflow: hidden;
+          .left{
+            width: 13.1875rem;
+            height: 3.75rem;
+            position: absolute;
+            top: 0;
+            left: -1.5rem;
+            transform-origin: 0% 0%;
+          }
+      }
+      .rightWraper{
+          width: 56%;
+          height:  50%;
+           position: absolute;
+           top: 50%;
+           right: 0;
+           margin-top: -1.875rem;
+           overflow: hidden;
+          .right{
+            width: 13.1875rem;
+            height: 3.75rem;
+            position: absolute;
+            top: 0;
+            right: -1.5rem;
+            transform-origin: 100% 0%;
+          }
+      }
+      .money{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: -100%;
+          left: 0;
+      }
+      .weekNumWrap{
+          width: 9.625rem;
+          height: 12.66rem;
+          position: absolute;
+          bottom: -3rem;
+          left: 0;
+          transform-origin:center bottom;
+          font-size: 1rem;
+          color: #ffd57f;
+          text-align: center;
+          padding-left: 0.5rem;
+          background-image: url(../images/agencyIndex/week.png);
+          background-position: 0 0;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          .weekContentWrap{
+            width: 100%;
+            height: 2rem;
+            margin-top: 2rem; 
+            transform: rotateZ(-6deg);
+            .weekNum {
+                padding-left: 0.2rem;
+                padding-right: 2rem;
+            }
+            .weekText{
+                width: 100%;
+                font-size: 0.815rem;
+                padding-right: 2rem;
+            }
+          }
+    }
+        .lastNumWrap{
+          width:9.0625rem;
+          height: 13.34375rem;
+          position: absolute;
+          bottom: -3rem;
+          left: 32%;
+          transform-origin:center bottom;
+          font-size: 1rem;
+          color: #ffd57f;
+          text-align: center;
+          padding-left: 0.5rem;
+          background-image: url(../images/agencyIndex/last.png);
+          background-position: 0 0;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          .lastContentWrap{
+            width: 100%;
+            height: 2rem;
+            margin-top: 2rem; 
+            .lastNum {
+                padding-left: 0.2rem;
+            }
+            .lastText{
+                width: 100%;
+                font-size: 0.815rem;
+            }
+          }
+    }
+        .currentNumWrap{
+         width: 9.625rem;
+          height: 12.66rem;
+          position: absolute;
+          bottom: -3rem;
+          right: -0.7rem;
+          transform-origin:center bottom;
+          font-size: 1rem;
+          color: #ffd57f;
+          text-align: center;
+          padding-right: 0.5rem;
+          background-image: url(../images/agencyIndex/current.png);
+          background-position: 0 0;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          .currentContentWrap{
+            width: 100%;
+            height: 2rem;
+            margin-top: 2rem;
+            transform: rotateZ(6deg);
+            text-indent: 2.4rem;
+                .currentNum {
+                    padding-left: 0.2rem;
+                }
+                .currentText{
+                    width: 100%;
+                    font-size: 0.815rem;
+            }
+          }
+      }
+      
+  }
+
