@@ -1,0 +1,73 @@
+@import 'base';
+.importFloorContainer{
+    p{
+        margin: 0;
+        padding: 0;
+    }
+    width: 100%;
+    height: auto;
+    background-color: #FFFFFF;
+    padding-bottom: 6px;
+    .swiper-container{
+        border-bottom: @borderInterval;
+        padding-bottom: 10px;
+        padding-top:10px;
+        .importCountry{
+            font-size: 0.75rem;
+            color: #FFFFFF;
+            display: block;
+            position: absolute;
+            left: 0.1rem;
+            bottom: 0rem;
+        }
+    }
+    .mainImgContainer{
+        width: 100%;
+        height: 13rem;
+        overflow: hidden;
+        margin-top: 0.46rem;
+        .leftImgContent{
+            float: left;
+            width: 55%;
+            border-right:@borderInterval;
+            height: 13rem;
+            text-align: center;
+            .leftTitle{
+                width: 100%;
+                text-align: center;
+                padding-top: 1.56rem;
+                color: #30302e;
+                font-size: 0.9rem;
+            }
+            .leftImage{
+                width: 10rem;
+                height: 9rem;
+                
+            }
+        }
+        .rightImgContent{
+            float: left;
+            width: 45%;
+            text-align: center;
+            :last-child{
+                    border-bottom: none !important;
+                }
+            .rightImg{
+                width: 90%;
+                margin: 0 auto;
+                height: 6.375rem;
+                border-bottom:@borderInterval ;
+             .rightTitle{
+                width: 100%;
+                text-align: center;
+                color: #30302e;
+                font-size: 0.9rem;
+             }  
+             .rightImage{
+                 width: 13rem;
+                 height: 4.69rem;
+             }
+            }
+        }
+    }
+}

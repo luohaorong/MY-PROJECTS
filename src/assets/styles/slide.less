@@ -1,0 +1,26 @@
+@import 'base';
+.sliderContainer{
+    background-color: #FFFFFF;
+    padding-bottom: 2rem;
+    .slider-slides{
+        .productImage{
+            width: 2.625rem !important;
+            margin: 0 auto;
+        }
+    }
+    .slider-indicators{
+        bottom: 0.4375rem;
+        li{
+            background-color: #999999 !important;
+            transition: width 0.2s;
+            -moz-transition: width 0.2s; /* Firefox 4 */
+            -webkit-transition: width 0.2s; /* Safari 和 Chrome */
+            -o-transition: width 0.2s; /* Opera */
+        }
+        .active{
+            background-color: #999999 !important;
+            width: 28px;
+        }
+       
+    }
+}

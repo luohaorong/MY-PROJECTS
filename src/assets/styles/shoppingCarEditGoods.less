@@ -1,0 +1,103 @@
+@import 'base';
+.editGoodsWrap{
+    width: 100%;
+    height: 2.125rem;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    position: fixed;
+    bottom: 3.56rem;
+    left: 0;
+    div{
+        float: left;
+        width: 25%;
+        height: 2.125rem;
+        padding-left: 5%;
+        .selectImg{
+            width: 1.125rem;
+            height: 1.125rem;
+        }
+        .selectText{
+            font-size: 0.875rem;
+            line-height: 2.125rem;
+            color: @titleColor;
+            padding-left: 0.5rem;
+        }
+    }
+    .editMiddle{
+        width: 50%;
+        overflow: hidden;
+        padding-left: 0;
+        p{
+            width: 40%;
+            height: 1.56rem;
+            color: #FFFFFF;
+            font-size: 0.875rem;
+            text-align: center;
+            line-height: 1.56rem;
+            border-radius: 10px;
+            float: left;
+            margin-top: 5px;
+            margin-left: 1rem;
+        }
+        .collection{
+            background-color: #f2bc3b;
+        }
+        .delet{
+            background-color: #cb2d2d;
+        }
+    }
+    .editOperation{
+        font-size: 0.875rem;
+        color: #479ff1;
+        text-align: center;
+        line-height: 2.125rem;
+        float: right;
+        padding-left: 0;
+    }
+}
+.topGoodsWrap{
+    top: 0;
+    z-index: 2;
+}
+.bottomStyle{
+    border-top: @borderInterval;
+    height: 3.56rem;
+    .bottomSelect{
+        width: 25%;
+        height: 100%;
+        position: relative;
+        p{
+            height: 2.125rem;
+            position: absolute;
+            top: 50%;
+            margin-top: -1.06rem;
+        }
+    }
+    .bottomCount{
+        width: 40%;
+        height: 100%;
+        float: left;
+        padding-left: 0;
+        .bottomTatal{
+            color: @titleColor;
+            font-size: 1rem;
+        }
+        .bottomBox{
+            font-size: 0.875rem;
+            color: @fontColor6;
+        }
+    }
+    .bottomBtn{
+        width: 35%;
+        height: 100%;
+        float: left;
+        background-color: #9e1b1b;
+        text-align: center;
+        line-height: 3.56rem;
+        color: #FFFFFF;
+        font-size: 1.06rem;
+        margin: 0;
+        padding-left: 0;
+    }
+}

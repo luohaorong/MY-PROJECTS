@@ -1,0 +1,35 @@
+@import 'base';
+.swiperListContainer{
+    background-color: #FFFFFF;
+    margin-top: 10px;
+    .priceListContainer{
+        width: 95%;
+        margin: 0 auto;
+        .swiper-wrapper{
+            :first-child{
+                div:first-child{
+                    border: 0.07rem solid #9e1b1b;
+                }
+            }
+            .priceListWrap{
+                margin: 10px;
+                text-align: center;
+                border: @borderInterval;
+                .listOrigin{
+                    color: @titleColor;
+                    font-size: 1rem;
+                }
+                .listPrice{
+                    color: #eb4f5c;
+                    font-size: 1rem;
+                }
+                .listType{
+                    font-size: 0.8125rem;
+                    color: @fontColor9;
+                }
+            }
+            
+        }
+       
+    }
+}
