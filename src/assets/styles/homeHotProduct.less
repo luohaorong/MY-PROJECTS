@@ -1,0 +1,67 @@
+@import 'base';
+.hotProductContainer{
+    width: 100%;
+    height: auto;
+    .mainWap{
+        width: 100%;
+        height: auto;
+        margin-left: 1px;
+        .productCol{
+            margin: 0;
+            padding: 0 2px 1px 0;
+            .productListStyle{
+                display: block;
+                width: 100%;
+                height: auto;
+                text-align: center;
+                background-color: #FFFFFF;
+                color:@titleColor;
+                overflow: hidden;
+                .hotImgWrapper{
+                    width: 100%;
+                    height: 8.25rem;
+                    .productImg{
+                        width: 5.6875rem;
+                        height: 8.25rem;
+                    }
+                }
+                .productDiscribe{
+                    width: 90%;
+                    height: auto;
+                    margin: 0 auto;
+                    text-align: left;
+                    margin-bottom: 0.8rem;
+                    .productChName{
+                        font-size: 0.8rem;
+                    }
+                    .productEnName{
+                        font-size: 0.68rem;
+                    }
+                    .flagImg{
+                        width: 18px;
+                        height: 12px;
+                    }
+                    .productCountry,.productOrigin{
+                        color: @fontColor9;
+                        font-size: 0.68rem;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        width: 7rem;
+                        text-align: right;
+                    }
+                    .productOrigin{
+                        display: block;
+                        float: right;
+                        padding-top: 0.3rem;
+                    }
+                    .productPrice{
+                        color: #eb4f5c;
+                        font-size: 0.875rem;
+                    }
+                }
+                
+            }
+        }
+    }
+}

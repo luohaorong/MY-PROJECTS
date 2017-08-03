@@ -1,0 +1,60 @@
+@import 'base';
+#proDeInfoContainer{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin:10px 0 0 0;
+    background:#fff;
+    .tabs-nav{
+        border: none !important;
+        height: 3rem;
+        margin-bottom: 0;
+        .btn-primary{
+            border: none;
+            font-size: 1rem;
+            color: @titleColor !important;
+            line-height: 1rem;
+            .underLine{
+                background-color:#9e1b1b;
+                width:1.875rem;
+                height:5px;
+                border-radius:2.5px;
+                margin: 4px auto;
+                visibility:hidden;
+            }
+           
+        }
+        .active{
+            background-color: #FFFFFF !important;
+            color: #9e1b1b !important;
+            display: block;
+             .underLine{
+                visibility:visible
+            }
+        }
+    }
+    .tabs-body{
+        padding-right: 0.3125rem;
+        padding-left: 1.3125rem;
+        width: 100%;
+        .tab-panel{
+            padding: 0 0;
+            width: 100%;
+            .detailInformation{
+                width: 100%;
+                color: @fontColor9;
+                font-size: 0.875rem;
+                .col{
+                    padding: 0.1rem;
+                    .g{
+                        margin-right: 0.3rem;
+                    }
+                }
+            }
+            .message{
+                margin-left: -10px;
+            }
+        }
+    }
+}
+
