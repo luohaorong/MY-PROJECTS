@@ -1,0 +1,77 @@
+@import 'base';
+.bubbleSweetContainer{
+    width: 100%;
+    height: auto;
+    background-color: #FFFFFF;
+    margin-top: 5px;
+    .topList{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        li{
+            float: left;
+        }
+        .TopList{
+            width: 50%;
+            height: 7.44rem;
+            overflow: hidden;
+            border-right:@borderInterval;
+            padding-top: 0.3rem;
+            .topImg{
+                display: block;
+                width:4.75rem ;
+                height: 6.87rem;
+                float: left;
+                
+            }
+            .topText{
+                width: 4.8rem;
+                height: 4.3rem;
+                float: left;
+                margin-top: 1.9rem;
+                .topName{
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                    color: @titleColor;
+                    font-size: 0.8rem;
+                }
+                .topPrice{
+                    color: #eb4f5c;
+                    font-size: 0.875rem;
+                }
+            }
+        }
+        .subtList{
+            width: 33%;
+            height: 10rem;
+            border-right:@borderInterval;
+            border-top: @borderInterval;
+            border-bottom: @borderInterval;
+            .subImg{
+                display: block;
+                width:4.75rem ;
+                height: 6.87rem;
+                margin: 0 auto;
+            }
+            .subName{
+                width: 6.875rem;
+                margin: 0 auto;
+                text-align: center;
+                color: @titleColor;
+                font-size: 0.8rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .subPrice{
+                width: 6.875rem;
+                margin: 0 auto;
+                text-align: center;
+                color: #eb4f5c;
+                font-size: 0.875rem;
+            }
+        }
+    }
+}

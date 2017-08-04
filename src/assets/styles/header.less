@@ -1,0 +1,120 @@
+@import 'base';
+.HederWapper {
+    background-color: #FFFFFF;
+    position: relative;
+    z-index: 200;
+    .backContainer {
+        padding: 0;
+        margin: 0 auto;
+        width: 90%;
+        height: auto;
+        line-height: 2.75rem;
+        background-color: #FFFFFF;
+        &::after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+        .backIcoWap {
+            width: 20%;
+            height: 2.75rem;
+            float: left;
+            text-align: left;
+            margin: 0;
+            .backIco {
+                   margin-left: -12px;
+            }
+        }
+        .textMiddle {
+            width: 60%;
+            height: 2.75rem;
+            font-size: 1rem;
+            font-family: @fontFamily;
+            color: @topColor;
+            display: block;
+            float: left;
+            text-align: center;
+            line-height: 2.75rem;
+            margin: 0;
+            position: relative;
+            .middleTop {
+                width: 100%;
+                text-align: center;
+                font-size: 1.1rem;
+                color: #333333;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .middleSub {
+                width: 100%;
+                text-align: center;
+                font-size: 1.1rem;
+                color: @fontColor9;
+                position: absolute;
+                top: 1.2rem;
+                left: 0;
+            }
+            .middleImg {
+                width: 1.1rem;
+                height: 1.1rem;
+                position: absolute;
+                top: 0.875rem;
+                right: 1rem;
+            }
+        }
+        .textRight {
+            width: 20%;
+            height: 2.75rem;
+            font-size: 1rem;
+            font-family: @fontFamily;
+            color: @topColor;
+            display: block;
+            float: left;
+            text-align: right;
+            margin: 0;
+            line-height: 2.75rem;
+            .textContent {
+//              background: url('../images/register/customer-service.png') no-repeat 1px 4px;
+//              background-size: 1rem;
+                color: #999999;
+                padding-left: 20px;
+            }
+        }
+    }
+}
+    .selectList{
+        width: 100%;
+        height: auto;
+        border-radius: 0 0 0.7rem 0.7rem;
+        list-style: none;
+        font-size: 1.1rem;
+        color: #333333;
+        background-color: #FFFFFF;
+        border-top: 0.1rem solid #e6e6e6;
+        margin: 0 auto;
+        position: absolute;
+        z-index: 199;
+        transition: top 0.3s ease;
+        -moz-transition: top 0.3s ease;  /* Firefox 4 */
+        -webkit-transition: top 0.3s ease;   /* Safari 和 Chrome */
+        -o-transition: top 0.3s ease;
+        li{
+            width: 90%;
+            height: 3.5rem;
+            text-align: center;
+            line-height: 3.5rem;
+            border-bottom: @borderInterval;
+            margin: 0 auto;
+        }
+        
+    }
+    .skin{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(127,127,127,0.8);
+        z-index: 111;
+    }
