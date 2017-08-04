@@ -5,34 +5,45 @@ class Number extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			value:this.props.quantity,
-			pass:'no'
+			value:+bee.cache('quantity')
 		};
 		this.changeHandler=this.changeHandler.bind(this);
 		this.blurHandler=this.blurHandler.bind(this);
 		this.minusHandler=this.minusHandler.bind(this);
 		this.addHandler=this.addHandler.bind(this);
 	}
+	
 	changeHandler(event){
 		let count=event.target.value;
 		this.setState({
-			value:count
+			value:count.replace(/[^\d]/g,'')
 		})
 	}
 	blurHandler(){
-		console.log(this.state.value)
+		this.props.valueData(+this.state.value);
 	}
 	addHandler(){
-		console.log(111)
+		let num=this.state.value;
+		num++;
+		this.setState({
+			value:num
+		});
+		let countNum=this.state.value+1;
+		this.props.valueData(countNum);
 	}
 	minusHandler(){
-		console.log(111)
-	}
-	getValue(){
-		if(this.state.pass==='yes'){
-			return this.state.value;
+		let num=this.state.value;
+		num--;
+		if(num<=0){
+			num=0
 		}
+		this.setState({
+			value:num
+		});
+		let countNum=this.state.value-1;
+		this.props.valueData(countNum);
 	}
+	
 	render(){
 		return(
 			<div className='countWrap'>

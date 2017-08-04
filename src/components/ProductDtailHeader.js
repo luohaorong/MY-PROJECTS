@@ -13,7 +13,7 @@ class ProductDtailHeader extends React.Component{
 						</Link>		            
 		            </Col>
 		            <Col cols={2} className='colWrap'>
-		            	<Link to={'/ProdcutDtailImagePage?uuid='+bee.getQueryString('uuid')} className='product' activeClassName='active'>
+		            	<Link to={'/ProdcutDtailImagePage?uuid='+bee.getQueryString('uuid')+'&detail='+this.props.detail} className={bee.getQueryString('detail')?'product active':'product'}>
 		           			详情
 						</Link>
 		            </Col>

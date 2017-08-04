@@ -49,7 +49,7 @@ class PriceList extends React.Component{
 							            	<p className='listPrice'>{dataPrice.map(function(j,k){
 							            		if(i===k){return '￥'+bee.currency(j)}
 							            	})}</p>
-							            	<p className='listType'>'立即发货'</p>
+							            	<p className='listType'>立即发货</p>
 					            		</div>
 					    			</div>
 								)

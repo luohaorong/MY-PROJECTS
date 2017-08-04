@@ -27,10 +27,23 @@ class ProductDtailPage extends React.Component{
 			countyUuid:'',
 			intStation:'',
 			intPrice:'',
-			allData:{}
+			allData:{},
+			bottleNum:0,//共多少瓶
+			productUuid:''//需要提交给后台的uuid
 		}
 		this.closeNotification = this.closeNotification.bind(this);
 		this.getCollection=this.getCollection.bind(this);
+		this.getCountyUuid=this.getCountyUuid.bind(this);
+		this.getStationUuid=this.getStationUuid.bind(this);
+		this.getPriceUuid=this.getPriceUuid.bind(this);
+		this.getNumber=this.getNumber.bind(this);
+	}
+	//清除注册时的session
+	componentWillMount(){
+		sessionStorage.removeItem('angencyData');
+		sessionStorage.removeItem('bindData');
+		sessionStorage.removeItem('registerEntry');
+		sessionStorage.removeItem('dataSign');
 	}
 	// 打开对话框
     openNotification() {
@@ -75,29 +88,38 @@ class ProductDtailPage extends React.Component{
 				let quoValue=quotedPrice.value;//报价属性的value
 				let station=saleAttrNames.station//仓库信息
 				let stationValue=station.value;
-				let resultUuid1;
-				let resultUuid2;
 				let resultIfo;//商品图片、起订量、库存量、价格、单位等
-				resultUuid1=quoValue[0].uuid+'_'+stationValue[0].uuid;
-				resultUuid2=stationValue[0].uuid+'_'+quoValue[0].uuid;
-				if(getPost.result[resultUuid1]){
-					resultIfo=getPost.result[resultUuid1];
-				}
-				if(getPost.result[resultUuid2]){
-					resultIfo=getPost.result[resultUuid2];
-				}
+				resultIfo=This.upData(quoValue[0].uuid,stationValue[0].uuid,getPost);
 				This.setState({
-					resultIformation:resultIfo,//轮播
+					allData:getPost,//所有数据
+					resultIformation:resultIfo,//第一种组合的结果
+					productUuid:resultIfo.uuid,//需要提交给后台的uuid
 					priceListData:quotedPrice,//报价
 					detailIfo:getPost.attrNames,//基本信息、品尝信息、包装信息
 					goodsIfo:getPost.goods,//商品信息
 					isFavorite:getPost.isFavorite,//是否收藏
 					productStation:station,//仓库信息
 					intStation:stationValue[0].uuid,//初始化仓库
-					intPrice:quoValue[0].uuid//初始化报价
+					intPrice:quoValue[0].uuid,//初始化报价
+					bottleNum:resultIfo.moq//购买数量
 				})
 			}
 		},true);
+	}
+	//更新数据
+	upData(priceUuid,stationUuid,allData){
+		let resultUuid1;
+		let resultUuid2;
+		let resultIfo;
+		resultUuid1=priceUuid+'_'+stationUuid;//默认选择第一种组合
+		resultUuid2=stationUuid+'_'+priceUuid;
+		if(allData.result[resultUuid1]){
+			resultIfo=allData.result[resultUuid1];
+		}
+		if(allData.result[resultUuid2]){
+			resultIfo=allData.result[resultUuid2];
+		}
+		return resultIfo;
 	}
 	//获取县的Uuid
 	getCountyUuid(data){
@@ -107,18 +129,53 @@ class ProductDtailPage extends React.Component{
 	}
 	//获取仓库uuid
 	getStationUuid(data){
+		let resultIfo;//商品图片、起订量、库存量、价格、单位等
+		resultIfo=this.upData(this.state.intPrice,data,this.state.allData);
 		this.setState({
-			intStation:data//改变仓库uuid
+			intStation:data,//改变仓库uuid
+			resultIformation:resultIfo,
+			productUuid:resultIfo.uuid
 		});
-		
-		
 	}
 	//获取报价uuid
 	getPriceUuid(data){
+		let resultIfo;//商品图片、起订量、库存量、价格、单位等
+		resultIfo=this.upData(data,this.state.intStation,this.state.allData);
 		this.setState({
-			intPrice:data//改变仓库uuid
+			intPrice:data,//改变仓库uuid
+			resultIformation:resultIfo,
+			productUuid:resultIfo.uuid
 		});
-		
+	}
+	//获取购买数量
+	getNumber(data){
+		let moq=this.state.resultIformation.moq;//起订量
+		let stock=this.state.resultIformation.stock;//库存量
+		this.setState({
+			bottleNum:data
+		});
+		if(data<moq){
+			let Error='商品购买量不能低于起订量（'+moq+'箱）';
+			// 如果失败，提示！！
+			this.openNotification();
+			//  callback
+			let timeId = setTimeout(this.closeNotification,3000);
+			this.setState({
+				timeId : timeId,
+				promptError:Error
+			});
+		}
+		if(data>stock){
+			let Error='商品购买量不能高于库存量（'+stock+'箱）';
+			// 如果失败，提示！！
+			this.openNotification();
+			//  callback
+			let timeId = setTimeout(this.closeNotification,3000);
+			this.setState({
+				timeId : timeId,
+				promptError:Error
+			});
+		}
 	}
 	//收藏成功后返回的数据
 	getCollection(data){
@@ -145,15 +202,15 @@ class ProductDtailPage extends React.Component{
 		// 如果失败，提示！！
 		this.openNotification();
 		//  callback
-		var timeId = setTimeout(this.closeNotification,3000);
+		let timeId = setTimeout(this.closeNotification,3000);
 		this.setState({
 			timeId : timeId,
 			promptError:Error
 		});
 	}
 	render(){
-		let resultIformation = this.state.resultIformation;//轮播数据
-		let productDescribeData=this.state.goodsIfo&&this.state.goodsIfo;;//产品信息
+		let resultIformation = this.state.resultIformation;//第一种组合的结果里面包含了：轮播，报价，起订量，库存量,几只装等
+		let productDescribeData=this.state.goodsIfo&&this.state.goodsIfo;//产品信息
 		let priceListData=this.state.priceListData//价格列表数据
 		let stationData;
 		if(JSON.stringify(this.state.productStation)!=='{}'){
@@ -171,6 +228,13 @@ class ProductDtailPage extends React.Component{
 		let inputStyle={
 			textAlign:'left',
 			paddingLeft:'1rem'
+		}
+		let saleStyle={
+			width: '82%',
+		    height: 'auto',
+		    textAlign: 'left',
+		    fontSize:'0.8rem',
+		    lineHeight:'20px'
 		}
 		let goodsIfo=(
 			JSON.stringify(productDescribeData)!=='{}'?(
@@ -222,7 +286,7 @@ class ProductDtailPage extends React.Component{
 			        >
 				         {this.state.promptError}
 			        </Notification>
-				<ProductDtailHeader/>
+				<ProductDtailHeader detail={productDescribeData.detail}/>
 				<Container scrollable={true}>
 				<Slide slideImg={resultIformation}/>
 				<section className='productDescribe'>
@@ -230,17 +294,17 @@ class ProductDtailPage extends React.Component{
 				</section>
 				<PriceList priceListData={priceListData} type={resultIformation} getPriceUuid={this.getPriceUuid} slideNumber={3}/>
 				<section className='ifoContainer'>
-					<ShoppingNumber/>
-					<ServiceInformation titleStyle={titleStyle} contentStyle={contentStyle} title='库存' content='125箱'/>
+					<ShoppingNumber data={resultIformation} bottleNum={this.state.bottleNum} getNumber={this.getNumber}/>
+					<ServiceInformation titleStyle={titleStyle} contentStyle={contentStyle} title='库存' content={resultIformation.stock}/>
 					<RegionalLinkage type='regional' getCountyUuid={this.getCountyUuid} inputStyle={inputStyle} promptText='送至' name='agencyArea' vText='请选择   >' ref='agencyArea'/>
 					<RegionalLinkage data={stationData} getStationUuid={this.getStationUuid} type='warehouse' inputStyle={inputStyle} promptText='仓库' name='warehouse' vText='请选择   >' ref='warehouse'/>
-					<ServiceInformation noBorder={true} titleStyle={titleStyle} contentStyle={contentStyle} title='促销' content='10箱起拼，30箱起发'/>
+					<ServiceInformation noBorder={true} titleStyle={titleStyle} contentStyle={saleStyle} title='促销' content={productDescribeData.warning}/>
 				</section>
 				<section>
 					<ProductDetailInformation detailIfo={detailIfo}/>
 				</section>
 				</Container>
-				<ProductDetailBttom isExclusive={false}/>
+				<ProductDetailBttom isExclusive={productDescribeData.is_exclusive==='true'?true:false}/>
 			</View>
 		)
 	}
@@ -248,8 +312,5 @@ class ProductDtailPage extends React.Component{
 ProductDtailPage.contextTypes={
 	router:React.PropTypes.object.isRequired // 向模块组件中，注入路由
 }
-// 默认参数
-ProductDtailPage.defaultProps = {
-    transition: 'sfr'
-};
+
 export default pureRender(ProductDtailPage);

@@ -9,18 +9,16 @@ class ProdcutDtailImagePage extends React.Component{
 			productImages:''
 		}
 	}
-	componentWillMount(){
-		this.setState({
-			productImages:'../assets/images/productDtail/dtailImg.png'
-		})
-		console.log(this.state.productImages);
-	}
+	
 	render(){
+		let html={
+			__html:bee.getQueryString('detail')
+		};
 		return(
 			<View>
 				<ProductDtailHeader/>
 				<Container scrollable={true}>
-					<img src={this.state.productImages}/>
+					<div dangerouslySetInnerHTML={html}></div>
 				</Container>
 			</View>
 		)
