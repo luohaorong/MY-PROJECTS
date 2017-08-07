@@ -29,7 +29,10 @@ class ProductDtailPage extends React.Component{
 			intPrice:'',
 			allData:{},
 			bottleNum:0,//共多少瓶
-			productUuid:''//需要提交给后台的uuid
+			productUuid:'',//需要提交给后台的uuid
+			isSubmit:true,//是否允许加入购物车
+			shoppingNum:0,//购物车商品数量
+			isExclusive:false//是否独家
 		}
 		this.closeNotification = this.closeNotification.bind(this);
 		this.getCollection=this.getCollection.bind(this);
@@ -37,6 +40,7 @@ class ProductDtailPage extends React.Component{
 		this.getStationUuid=this.getStationUuid.bind(this);
 		this.getPriceUuid=this.getPriceUuid.bind(this);
 		this.getNumber=this.getNumber.bind(this);
+		this.submitCar=this.submitCar.bind(this);
 	}
 	//清除注册时的session
 	componentWillMount(){
@@ -44,6 +48,7 @@ class ProductDtailPage extends React.Component{
 		sessionStorage.removeItem('bindData');
 		sessionStorage.removeItem('registerEntry');
 		sessionStorage.removeItem('dataSign');
+		bee.addUnloadImg();
 	}
 	// 打开对话框
     openNotification() {
@@ -69,6 +74,7 @@ class ProductDtailPage extends React.Component{
 		bee.post('/wechat/goods/info',{
 			"uuid":bee.getQueryString('uuid')
 		},function(data){
+			setTimeout(function(){bee.removeImg()},1000);
 			if(data.error_code){
 				let Error=data.msg;
 				// 如果失败，提示！！
@@ -82,6 +88,7 @@ class ProductDtailPage extends React.Component{
 				return;
 			}else{
 				let getPost=data.data;
+				let count=data.data.count;//购物车数量
 				let saleAttrNames=getPost.saleAttrNames;//销售属性
 				let quotedPrice=saleAttrNames.quoted_price;//报价属性
 				let quoPrice=quotedPrice.price;//报价属性的价格
@@ -97,11 +104,13 @@ class ProductDtailPage extends React.Component{
 					priceListData:quotedPrice,//报价
 					detailIfo:getPost.attrNames,//基本信息、品尝信息、包装信息
 					goodsIfo:getPost.goods,//商品信息
+					isExclusive:getPost.goods.is_exclusive==='true'?true:false,//是否独家
 					isFavorite:getPost.isFavorite,//是否收藏
 					productStation:station,//仓库信息
 					intStation:stationValue[0].uuid,//初始化仓库
 					intPrice:quoValue[0].uuid,//初始化报价
-					bottleNum:resultIfo.moq//购买数量
+					bottleNum:resultIfo.moq,//购买数量
+					shoppingNum:count//购物车数量
 				})
 			}
 		},true);
@@ -162,7 +171,8 @@ class ProductDtailPage extends React.Component{
 			let timeId = setTimeout(this.closeNotification,3000);
 			this.setState({
 				timeId : timeId,
-				promptError:Error
+				promptError:Error,
+				isSubmit:false
 			});
 		}
 		if(data>stock){
@@ -173,7 +183,13 @@ class ProductDtailPage extends React.Component{
 			let timeId = setTimeout(this.closeNotification,3000);
 			this.setState({
 				timeId : timeId,
-				promptError:Error
+				promptError:Error,
+				isSubmit:false
+			});
+		}
+		if(data>=moq&&data<=stock){
+			this.setState({
+				isSubmit:true
 			});
 		}
 	}
@@ -208,6 +224,51 @@ class ProductDtailPage extends React.Component{
 			promptError:Error
 		});
 	}
+	//加入购物车
+	submitCar(data){
+		if(data){
+			let isSubmit=this.state.isSubmit;//是否允许加入购物车
+			let goods_extends_uuid=this.state.resultIformation.uuid;//商品uuid
+			let goods_num=this.state.bottleNum;//商品数量
+			let station_uuid=this.state.intStation;//仓库uuid
+			let activity_type='normal';//活动类型（是否独家）
+			let exclusive_uuid='';
+			let This=this;
+			if(isSubmit&&goods_extends_uuid&&goods_num&&station_uuid&&activity_type){
+				bee.post('/wechat/carts/add',{
+					"goods_extends_uuid":goods_extends_uuid,
+				  	"goods_num":goods_num,
+				  	"station_uuid":station_uuid,
+				  	"activity_type":activity_type,
+				  	"exclusive_uuid":exclusive_uuid
+				},function(data){
+					if(data.error_code===0){
+						This.setState({
+							shoppingNum:data.data
+						});
+					}
+					// 如果失败，提示！！
+					This.openNotification();
+					//  callback
+					let timeId = setTimeout(This.closeNotification,3000);
+					This.setState({
+						timeId : timeId,
+						promptError:data.msg
+					});
+				},true)
+			}else{
+				let Error='请正确填写购买数量';
+				// 如果失败，提示！！
+				this.openNotification();
+				//  callback
+				let timeId = setTimeout(this.closeNotification,3000);
+				this.setState({
+					timeId : timeId,
+					promptError:Error
+				});
+			}
+		}
+	}
 	render(){
 		let resultIformation = this.state.resultIformation;//第一种组合的结果里面包含了：轮播，报价，起订量，库存量,几只装等
 		let productDescribeData=this.state.goodsIfo&&this.state.goodsIfo;//产品信息
@@ -234,7 +295,8 @@ class ProductDtailPage extends React.Component{
 		    height: 'auto',
 		    textAlign: 'left',
 		    fontSize:'0.8rem',
-		    lineHeight:'20px'
+		    lineHeight:'20px',
+		    marginTop:'1rem'
 		}
 		let goodsIfo=(
 			JSON.stringify(productDescribeData)!=='{}'?(
@@ -275,6 +337,7 @@ class ProductDtailPage extends React.Component{
 								
 							
 		)
+		
 		return(
 			<View>
 				<Notification
@@ -304,7 +367,7 @@ class ProductDtailPage extends React.Component{
 					<ProductDetailInformation detailIfo={detailIfo}/>
 				</section>
 				</Container>
-				<ProductDetailBttom isExclusive={productDescribeData.is_exclusive==='true'?true:false}/>
+				<ProductDetailBttom shoppingNum={this.state.shoppingNum} submitCar={this.submitCar} isExclusive={this.state.isExclusive}/>
 			</View>
 		)
 	}

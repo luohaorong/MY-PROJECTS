@@ -8,6 +8,15 @@ class ProductDetailBttom extends React.Component{
 		this.state={
 			isExclusive:this.props.isExclusive
 		}
+		this.clickHeadle=this.clickHeadle.bind(this);
+	}
+	componentWillReceiveProps(nextprops){
+		this.setState({
+			isExclusive:nextprops.isExclusive
+		})
+	}
+	clickHeadle(e){
+		this.props.submitCar(true);
 	}
 	render(){
 		return(
@@ -16,9 +25,10 @@ class ProductDetailBttom extends React.Component{
 					<div className='detailBottomContainer'>
 						<Link to='/index/ShoppingCarPage' className='detailLeft'>
 								采购车
+								<span className='shoppingNumber'>{this.props.shoppingNum}</span>
 						</Link>
 						<div className='detailRight'>
-							<div className='detailRightShoppingCar'>
+							<div className='detailRightShoppingCar' onClick={this.clickHeadle}>
 								加入购物车
 							</div>
 							<Link to='/SoleAgencyPage' className='detailRightExclusive'>
@@ -30,8 +40,9 @@ class ProductDetailBttom extends React.Component{
 					<div className='detailBottomContainer'>
 						<Link to='/index/ShoppingCarPage' className='detailLeft'>
 								采购车
+								<span className='shoppingNumber'>{this.props.shoppingNum}</span>
 						</Link>
-						<div className='detailRight'>
+						<div className='detailRight' onClick={this.clickHeadle}>
 								加入采购车
 						</div>
 					</div>)}

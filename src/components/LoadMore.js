@@ -66,7 +66,7 @@ class LoadMore  extends React.Component{
 		if(bool&&up){
 			bee.post(This.props.loadUrl,{
 				page:page,
-				size:16,
+				size:10,
 				category:This.props.loadUuid||''
 			},function(data){
 				if(data.error_code===0){

@@ -59,12 +59,16 @@ class HomePage extends React.Component{
 	      timeId : null
 	    })
 	}
+	componentWillMount(){
+		bee.addUnloadImg();
+	}
 	componentDidMount(){
 		let This=this;
 		document.title = '首页';
 		sessionStorage.removeItem('bindData');
 		sessionStorage.removeItem('code');
 		bee.post('/wechat/index',{},function(data){
+			setTimeout(function(){bee.removeImg()},1000);
 			if(data.error_code){
 				let Error=data.msg;
 				// 如果失败，提示！！

@@ -22,7 +22,8 @@ class HomeHotProduct extends React.Component{
 	}
 	//获取LoadMore传来的数据
 	reGetData(data){
-		let tmp=this.props.productListData;
+		this.props.getReData(data);
+		let tmp=this.props.productListData||[];
 		if(data){
 			data.map(function(item){
 				tmp.push(item)
@@ -62,7 +63,7 @@ class HomeHotProduct extends React.Component{
 		}
 	}
 	//接收到productListData后修改状态
-	componentWillReceiveProps(nextPorps){
+	componentWillReceiveProps(nextPorps,nextState){
 		if(nextPorps.productListData&&nextPorps.productListData.length){
 				this.setState({
 					noData:false

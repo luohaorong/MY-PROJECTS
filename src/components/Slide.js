@@ -4,6 +4,22 @@ import {Slider,Container} from 'amazeui-touch';
 import '../assets/styles/slide.less';
 import pureRender from 'pure-render-decorator';
 class Slide extends React.Component{
+	constructor(props){
+		super(props);
+		this.state={
+			errorSrc:''
+		}
+		this.errorLoad=this.errorLoad.bind(this);
+	}
+	//图片加载出错时执行
+	errorLoad(){
+		this.setState({
+			errorSrc:'../assets/images/unload.png',
+			classN:'errorLoad'
+		})
+		
+		
+	}
 	render(){
 		const slideImg=this.props.slideImg;
 		return(
@@ -15,11 +31,11 @@ class Slide extends React.Component{
 				          key={i}
 				        >
 				        <Link to='/ProductDtailPage'>
-				          <img className='productImage' src={bee.image(item,280,400)} />
+				          <img onError={this.errorLoad} className='productImage' src={this.state.errorSrc||bee.image(item,280,400)} />
 				        </Link>
 				        </Slider.Item>
 				      );
-				    })}
+				    },this)}
 				  </Slider>
 			</Container>
 		)

@@ -15,12 +15,14 @@ class ProductListPage extends React.Component{
 			loadUuid:''
 		}
 		this.postParent=this.postParent.bind(this);
+		this.getReData=this.getReData.bind(this);
 	}
 	componentWillMount(){
 		sessionStorage.removeItem('angencyData');
 		sessionStorage.removeItem('bindData');
 		sessionStorage.removeItem('registerEntry');
 		sessionStorage.removeItem('dataSign');
+		bee.addUnloadImg();
 	}
 	componentDidMount(){
 		let typeUuid=bee.getQueryString('uuid');
@@ -54,8 +56,10 @@ class ProductListPage extends React.Component{
 					}
 					bee.post('/wechat/goods/list',{
 						"category":This.state.loadUuid,
-						"latest":bee.getQueryString('latest')
+						"latest":bee.getQueryString('latest'),
+						"size":10
 					},function(data){
+						setTimeout(function(){bee.removeImg()},1000);
 						if(data.error_code){
 							alert(data.msg);
 							return;
@@ -69,9 +73,11 @@ class ProductListPage extends React.Component{
 			},true)
 		}else{
 			bee.post('/wechat/goods/list',{
-					agent_type:typeUuid,
-					honor:honor
+					"agent_type":typeUuid,
+					"honor":honor,
+					"size":10
 				},function(data){
+					setTimeout(function(){bee.removeImg()},1000);
 					if(data.error_code){
 						alert(data.msg);
 						return;
@@ -115,7 +121,8 @@ class ProductListPage extends React.Component{
 				"category":goodsUuid||this.state.loadUuid,
 				"agent_type":type,
 				"sort":sort,
-				"sequence":isUp
+				"sequence":isUp,
+				"size":10
 			},function(data){
 				if(data.error_code){
 					alert(data.msg);
@@ -126,6 +133,9 @@ class ProductListPage extends React.Component{
 					})
 				}
 			},true);
+	}
+	getReData(data){
+//		console.log(data);
 	}
 	render(){
 		let middleImg=true;
@@ -166,8 +176,8 @@ class ProductListPage extends React.Component{
 			<View id='productListView'>
 				<Header imgRight={headerImgRight} rightImg={true} postParent={this.postParent} headerListContent={headerListContent} middleTop={middleTop} middleImg={middleImg} MiddleTextTop={bee.getQueryString('title')} />
 				<ProductListTab postParent={this.postParent} listData={listData} titleData={this.state.titleData}/>
-				<Container scrollable={true}>
-					<HomeHotProduct loadUrl='/wechat/goods/list' loadUuid={this.state.loadUuid} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
+				<Container className='scrollWrapper' scrollable={true}>
+					<HomeHotProduct getReData={this.getReData} loadUrl='/wechat/goods/list' loadUuid={this.state.loadUuid} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
 				</Container>
 			</View>
 		)

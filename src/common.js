@@ -430,9 +430,9 @@ bee.image = function (image, width, height) {
 	}
 	return bee.link.image + image + '/' + width + 'x' + height;
 }
-bee.bottomUpwardSlidingDo=function (callback) {
+bee.bottomUpwardSlidingDo=function (wrapper,callback) {
 				var start, end, slideNum, winH, bodyH,
-					bodyEle = document.querySelector("body"),//获取到body
+					bodyEle = document.querySelector(wrapper),//获取到wrapper
 					docEle = document.documentElement,//获取html
 					UA = navigator.userAgent,
 					isUC = UA.indexOf("UCBrowser") != -1 || UA.indexOf("Baidu") != -1 || UA.indexOf("MQQBrowser") != -1,
@@ -462,11 +462,10 @@ bee.bottomUpwardSlidingDo=function (callback) {
 					if(start - end > slideNum) {
 						var scrollTop = bodyEle.scrollTop;//滚动的高度
 						winH = docEle.clientHeight;//内容可视区域的高度
-						bodyH = docEle.scrollHeight;//body的高度
+						bodyH = bodyEle.scrollHeight;//body的高度
 						scrollTop + winH + 1 >= bodyH && callback(); //之所以加1是因为某些情况下会有1PX偏差，当然也可以稍微加大更加灵敏
 					}
-					console.log(winH,scrollTop,bodyH)
-//					console.log(end,start,end-start,bodyH-scrollTop-winH);
+					console.log(slideNum,end-start,bodyH-scrollTop-winH);
 			
 				}
 			
@@ -476,3 +475,27 @@ bee.bottomUpwardSlidingDo=function (callback) {
 			}
 			document.addEventListener("touchmove",lockHtml,false);
 			document.removeEventListener("touchmove",lockHtml,false);
+bee.addUnloadImg=function(){
+	var img=document.createElement('img');
+	var box=document.createElement('div');
+	box.setAttribute('id','unloadWrap');
+	img.setAttribute('src','http://agency.huijiuguoji.com/assets/images/preLoad.gif');
+	img.style.position='absolute';
+	img.style.top='50%';
+	img.style.left='50%';
+	img.style.marginTop='-50px';
+	img.style.marginLeft='-50px';
+	document.body.appendChild(box);
+	box.appendChild(img);
+	box.style.width='100%';
+	box.style.height='100%';
+	box.style.position='fixed';
+	box.style.top='0';
+	box.style.left='0';
+	box.style.zIndex='1000';
+	box.style.backgroundColor='#ffffff';
+}
+bee.removeImg=function(){
+	var box=document.getElementById('unloadWrap');
+	document.body.removeChild(box);
+}

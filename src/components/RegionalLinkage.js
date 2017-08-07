@@ -44,7 +44,8 @@ class RegionalLinkage extends React.Component {
 				},
 				regionalLayerStyle:{
 					width:'90%',
-					margin:'0 auto'
+//					margin:'0 auto'
+				    marginLeft: '4%'
 				},
 				listItemStyle:{
 					margin:'0 auto'
