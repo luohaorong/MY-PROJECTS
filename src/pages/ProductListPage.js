@@ -12,10 +12,15 @@ class ProductListPage extends React.Component{
 		super(props);
 		this.state={
 			titleData:[],
-			loadUuid:''
+			loadUuid:'',
+			Data:[],
+			page:2,
+			count:2,
+			noData:false,
+			noListData:false
 		}
 		this.postParent=this.postParent.bind(this);
-		this.getReData=this.getReData.bind(this);
+		this.isGetData=this.isGetData.bind(this);
 	}
 	componentWillMount(){
 		sessionStorage.removeItem('angencyData');
@@ -64,6 +69,11 @@ class ProductListPage extends React.Component{
 							alert(data.msg);
 							return;
 						}else{
+							if(data.data.length===0){
+								This.setState({
+									noListData:true
+								})
+							}
 							This.setState({
 								Data:data.data
 							})
@@ -82,6 +92,11 @@ class ProductListPage extends React.Component{
 						alert(data.msg);
 						return;
 					}else{
+						if(data.data.length===0){
+								This.setState({
+									noListData:true
+								})
+							}
 						This.setState({
 							Data:data.data
 						})
@@ -128,14 +143,60 @@ class ProductListPage extends React.Component{
 					alert(data.msg);
 					return;
 				}else{
+					document.querySelector('.scrollWrapper').scrollTop=0;
+					if(data.data.length===0){
+								This.setState({
+									noListData:true
+								})
+							}
 					This.setState({
+						page:2,
+						count:2,
+						noData:false,
 						Data:data.data
 					})
 				}
 			},true);
 	}
-	getReData(data){
-//		console.log(data);
+	isGetData(data){
+		if(data){
+			this.getListData()
+		};
+	}
+	//加载商品列表
+	getListData(){
+		let This=this;
+		let page=this.state.page;//第几页
+		let count=this.state.count;//每成功获取一次数据page加1
+		bee.post('/wechat/goods/list',{
+				page:page,
+				size:10,
+				category:This.state.loadUuid
+			},function(data){
+				if(data.error_code===0){
+					let getPost=data.data;
+					if(getPost.length){
+						let tmp=This.state.Data;
+						getPost.map(function(item){
+							tmp.push(item);
+						});
+						if(data){
+							This.setState({
+								Data:tmp
+							})
+						}
+					}else{
+						This.setState({
+							noData:true
+						})
+					}
+					count++;
+					This.setState({
+						page:count,
+						count:count
+					})
+				}
+			},true);
 	}
 	render(){
 		let middleImg=true;
@@ -171,13 +232,13 @@ class ProductListPage extends React.Component{
 								,selectTab:false
 							}
 						]
-		const productListData=this.state.Data
+		let productListData=this.state.Data;
 		return(
 			<View id='productListView'>
 				<Header imgRight={headerImgRight} rightImg={true} postParent={this.postParent} headerListContent={headerListContent} middleTop={middleTop} middleImg={middleImg} MiddleTextTop={bee.getQueryString('title')} />
 				<ProductListTab postParent={this.postParent} listData={listData} titleData={this.state.titleData}/>
 				<Container className='scrollWrapper' scrollable={true}>
-					<HomeHotProduct getReData={this.getReData} loadUrl='/wechat/goods/list' loadUuid={this.state.loadUuid} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
+					<HomeHotProduct noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
 				</Container>
 			</View>
 		)

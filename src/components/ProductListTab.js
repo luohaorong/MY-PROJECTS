@@ -4,11 +4,12 @@ import pureRender from 'pure-render-decorator';
 import {Grid,Col,OffCanvasTrigger,OffCanvas} from 'amazeui-touch';
 import priceDown from '../assets/images/productList/priceD.png';
 import priceUp from '../assets/images/productList/priceTop.png';
+let type;
+let isPrice="DESC";
 class ProductListTab extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			isPrice:"DESC",
 			albums:[]
 		}
 			
@@ -28,19 +29,15 @@ class ProductListTab extends React.Component{
 	clickHander(event){
 		let active=event.currentTarget;
 		let activeIndex=active.getAttribute('data-index');
-		let type=active.getAttribute('data-type');
+		type=active.getAttribute('data-type');
 		let tmp=[];
 		this.state.isSelect.map(function(i,k){
 			k===(+activeIndex)?tmp.push(true):tmp.push(false);
 		})
 			if(activeIndex==2){
-				this.state.isPrice==="ASC"?this.setState({
-					isPrice:"DESC"
-				}):this.setState({
-					isPrice:"ASC"
-				});
+				isPrice==="ASC"?isPrice="DESC":isPrice="ASC";
 			}
-		type!=='change'&&this.props.postParent('',type,this.state.isPrice);
+		type!=='change'&&this.props.postParent('',type,isPrice);
 		this.setState({
 			isSelect:tmp
 		})
@@ -51,7 +48,7 @@ class ProductListTab extends React.Component{
 			 {
 	         	this.props.listData&&this.props.listData.map(function(i,k){
 	         		if(k<=2){
-			           return <Col key={k}  onClick={this.clickHander} data-type={i.name} className={this.state.isSelect[k]?'listTab fontColor':'listTab'} data-index={k}><span >{i.title}</span>{i.img?(<img src={k==2?(this.state.isPrice==="ASC"?priceUp:priceDown):(i.img)}/>):''}</Col>
+			           return <Col key={k}  onClick={this.clickHander} data-type={i.name} className={this.state.isSelect[k]?'listTab fontColor':'listTab'} data-index={k}><span >{i.title}</span>{i.img?(<img src={k==2?(isPrice==="ASC"?priceUp:priceDown):(i.img)}/>):''}</Col>
 	         		}else{
 	         			return (
 	         				 <OffCanvasTrigger
@@ -61,7 +58,7 @@ class ProductListTab extends React.Component{
 					            placement="right"
 					            offCanvas={<OffCanvas>筛选组件</OffCanvas>}
 					          >
-					            <Col onClick={this.clickHander} data-type={i.name} className={this.state.isSelect[k]?'listTab fontColor':'listTab'} data-index={k}><span >{i.title}</span>{i.img?(<img src={k==2?(this.state.isPrice==="ASC"?priceUp:priceDown):(i.img)}/>):''}</Col>
+					            <Col onClick={this.clickHander} data-type={i.name} className={this.state.isSelect[k]?'listTab fontColor':'listTab'} data-index={k}><span >{i.title}</span>{i.img?(<img src={k==2?(isPrice==="ASC"?priceUp:priceDown):(i.img)}/>):''}</Col>
 					          </OffCanvasTrigger>
 	         			);
 	         		}

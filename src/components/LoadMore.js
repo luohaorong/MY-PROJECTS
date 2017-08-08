@@ -1,34 +1,19 @@
 import React from 'react';
 import '../assets/styles/loadMore.less';
 import pureRender from 'pure-render-decorator';
-let This;
+let This,_hStart,start,end;
 class LoadMore  extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			up:true,
-			page:2,
-			count:2,
-			noData:false,
 			isNone:{}
 		};
 	}
 	componentDidMount(){
-		document.title='商品列表';
 		document.addEventListener("touchend", this.touchEndHandle, false);
+		document.addEventListener("touchstart", this.touchStartHandle, false);
 		This=this;
 		This.nodeIsNone();
-	}
-	//当父组件的Reset为TRUE时重置状态
-	componentWillReceiveProps(nextprops){
-		if(nextprops.Reset){
-			this.setState({
-				up:true,
-				page:2,
-				count:2,
-				noData:false
-			});
-		}
 	}
 	//是否显示加载更多
 	nodeIsNone(){
@@ -49,49 +34,32 @@ class LoadMore  extends React.Component{
 			})
 		}
 	}
-	touchEndHandle(e){
-		let lastNode=e.currentTarget.querySelector('.hotImgLast');
-		let bool = lastNode&&lastNode.hasChildNodes();//判断是否到底部
-		let up=This.state.up;//控制是否加载数据
-		let page=This.state.page;//第几页
-		let reGete=This.props.reGete;//父组件拿到数据后reGete为true
-		let count=This.state.count;//每成功获取一次数据page加1
-		This.nodeIsNone();
-		if(reGete){
-			This.setState({
-				up:true,
-				page:count
-			});
+	touchStartHandle(evt) {
+			clearTimeout(_hStart);
+			_hStart = setTimeout(function() {
+			//获取开始的坐标
+				start = evt.touches[0].pageY;
+			}, 0);
 		}
-		if(bool&&up){
-			bee.post(This.props.loadUrl,{
-				page:page,
-				size:10,
-				category:This.props.loadUuid||''
-			},function(data){
-				if(data.error_code===0){
-					let getPost=data.data;
-					if(getPost.length){
-						This.props.reGetData(getPost);
-					}else{
-						This.props.reGetData('');
-						This.setState({
-							up:false,
-							noData:true
-						})
-					}
-					count++;
-					This.setState({
-						up:false,
-						page:count,
-						count:count
-					})
-				}
-			},true);
+	touchEndHandle(evt){
+		let scrollWrapper=document.querySelector('.scrollWrapper');//获取滚动元素
+		let docEle= document.documentElement;//获取html
+		let scrollLen=scrollWrapper.scrollTop;//滚动高度
+		let wrapperH=scrollWrapper.scrollHeight;//滚动元素的高度
+		let winH = docEle.clientHeight;//内容可视区域的高度
+		end = evt.changedTouches[0].pageY;//获取结束时的坐标
+		//start-end>60用于控制灵敏度
+		if(start-end>60){
+			wrapperH<=scrollLen+winH+1&&This.isPost();
 		}
 	}
+	isPost(){
+		This.nodeIsNone();
+		This.props.isGetData(true)
+	}
 	componentWillUnmount(){
-		document.removeEventListener("touchend",this.touchEndHandle,false)
+		document.removeEventListener("touchend",this.touchEndHandle,false);
+		document.removeEventListener("touchstart",this.touchStartHandle,false);
 	}
 	render(){
 		This=this;
@@ -99,14 +67,14 @@ class LoadMore  extends React.Component{
 			<div className='loadMoreText'>
 		    		{
 		    				
-    					this.props.noData?(
+    					this.props.noListData?(
     						<div className='noData'>
 								<img src='../assets/images/noData.png'/>
 								<p>
 									已经在路上了...
 								</p>
     						</div>
-    					):<span  style={this.state.isNone}>{this.state.noData?'没有更多了...':'上滑加载更多...'}</span>
+    					):<span  style={this.state.isNone}>{this.props.noData?'没有更多了...':'上滑加载更多...'}</span>
 		    				
 		    			
 		    		}

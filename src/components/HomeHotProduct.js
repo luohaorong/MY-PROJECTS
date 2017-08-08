@@ -10,8 +10,7 @@ class HomeHotProduct extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			productListData:[],
-			reGet:false,
+			againListData:[],
 			errorSrc:"",
 			classN:"",
 			Reset:false,
@@ -19,24 +18,6 @@ class HomeHotProduct extends React.Component{
 		};
 		this.errorLoad=this.errorLoad.bind(this);
 		this.loadHeadle=this.loadHeadle.bind(this);
-	}
-	//获取LoadMore传来的数据
-	reGetData(data){
-		this.props.getReData(data);
-		let tmp=this.props.productListData||[];
-		if(data){
-			data.map(function(item){
-				tmp.push(item)
-			})
-			this.setState({
-				reGet:true,
-				productListData:tmp
-			})
-		}else{
-			this.setState({
-				reGet:false
-			})
-		}
 	}
 	//图片加载出错时执行
 	errorLoad(){
@@ -62,28 +43,12 @@ class HomeHotProduct extends React.Component{
 			active.src=dataSrc;
 		}
 	}
-	//接收到productListData后修改状态
-	componentWillReceiveProps(nextPorps,nextState){
-		if(nextPorps.productListData&&nextPorps.productListData.length){
-				this.setState({
-					noData:false
-				});
-		}else{
-			this.setState({
-					noData:true
-			});
-		}
-		if(this.props.productListData){
-			this.setState({
-				Reset:true
-			})
-		}
-	}
 	render(){
 		// 定义热销商品列表
-		let productListData=this.props.productListData||this.state.productListData;
+		let productListData=this.props.productListData;
+		console.log(productListData);
 		let len=productListData.length;
-		const productList = (
+		let productList = (
 				  <Grid avg={2}>
 				  	{productListData&&productListData.map(function(item,i){
 				  		return (
@@ -107,14 +72,14 @@ class HomeHotProduct extends React.Component{
 		            
 		          </Grid>
 		         );
-
+		
 		return (
 		     <div className='hotProductContainer'>
 				<HomeHotTitle hotProductImg={this.props.hotProductImg}/>
 		 		<section className='mainWap'>
 			 		{productList}
 				</section>
-				<LoadMore noData={this.state.noData} Reset={this.state.Reset} loadUrl={this.props.loadUrl} reGetData={this.reGetData.bind(this)} reGete={this.state.reGet} loadStyle={this.props.loadStyle} loadUuid={this.props.loadUuid}/>
+				<LoadMore isGetData={this.props.isGetData} noListData={this.props.noListData} noData={this.props.noData} Reset={this.state.Reset} loadUrl={this.props.loadUrl} loadStyle={this.props.loadStyle}/>
 			</div>
 	)
 	}

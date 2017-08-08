@@ -30,16 +30,21 @@ class HomePage extends React.Component{
     	slideImg:[],
     	importListImg:{},
     	floors:[],
-    	productListData:[],
+    	ListData:[],
     	bannerImg:[],
     	errorSrc:'',
     	classN:'',
-    	isShow:false
+    	isShow:false,
+    	page:2,
+		count:2,
+		noData:false,
+		noListData:false
     }
 	this.closeNotification = this.closeNotification.bind(this);
 	this.errorLoad=this.errorLoad.bind(this);
 	this.loadHeadle=this.loadHeadle.bind(this);
 	this.scrollHeadle=this.scrollHeadle.bind(this);
+	this.isGetData=this.isGetData.bind(this);
  }
 	// 打开对话框
     openNotification() {
@@ -82,10 +87,15 @@ class HomePage extends React.Component{
 				return;
 			}else{
 				let getPost=data.data;
+				if(data.data.length===0){
+					This.setState({
+						noListData:true
+					})
+				}
 				This.setState({
 					slideImg:getPost.top,//轮播图数据
 					importListImg:getPost.imports,//进口馆数据
-					productListData:getPost.goods,//热销产品数据
+					ListData:getPost.goods,//热销产品数据
 					floors:getPost.floors,//各楼层数据
 					bannerImg:getPost.middle//中间广告banner图
 				})
@@ -93,6 +103,44 @@ class HomePage extends React.Component{
 		},true);
 
 	}
+	isGetData(data){
+		if(data){
+			this.getListData()
+		};
+	}
+	//加载商品列表
+	getListData(){
+		let This=this;
+		let page=this.state.page;//第几页
+		let count=this.state.count;//每成功获取一次数据page加1
+		bee.post('/wechat/index/goods',{
+				page:page,
+				size:10
+			},function(data){
+				if(data.error_code===0){
+					let getPost=data.data;
+					if(getPost.length){
+						let tmp=This.state.ListData;
+						getPost.map(function(item){
+							tmp.push(item);
+						});
+						This.setState({
+							ListData:tmp
+						})
+					}else{
+						This.setState({
+							noData:true
+						})
+					}
+					count++;
+					This.setState({
+						page:count,
+						count:count
+					})
+				}
+			},true);
+	}
+	//搜索框效果
 	scrollHeadle(){
 		let seach=document.querySelector('.seach');
 		let scrollWrapper=document.querySelector('.scrollWrapper');
@@ -212,7 +260,7 @@ class HomePage extends React.Component{
 			}
 		})
 		//热销商品数据
-		const productListData=this.state.productListData;
+		let productListData=this.state.ListData;
 		let bgImage={
 			backgroundImage:'url('+bgImage+')'
 		}
@@ -289,7 +337,7 @@ class HomePage extends React.Component{
 										)
 							})
 						}
-		            	<HomeHotProduct loadUrl='/wechat/index/goods' hotProductImg={hotProductImg} productListData={productListData} />
+		            	<HomeHotProduct noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} />
 				</Container>
 				
 			</View>
