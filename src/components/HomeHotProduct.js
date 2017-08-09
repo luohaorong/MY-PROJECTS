@@ -10,7 +10,7 @@ class HomeHotProduct extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			againListData:[],
+			pListData:[],
 			errorSrc:"",
 			classN:"",
 			Reset:false,
@@ -43,10 +43,10 @@ class HomeHotProduct extends React.Component{
 			active.src=dataSrc;
 		}
 	}
+	//offsetVertical={200}
 	render(){
 		// 定义热销商品列表
 		let productListData=this.props.productListData;
-		console.log(productListData);
 		let len=productListData.length;
 		let productList = (
 				  <Grid avg={2}>
@@ -54,9 +54,9 @@ class HomeHotProduct extends React.Component{
 				  		return (
 					  			<Col key={i} className='productCol'>
 					            	<Link className='productListStyle' to={'/ProductDtailPage?uuid=' + item.uuid} data-uuid={item.uuid}>
-							  			<LazyLoad offsetVertical={50} className={i===len-1?'hotImgLast hotImgWrapper':'hotImgWrapper'}>
+							  			<p  className={i===len-1?'hotImgLast hotImgWrapper':'hotImgWrapper'}>
 						            		<img onError={this.errorLoad} className={this.state.classN||'productImg'}  onLoad={this.loadHeadle} data-src={bee.image(item.thumb,280,400)} src={this.state.errorSrc||'../assets/images/preLoad.gif'}/>
-						            	</LazyLoad>	
+						            	</p>	
 						            	<div className='productDiscribe'>
 							            	<p className='productChName text-truncate'>{item.chinese_name}</p>
 							            	<p className='productEnName text-truncate'>{item.english_name}</p>

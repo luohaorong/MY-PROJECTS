@@ -16,8 +16,11 @@ class ProductListPage extends React.Component{
 			Data:[],
 			page:2,
 			count:2,
-			noData:false,
-			noListData:false
+			noData:'preLoad',
+			noListData:false,
+			filter:'',
+			isPrice:'',
+			reTabState:false
 		}
 		this.postParent=this.postParent.bind(this);
 		this.isGetData=this.isGetData.bind(this);
@@ -30,6 +33,7 @@ class ProductListPage extends React.Component{
 		bee.addUnloadImg();
 	}
 	componentDidMount(){
+		document.title = '商品列表';
 		let typeUuid=bee.getQueryString('uuid');
 		let honor=bee.getQueryString('honor');
 		let This=this;
@@ -75,6 +79,7 @@ class ProductListPage extends React.Component{
 								})
 							}
 							This.setState({
+								noData:'preLoad',
 								Data:data.data
 							})
 						}
@@ -98,6 +103,7 @@ class ProductListPage extends React.Component{
 								})
 							}
 						This.setState({
+							noData:'preLoad',
 							Data:data.data
 						})
 					}
@@ -110,8 +116,19 @@ class ProductListPage extends React.Component{
 		let type;
 		let sort;
 		let isUp;
+		this.setState({
+			filter:filter,
+			isPrice:isPrice
+		});
 		if(dataKey){
 			goodsUuid=dataKey;
+			this.setState({
+				reTabState:true
+			})
+		}else{
+			this.setState({
+				reTabState:false
+			})
 		}
 		switch(filter)
 			{
@@ -133,7 +150,7 @@ class ProductListPage extends React.Component{
 				default :type='';sort='';isUp='';
 			}
 		(dataKey||filter)&&bee.post('/wechat/goods/list',{
-				"category":goodsUuid||this.state.loadUuid,
+				"category":goodsUuid||This.state.loadUuid,
 				"agent_type":type,
 				"sort":sort,
 				"sequence":isUp,
@@ -153,6 +170,7 @@ class ProductListPage extends React.Component{
 						page:2,
 						count:2,
 						noData:false,
+						noData:'preLoad',
 						Data:data.data
 					})
 				}
@@ -166,12 +184,42 @@ class ProductListPage extends React.Component{
 	//加载商品列表
 	getListData(){
 		let This=this;
+		let type;
+		let sort;
+		let isUp;
 		let page=this.state.page;//第几页
 		let count=this.state.count;//每成功获取一次数据page加1
+		let isPrice=this.state.isPrice;
+		let filter=this.state.filter;
+		this.setState({
+				noData:'loading'
+			});
+			switch(filter)
+			{
+			case 'zonghe':
+				type='';
+				sort='';
+				isUp='';
+			  	break;
+			case 'latest':
+				type='';
+				sort='new';
+				isUp='';
+				break;
+			case 'price':
+				sort='price';
+				type='';
+				isUp=isPrice;
+				break;
+				default :type='';sort='';isUp='';
+			}
 		bee.post('/wechat/goods/list',{
-				page:page,
-				size:10,
-				category:This.state.loadUuid
+				"page":page,
+				"size":10,
+				"agent_type":type,
+				"sort":sort,
+				"sequence":isUp,
+				"category":goodsUuid||This.state.loadUuid
 			},function(data){
 				if(data.error_code===0){
 					let getPost=data.data;
@@ -180,15 +228,15 @@ class ProductListPage extends React.Component{
 						getPost.map(function(item){
 							tmp.push(item);
 						});
-						if(data){
-							This.setState({
-								Data:tmp
-							})
-						}
+						This.setState({
+							Data:tmp,
+							noData:'preLoad'
+						});
+
 					}else{
 						This.setState({
-							noData:true
-						})
+							noData:'onData'
+						});
 					}
 					count++;
 					This.setState({
@@ -236,7 +284,7 @@ class ProductListPage extends React.Component{
 		return(
 			<View id='productListView'>
 				<Header imgRight={headerImgRight} rightImg={true} postParent={this.postParent} headerListContent={headerListContent} middleTop={middleTop} middleImg={middleImg} MiddleTextTop={bee.getQueryString('title')} />
-				<ProductListTab postParent={this.postParent} listData={listData} titleData={this.state.titleData}/>
+				<ProductListTab reTabState={this.state.reTabState} postParent={this.postParent} listData={listData} titleData={this.state.titleData}/>
 				<Container className='scrollWrapper' scrollable={true}>
 					<HomeHotProduct noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
 				</Container>

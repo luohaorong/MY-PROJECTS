@@ -37,7 +37,7 @@ class HomePage extends React.Component{
     	isShow:false,
     	page:2,
 		count:2,
-		noData:false,
+		noData:'preLoad',
 		noListData:false
     }
 	this.closeNotification = this.closeNotification.bind(this);
@@ -113,6 +113,9 @@ class HomePage extends React.Component{
 		let This=this;
 		let page=this.state.page;//第几页
 		let count=this.state.count;//每成功获取一次数据page加1
+		this.setState({
+				noData:'loading'
+			});
 		bee.post('/wechat/index/goods',{
 				page:page,
 				size:10
@@ -125,12 +128,14 @@ class HomePage extends React.Component{
 							tmp.push(item);
 						});
 						This.setState({
-							ListData:tmp
-						})
+							ListData:tmp,
+							noData:'preLoad'
+						});
+						
 					}else{
 						This.setState({
-							noData:true
-						})
+							noData:'onData'
+						});
 					}
 					count++;
 					This.setState({
@@ -337,7 +342,7 @@ class HomePage extends React.Component{
 										)
 							})
 						}
-		            	<HomeHotProduct noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} />
+		            	<HomeHotProduct useless={this.state.useless} noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} />
 				</Container>
 				
 			</View>

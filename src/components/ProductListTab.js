@@ -25,7 +25,15 @@ class ProductListTab extends React.Component{
 			isSelect:tmp
 		})
 	}
-
+	componentWillReceiveProps(nextProps){
+		let tmp=[true,false,false,false];
+		console.log(nextProps.reTabState);
+		if(nextProps.reTabState){
+			this.setState({
+				isSelect:tmp
+			})
+		};
+	}
 	clickHander(event){
 		let active=event.currentTarget;
 		let activeIndex=active.getAttribute('data-index');

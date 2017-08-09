@@ -6,7 +6,8 @@ class LoadMore  extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			isNone:{}
+			isNone:{},
+			loadText:'上滑加载更多...'
 		};
 	}
 	componentDidMount(){
@@ -48,18 +49,39 @@ class LoadMore  extends React.Component{
 		let wrapperH=scrollWrapper.scrollHeight;//滚动元素的高度
 		let winH = docEle.clientHeight;//内容可视区域的高度
 		end = evt.changedTouches[0].pageY;//获取结束时的坐标
+		This.nodeIsNone();
 		//start-end>60用于控制灵敏度
 		if(start-end>60){
 			wrapperH<=scrollLen+winH+1&&This.isPost();
 		}
 	}
 	isPost(){
-		This.nodeIsNone();
 		This.props.isGetData(true)
 	}
 	componentWillUnmount(){
 		document.removeEventListener("touchend",this.touchEndHandle,false);
 		document.removeEventListener("touchstart",this.touchStartHandle,false);
+	}
+	componentWillReceiveProps(nextProps){
+		switch(nextProps.noData)
+		{
+			case 'preLoad':
+			this.setState({
+				loadText:'上滑加载更多...'
+			});
+			break;
+			case 'loading':
+			this.setState({
+				loadText:'正在加载数据...'
+			});
+			break;
+			case 'onData':
+			this.setState({
+				loadText:'没有更多了...'
+			});
+			break;
+			default:'';
+		}
 	}
 	render(){
 		This=this;
@@ -74,7 +96,9 @@ class LoadMore  extends React.Component{
 									已经在路上了...
 								</p>
     						</div>
-    					):<span  style={this.state.isNone}>{this.props.noData?'没有更多了...':'上滑加载更多...'}</span>
+    					):<span  style={this.state.isNone}>
+    					{this.state.loadText}
+    					</span>
 		    				
 		    			
 		    		}
