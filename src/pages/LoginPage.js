@@ -29,7 +29,6 @@ class LoginPage extends React.Component {
 	}
 	componentDidMount(){
 		document.title = this.state.title;
-		
 	}
 	//登录逻辑
 	loginHandler(){
@@ -91,14 +90,7 @@ class LoginPage extends React.Component {
 			
 		)
 	}
-	componentDidMount(){
-		
-	}
 }
-// 默认参数
-LoginPage.defaultProps = {
-    transition: 'rfr'
-};
 // 静态属性
 LoginPage.contextTypes = {
     router: React.PropTypes.object.isRequired // 向模块组件中，注入路由

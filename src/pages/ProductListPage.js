@@ -73,14 +73,14 @@ class ProductListPage extends React.Component{
 							alert(data.msg);
 							return;
 						}else{
-							if(data.data.length===0){
+							if(data.data.goods.length===0){
 								This.setState({
 									noListData:true
 								})
 							}
 							This.setState({
 								noData:'preLoad',
-								Data:data.data
+								Data:data.data.goods
 							})
 						}
 					},true);
@@ -97,14 +97,15 @@ class ProductListPage extends React.Component{
 						alert(data.msg);
 						return;
 					}else{
-						if(data.data.length===0){
+						if(data.data.goods.length===0){
 								This.setState({
 									noListData:true
 								})
 							}
 						This.setState({
 							noData:'preLoad',
-							Data:data.data
+							titleData:data.data.goodsCategory,
+							Data:data.data.goods
 						})
 					}
 			},true);
@@ -161,17 +162,18 @@ class ProductListPage extends React.Component{
 					return;
 				}else{
 					document.querySelector('.scrollWrapper').scrollTop=0;
-					if(data.data.length===0){
+					if(data.data.goods.length===0){
 								This.setState({
 									noListData:true
 								})
-							}
+					}
 					This.setState({
 						page:2,
 						count:2,
 						noData:false,
 						noData:'preLoad',
-						Data:data.data
+						titleData:data.data.goodsCategory,
+						Data:data.data.goods
 					})
 				}
 			},true);
@@ -222,7 +224,7 @@ class ProductListPage extends React.Component{
 				"category":goodsUuid||This.state.loadUuid
 			},function(data){
 				if(data.error_code===0){
-					let getPost=data.data;
+					let getPost=data.data.goods;
 					if(getPost.length){
 						let tmp=This.state.Data;
 						getPost.map(function(item){
@@ -251,8 +253,7 @@ class ProductListPage extends React.Component{
 		let middleTop=true;
 		let headerListContent=[];
 		this.state.titleData&&this.state.titleData.map(function(item){
-			item.latest==='true'&&headerListContent.push(item);
-			item.decoration==='true'&&headerListContent.push(item);
+			headerListContent.push(item);
 		});
 		const listData=[
 							{

@@ -27,7 +27,6 @@ class ProductListTab extends React.Component{
 	}
 	componentWillReceiveProps(nextProps){
 		let tmp=[true,false,false,false];
-		console.log(nextProps.reTabState);
 		if(nextProps.reTabState){
 			this.setState({
 				isSelect:tmp

@@ -54,7 +54,7 @@ class HomeHotProduct extends React.Component{
 				  		return (
 					  			<Col key={i} className='productCol'>
 					            	<Link className='productListStyle' to={'/ProductDtailPage?uuid=' + item.uuid} data-uuid={item.uuid}>
-							  			<p  className={i===len-1?'hotImgLast hotImgWrapper':'hotImgWrapper'}>
+							  			<p  className='hotImgWrapper'>
 						            		<img onError={this.errorLoad} className={this.state.classN||'productImg'}  onLoad={this.loadHeadle} data-src={bee.image(item.thumb,280,400)} src={this.state.errorSrc||'../assets/images/preLoad.gif'}/>
 						            	</p>	
 						            	<div className='productDiscribe'>

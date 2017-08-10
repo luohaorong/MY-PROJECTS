@@ -8,12 +8,12 @@ class ShoppingCarPage extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			title:'购物车'
+			title:'购物车',
+			shoppingData:{}
 		}
 	}
 	componentDidMount(){
 		document.title = this.state.title;
-		
 	}
 	render(){
 		const data=[
@@ -98,7 +98,7 @@ class ShoppingCarPage extends React.Component{
 		
 		return(
 			<View>
-				<ShoppingCarDeport data={data}/>
+				<ShoppingCarDeport/>
 			</View>
 			
 		)
