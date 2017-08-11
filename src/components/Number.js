@@ -5,14 +5,18 @@ class Number extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			value:+bee.cache('quantity')
+			value:0
 		};
 		this.changeHandler=this.changeHandler.bind(this);
 		this.blurHandler=this.blurHandler.bind(this);
 		this.minusHandler=this.minusHandler.bind(this);
 		this.addHandler=this.addHandler.bind(this);
 	}
-	
+	componentWillMount(){
+		this.setState({
+			value:this.props.dataNum
+		});
+	}
 	changeHandler(event){
 		let count=event.target.value;
 		this.setState({
@@ -20,7 +24,7 @@ class Number extends React.Component{
 		})
 	}
 	blurHandler(){
-		this.props.valueData(+this.state.value);
+		this.props.valueData(+this.state.value,this.props.moq,this.props.stock,this.props.uuid,this.props.index);
 	}
 	addHandler(){
 		let num=this.state.value;
@@ -29,7 +33,7 @@ class Number extends React.Component{
 			value:num
 		});
 		let countNum=this.state.value+1;
-		this.props.valueData(countNum);
+		this.props.valueData(countNum,this.props.moq,this.props.stock,this.props.uuid,this.props.index);
 	}
 	minusHandler(){
 		let num=this.state.value;
@@ -41,7 +45,7 @@ class Number extends React.Component{
 			value:num
 		});
 		let countNum=this.state.value-1;
-		this.props.valueData(countNum);
+		this.props.valueData(countNum,this.props.moq,this.props.stock,this.props.uuid,this.props.index);
 	}
 	
 	render(){

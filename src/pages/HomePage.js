@@ -342,7 +342,7 @@ class HomePage extends React.Component{
 										)
 							})
 						}
-		            	<HomeHotProduct useless={this.state.useless} noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} />
+		            	<HomeHotProduct  noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} />
 				</Container>
 				
 			</View>

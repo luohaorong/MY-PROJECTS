@@ -9,10 +9,19 @@ class ShoppingCarEditGoods extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			isEdit:false
-			
+			isEdit:false,
+			price_amount:0,
+			goods_amount:0,
+			goods_total:0
 		};
 		this.editClick=this.editClick.bind(this);
+	}
+	componentWillReceiveProps(nextProps){
+		this.setState({
+			price_amount:+nextProps.price_amount,
+			goods_amount:+nextProps.goods_amount,
+			goods_total:+nextProps.goods_total
+		})
 	}
 	editClick(){
 		this.state.isEdit?this.setState({isEdit:false}):this.setState({isEdit:true})
@@ -37,15 +46,15 @@ class ShoppingCarEditGoods extends React.Component{
 								合计：
 							</span>
 							<span>
-								￥2542.00
+								￥{bee.currency(this.state.price_amount)}
 							</span>
 						</p>
 						<p className='bottomBox'>
 							<span>
-								共30箱
+								共{this.state.goods_amount}箱
 							</span>
 							<span>
-								（60瓶/箱）
+								（{this.state.goods_total}瓶）
 							</span>
 						</p>
 					</div>

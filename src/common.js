@@ -400,7 +400,7 @@ bee.post = function (url, data, fn, isSign,isFile) {
 	}
 		obj.onreadystatechange = function() {
 			if(obj.readyState == 4 && (obj.status == 200 || obj.status == 304)) {// 304未修改
-				if(JSON.parse(obj.responseText).error_code=== -1){
+				if(JSON.parse(obj.responseText).error_code=== -11){
 						bee.cache('redirectUri', window.location.href);
 						sessionStorage.removeItem('token');
 						window.location.href=bee.link.weixin + '#/BindAccountPage';
@@ -479,12 +479,14 @@ bee.addUnloadImg=function(){
 	var img=document.createElement('img');
 	var box=document.createElement('div');
 	box.setAttribute('id','unloadWrap');
-	img.setAttribute('src','http://agency.huijiuguoji.com/assets/images/preLoad.gif');
+	img.setAttribute('src','/assets/images/loading.gif');
 	img.style.position='absolute';
 	img.style.top='50%';
 	img.style.left='50%';
 	img.style.marginTop='-50px';
 	img.style.marginLeft='-50px';
+	img.style.width='100px';
+	img.style.height='100px';
 	document.body.appendChild(box);
 	box.appendChild(img);
 	box.style.width='100%';

@@ -9,7 +9,6 @@ class ShoppingNumber extends React.Component{
 	}
 	render(){
 		let packingData=this.props.data;
-		bee.cache("quantity",packingData.moq);
 		//定义ServiceInformation组件的样式
 		let titleStyle={
 			width:'auto',
@@ -21,7 +20,7 @@ class ShoppingNumber extends React.Component{
 		}
 		const content=(
 			<div className='numberContainer'>
-				<Number ref='number' moq={packingData.moq} isMoq={this.props.isMoq} valueData={this.valueData.bind(this)}/>
+				<Number ref='number' dataNum={packingData.moq} moq={packingData.moq} isMoq={this.props.isMoq} valueData={this.valueData.bind(this)}/>
 				<span className='shoppingDescribe text-truncate'>
 					{packingData.stocking_unit+"("+packingData.stocking_pricing_ratio+"支装"+")，共"+this.props.bottleNum*packingData.stocking_pricing_ratio+packingData.pricing_unit}
 				</span>
