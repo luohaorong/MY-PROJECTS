@@ -46,8 +46,7 @@ class Number extends React.Component{
 		});
 		let countNum=this.state.value-1;
 		this.props.valueData(countNum,this.props.moq,this.props.stock,this.props.uuid,this.props.index);
-	}
-	
+}
 	render(){
 		return(
 			<div className='countWrap'>

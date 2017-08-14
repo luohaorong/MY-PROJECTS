@@ -38,7 +38,8 @@ class HomePage extends React.Component{
     	page:2,
 		count:2,
 		noData:'preLoad',
-		noListData:false
+		noListData:false,
+		isError:true
     }
 	this.closeNotification = this.closeNotification.bind(this);
 	this.errorLoad=this.errorLoad.bind(this);
@@ -101,7 +102,6 @@ class HomePage extends React.Component{
 				})
 			}
 		},true);
-
 	}
 	isGetData(data){
 		if(data){
@@ -140,7 +140,8 @@ class HomePage extends React.Component{
 					count++;
 					This.setState({
 						page:count,
-						count:count
+						count:count,
+						isError:true
 					})
 				}
 			},true);
@@ -342,7 +343,7 @@ class HomePage extends React.Component{
 										)
 							})
 						}
-		            	<HomeHotProduct  noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} />
+		            	<HomeHotProduct isError={this.state.isError} noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} />
 				</Container>
 				
 			</View>

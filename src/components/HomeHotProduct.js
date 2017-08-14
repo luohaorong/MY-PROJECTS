@@ -12,18 +12,27 @@ class HomeHotProduct extends React.Component{
 		this.state={
 			pListData:[],
 			errorSrc:"",
-			classN:"",
 			Reset:false,
-			noData:false
+			noData:false,
+			isError:true
 		};
 		this.errorLoad=this.errorLoad.bind(this);
 		this.loadHeadle=this.loadHeadle.bind(this);
 	}
+	componentWillReceiveProps(nextProps){
+		if(nextProps.isError){
+			this.setState({
+				isError:true
+			})
+		};
+	}
 	//图片加载出错时执行
-	errorLoad(){
+	errorLoad(e){
+		let active=e.currentTarget;
+		active.src='../assets/images/unload.png';
+		active.setAttribute('class','errorLoad');
 		this.setState({
-			errorSrc:'../assets/images/unload.png',
-			classN:'errorLoad'
+			isError:false
 		})
 		
 		
@@ -33,18 +42,14 @@ class HomeHotProduct extends React.Component{
 		let active=e.currentTarget;
 		let comp=active.complete;
 		let dataSrc=active.getAttribute('data-src');
-		this.setState({
-			classN:'errorLoad'
-		});
-		if(comp){
-			this.setState({
-				classN:''
-			})
+		if(comp&&this.state.isError){
 			active.src=dataSrc;
 		}
+		
 	}
 	//offsetVertical={200}
 	render(){
+		
 		// 定义热销商品列表
 		let productListData=this.props.productListData;
 		let len=productListData.length;
@@ -55,7 +60,7 @@ class HomeHotProduct extends React.Component{
 					  			<Col key={i} className='productCol'>
 					            	<Link className='productListStyle' to={'/ProductDtailPage?uuid=' + item.uuid} data-uuid={item.uuid}>
 							  			<p  className='hotImgWrapper'>
-						            		<img onError={this.errorLoad} className={this.state.classN||'productImg'}  onLoad={this.loadHeadle} data-src={bee.image(item.thumb,280,400)} src={this.state.errorSrc||'../assets/images/preLoad.gif'}/>
+						            		<img onError={this.errorLoad} className='productImg'  onLoad={this.loadHeadle} data-src={bee.image(item.thumb,280,400)} src='../assets/images/preLoad.gif'/>
 						            	</p>	
 						            	<div className='productDiscribe'>
 							            	<p className='productChName text-truncate'>{item.chinese_name}</p>

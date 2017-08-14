@@ -33,7 +33,7 @@ import RechargeRecordPage from './RechargeRecordPage';//充值记录
 import AddressAdminPage from './AddressAdminPage';//地址管理
 import AddDeliveryPage from './AddDeliveryPage';//新增收货地址
 import ProductListPage from './ProductListPage';//商品列表
-
+import ConfirmOrderPage from './ConfirmOrderPage';//确认订单
 // withRouter HoC
 // @see https://github.com/reactjs/react-router/blob/0616f6e14337f68d3ce9f758aa73f83a255d6db3/upgrade-guides/v2.4.0.md#v240-upgrade-guide
 // <IndexRedirect to='/login' />
@@ -60,6 +60,7 @@ const routes=(
 		    	<Route path='/AddDeliveryPage' component={AddDeliveryPage}/>
 		    	<Route path="/ServiceCenterPage" component={ServiceCenterPage}/>
 		    	<Route path="/ProductListPage" component={ProductListPage}/>
+		    	<Route path="/ConfirmOrderPage" component={ConfirmOrderPage}/>
 		    	<IndexRedirect to='/index'/>
 			    <Route path="/index" component={App}>
 			    	<IndexRedirect to='/index/HomePage'/>

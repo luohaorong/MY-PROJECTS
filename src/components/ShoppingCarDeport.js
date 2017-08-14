@@ -21,7 +21,8 @@ class ShoppingCarDeport extends React.Component{
 			bottleNum:0,
 			noData:'preLoad',
 			page:2,
-			count:2
+			count:2,
+			isError:true
 		}
 		this.closeNotification = this.closeNotification.bind(this);
 		this.selectClick=this.selectClick.bind(this);
@@ -53,10 +54,12 @@ class ShoppingCarDeport extends React.Component{
 	    })
 	}
 	//图片加载出错时执行
-	errorLoad(){
+	errorLoad(e){
+		let active=e.currentTarget;
+		active.src='../assets/images/unload.png';
+		active.setAttribute('class','errorLoad');
 		this.setState({
-			errorSrc:'../assets/images/unload.png',
-			classN:'errorLoad'
+			isError:false
 		})
 		
 		
@@ -66,15 +69,10 @@ class ShoppingCarDeport extends React.Component{
 		let active=e.currentTarget;
 		let comp=active.complete;
 		let dataSrc=active.getAttribute('data-src');
-		this.setState({
-			classN:'errorLoad'
-		});
-		if(comp){
-			this.setState({
-				classN:''
-			})
+		if(comp&&this.state.isError){
 			active.src=dataSrc;
 		}
+		
 	}
 	componentWillMount(){
 		bee.addUnloadImg();
@@ -100,7 +98,7 @@ class ShoppingCarDeport extends React.Component{
 				dataCWM.map(function(item){
 					let tmp=[];
 					item.goods.map(function(j){
-						tmp.push({"uuid":j.uuid,"num":j.goods_num})
+						tmp.push({"uuid":j.uuid,"num":j.goods_num,"select":j.selected==='yes'?true:false})
 					});
 					productIfo.push(tmp);
 				});
@@ -116,7 +114,6 @@ class ShoppingCarDeport extends React.Component{
 				});
 			}
 		},true);
-		
 	}
 	
 	//记录组件渲染前的状态
@@ -137,63 +134,126 @@ class ShoppingCarDeport extends React.Component{
 	//全选
 	allSelected(){
 		let data=this.state.isSelect;
+		let productIfo=this.state.productIfo;
 		let deportSelectArr = [];
+		let This=this;
 		data.map(function(i,k){
 			let tmp = [];
 			i.map(function(j,h){
 				tmp.push(!this.and(data));
+				productIfo[k][h].select=!this.and(data);
 			},this)
 			deportSelectArr.push(tmp);
-		},this)
-		this.setState({
-			isSelect:deportSelectArr
-		})
+		},this);
+		productIfo=JSON.stringify(productIfo);
+		bee.post('/wechat/carts/update',{
+			"type":"update",
+			"carts":productIfo
+		},function(data){
+			let Error=data.msg;
+			// 如果失败，提示！！
+			This.openNotification();
+			//  callback
+			var timeId = setTimeout(This.closeNotification,3000);
+			This.setState({
+				timeId : timeId,
+				promptError:Error
+			});
+			if(data.error_code===0){
+				This.setState({
+					isSelect:deportSelectArr
+				})
+			}
+			
+		},true);
 	}
 	//选择仓库
 	deportSelectClick(event){
 		let data=this.state.isSelect;
+		let productIfo=this.state.productIfo;
 		let active=event.target;
 		let parentActive=active.parentNode.parentNode;
-		let index=parentActive.getAttribute('data-index');
+		let index=+parentActive.getAttribute('data-index');
 		let deportSelectArr = [];
+		let This=this;
 		data.map(function(i,k){
 			let tmp = [];
 			i.map(function(j,h){
-				if(k==index){
-					tmp.push(!this.and(data[k]))
+				if(k===index){
+					tmp.push(!this.and(data[k]));
+					productIfo[k][h].select=!this.and(data[k]);
 				}else{
 					tmp.push(j)
 				}
 			},this)
 			deportSelectArr.push(tmp);
-		},this)
-		this.setState({
-			isSelect:deportSelectArr
-		})
+		},this);
+		productIfo=JSON.stringify(productIfo);
+		bee.post('/wechat/carts/update',{
+			"type":"update",
+			"carts":productIfo
+		},function(data){
+			let Error=data.msg;
+			// 如果失败，提示！！
+			This.openNotification();
+			//  callback
+			var timeId = setTimeout(This.closeNotification,3000);
+			This.setState({
+				timeId : timeId,
+				promptError:Error
+			});
+			if(data.error_code===0){
+				This.setState({
+					isSelect:deportSelectArr
+				})
+			}
+			
+		},true);
 	}
 	//选择单个商品
 	selectClick(event){
 		let data=this.state.isSelect;
+		let productIfo=this.state.productIfo;
 		let deportSelectArr = [];
 		let active=event.target;
 		let parentActive=active.parentNode.parentNode.parentNode.parentNode;
 		let myselfActive=active.parentNode.parentNode.parentNode;
 		let parentIndex=parentActive.getAttribute('data-index');
 		let myselfIndex=myselfActive.getAttribute('data-index');
+		let This=this;
 		data.map(function(i,k){
 			let tmp = [];
 			i.map(function(j,h){
 				if (k == parentIndex && h == myselfIndex) {
 					tmp.push(!j);
+					productIfo[k][h].select=!j;
 				} else {
 					tmp.push(j);
 				}
 			},this)
 			deportSelectArr.push(tmp);
-		},this)
-		this.setState({
-			isSelect:deportSelectArr
-		})
+		},this);
+		productIfo=JSON.stringify(productIfo);
+		bee.post('/wechat/carts/update',{
+			"type":"update",
+			"carts":productIfo
+		},function(data){
+			let Error=data.msg;
+			// 如果失败，提示！！
+			This.openNotification();
+			//  callback
+			var timeId = setTimeout(This.closeNotification,3000);
+			This.setState({
+				timeId : timeId,
+				promptError:Error
+			});
+			if(data.error_code===0){
+				This.setState({
+					isSelect:deportSelectArr
+				})
+			}
+		},true);
+		
 	}
 	valueData(data,moq,stock,uuid,index){
 		let productIfo=[{
@@ -246,34 +306,34 @@ class ShoppingCarDeport extends React.Component{
 					timeId : timeId,
 					promptError:data.msg
 				});
-				
+				if(data.error_code===0){
+					This.setState({
+						goods_amount:data.data.goods_amount||0,//总共的箱数
+						goods_total:data.data.goods_total||0,//总共的瓶数
+						price_amount:data.data.price_amount||0//总价
+					})
+				}
 			},true);
 		}
 	}
 	//点击移入收藏夹
 	collectionClick (){
 		let data=this.state.isSelect;
-		let collectionArr=[];
+		let productIfo=this.state.productIfo;
 		let tmpData = [];
 		let This=this;
 		data.map(function(i,k){
 			let tmp = [];
 			i.map(function(h,q){
-				if (h) {
-					let ifoUuid=this.state.productIfo[k][q].uuid;//选中的uuid
-					let ifoNum=this.state.productIfo[k][q].num;
-					collectionArr.push({"uuid":ifoUuid,"num":ifoNum});//记录被选中的UUID，以便传给服务器
-				} else {
-					tmp.push(this.state.cartsData[k].goods[q]);//手动删除被选中的数据
-				}
+				tmp.push(this.state.cartsData[k].goods[q]);//手动删除被选中的数据
 			},this)
 			if (tmp.length) {
 				tmpData.push({ station: this.state.cartsData[k].station, goods: tmp });
 			}
 		},this);
-		collectionArr=JSON.stringify(collectionArr);
+		productIfo=JSON.stringify(productIfo);
 		bee.post('/wechat/carts/update',{
-						carts:collectionArr,
+						carts:productIfo,
 						type:'move'
 					},function(data){
 							let Error=data.msg;
@@ -296,27 +356,21 @@ class ShoppingCarDeport extends React.Component{
 	//删除
 	deletClick(){
 		let data=this.state.isSelect;
-		let collectionArr=[];
+		let productIfo=this.state.productIfo;
 		let tmpData = [];
 		let This=this;
 		data.map(function(i,k){
 			let tmp = [];
 			i.map(function(h,q){
-				if (h) {
-					let ifoUuid=this.state.productIfo[k][q].uuid;//选中的uuid
-					let ifoNum=this.state.productIfo[k][q].num;
-					collectionArr.push({"uuid":ifoUuid,"num":ifoNum});//记录被选中的UUID，以便传给服务器
-				} else {
-					tmp.push(this.state.cartsData[k].goods[q]);
-				}
+				tmp.push(this.state.cartsData[k].goods[q]);
 			},this)
 			if (tmp.length) {
 				tmpData.push({ station: this.state.cartsData[k].station, goods: tmp });
 			}
 		},this);
-		collectionArr=JSON.stringify(collectionArr);
+		productIfo=JSON.stringify(productIfo);
 		bee.post('/wechat/carts/update',{
-						carts:collectionArr,
+						carts:productIfo,
 						type:'delete'
 					},function(data){
 						let Error=data.msg;
@@ -389,7 +443,8 @@ class ShoppingCarDeport extends React.Component{
 					count++;
 					This.setState({
 						page:count,
-						count:count
+						count:count,
+						isError:true
 					})
 				}
 			},true);
@@ -414,8 +469,8 @@ class ShoppingCarDeport extends React.Component{
 											<img className='deportImg' onClick={this.selectClick} src={this.and(this.state.isSelect[index][i]) ? Selected:noSelect}/>
 										</div>
 										<div className='productWraper'>
-											<Link to={'/ProductDtailPage?uuid='+j.uuid} className={this.and(this.state.isSelect[index][i]) ?'activeStyle productImgWrap':'productImgWrap'}>
-												<img onError={this.errorLoad} onLoad={this.loadHeadle} className='productImg' data-src={bee.image(j.image_path,280,400)} src={this.state.errorSrc||'../assets/images/preLoad.gif'}/>
+											<Link to={'/ProductDtailPage?uuid='+j.goods_uuid} className={this.and(this.state.isSelect[index][i]) ?'activeStyle productImgWrap':'productImgWrap'}>
+												<img onError={this.errorLoad} onLoad={this.loadHeadle} className='productImg' data-src={bee.image(j.image_path,280,400)} src='../assets/images/preLoad.gif'/>
 											</Link>
 										</div>
 										<div className='productContent'>
@@ -427,7 +482,7 @@ class ShoppingCarDeport extends React.Component{
 													{'￥'+bee.currency(j.goods_price)}
 												</p>
 												<p className='productNum'>
-													{j.stocking_pricing_ratio}支装
+													{j.stocking_pricing_ratio}瓶(支)装
 												</p>
 											</div>
 											<div className='typeNumber'>
@@ -467,7 +522,7 @@ class ShoppingCarDeport extends React.Component{
 						<ShoppingCarEditGoods collectionClick={this.collectionClick} deletClick={this.deletClick} onClick={this.allSelected} src={this.and(this.state.isSelect) ? Selected:noSelect}/>
 						<div style={{width:'100%',height:'2rem'}}></div>
 						{deprotData}
-						<HomeHotProduct noData={this.state.noData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
+						<HomeHotProduct isError={this.state.isError} noData={this.state.noData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
 						<div style={{height:'7rem'}}></div>
 					</div>
 				</Container>

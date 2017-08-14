@@ -20,10 +20,14 @@ class RegistrationPortal extends React.Component{
 					<Link className='agencyList' onClick={this.bindClick} data-sign='agency' to='/RegisterCompanyAccountPage'>
 						<p className='listText'>我是经销商</p>
 						<p className='listEn'>BUSINESS</p>
+						<p className='inform'>注册须知:</p>
+						<p className='inform'>需要提供具备酒类经营范围的有效营业执照</p>
 					</Link>
 					<Link className='companyList' onClick={this.bindClick} data-sign='company' to='/RegisterCompanyAccountPage'>
 						<p className='listText'>我是企业采购</p>
 						<p className='listEn'>PROCUREMENT</p>
+						<p className='inform'>注册须知:</p>
+						<p className='inform'>需要提供具备事企业单位授权的采购证明</p>
 					</Link>
 				</div>
 				<img className='bindImgBottom' src='../assets/images/bindAccount/huabian.png'/>

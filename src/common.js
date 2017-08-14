@@ -476,6 +476,7 @@ bee.bottomUpwardSlidingDo=function (wrapper,callback) {
 			document.addEventListener("touchmove",lockHtml,false);
 			document.removeEventListener("touchmove",lockHtml,false);
 bee.addUnloadImg=function(){
+	var boxNode=document.getElementById('unloadWrap');
 	var img=document.createElement('img');
 	var box=document.createElement('div');
 	box.setAttribute('id','unloadWrap');
@@ -487,8 +488,6 @@ bee.addUnloadImg=function(){
 	img.style.marginLeft='-50px';
 	img.style.width='100px';
 	img.style.height='100px';
-	document.body.appendChild(box);
-	box.appendChild(img);
 	box.style.width='100%';
 	box.style.height='100%';
 	box.style.position='fixed';
@@ -496,6 +495,15 @@ bee.addUnloadImg=function(){
 	box.style.left='0';
 	box.style.zIndex='1000';
 	box.style.backgroundColor='#ffffff';
+	if(boxNode){
+		bee.removeImg();
+		document.body.appendChild(box);
+		box.appendChild(img);
+	}else{
+		document.body.appendChild(box);
+		box.appendChild(img);
+	}
+	
 }
 bee.removeImg=function(){
 	var box=document.getElementById('unloadWrap');

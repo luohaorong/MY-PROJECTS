@@ -20,7 +20,8 @@ class ProductListPage extends React.Component{
 			noListData:false,
 			filter:'',
 			isPrice:'',
-			reTabState:false
+			reTabState:false,
+			isError:false
 		}
 		this.postParent=this.postParent.bind(this);
 		this.isGetData=this.isGetData.bind(this);
@@ -183,7 +184,7 @@ class ProductListPage extends React.Component{
 			this.getListData()
 		};
 	}
-	//加载商品列表
+	//加载更多商品列表
 	getListData(){
 		let This=this;
 		let type;
@@ -243,7 +244,8 @@ class ProductListPage extends React.Component{
 					count++;
 					This.setState({
 						page:count,
-						count:count
+						count:count,
+						isError:true
 					})
 				}
 			},true);
@@ -287,7 +289,7 @@ class ProductListPage extends React.Component{
 				<Header imgRight={headerImgRight} rightImg={true} postParent={this.postParent} headerListContent={headerListContent} middleTop={middleTop} middleImg={middleImg} MiddleTextTop={bee.getQueryString('title')} />
 				<ProductListTab reTabState={this.state.reTabState} postParent={this.postParent} listData={listData} titleData={this.state.titleData}/>
 				<Container className='scrollWrapper' scrollable={true}>
-					<HomeHotProduct noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
+					<HomeHotProduct isError={this.state.isError} noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
 				</Container>
 			</View>
 		)

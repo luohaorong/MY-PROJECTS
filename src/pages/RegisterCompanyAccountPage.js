@@ -5,6 +5,7 @@ import Button from '../components/Button';
 import RegisterInput from '../components/RegisterInput';
 import GetVerification from '../components/GetVerification';
 import phone from '../assets/images/register/phone.png';
+import yanzheng from '../assets/images/register/yanzhengma.png';
 import Key from '../assets/images/register/Key.png';
 import passwordImg from '../assets/images/login/password.png';
 import '../assets/styles/registerCompanyAccount.less';
@@ -35,6 +36,7 @@ class RegisterCompanyAccountPage extends React.Component {
 		this.clickHandler=this.clickHandler.bind(this);
 		this.postParent=this.postParent.bind(this);
 		this.closeNotification = this.closeNotification.bind(this);
+		this.ImgHeadle=this.ImgHeadle.bind(this);
 	}
 	componentDidMount(){
 		document.title = '用户注册'
@@ -130,10 +132,13 @@ class RegisterCompanyAccountPage extends React.Component {
 			promptError:null
 		})
 	}
+	ImgHeadle(){
+		
+	}
 	render(){
 		let middleImg=true;
 		let middleTop=true;
-		let headerListContent=[{id:'agency',textList:'经销商用户注册'},{id:'company',textList:'企业用户注册'}];
+		let headerListContent=[{uuid:'agency',name:'经销商用户注册'},{uuid:'company',name:'企业用户注册'}];
 		let inputStyle={
 				outline: 'none',
 	            backgroundColor: 'transparent',
@@ -143,6 +148,12 @@ class RegisterCompanyAccountPage extends React.Component {
 		}
 		let phoneStyle={
 			background:'url('+phone+') no-repeat 0.3rem 1.2rem',
+			backgroundSize:'1.25rem',
+			width:'2rem',
+			height:'2.75rem'
+		}
+		let yanZhengStyle={
+			background:'url('+yanzheng+') no-repeat 0.3rem 1.2rem',
 			backgroundSize:'1.25rem',
 			width:'2rem',
 			height:'2.75rem'
@@ -167,7 +178,7 @@ class RegisterCompanyAccountPage extends React.Component {
 		}
 		let btnStyle={
 			position: 'absolute',
-		    top: '3.1rem',
+		    top: '7.1rem',
 		    right: '1rem'
 		}
 		let phoneNumber=this.state.phoneNum;
@@ -184,12 +195,14 @@ class RegisterCompanyAccountPage extends React.Component {
 			        </Notification>
 				<Header postParent={this.postParent} headerListContent={headerListContent} middleTop={middleTop} middleImg={middleImg} MiddleTextTop='注册企业账户' />
 				<Container className='accountWapper' scrollable={true}>
+					<RegisterInput ref='picture' callbackParent={this.onChildChanged} inputStyle={inputStyle} bgImgStyle={yanZhengStyle} name='' vText='输入图形验证码'/>
 					<RegisterInput ref='phone' callbackParent={this.onChildChanged} inputStyle={inputStyle} bgImgStyle={phoneStyle} name='phone' vText='输入手机号'/>
 					<RegisterInput ref='verification' inputStyle={inputStyle} bgImgStyle={varCodeStyle} name='verification ' vText='请输入短信验证码' />
 					<RegisterInput ref='passwordinp' inputStyle={inputStyle} bgImgStyle={passwordStyle} type='password' name='password' vText='请输入6位以上密码' />
 					<Button btnStyle={submitBtn} content='下一步' onClick={this.clickHandler}/>
 					<p className='isagree' style={this.state.agreeStyle} data-agree={this.state.agree}>注册即表示同意
 						<Link to='/RegistrationProtocolPage' className='linkAgree'>《芸酒荟注册协议》</Link>
+						<img onClick={this.ImgHeadle} src=''/>
 					</p>
 					<GetVerification smsType='register' phoneNumber={phoneNumber} btnStyle={btnStyle}/>
 				</Container>

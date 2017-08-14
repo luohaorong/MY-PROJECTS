@@ -54,11 +54,11 @@ class ShoppingCarEditGoods extends React.Component{
 								共{this.state.goods_amount}箱
 							</span>
 							<span>
-								（{this.state.goods_total}瓶）
+								（{this.state.goods_total}瓶(支)）
 							</span>
 						</p>
 					</div>
-					<Link className='bottomBtn'>
+					<Link className='bottomBtn' to='/ConfirmOrderPage'>
 						结算
 					</Link>
 				</div>):(<div className='editGoodsWrap topGoodsWrap'>
