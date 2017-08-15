@@ -42,7 +42,9 @@ class GetVerification extends React.Component {
 		let This=this;
 		let phoneNumber=This.props.phoneNumber;
 		let checkphone = /^1[234567890]\d{9}$/;
-		if (!(checkphone.test(phoneNumber))) {
+		let picture=this.props.picture;
+		let captchaUuid=this.props.captchaUuid;
+		if (!(checkphone.test(phoneNumber))&&picture) {
 				// 如果失败，提示！！
 					This.openNotification();
 					//  callback
@@ -70,7 +72,9 @@ class GetVerification extends React.Component {
 				},1000);
 				bee.post('/wechat/get/code', {
 					'mobile':This.props.phoneNumber,
-					'sms_type' :This.props.smsType
+					'sms_type' :This.props.smsType,
+					'captcha':picture,
+					'captchaUuid':captchaUuid
 				}, function (data) {
 						if (data.error_code) {
 							let Error=data.msg;

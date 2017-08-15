@@ -22,7 +22,8 @@ class ShoppingCarDeport extends React.Component{
 			noData:'preLoad',
 			page:2,
 			count:2,
-			isError:true
+			isError:true,//控制是否显示加载失败时的默认图片
+			isEmpty:false//购物车为空时显示			
 		}
 		this.closeNotification = this.closeNotification.bind(this);
 		this.selectClick=this.selectClick.bind(this);
@@ -94,6 +95,11 @@ class ShoppingCarDeport extends React.Component{
 				return;
 			}else{
 				let dataCWM=data.data.carts;
+				if(!dataCWM.length){
+					This.setState({
+						isEmpty:true
+					})
+				}
 				let productIfo=[];
 				dataCWM.map(function(item){
 					let tmp=[];
@@ -128,8 +134,8 @@ class ShoppingCarDeport extends React.Component{
 		})
 		this.setState({
 			isSelect:deportSelectArr
-		})
-		
+		});
+		console.log(deportSelectArr)
 	}
 	//全选
 	allSelected(){
@@ -255,6 +261,7 @@ class ShoppingCarDeport extends React.Component{
 		},true);
 		
 	}
+	//更新商品数量
 	valueData(data,moq,stock,uuid,index){
 		let productIfo=[{
 			"uuid":uuid,
@@ -318,19 +325,10 @@ class ShoppingCarDeport extends React.Component{
 	}
 	//点击移入收藏夹
 	collectionClick (){
-		let data=this.state.isSelect;
+		let selectData=this.state.isSelect;
+		let preData=this.state.cartsData;
 		let productIfo=this.state.productIfo;
-		let tmpData = [];
 		let This=this;
-		data.map(function(i,k){
-			let tmp = [];
-			i.map(function(h,q){
-				tmp.push(this.state.cartsData[k].goods[q]);//手动删除被选中的数据
-			},this)
-			if (tmp.length) {
-				tmpData.push({ station: this.state.cartsData[k].station, goods: tmp });
-			}
-		},this);
 		productIfo=JSON.stringify(productIfo);
 		bee.post('/wechat/carts/update',{
 						carts:productIfo,
@@ -345,29 +343,36 @@ class ShoppingCarDeport extends React.Component{
 								timeId : timeId,
 								promptError:Error
 							});
+							
 						if(!data.error_code){
-							This.setState({
-								cartsData:tmpData
-							});
-							This.CWM(tmpData);
+							selectData.map(function(i,k){
+								i.map(function(h,q){
+									h&&preData[k].goods.splice(0,1);//手动删除被选中的数据
+								},This);
+							},This);
+							preData.map(function(w,h){
+								if(w.goods.length===0){
+									preData.splice(0,1);
+								}
+							})
+							if(preData[0].goods.length===0){
+								preData.splice(0,1);
+							}
+							if(!preData.length){
+								This.setState({
+									isEmpty:true
+								})
+							}
+							This.CWM(preData);
 						}
 					},true);
 	}
 	//删除
 	deletClick(){
-		let data=this.state.isSelect;
+		let selectData=this.state.isSelect;
+		let preData=this.state.cartsData;
 		let productIfo=this.state.productIfo;
-		let tmpData = [];
 		let This=this;
-		data.map(function(i,k){
-			let tmp = [];
-			i.map(function(h,q){
-				tmp.push(this.state.cartsData[k].goods[q]);
-			},this)
-			if (tmp.length) {
-				tmpData.push({ station: this.state.cartsData[k].station, goods: tmp });
-			}
-		},this);
 		productIfo=JSON.stringify(productIfo);
 		bee.post('/wechat/carts/update',{
 						carts:productIfo,
@@ -383,10 +388,25 @@ class ShoppingCarDeport extends React.Component{
 								promptError:Error
 							});
 						if(!data.error_code){
-							This.setState({
-								cartsData:tmpData
-							});
-							This.CWM(tmpData);
+							selectData.map(function(i,k){
+								i.map(function(h,q){
+									h&&preData[k].goods.splice(0,1);//手动删除被选中的数据
+								},This);
+							},This);
+							preData.map(function(w,h){
+								if(w.goods.length===0){
+									preData.splice(0,1);
+								}
+							})
+							if(preData[0].goods.length===0){
+								preData.splice(0,1);
+							}
+							if(!preData.length){
+								This.setState({
+									isEmpty:true
+								})
+							}
+							This.CWM(preData);
 						}
 					},true);
 	}
@@ -406,6 +426,15 @@ class ShoppingCarDeport extends React.Component{
 	        return arr;
         }
     }
+	//arr2是arr1的子数组，（也就是说arr2中的元素arr1都有）现在要得到在arr1中删除arr2中出现的元素后的结果
+	deleteArr(preArr,offterArr){
+		offterArr.map(function(i,k){
+			i.goods.map(function(q,h){
+				
+			});
+		});
+		
+	}
 	isGetData(data){
 		if(data){
 			this.getListData()
@@ -521,7 +550,15 @@ class ShoppingCarDeport extends React.Component{
 					<div className='deportContainer'>
 						<ShoppingCarEditGoods collectionClick={this.collectionClick} deletClick={this.deletClick} onClick={this.allSelected} src={this.and(this.state.isSelect) ? Selected:noSelect}/>
 						<div style={{width:'100%',height:'2rem'}}></div>
-						{deprotData}
+					{
+						this.state.isEmpty?(<div className='isEmptyWrapper'>
+											<img className='isEmptyImg' src='/assets/images/shoppingCar/null_cart.png' />
+											<p className='isEmptyText'>购物车空空如也!!</p>
+										</div>):(
+											
+												deprotData
+										)
+					}
 						<HomeHotProduct isError={this.state.isError} noData={this.state.noData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
 						<div style={{height:'7rem'}}></div>
 					</div>

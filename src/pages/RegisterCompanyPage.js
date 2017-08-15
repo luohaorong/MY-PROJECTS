@@ -100,11 +100,8 @@ class RegisterCompanyPage extends React.Component{
 		//获取输入框的内容
 		let prompt=this.getValue('prompt');
 		let idCard=this.getValue('idCard');
-		let companyName=this.getValue('companyName');
-		let companyaddress=this.getValue('companyaddress');
 		let purchaserName=this.getValue('purchaserName');
-		let email=this.getValue('email');
-		let userPosition=this.getValue('userPosition');
+		let idCartNumber=this.getValue('idCartNumber');
 		let registerEntry=bee.cache('registerEntry');
 			registerEntry=JSON.parse(registerEntry);
 		let code=bee.cache('registerEntry');
@@ -116,18 +113,15 @@ class RegisterCompanyPage extends React.Component{
 				"sms_code":registerEntry.sms_code,//短信验证码
 				"type":'enterprises',//用户注册类型
 				"code":code,//微信code
-				"company":companyName,//公司名称
 				"addressUuid":countyUuid,//三级联动uuid
-				"company_address":companyaddress,//公司地址
 				"path_img":prompt,//单位证明图片url
-				"email":email||"",//邮箱
 				"real_name":purchaserName,//采购人姓名
-				"id_card_img":idCard,//采购人身份证图片url
-				"duty":userPosition||""//职位
+				"id_card":idCartNumber,//身份证
+				"id_card_img":idCard//采购人身份证图片url
 			};
 			bee.cache('angencyData',postData);
-		if(prompt&&idCard&&companyName&&companyaddress&&purchaserName&&countyUuid){
-//			console.log(prompt,idCard,companyName,companyaddress,purchaserName,userId,email,userPosition)
+		if(prompt&&idCard&&purchaserName&&countyUuid&&idCartNumber){
+//			console.log(prompt,idCard,companyaddress,purchaserName,userId,email,userPosition)
 			this.registerPostData(postData);
 			// .then(function (response) {
 			//     console.log(response);
@@ -187,33 +181,19 @@ class RegisterCompanyPage extends React.Component{
 				<Container scrollable={true}>
 					<Container className='companyInput'>
 						<div className='registerInputWrap'>
-							<RegisterInput promptText='企业名称' name='companyName' vText='请输入企业全称' ref='companyName'/>
+							<RegionalLinkage type='regional' getCountyUuid={this.getCountyUuid} promptText='单位地址' name='mainRegion' readOnly='readonly' vText='请选择   >' ref='mainRegion'/>
 						</div>
 						<div className='registerInputWrap'>
-							<RegionalLinkage type='regional' getCountyUuid={this.getCountyUuid} promptText='企业地址' name='mainRegion' readOnly='readonly' vText='请选择   >' ref='mainRegion'/>
+							<FileInput wapId='firstId' imgId='firstImg' promptText='授权正面(盖公章)' describe='请上传盖有该单位公章的证明文件' ref='prompt' name='companyProve'/>
 						</div>
-						<div className='registerInputWrap'>
-							<RegisterInput promptText='详细地址' name='companyaddress' vText='企业地址详细地址' ref='companyaddress'/>
-						</div>
-						<div className='registerInputWrap'>
-							<FileInput wapId='firstId' imgId='firstImg' promptText='单位证明' describe='请上传盖有该单位公章的证明文件' ref='prompt' name='companyProve'/>
-						</div>
-					</Container>
-					<Container className='companyInput'>
 						<div className='registerInputWrap'>
 							<RegisterInput promptText='采购人姓名' name='purchaserName' vText='请输入采购人姓名' ref='purchaserName'/>
 						</div>
+						<div className='registerInputWrap'>
+							<RegisterInput promptText='身份证号' name='idCartNumber' vText='请输入身份证号码' ref='idCartNumber'/>
+						</div>
 						<div>
 							<FileInput wapId='secondId' imgId='secondImg' promptText='身份证' describe='请上传采购人身份证正面照片' ref='idCard' name='companyProve'/>
-						</div>
-					</Container>
-					<p className='unnecessary'>非必填项</p>
-					<Container className='companyInput'>
-						<div className='registerInputWrap'>
-							<RegisterInput promptText='电子邮件' name='email' vText='请输入您的邮箱地址' isnecessary={isNecessary} ref='email'/>
-						</div>
-						<div className='registerInputWrap'>
-							<RegisterInput promptText='您的职务' name='userPosition' vText='请输入您的部门和职位信息' isnecessary={isNecessary} ref='userPosition'/>
 						</div>
 					</Container>
 					<Container className='promptContainer'>

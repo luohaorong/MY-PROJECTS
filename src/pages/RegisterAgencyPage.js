@@ -81,15 +81,9 @@ class RegisterAgencyPage extends React.Component{
 		let type=sessionStorage.getItem('dataSign');//用户注册类型
 		let code=bee.getQueryString('code')?bee.getQueryString('code'):sessionStorage.getItem('code');//获取code
 		let prompt=this.getValue('prompt');//营业执照
-		let idCard=this.getValue('idCard');//身份证
-		let companyName=this.getValue('companyName');//企业名称
-		let joinCode=this.getValue('joinCode');//邀请码
-		let mainRegion=this.getValue('mainRegion');//主营地区
+		let idCardP=this.getValue('idCardP');//身份证照
+		let idCard=this.getValue('idCard');//身份证号码
 		let purchaserName=this.getValue('purchaserName');//法人姓名
-		let userId=this.getValue('userId');//营业执照注册号
-		let email=this.getValue('email');//邮箱
-		let userPosition=this.getValue('userPosition');//部门和职位信息
-		let companyAddress=this.getValue('companyAddress');//地址
 		let This=this;//将this存储下来
 		let postData={
 					"mobile":phone,
@@ -99,17 +93,12 @@ class RegisterAgencyPage extends React.Component{
 					"code":code,
 					"path_img":prompt,
 					"id_card":idCard,
-					"company":companyName,
+					"id_card_img":idCardP,
 					"address_uuid":countyUuid,
-					"invited_code":joinCode||"",
-					"real_name":purchaserName,
-					"company_code":userId,
-					"email":email||"",
-					"duty":userPosition||"",
-					"company_address":companyAddress
+					"real_name":purchaserName
 				}
 		bee.cache('angencyData',postData);
-		if(prompt&&idCard&&companyName&&mainRegion&&userId&&purchaserName&&phone&&verification&&passwordInput&&type&&countyUuid){
+		if(prompt&&idCard&&purchaserName&&phone&&verification&&passwordInput&&type&&countyUuid){
 			This.registerPostData(postData)
 		}else{
 			// 如果失败，提示！！
@@ -182,39 +171,19 @@ class RegisterAgencyPage extends React.Component{
 				<Container scrollable={true}>
 					<Container className='companyInput'>
 						<div className='inputWrapper'>
-							<RegisterInput promptText='企业名称' name='companyName' vText='请输入企业全称' ref='companyName'/>
+							<RegionalLinkage getCountyUuid={this.getCountyUuid} type='regional' readOnly='readonly' promptText='营业执照地址' name='mainRegion' vText='请选择   >' ref='mainRegion'/>
 						</div>
-						<div className='inputWrapper'>
-							<RegionalLinkage getCountyUuid={this.getCountyUuid} type='regional' readOnly='readonly' promptText='主营地区' name='mainRegion' vText='请选择   >' ref='mainRegion'/>
+						<div>
+							<FileInput ifraName='prompIfr' wapId='firstId' imgId='firstImg' promptText='营业执照' describe='请上传公司营业执照' ref='prompt' name='companyProve'/>
 						</div>
-						<div className='inputWrapper'>
-							<RegisterInput promptText='企业地址' name='companyAddress' vText='请输入企业地址' isnecessary={isNecessary} ref='companyAddress'/>
-						</div>
-					</Container>
-					<Container className='companyInput'>
 						<div className='inputWrapper'>
 							<RegisterInput promptText='法人姓名' name='legalPerson' vText='请输入法人姓名' ref='purchaserName'/>
-						</div>
-						<div className='inputWrapper'>
-							<RegisterInput promptText='注册号' name='registrationNumber' vText='请输入营业执照注册号' ref='userId'/>
 						</div>
 						<div className='inputWrapper'>
 							<RegisterInput promptText='身份证号' name='userId' vText='请输入身份证号' ref='idCard'/>
 						</div>
 						<div>
-							<FileInput ifraName='prompIfr' wapId='firstId' imgId='firstImg' promptText='营业执照' describe='请上传公司营业执照' ref='prompt' name='companyProve'/>
-						</div>
-					</Container>
-					<p className='unnecessary'>非必填项</p>
-					<Container className='companyInput'>
-						<div className='inputWrapper'>
-							<RegisterInput promptText='电子邮件' name='email' vText='请输入您的邮箱地址' isnecessary={isNecessary} ref='email'/>
-						</div>
-						<div className='inputWrapper'>
-							<RegisterInput promptText='您的职务' name='userPosition' vText='请输入您的部门和职位信息' isnecessary={isNecessary} ref='userPosition'/>
-						</div>
-						<div className='inputWrapper'>
-							<RegisterInput promptText='邀请码' name='joinCode' vText='请输入邀请码' ref='joinCode'/>
+							<FileInput wapId='secondId' imgId='secondImg' promptText='身份证' describe='请上传采购人身份证正面照片' ref='idCardP' name='companyProve'/>
 						</div>
 					</Container>
 					<Container className='promptContainer'>

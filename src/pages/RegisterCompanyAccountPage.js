@@ -30,16 +30,40 @@ class RegisterCompanyAccountPage extends React.Component {
 			},
 			phoneNum:'',
 			keyData:'',
-			promptError:'请先正确填写所有信息'
+			promptError:'请先正确填写所有信息',
+			captchaUrl:'',
+			captchaUuid:'',
+			picture:''
 		};
 		this.onChildChanged=this.onChildChanged.bind(this);
 		this.clickHandler=this.clickHandler.bind(this);
 		this.postParent=this.postParent.bind(this);
 		this.closeNotification = this.closeNotification.bind(this);
 		this.ImgHeadle=this.ImgHeadle.bind(this);
+		this.getV=this.getV.bind(this);
 	}
 	componentDidMount(){
-		document.title = '用户注册'
+		document.title = '用户注册';
+		let This=this;
+		bee.get('/captchaInfo',{},function(data){
+			if(data.error_code){
+				let Error=data.msg;
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
+				This.setState({
+					timeId : timeId,
+					promptError:Error
+				});
+				return;
+			}else{
+				This.setState({
+					captchaUrl:data.data.captchaUrl,
+					captchaUuid:data.data.captchaUuid
+				})	
+			}
+		})
 	}
 	componentWillMount(){
 		if(bee.cache('token')){
@@ -51,9 +75,14 @@ class RegisterCompanyAccountPage extends React.Component {
 		return this.refs[key].getValue();
 	}
 	//当input框失焦时把值用参数的形式传给父组件
-	onChildChanged(content){
+	onChildChanged(content,picture){
 		this.setState({
 			phoneNum:content
+		})
+	}
+	getV(data){
+		this.setState({
+			picture:data
 		})
 	}
 	postParent(dataKey){
@@ -133,7 +162,26 @@ class RegisterCompanyAccountPage extends React.Component {
 		})
 	}
 	ImgHeadle(){
-		
+		let This=this;
+		bee.get('/captchaInfo',{},function(data){
+			if(data.error_code){
+				let Error=data.msg;
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
+				This.setState({
+					timeId : timeId,
+					promptError:Error
+				});
+				return;
+			}else{
+				This.setState({
+					captchaUrl:data.data.captchaUrl,
+					captchaUuid:data.data.captchaUuid
+				})	
+			}
+		})
 	}
 	render(){
 		let middleImg=true;
@@ -195,16 +243,16 @@ class RegisterCompanyAccountPage extends React.Component {
 			        </Notification>
 				<Header postParent={this.postParent} headerListContent={headerListContent} middleTop={middleTop} middleImg={middleImg} MiddleTextTop='注册企业账户' />
 				<Container className='accountWapper' scrollable={true}>
-					<RegisterInput ref='picture' callbackParent={this.onChildChanged} inputStyle={inputStyle} bgImgStyle={yanZhengStyle} name='' vText='输入图形验证码'/>
+					<RegisterInput ref='picture' getV={this.getV} inputStyle={inputStyle} bgImgStyle={yanZhengStyle} name='picture' vText='输入图形验证码'/>
 					<RegisterInput ref='phone' callbackParent={this.onChildChanged} inputStyle={inputStyle} bgImgStyle={phoneStyle} name='phone' vText='输入手机号'/>
 					<RegisterInput ref='verification' inputStyle={inputStyle} bgImgStyle={varCodeStyle} name='verification ' vText='请输入短信验证码' />
 					<RegisterInput ref='passwordinp' inputStyle={inputStyle} bgImgStyle={passwordStyle} type='password' name='password' vText='请输入6位以上密码' />
 					<Button btnStyle={submitBtn} content='下一步' onClick={this.clickHandler}/>
 					<p className='isagree' style={this.state.agreeStyle} data-agree={this.state.agree}>注册即表示同意
 						<Link to='/RegistrationProtocolPage' className='linkAgree'>《芸酒荟注册协议》</Link>
-						<img onClick={this.ImgHeadle} src=''/>
 					</p>
-					<GetVerification smsType='register' phoneNumber={phoneNumber} btnStyle={btnStyle}/>
+					<img className='yanzhengImg' onClick={this.ImgHeadle} src={this.state.captchaUrl}/>
+					<GetVerification captchaUuid={this.state.captchaUuid} picture={this.state.picture} smsType='register' phoneNumber={phoneNumber} btnStyle={btnStyle}/>
 				</Container>
 			</View>
 		)

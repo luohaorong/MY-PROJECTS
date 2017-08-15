@@ -19,6 +19,7 @@ class RegisterInput extends React.Component {
 		//以下代码用于向父组件传值      这里要注意：setState 是一个异步方法，所以需要操作缓存的当前值
     	let content=this.refs['inp'].value;
 		!!("callbackParent" in this.props)&&this.props.callbackParent(content);
+		!!("getV" in this.props)&&this.props.getV(content);
 	}
 	getValue(){
 		if(this.state.pass==='yes'){
@@ -29,6 +30,7 @@ class RegisterInput extends React.Component {
 		//以下代码用于向父组件传值      这里要注意：setState 是一个异步方法，所以需要操作缓存的当前值
     	let content=this.state.value;
 		!!("callbackParent" in this.props)&&this.props.callbackParent(content);
+		!!("getV" in this.props)&&this.props.getV(content);
 	}
 	inpBlur(){
 		let checkphone = /^1[34578]\d{9}$/;
@@ -191,6 +193,12 @@ class RegisterInput extends React.Component {
 		          pass:'yes'
 		        });
 		    }
+		    }
+		    if(inName=='picture'){
+		    	this.setState({
+		          pass:'yes'
+		        });
+		        
 		    }
 	      }
 	}
