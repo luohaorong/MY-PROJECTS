@@ -135,7 +135,6 @@ class ShoppingCarDeport extends React.Component{
 		this.setState({
 			isSelect:deportSelectArr
 		});
-		console.log(deportSelectArr)
 	}
 	//全选
 	allSelected(){
@@ -326,9 +325,16 @@ class ShoppingCarDeport extends React.Component{
 	//点击移入收藏夹
 	collectionClick (){
 		let selectData=this.state.isSelect;
-		let preData=this.state.cartsData;
-		let productIfo=this.state.productIfo;
+		let preData=this.state.productIfo;
+		let productIfo=[];
 		let This=this;
+		selectData.map(function(i,k){
+			let tmp=[]
+			i.map(function(h,q){
+				h&&tmp.push(preData[k][q]);//手动删除被选中的数据
+			},This);
+			productIfo.push(tmp);
+		},This);
 		productIfo=JSON.stringify(productIfo);
 		bee.post('/wechat/carts/update',{
 						carts:productIfo,
@@ -345,34 +351,31 @@ class ShoppingCarDeport extends React.Component{
 							});
 							
 						if(!data.error_code){
-							selectData.map(function(i,k){
-								i.map(function(h,q){
-									h&&preData[k].goods.splice(0,1);//手动删除被选中的数据
-								},This);
-							},This);
-							preData.map(function(w,h){
-								if(w.goods.length===0){
-									preData.splice(0,1);
-								}
-							})
-							if(preData[0].goods.length===0){
-								preData.splice(0,1);
-							}
 							if(!preData.length){
 								This.setState({
 									isEmpty:true
 								})
 							}
-							This.CWM(preData);
+//							This.setState({
+//								cartsData:data.data.carts
+//							})
+//							This.CWM(data.data.carts);
 						}
 					},true);
 	}
 	//删除
 	deletClick(){
 		let selectData=this.state.isSelect;
-		let preData=this.state.cartsData;
-		let productIfo=this.state.productIfo;
+		let preData=this.state.productIfo;
+		let productIfo=[];
 		let This=this;
+		selectData.map(function(i,k){
+			let tmp=[]
+			i.map(function(h,q){
+				h&&tmp.push(preData[k][q]);//手动删除被选中的数据
+			},This);
+			productIfo.push(tmp);
+		},This);
 		productIfo=JSON.stringify(productIfo);
 		bee.post('/wechat/carts/update',{
 						carts:productIfo,
@@ -388,25 +391,15 @@ class ShoppingCarDeport extends React.Component{
 								promptError:Error
 							});
 						if(!data.error_code){
-							selectData.map(function(i,k){
-								i.map(function(h,q){
-									h&&preData[k].goods.splice(0,1);//手动删除被选中的数据
-								},This);
-							},This);
-							preData.map(function(w,h){
-								if(w.goods.length===0){
-									preData.splice(0,1);
-								}
-							})
-							if(preData[0].goods.length===0){
-								preData.splice(0,1);
-							}
 							if(!preData.length){
 								This.setState({
 									isEmpty:true
 								})
 							}
-							This.CWM(preData);
+//							This.setState({
+//								cartsData:data.data.carts
+//							})
+//							This.CWM(data.data.carts);
 						}
 					},true);
 	}
@@ -426,15 +419,6 @@ class ShoppingCarDeport extends React.Component{
 	        return arr;
         }
     }
-	//arr2是arr1的子数组，（也就是说arr2中的元素arr1都有）现在要得到在arr1中删除arr2中出现的元素后的结果
-	deleteArr(preArr,offterArr){
-		offterArr.map(function(i,k){
-			i.goods.map(function(q,h){
-				
-			});
-		});
-		
-	}
 	isGetData(data){
 		if(data){
 			this.getListData()

@@ -30,7 +30,7 @@ class HomeImportFloor extends React.Component{
 				    	importListImg&&importListImg.map(function(item,i){
 				    		return(
 				    			<div  key={i} className="swiper-slide">
-					    				<Link className='swiperLink' to={'/ProductDtailPage?uuid='+ item.uuid} data-uuid={item.uuid}>
+					    				<Link className='swiperLink' to={'/ProductListPage?uuid='+ item.uuid} data-uuid={item.uuid}>
 												<img src={bee.image(item.image)}/>
 												<span className='importCountry'>{item.title}</span>
 										</Link>

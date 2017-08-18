@@ -15,6 +15,7 @@ import RegisterCompanyAccountPage from './RegisterCompanyAccountPage';//注册�
 import RegisterAgencyPage from './RegisterAgencyPage';//经销商注册
 import RegisterCompanyPage from './RegisterCompanyPage';//公司注册
 import RegistrationProtocolPage from './RegistrationProtocolPage';//注册协议
+import TransitionPage from './TransitionPage';//注册成功后的过渡页面
 import HomePage from './HomePage';//首页
 import SoleAgencyDetailsPage from './SoleAgencyDetailsPage';//独家代理详情
 import SoleAgencyPage from './SoleAgencyPage';//独家代理
@@ -61,6 +62,7 @@ const routes=(
 		    	<Route path="/ServiceCenterPage" component={ServiceCenterPage}/>
 		    	<Route path="/ProductListPage" component={ProductListPage}/>
 		    	<Route path="/ConfirmOrderPage" component={ConfirmOrderPage}/>
+		    	<Route path="/TransitionPage" component={TransitionPage}/>
 		    	<IndexRedirect to='/index'/>
 			    <Route path="/index" component={App}>
 			    	<IndexRedirect to='/index/HomePage'/>

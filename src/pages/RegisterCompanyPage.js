@@ -68,7 +68,7 @@ class RegisterCompanyPage extends React.Component{
 							bee.cache('token',data.data.token);
 							bee.cache('salt',data.data.salt);
 							bee.cache('diffTimestamp', data.data.timestamp - Math.floor(new Date().getTime() / 1000));
-							window.location.href = bee.cache('redirectUri');
+							This.context.router.push('/TransitionPage');
 						}else if(data.error_code === -3){
 								bee.getCode('RegisterCompanyPage');
 							}else{

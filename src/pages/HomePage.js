@@ -163,10 +163,12 @@ class HomePage extends React.Component{
 		
 	}
 	//图片加载出错时执行
-	errorLoad(){
+	errorLoad(e){
+		let active=e.currentTarget;
+		active.src='../assets/images/unload.png';
+		active.setAttribute('class','errorLoad');
 		this.setState({
-			errorSrc:'../assets/images/unload.png',
-			classN:'errorLoad'
+			isError:false
 		})
 		
 		
@@ -176,11 +178,10 @@ class HomePage extends React.Component{
 		let active=e.currentTarget;
 		let comp=active.complete;
 		let dataSrc=active.getAttribute('data-src');
-		this.refs['imgNode'].className='errorLoad';
-		if(comp){
-			this.refs['imgNode'].className=''
+		if(comp&&this.state.isError){
 			active.src=dataSrc;
 		}
+		
 	}
 	// 渲染
 	render(){
@@ -194,7 +195,7 @@ class HomePage extends React.Component{
 					          key={i}
 					        >
 					        <Link to={'/ProductDtailPage?uuid='+item.uuid} data-uuid={item.uuid}>
-					          <img onError={this.errorLoad} className={this.state.classN} data-src={bee.image(item.image,750,376)} src={this.state.errorSrc||bee.image(item.image,750,376)}/>
+					          <img onError={this.errorLoad} onLoad={this.loadHeadle} data-src={bee.image(item.image,750,376)} src='../assets/images/preLoad.gif'/>
 					        </Link>
 					        </Slider.Item>
 					      );

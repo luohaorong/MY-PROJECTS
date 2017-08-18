@@ -57,10 +57,8 @@ class FileInput extends React.Component {
 		        })
 		        Axios.post('http://admin.zongjiuhui.com/upload/register',param)
 				.then(function (response) {
-				   	active.setAttribute('data-url',response.data.files[0].url)
-				   	let dataUrl=active.getAttribute('data-url');
 				   	that.setState({
-				   		dataUrl:dataUrl,
+				   		dataUrl:response.data.files[0].url,
 				   		describe:'图片上传完成',
 						describeCss:{
 							color:'#999999'
