@@ -10,8 +10,11 @@
 		<script type="text/javascript" src="common.js"></script>
 		<script type="text/javascript">
 		    (function() {
+		    	alert('来源：'+ bee.getQueryString('origin'))
 		    	if (bee.getQueryString('origin')==='login') {
+		    		alert('即将post')
 			    	bee.post('/wechat/login', { code: bee.getQueryString('code') }, function (data) {
+			    		alert('返回的值:'+data.error_code);
 			    		if (data.error_code) {
 			    			window.location.href = bee.link.weixin + '#/index/HomePage';
 			    			return;

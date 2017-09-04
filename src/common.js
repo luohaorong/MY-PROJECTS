@@ -397,8 +397,11 @@ bee.post = function (url, data, fn, isSign,isFile) {
 		obj.open("POST", bee.link.server + url, true);
 		obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // 发送信息至服务器时内容编码类型
 		obj.send(bee.parseQueryString(result));
+		alert('已发送完请求')
 	}
 		obj.onreadystatechange = function() {
+			alert('readyState:'+obj.readyState);
+			alert('status'+ obj.status);
 			if(obj.readyState == 4 && (obj.status == 200 || obj.status == 304)) {// 304未修改
 				if(JSON.parse(obj.responseText).error_code=== -11){
 						bee.cache('redirectUri', window.location.href);
@@ -406,6 +409,7 @@ bee.post = function (url, data, fn, isSign,isFile) {
 						window.location.href=bee.link.weixin + '#/BindAccountPage';
 						return;
 					}
+				alert('返回的数据：'+JSON.parse(obj.responseText))
 				fn.call(this, JSON.parse(obj.responseText));
 			}
 		};
