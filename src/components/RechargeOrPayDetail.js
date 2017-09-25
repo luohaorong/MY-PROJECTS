@@ -11,6 +11,14 @@ class RechargeOrPayDetail extends React.Component{
 			boos:{}
 		}
 	}
+	componentDidMount(){
+		let isRecharge=bee.getQueryString('isRecharge');
+		let payNode=document.querySelector('.btnPay');
+		if(isRecharge==='false'){
+			payNode.click()
+
+		}
+	}
 	render(){
 		const Ptitle1=(
 						
@@ -19,7 +27,7 @@ class RechargeOrPayDetail extends React.Component{
 					)
 		const Ptitle2=(
 						
-							<p className='btnNav'>消费记录</p>
+							<p className='btnNav btnPay'>消费记录</p>
 						
 					)
 		const DataMoneyDetail1=[

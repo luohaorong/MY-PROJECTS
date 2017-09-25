@@ -69,6 +69,7 @@ class ProductDtailPage extends React.Component{
 	    })
 	}
 	componentDidMount(){
+		bee.pushUrl();
 		document.title = '商品详情';
 		let This=this;
 		bee.post('/wechat/goods/info',{
@@ -122,12 +123,11 @@ class ProductDtailPage extends React.Component{
 		let resultIfo;
 		resultUuid1=priceUuid+'_'+stationUuid;//默认选择第一种组合
 		resultUuid2=stationUuid+'_'+priceUuid;
-		if(allData.result[resultUuid1]){
-			resultIfo=allData.result[resultUuid1];
-		}
-		if(allData.result[resultUuid2]){
-			resultIfo=allData.result[resultUuid2];
-		}
+		allData.result&&allData.result.map(function(item){
+			if(item.final_result_uuid === resultUuid1 || item.final_result_uuid === resultUuid2){
+				resultIfo=item.final_result_message;
+			}
+		},this);
 		return resultIfo;
 	}
 	//获取县的Uuid
@@ -161,7 +161,7 @@ class ProductDtailPage extends React.Component{
 		let moq=this.state.resultIformation.moq;//起订量
 		let stock=this.state.resultIformation.stock;//库存量
 		this.setState({
-			bottleNum:data
+			bottleNum:data<=0?0:data
 		});
 		if(data<moq){
 			let Error='商品购买量不能低于起订量（'+moq+'箱）';
@@ -277,7 +277,7 @@ class ProductDtailPage extends React.Component{
 		if(JSON.stringify(this.state.productStation)!=='{}'){
 			stationData=this.state.productStation.value;
 		}//仓库
-		let detailIfo=this.state.detailIfo&&this.state.detailIfo;//基本信息、品尝信息、包装信息
+		let detailIfo=this.state.detailIfo;//基本信息、品尝信息、包装信息
 		//定义ServiceInformation组件的样式
 		let titleStyle={
 			width:'auto',

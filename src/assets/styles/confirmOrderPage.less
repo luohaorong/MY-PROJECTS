@@ -1,0 +1,54 @@
+@import 'base';
+.remark{
+    background-color: #FFFFFF;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+.coinCards{
+    width: 100%;
+    height: auto;
+    .coinCardsTitle{
+        width: 100%;
+        height: 2rem;
+        font-size: 0.75rem;
+        color: #999999;
+        line-height: 2rem;
+        padding: 0 2%;
+        .titleLeft{
+            display: inline-block;
+            width: 50%;
+        }
+        .titleRight{
+            display: inline-block;
+            width: 50%;
+            text-align: right;
+        }
+    }
+    .useCoin{
+        width: 100%;
+        background-color: #FFFFFF;
+        overflow: hidden;
+        font-size: 0.75rem;
+        color: @titleColor;
+        padding: 0 2%;
+        border: @borderInterval;
+        .useCoinNum{
+            float: left;
+            height: 2.7rem;
+            line-height: 2.7rem;
+        }
+        .isUseCoin{
+            float: right;
+            height: 2.7rem;
+            line-height: 2.7rem;
+            .deductible{
+                color: #9e1b1b;
+                padding-right: 0.5rem;
+            }
+            img{
+                width: 1.125rem;
+                height: 1.125rem;
+            }
+        }
+    }
+}

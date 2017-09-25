@@ -3,7 +3,6 @@ import Button from '../components/Button';
 import FileInput from '../components/FileInput';
 import RegisterInput from '../components/RegisterInput';
 import RegionalLinkage from '../components/RegionalLinkage';
-import '../assets/styles/registerCompany.less';
 import {
 	Container,
 	View,
@@ -19,12 +18,14 @@ class AddDeliveryPage extends React.Component{
 		this.state = {
 			visible : false,
 			errorContent:{}
+			
 		}
 		//初始化逻辑
 		this.clickHandler=this.clickHandler.bind(this);
 		this.closeNotification = this.closeNotification.bind(this);
 		this.getCountyUuid=this.getCountyUuid.bind(this);
 	}
+
 	//获取FileInput组件的图片内容
 	getValue(key){
 		return this.refs[key].getValue();
@@ -57,12 +58,85 @@ class AddDeliveryPage extends React.Component{
 	//提交数据
 	
 	componentDidMount(){
-		document.title = '新增收货地址';
-		
+		bee.pushUrl();
+		if(bee.getQueryString('edit')=='true'){
+			document.title = '编辑收货地址';
+			let addressEdit=JSON.parse(bee.cache('addressEdit'));
+			this.refs.realName.refs.inp.value=addressEdit.real_name;
+			this.refs.realName.state.value = addressEdit.real_name;
+			
+			this.refs.phone.refs.inp.value=addressEdit.mobile;
+			this.refs.phone.state.value = addressEdit.mobile;
+			
+			this.refs.dtailAddr.refs.inp.value=addressEdit.detail;
+			this.refs.dtailAddr.state.value=addressEdit.detail;
+		}else{
+			document.title = '新增收货地址';
+		}
 	}
 	//点击提交
 	clickHandler(){
-		//获取输入框的内容
+		let realName = this.refs.realName.state.value;
+		let mobile = this.refs.phone.state.value;
+		let dtailAddr = this.refs.dtailAddr.state.value;
+		let mainRegion = this.state.countyUuid;
+		let addressEdit=JSON.parse(bee.cache('addressEdit'));
+		let uuid = addressEdit.uuid;
+		let This = this;
+		if (bee.getQueryString('edit')=='true') {
+				if (bee.getQueryString('origin')==='ConfirmOrderPage') {
+					bee.post('/wechat/edit/address',{
+					"real_name":realName,                 //收货人姓名
+					"mobile":mobile,                 //收货人手机号
+					"areas_uuid":mainRegion,            //地址uuid
+					"detail":dtailAddr,               //详细地址
+					"uuid":uuid
+					},function(data){
+						if (data.error_code==0) {
+							This.context.router.push('/AddressAdminPage?origin=ConfirmOrderPage')
+						}else{
+							This.setState({
+								errorContent:{Error:data.msg},
+								visible:true
+							})
+						}
+					},true);
+				}else{
+					bee.post('/wechat/edit/address',{
+					"real_name":realName,                 //收货人姓名
+					"mobile":mobile,                 //收货人手机号
+					"areas_uuid":mainRegion,            //地址uuid
+					"detail":dtailAddr,               //详细地址
+					"uuid":uuid
+					},function(data){
+						if (data.error_code==0) {
+							This.context.router.push('/AddressAdminPage')
+						}else{
+							This.setState({
+								errorContent:{Error:data.msg},
+								visible:true
+							})
+						}
+					},true);
+				}
+		}else{
+			bee.post('/wechat/add/address',{
+				"real_name":realName,                 //收货人姓名
+				"mobile":mobile,                 //收货人手机号
+				"areas_uuid":mainRegion,            //地址uuid
+				"detail":dtailAddr                 //详细地址
+			},function(data){
+				if (data.error_code==0) {
+					This.context.router.push(bee.getQueryString('origin')==='ConfirmOrderPage'?'/AddressAdminPage?origin=ConfirmOrderPage':'/AddressAdminPage')
+				}else{
+					This.setState({
+						errorContent:{Error:data.msg},
+						visible:true
+					})
+				}
+			},true);
+		}
+		
 		
 	}
 	componentWillUnmount(){
@@ -82,6 +156,7 @@ class AddDeliveryPage extends React.Component{
 			marginTop:0
 		}
 		let isNecessary=false;
+		let addressEdit_realname=this.state.addressEdit_realname;
 		return (
 			<View className='viewWapper'>
 				 <Notification
@@ -96,16 +171,16 @@ class AddDeliveryPage extends React.Component{
 				<Container scrollable={true}>
 					<Container className='companyInput'>
 						<div className='registerInputWrap'>
-							<RegisterInput promptText='联系人' name='' vText='请输入您的姓名' ref=''/>
+							<RegisterInput promptText='联系人' name='' vText='请输入您的姓名' ref='realName'/>
 						</div>
 						<div className='registerInputWrap'>
-							<RegisterInput promptText='联系方式' name='' vText='请输入您的联系方式' ref=''/>
+							<RegisterInput promptText='联系方式' name='' vText='请输入您的联系方式' ref='phone'/>
 						</div>
 						<div className='registerInputWrap'>
 							<RegionalLinkage type='regional' getCountyUuid={this.getCountyUuid} promptText='选择地区' name='mainRegion' readOnly='readonly' vText='请选择   >' ref='mainRegion'/>
 						</div>
 						<div className='registerInputWrap'>
-							<RegisterInput promptText='详细地址' name='' vText='请输入您的详细地址' ref=''/>
+							<RegisterInput promptText='详细地址' name='' vText='请输入您的详细地址' ref='dtailAddr'/>
 						</div>
 						<Button btnStyle={submitBtn} content='保存并使用' onClick={this.clickHandler}/>
 					</Container>
@@ -119,3 +194,4 @@ AddDeliveryPage.contextTypes = {
     router: React.PropTypes.object.isRequired // 向模块组件中，注入路由
 };
 export default pureRender(AddDeliveryPage);
+

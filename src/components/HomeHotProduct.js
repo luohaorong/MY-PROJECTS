@@ -19,13 +19,7 @@ class HomeHotProduct extends React.Component{
 		this.errorLoad=this.errorLoad.bind(this);
 		this.loadHeadle=this.loadHeadle.bind(this);
 	}
-	componentWillReceiveProps(nextProps){
-		if(nextProps.isError){
-			this.setState({
-				isError:true
-			})
-		};
-	}
+	
 	//图片加载出错时执行
 	errorLoad(e){
 		let active=e.currentTarget;
@@ -80,7 +74,7 @@ class HomeHotProduct extends React.Component{
 		
 		return (
 		     <div className='hotProductContainer'>
-				<HomeHotTitle hotProductImg={this.props.hotProductImg}/>
+				<HomeHotTitle height={this.props.height||''} hotProductImg={this.props.hotProductImg}/>
 		 		<section className='mainWap'>
 			 		{productList}
 				</section>

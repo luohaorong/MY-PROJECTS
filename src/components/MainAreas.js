@@ -7,21 +7,37 @@ class MainAreas extends React.Component{
 		super(props);
 		
 	}
+	
 	render(){
+		
+		let mainArray=[];
+		let user_type=bee.cache('user_type');
 		let mainData=this.props.mai;
-		const mainareas=(
-				mainData.length&&mainData.map(function(item,i){
+		if (user_type=='agency') {
+			mainArray.push( mainData.length&&mainData.map(function(item,i){
 					return(
-							<div className="mainAreasContainer" key={i}>
-								<p>{item.address}</p>
-								<p className="mainStatus">{item.status}</p>
+							<div className="mainAreasContainer" key={i} data-uuid={item.uuid}>
+								<p>{item.name}</p>
+								<p className="mainStatus">{item.verify_pass}</p>
 							</div>
 						)
 				},this)
+				)
+		}else{
+			mainArray.push(
+			<div className='mainAreasEmpty'>
+				您是企业用户，暂无主营地区功能！
+			</div>
 			)
+		}
+		
+		
+		
+				
+			
 		return(
 				<div>
-					{mainareas}
+					{mainArray[0]}
 				</div>
 				
 				

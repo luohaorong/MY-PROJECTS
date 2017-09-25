@@ -18,7 +18,7 @@ class RegisterAgencyPage extends React.Component{
 		// 初始化状态
 		this.state = {
 			visible : false,
-			errorContent:{}
+			errorContent:'请先正确填写所有信息'
 		}
 		//初始化逻辑
 		this.clickHandler=this.clickHandler.bind(this);
@@ -35,12 +35,8 @@ class RegisterAgencyPage extends React.Component{
 			countyUuid:countyUuid
 		})
 	}
-	componentWillMount(){
-		if(bee.cache('token')){
-			this.context.router.push('/index/HomePage');
-      	}
-	}
 	componentDidMount(){
+		bee.pushUrl();
 		document.title = '用户注册';
 		if(bee.getQueryString('code')){
 			let postData=sessionStorage.getItem('angencyData');
@@ -78,6 +74,7 @@ class RegisterAgencyPage extends React.Component{
 		let phone=registerEntry.mobile;//手机号
 		let verification=registerEntry.smsCode;//验证码
 		let passwordInput=registerEntry.passwordInput;//密码
+		let share_code=registerEntry.share_code;//分享码
 		let type=sessionStorage.getItem('dataSign');//用户注册类型
 		let code=bee.getQueryString('code')?bee.getQueryString('code'):sessionStorage.getItem('code');//获取code
 		let prompt=this.getValue('prompt');//营业执照
@@ -88,7 +85,8 @@ class RegisterAgencyPage extends React.Component{
 		let postData={
 					"mobile":phone,
 					"sms_code":verification,
-					"password":passwordInput,
+					"password":bee.md5(passwordInput),
+					"share_code":share_code,
 					"type":type,
 					"code":code,
 					"path_img":prompt,
@@ -107,9 +105,7 @@ class RegisterAgencyPage extends React.Component{
 			var timeId = setTimeout(This.closeNotification,3000);
 			This.setState({
 				timeId : timeId,
-				errorContent:{
-					Error:'请完善必填信息'
-				}
+				errorContent:'请先正确填写所有信息'
 			});
 		}
 	}
@@ -118,9 +114,9 @@ class RegisterAgencyPage extends React.Component{
 		let This=this;//将this存储下来
 		bee.post('/wechat/register',postData, function (data) {
 						if (data.error_code===0) {
-							bee.cache('token',data.data.token);
-							bee.cache('salt',data.data.salt);
-							bee.cache('diffTimestamp', data.data.timestamp - Math.floor(new Date().getTime() / 1000));
+							bee.localCache('token',data.data.token);
+							bee.localCache('salt',data.data.salt);
+							bee.localCache('diffTimestamp', data.data.timestamp - Math.floor(new Date().getTime() / 1000));
 							This.context.router.push('/TransitionPage');
 						}else if(data.error_code === -3){
 								bee.getCode('RegisterAgencyPage');
@@ -165,7 +161,7 @@ class RegisterAgencyPage extends React.Component{
 				          animated
 				          onDismiss={this.closeNotification}
 				        >
-				          {this.state.errorContent.Error}
+				          {this.state.errorContent}
 			        </Notification>
 				<Header middleSub={middleSub} middleTop={middleTop} MiddleTextSub='完善信息' />
 				<Container scrollable={true}>

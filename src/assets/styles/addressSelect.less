@@ -1,0 +1,72 @@
+@import 'base';
+.addressSelectWrapper{
+    width: 100%;
+    height: auto;
+    background-color: #FFFFFF;
+    .addressSelectContainer{
+        width: 100%;
+        height: auto;
+        .addressSelect{
+            width: 96%;
+            min-height: 4.68rem;
+            margin: 0 auto;
+            overflow: hidden;
+            display: table;
+        }
+        .addressImg{
+            width: 1.75rem;
+            display: table-cell;
+            background-image: url('/assets/images/comfirmOrder/address.png');
+            background-repeat: no-repeat;
+            background-size: 1.56rem 1.56rem;
+            background-position-y: 50%;
+        }
+        .selectLink{
+            display: table-cell;
+            padding: 0 0.5rem;
+            color: #666666;
+            vertical-align: middle;
+            .pleaseSelect{
+                height: 3rem;
+                line-height: 3rem;
+            }
+            .receiveIfo{
+                font-size: 0.875rem;
+                color: #333333;
+                overflow: hidden;
+                span{
+                    display: block;
+                    float: left;
+                }
+                .receivePerson{
+                    padding-right: 0.3rem;
+                }
+                .receiveName{
+                    width: 40%;
+                }
+                .receivePhone{
+                    float: right;
+                    text-align: right;
+                }
+            }
+            .receiveAddressIfo{
+                font-size: 0.8125rem;
+                color: #666666;
+            }
+        }
+        .addressRight{
+            width: 1.25rem;
+            display: table-cell;
+            background-image: url('/assets/images/comfirmOrder/left.png');
+            background-repeat: no-repeat;
+            background-size: 100% 1.56rem;
+            background-position-y: 50%;
+        }
+    }
+    .addressSeparate{
+        background-image: url('/assets/images/comfirmOrder/separate.png');
+        background-repeat-x: repeat;
+        height: 0.375rem;
+        width: 100%;
+    }
+}

@@ -8,6 +8,17 @@ class RechargeRecordPage extends React.Component{
 		
 	}
 	
+	componentDidMount(){
+		bee.pushUrl();
+		document.title="充值/消费记录";
+		let This = this;
+		bee.post('/wechat/recharges/record',{
+			'page':1,
+			'size':8
+		},function(data){
+			console.log(data)
+		},true)
+	}
 	render(){
 		return(
 			

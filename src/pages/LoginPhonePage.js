@@ -34,6 +34,9 @@ class LoginPhonePage extends React.Component {
 		this.clickHandler=this.clickHandler.bind(this);
 		this.closeNotification = this.closeNotification.bind(this);
 	}
+	componentDidMount(){
+		bee.pushUrl();
+	}
 	//获取组件的值
 	getValue(key){
 		return this.refs[key].getValue();

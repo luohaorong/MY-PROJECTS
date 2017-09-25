@@ -1,14 +1,15 @@
-window.bee = {};
-var allData={};
+var bee = {};
 /**
  * 所有路径
  */
 bee.link = {
-	'server': 'http://wechat.huijiuguoji.com',
+	'server': 'http://wechat.luo.com:8080',
 	'weixin':'http://agency.huijiuguoji.com',
 	'cloud': 'http://cloud.huijiuguoji.com',
 	'image': 'http://image.huijiuguoji.com',
-	'uploadImg':'http://admin.weifanyun.com/upload'
+	'uploadImg':'http://admin.weifanyun.com/upload',
+	'downLoadApp':'http://www.huijiuguoji.com/qrcode',
+	'xieyi':'http://www.zongjiuhui.com/agreement'
 }
 
 /**
@@ -49,7 +50,14 @@ bee.cache = function (key, value) {
 	}
 	sessionStorage.setItem(key, value);
 }
-
+bee.localCache = function (key, value) {
+	if (value === undefined) {
+		return localStorage.getItem(key);
+	}else if(typeof value === 'object'){
+		value=JSON.stringify(value);
+	}
+	localStorage.setItem(key, value);
+}
 /**
  * 获取授权码
  */
@@ -331,9 +339,9 @@ bee.sign = function (str, salt) {
  * @param object data
  */
 bee.requestSign = function (data) {
-	data.token = bee.cache('token');
-	data.timestamp = parseInt(bee.cache('diffTimestamp')) + Math.floor(new Date().getTime() / 1000);
-	data.sign = bee.sign(bee.parseQueryString(data), bee.cache('salt'));
+	data.token = bee.localCache('token');
+	data.timestamp = parseInt(bee.localCache('diffTimestamp')) + Math.floor(new Date().getTime() / 1000);
+	data.sign = bee.sign(bee.parseQueryString(data), bee.localCache('salt'));
 }
 
 /**
@@ -377,6 +385,20 @@ bee.get = function (url, data, fn, isSign) {
  */
 bee.post = function (url, data, fn, isSign,isFile) {
 	var result = {};
+	var waiting=document.getElementById('waiting');
+	var waitingText=document.getElementById('waitingText');
+	if(waiting){
+		var timer=setTimeout(function(){
+				waiting.style.display='block';
+				waitingText.innerHTML ='请稍等...'
+			},1000);
+		var timer1=setTimeout(function(){
+			waitingText.innerHTML ='请求超时...';
+		},20000);
+		var timer2=setTimeout(function(){
+			waiting.style.display='none';
+		},21000);
+	}
     var obj = new XMLHttpRequest();
 	for (var i in data) {
 		if (data.hasOwnProperty(i)) {
@@ -397,19 +419,25 @@ bee.post = function (url, data, fn, isSign,isFile) {
 		obj.open("POST", bee.link.server + url, true);
 		obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // 发送信息至服务器时内容编码类型
 		obj.send(bee.parseQueryString(result));
-		alert('已发送完请求')
 	}
 		obj.onreadystatechange = function() {
-			alert('readyState:'+obj.readyState);
-			alert('status'+ obj.status);
+			clearTimeout(timer);
+			clearTimeout(timer1);
+			clearTimeout(timer2);
+			if(waiting){
+				waiting.style.display='none';
+			}
 			if(obj.readyState == 4 && (obj.status == 200 || obj.status == 304)) {// 304未修改
-				if(JSON.parse(obj.responseText).error_code=== -11){
-						bee.cache('redirectUri', window.location.href);
-						sessionStorage.removeItem('token');
-						window.location.href=bee.link.weixin + '#/BindAccountPage';
-						return;
-					}
-				alert('返回的数据：'+JSON.parse(obj.responseText))
+				if(JSON.parse(obj.responseText).error_code === -11 || JSON.parse(obj.responseText).error_code === 103 || JSON.parse(obj.responseText).error_code === 3){
+						if(window.location.href.indexOf('/BindAccountPage') === -1){
+							window.location.href = bee.link.weixin + '#/BindAccountPage';
+							return;
+						}
+				}
+				if(JSON.parse(obj.responseText).error_code === 205){
+					bee.cache('redirectUri', window.location.href);
+					bee.getCode('login');
+				}
 				fn.call(this, JSON.parse(obj.responseText));
 			}
 		};

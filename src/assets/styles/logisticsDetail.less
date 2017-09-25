@@ -1,0 +1,48 @@
+@import 'base';
+.offcanvas {
+    background-color: #efeff4;
+}
+.logisticsMethodContainer{
+    width: 100%;
+    height: auto;
+    .logisticsMethodList{
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        .logisticsMethodItem{
+            width: 100%;
+            height: auto;
+            background-color: #FFFFFF;
+            margin-bottom: 0.2rem;
+            padding-left: 0.6rem;
+            display: table;
+            .selectWrap{
+                display: table-cell;
+                vertical-align: middle;
+                width: 1.8rem;
+                .deportImg{
+                    width: 1.125rem;
+                    height: 1.125rem;
+                }
+            }
+            .contentWrap{
+                display: table-cell;
+                .logistic{
+                    font-size: 1.06rem;
+                    color: @titleColor;
+                }
+                .note{
+                    font-size: 0.8125rem;
+                    color: @fontColor9;
+                    padding-bottom: 0.3rem;
+                }
+                .serviceContent{
+                    border-top: @borderInterval;
+                    font-size: 0.8125rem;
+                    color: #d53838;
+                    line-height: 3rem;
+                }
+            }
+        }
+    }
+}

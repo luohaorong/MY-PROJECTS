@@ -36,6 +36,9 @@ class RegisterCompanyAccountPage extends React.Component {
 		this.postParent=this.postParent.bind(this);
 		this.closeNotification = this.closeNotification.bind(this);
 	}
+	componentDidMount(){
+		bee.pushUrl();
+	}
 	//获取组件的值
 	getValue(key){
 		return this.refs[key].getValue();

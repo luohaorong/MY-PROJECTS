@@ -9,7 +9,9 @@ class ProdcutDtailImagePage extends React.Component{
 			productImages:''
 		}
 	}
-	
+	componentDidMount(){
+		bee.pushUrl();
+	}
 	render(){
 		let html={
 			__html:bee.getQueryString('detail')
@@ -18,7 +20,7 @@ class ProdcutDtailImagePage extends React.Component{
 			<View>
 				<ProductDtailHeader/>
 				<Container scrollable={true}>
-					<div dangerouslySetInnerHTML={html}></div>
+					<div className='dtailImg' dangerouslySetInnerHTML={html}></div>
 				</Container>
 			</View>
 		)

@@ -23,7 +23,8 @@ class ShoppingCarDeport extends React.Component{
 			page:2,
 			count:2,
 			isError:true,//控制是否显示加载失败时的默认图片
-			isEmpty:false//购物车为空时显示			
+			isEmpty:false,//购物车为空时显示			
+			returnCoin:0//返金币
 		}
 		this.closeNotification = this.closeNotification.bind(this);
 		this.selectClick=this.selectClick.bind(this);
@@ -101,12 +102,16 @@ class ShoppingCarDeport extends React.Component{
 					})
 				}
 				let productIfo=[];
+				let returnCoin=[];
 				dataCWM.map(function(item){
+					let tmpCoin=[];
 					let tmp=[];
 					item.goods.map(function(j){
-						tmp.push({"uuid":j.uuid,"num":j.goods_num,"select":j.selected==='yes'?true:false})
+						tmp.push({"uuid":j.uuid,"num":j.goods_num,"select":j.selected==='true'?true:false})
+						tmpCoin.push(j.return_corn)
 					});
 					productIfo.push(tmp);
+					returnCoin.push(tmpCoin);
 				});
 				This.CWM(dataCWM);
 				This.setState({
@@ -116,7 +121,8 @@ class ShoppingCarDeport extends React.Component{
 					productListData:data.data.scan,//猜你喜欢
 					goods_amount:data.data.goods_amount,//总共的箱数
 					goods_total:data.data.goods_total,//总共的瓶数
-					price_amount:data.data.price_amount//总价
+					price_amount:data.data.price_amount,//总价
+					returnCoin:returnCoin
 				});
 			}
 		},true);
@@ -128,7 +134,7 @@ class ShoppingCarDeport extends React.Component{
 		data&&data.map(function(i,k){
 			let tmp = [];
 			i.goods.map(function(j,h){
-				tmp.push(j.selected==='yes');//j.selected获取数据中初始化的状态
+				tmp.push(j.selected==='true');//j.selected获取数据中初始化的状态
 			})
 			deportSelectArr.push(tmp);
 		})
@@ -155,19 +161,21 @@ class ShoppingCarDeport extends React.Component{
 			"type":"update",
 			"carts":productIfo
 		},function(data){
-			let Error=data.msg;
-			// 如果失败，提示！！
-			This.openNotification();
-			//  callback
-			var timeId = setTimeout(This.closeNotification,3000);
-			This.setState({
-				timeId : timeId,
-				promptError:Error
-			});
-			if(data.error_code===0){
+			if(data.error_code){
+				let Error=data.msg;
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
+				This.setState({
+					timeId : timeId,
+					promptError:Error
+				});
+			}else{
 				This.setState({
 					isSelect:deportSelectArr
 				})
+				
 			}
 			
 		},true);
@@ -198,19 +206,21 @@ class ShoppingCarDeport extends React.Component{
 			"type":"update",
 			"carts":productIfo
 		},function(data){
-			let Error=data.msg;
-			// 如果失败，提示！！
-			This.openNotification();
-			//  callback
-			var timeId = setTimeout(This.closeNotification,3000);
-			This.setState({
-				timeId : timeId,
-				promptError:Error
-			});
-			if(data.error_code===0){
+			if(data.error_code){
+				let Error=data.msg;
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
+				This.setState({
+					timeId : timeId,
+					promptError:Error
+				});
+			}else{
 				This.setState({
 					isSelect:deportSelectArr
 				})
+				
 			}
 			
 		},true);
@@ -243,19 +253,24 @@ class ShoppingCarDeport extends React.Component{
 			"type":"update",
 			"carts":productIfo
 		},function(data){
-			let Error=data.msg;
-			// 如果失败，提示！！
-			This.openNotification();
-			//  callback
-			var timeId = setTimeout(This.closeNotification,3000);
-			This.setState({
-				timeId : timeId,
-				promptError:Error
-			});
-			if(data.error_code===0){
+			if(data.error_code){
+				let Error=data.msg;
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
 				This.setState({
-					isSelect:deportSelectArr
+					timeId : timeId,
+					promptError:Error
+				});
+			}else{
+				This.setState({
+					isSelect:deportSelectArr,
+					goods_amount:data.data.goods_amount||0,//总共的箱数
+					goods_total:data.data.goods_total||0,//总共的瓶数
+					price_amount:data.data.price_amount||0//总价
 				})
+				
 			}
 		},true);
 		
@@ -304,20 +319,31 @@ class ShoppingCarDeport extends React.Component{
 				"carts":productIfo,
 				"type":'update'
 			},function(data){
-				// 如果失败，提示！！
-				This.openNotification();
-				//  callback
-				let timeId = setTimeout(This.closeNotification,3000);
-				This.setState({
-					timeId : timeId,
-					promptError:data.msg
-				});
-				if(data.error_code===0){
+				if(data.error_code){
+					// 如果失败，提示！！
+					This.openNotification();
+					//  callback
+					let timeId = setTimeout(This.closeNotification,3000);
+					This.setState({
+						timeId : timeId,
+						promptError:data.msg
+					});
+				}else{
+					let returnCoin=[];
+					data.data.carts.map(function(item){
+						let tmpCoin=[];
+						item.goods.map(function(j){
+							tmpCoin.push(j.return_corn)
+						});
+						returnCoin.push(tmpCoin);
+					});
 					This.setState({
 						goods_amount:data.data.goods_amount||0,//总共的箱数
 						goods_total:data.data.goods_total||0,//总共的瓶数
-						price_amount:data.data.price_amount||0//总价
+						price_amount:data.data.price_amount||0,//总价
+						returnCoin:returnCoin //返金币数量
 					})
+					
 				}
 			},true);
 		}
@@ -333,13 +359,14 @@ class ShoppingCarDeport extends React.Component{
 			i.map(function(h,q){
 				h&&tmp.push(preData[k][q]);//手动删除被选中的数据
 			},This);
-			productIfo.push(tmp);
+			tmp.length&&productIfo.push(tmp);
 		},This);
 		productIfo=JSON.stringify(productIfo);
 		bee.post('/wechat/carts/update',{
 						carts:productIfo,
 						type:'move'
 					},function(data){
+						if(data.error_code){
 							let Error=data.msg;
 							// 如果失败，提示！！
 							This.openNotification();
@@ -349,17 +376,20 @@ class ShoppingCarDeport extends React.Component{
 								timeId : timeId,
 								promptError:Error
 							});
-							
-						if(!data.error_code){
+						}else{
 							if(!preData.length){
 								This.setState({
 									isEmpty:true
 								})
 							}
-//							This.setState({
-//								cartsData:data.data.carts
-//							})
-//							This.CWM(data.data.carts);
+							This.setState({
+								cartsData:data.data.carts,
+								goods_amount:data.data.goods_amount||0,//总共的箱数
+								goods_total:data.data.goods_total||0,//总共的瓶数
+								price_amount:data.data.price_amount||0//总价
+							})
+							This.CWM(data.data.carts);
+							
 						}
 					},true);
 	}
@@ -374,32 +404,36 @@ class ShoppingCarDeport extends React.Component{
 			i.map(function(h,q){
 				h&&tmp.push(preData[k][q]);//手动删除被选中的数据
 			},This);
-			productIfo.push(tmp);
+			tmp.length&&productIfo.push(tmp);
 		},This);
 		productIfo=JSON.stringify(productIfo);
 		bee.post('/wechat/carts/update',{
 						carts:productIfo,
 						type:'delete'
 					},function(data){
-						let Error=data.msg;
-							// 如果失败，提示！！
-							This.openNotification();
-							//  callback
-							var timeId = setTimeout(This.closeNotification,3000);
-							This.setState({
-								timeId : timeId,
-								promptError:Error
-							});
-						if(!data.error_code){
+						if(data.error_code){
+							let Error=data.msg;
+								// 如果失败，提示！！
+								This.openNotification();
+								//  callback
+								var timeId = setTimeout(This.closeNotification,3000);
+								This.setState({
+									timeId : timeId,
+									promptError:Error
+								});
+						}else{
 							if(!preData.length){
 								This.setState({
 									isEmpty:true
 								})
 							}
-//							This.setState({
-//								cartsData:data.data.carts
-//							})
-//							This.CWM(data.data.carts);
+							This.setState({
+								cartsData:data.data.carts,
+								goods_amount:data.data.goods_amount||0,//总共的箱数
+								goods_total:data.data.goods_total||0,//总共的瓶数
+								price_amount:data.data.price_amount||0//总价
+							})
+							This.CWM(data.data.carts);
 						}
 					},true);
 	}
@@ -475,6 +509,7 @@ class ShoppingCarDeport extends React.Component{
 					</div>
 					{
 						item.goods.map(function(j,i){
+							let returnCoinNum = this.state.returnCoin[index][i];
 							return(
 								<div className='deportContentWrap' key={i} data-index={i}>
 									<div className={i===item.goods.length-1?'deportContent  noBorder':'deportContent'}>
@@ -490,20 +525,29 @@ class ShoppingCarDeport extends React.Component{
 											<p className='productName text-truncate'>
 												{j.goods_chinese_name}
 											</p>
-											<div className='priceNumber'>
-												<p className='singlePrice'>
+											<div className='priceUnit'>
+												<p className='goodsPrice'>
 													{'￥'+bee.currency(j.goods_price)}
 												</p>
-												<p className='productNum'>
-													{j.stocking_pricing_ratio}瓶(支)装
+												<p className='goodsUnit'>
+													{j.stocking_pricing_ratio + '支装'}
 												</p>
 											</div>
 											<div className='typeNumber'>
-												<p className='goodsType'>
-													{j.sub_label}
-												</p>
 												<Number valueData={this.valueData} dataNum={+j.goods_num} moq={+j.moq} stock={+j.stock} uuid={j.uuid} index={this.and(this.state.isSelect[index][i])}/>
+												{
+													j.sub_label.map(function(p,q){
+														return (
+															<p key = {q} className = 'goodsType'>
+																{p.name + p.remark}
+															</p>
+														)
+													})
+												}
 											</div>
+											<p className='returnCoin'>
+												{'预计返金币' + returnCoinNum}
+											</p>
 										</div>
 									</div>
 								</div>
@@ -511,12 +555,21 @@ class ShoppingCarDeport extends React.Component{
 							)
 							
 						},this)
-						
 					}
 				</div>
 				)
 			},this)
 		)
+		let arr = [];
+		let isSubmint;
+		this.state.isSelect.map(function(item){
+			arr.push(item.some(function(i){
+				return i;
+			}))
+		})
+		isSubmint = arr.some(function(j){
+			return j;
+		});
 		//热销商品数据
 		let productListData=JSON.stringify(this.state.shoppingData)!=='{}'&&this.state.productListData;
 		return(
@@ -547,7 +600,7 @@ class ShoppingCarDeport extends React.Component{
 						<div style={{height:'7rem'}}></div>
 					</div>
 				</Container>
-				<ShoppingCarEditGoods price_amount={this.state.price_amount} goods_amount={this.state.goods_amount} goods_total={this.state.goods_total} onClick={this.allSelected} src={this.and(this.state.isSelect) ? Selected:noSelect} bottom={true}/>
+				<ShoppingCarEditGoods isJump={isSubmint} price_amount={this.state.price_amount} goods_amount={this.state.goods_amount} goods_total={this.state.goods_total} onClick={this.allSelected} src={this.and(this.state.isSelect) ? Selected:noSelect} bottom={true}/>
 			</Container>
 		)
 	}

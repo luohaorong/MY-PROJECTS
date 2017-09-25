@@ -35,7 +35,12 @@ class RegionalLinkage extends React.Component {
 		this.setState({
 			addressData:addressJson
 		})
+		if (bee.getQueryString('edit')) {
+			
+			console.log(bee.cache('addressEdit'));
+		}
 	}
+
 	clickHeadler(){
 		if(this.props.type==='warehouse'||this.props.type==='time'){
 			 this.setState({

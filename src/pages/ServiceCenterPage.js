@@ -12,6 +12,8 @@ class ServiceCenterPage extends React.Component{
 		}
 	}
 	 componentWillMount(){
+	 	bee.pushUrl();
+	 	document.title='服务中心';
 	 	const Data=[
 	 				
 					{

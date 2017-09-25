@@ -27,6 +27,9 @@ class SoleAgencyDetailsPage extends React.Component {
 		this.clickHeadler=this.clickHeadler.bind(this);
 		this.closeNotification = this.closeNotification.bind(this);
 	}
+	componentDidMount(){
+		bee.pushUrl();
+	}
 	//打开模态框
 	 openModal() {
     this.setState({

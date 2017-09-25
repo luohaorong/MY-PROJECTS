@@ -13,6 +13,9 @@ class SoleAgency extends React.Component{
 		super(props);
 		this.clickHandler=this.clickHandler.bind(this);
 	}
+	componentDidMount(){
+		bee.pushUrl();
+	}
 	clickHandler(){
 		this.context.router.push('/SoleAgencyDetailsPage')
 	}

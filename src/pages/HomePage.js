@@ -10,6 +10,7 @@ import HomeDoc from '../components/HomeDoc';
 import HomeHotProduct from '../components/HomeHotProduct';
 import List from '../components/List';
 import {uniqueId} from '../components/Nnique';
+import PropTypes from 'prop-types';
 import hotProductImg from '../assets/images/home/hot_product.png';
 import {
 	Container,
@@ -69,6 +70,7 @@ class HomePage extends React.Component{
 		bee.addUnloadImg();
 	}
 	componentDidMount(){
+		bee.pushUrl();
 		let This=this;
 		document.title = '首页';
 		sessionStorage.removeItem('bindData');
@@ -195,7 +197,7 @@ class HomePage extends React.Component{
 					          key={i}
 					        >
 					        <Link to={'/ProductDtailPage?uuid='+item.uuid} data-uuid={item.uuid}>
-					          <img onError={this.errorLoad} onLoad={this.loadHeadle} data-src={bee.image(item.image,750,376)} src='../assets/images/preLoad.gif'/>
+					          <img onError={this.errorLoad} data-src={bee.image(item.image,750,376)} src={bee.image(item.image,750,376)}/>
 					        </Link>
 					        </Slider.Item>
 					      );
@@ -283,22 +285,20 @@ class HomePage extends React.Component{
 				         {this.state.promptError}
 			        </Notification>
 			        <div className='seachWrp isShow' style={this.state.isShow?{opacity:'1'}:{opacity:'0'}}>
-			        	<Link className="topSeach">
+			        	<Link className="topSeach" to='/SearchPage'>
 							<img src="/assets/images/home/search_home_full.png"/>
 						</Link>
 			        </div>
 				<Container className='scrollWrapper' onScroll={this.scrollHeadle} scrollable={true}>
-					<LazyLoad className="lunbo" offsetVertical={200}>
+					<section className="lunbo">
 						<div>
 						{sliderCaption}
-						<Link className="seach isShow" style={this.state.isShow?{opacity:'0'}:{opacity:'1'}}>
+						<Link className="seach isShow" to='/SearchPage' style={this.state.isShow?{opacity:'0'}:{opacity:'1'}}>
 							<img src="/assets/images/home/search_home_full.png"/>
 						</Link>
 						</div>
-			        </LazyLoad>
-			        <LazyLoad offsetVertical={200}>
-						<List featureImg={featureImg} avg={4}/>
-					</LazyLoad>
+			        </section>
+					<List featureImg={featureImg} avg={4}/>
 					<SmallButton/>
 					<section className='bannerImg'>
 							<Link className='swiperLink guanggao' to={'/ProductDtailPage?uuid='+ (this.state.bannerImg[0]&&this.state.bannerImg[0].uuid)} data-uuid={this.state.bannerImg[0]&&this.state.bannerImg[0].uuid}>
@@ -307,15 +307,13 @@ class HomePage extends React.Component{
 								</LazyLoad>
 							</Link>
 						</section>
-					<LazyLoad offsetVertical={200}>
 						<HomeImportFloor importListImg={importListImg} importMainImg={importMainImg}/>
-					</LazyLoad>
 						{
 							newList&&newList.map(function(item,i){
 								return(
-									<LazyLoad key={"asd"+i} offsetVertical={200}>
+									<section key={"asd"+i}>
 										<HomeNew newImage={item}/>
-									</LazyLoad>
+									</section>
 									)
 							})
 						}					
@@ -329,22 +327,22 @@ class HomePage extends React.Component{
 						{
 							bubbleData&&bubbleData.map(function(item,i){
 									return(
-										<LazyLoad  key={"bas"+i} offsetVertical={200}>
+										<section  key={"bas"+i}>
 											<HomeBubbleSweet bubbleData={item}/>
-										</LazyLoad>
+										</section>
 										)
 							})
 						}
 						{
 							homeDocData&&homeDocData.map(function(item,i){
 								return(
-										<LazyLoad key={"dfd"+i} offsetVertical={200}>
+										<section key={"dfd"+i}>
 											<HomeDoc homeDocData={item} />
-										</LazyLoad>
+										</section>
 										)
 							})
 						}
-		            	<HomeHotProduct isError={this.state.isError} noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} />
+		            	<HomeHotProduct noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} />
 				</Container>
 				
 			</View>
@@ -354,5 +352,6 @@ class HomePage extends React.Component{
 HomePage.contextTypes={
 	router: React.PropTypes.object.isRequired // 向模块组件中，注入路由
 }
+
 // 导出
 export default pureRender(HomePage);

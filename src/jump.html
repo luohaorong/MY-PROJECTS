@@ -10,19 +10,14 @@
 		<script type="text/javascript" src="common.js"></script>
 		<script type="text/javascript">
 		    (function() {
-		    	alert('来源：'+ bee.getQueryString('origin'))
 		    	if (bee.getQueryString('origin')==='login') {
-		    		alert('即将post')
 			    	bee.post('/wechat/login', { code: bee.getQueryString('code') }, function (data) {
-			    		alert('返回的值:'+data.error_code);
-			    		if (data.error_code) {
-			    			window.location.href = bee.link.weixin + '#/index/HomePage';
-			    			return;
+			    		if (data.error_code === 0) {
+				    		bee.localCache('token', data.data.token);
+				    		bee.localCache('salt', data.data.salt);
+				    		bee.localCache('diffTimestamp', data.data.timestamp - Math.floor(new Date().getTime() / 1000));
+				    		window.location.href = bee.cache('redirectUri');
 			    		}
-			    		bee.cache('token', data.data.token);
-			    		bee.cache('salt', data.data.salt);
-			    		bee.cache('diffTimestamp', data.data.timestamp - Math.floor(new Date().getTime() / 1000));
-			    		window.location.href = bee.cache('redirectUri');
 			    	});
 		    	}else if(bee.getQueryString('origin')==='bind'){
 		    		window.location.href = bee.link.weixin + '#/BindAccountPage?code=' + bee.getQueryString('code');
@@ -32,6 +27,9 @@
 		    		window.location.href = bee.link.weixin + '#/RegisterCompanyPage?code=' + bee.getQueryString('code');
 		    	}else if(bee.getQueryString('origin')==='againBind'){
 		    		window.location.href = bee.link.weixin + '#/BindAccountPage?code=' + bee.getQueryString('code')+'&type=againBind';
+		    	}else if(bee.getQueryString('origin')==='GuidePage'){
+		    		var isCode = bee.cache('share_code') ?'&code=':'?code=';
+		    		window.location.href = bee.cache('redirectUri') + isCode + bee.getQueryString('code');
 		    	}
 		    })();
 		</script>

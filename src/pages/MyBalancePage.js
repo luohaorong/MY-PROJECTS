@@ -13,6 +13,8 @@ class MyBalancePage extends React.Component{
 		}
 	}
 	componentWillMount(){
+		bee.pushUrl();
+		document.title="我的余额";
 		const DataMoney='￥21000';
 		const DataMoneyDetail=[
 			{

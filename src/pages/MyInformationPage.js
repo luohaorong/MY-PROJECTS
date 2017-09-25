@@ -15,17 +15,17 @@ class MyInformationPage extends React.Component{
 			headImages:'',
 			myInContainer:''
 		}
+		this.postState=this.postState.bind(this)
+	}
+	postState(e){
+		let active=e.currentTarget;
+		let state=active.getAttribute('data-state');
+		bee.cache('orders_states',state);
 	}
 	componentWillMount(){
 		
 		const headImages='../assets/images/myinformation/touxiang.png';
 		
-		const Data1={
-			balance:'￥2000',
-			coup:'4张',
-			gold:'100',
-			point:'5000'
-		};
 		const newImg=[
 			{
 				img:'../assets/images/myinformation/myrecharge.png',
@@ -35,13 +35,13 @@ class MyInformationPage extends React.Component{
 			,{
 				img:'../assets/images/myinformation/myrecharge-cord.png',
 				tit:'充值记录',
-				hrf:'/RechargeRecordPage'
+				hrf:'/RechargeRecordPage?isRecharge=true'
 
 			}
 			,{
 				img:'../assets/images/myinformation/parchase-cord.png',
 				tit:'消费记录',
-				hrf:'/RechargeRecordPage'
+				hrf:'/RechargeRecordPage?isRecharge=false'
 			}
 			,{
 				img:'../assets/images/myinformation/my-collection.png',
@@ -92,7 +92,6 @@ class MyInformationPage extends React.Component{
 		
 		this.setState({
 			
-			data1:Data1,
 			newImg:newImg,
 			headImages:headImages
 			
@@ -109,7 +108,8 @@ class MyInformationPage extends React.Component{
 		    } 
 	}
 	componentDidMount(){
-
+		bee.pushUrl();
+		document.title="个人中心";
 		let This=this;
 		let token=bee.cache('token');
 		bee.post('/wechat/center',{'token':token},function(data) {
@@ -120,6 +120,7 @@ class MyInformationPage extends React.Component{
 				This.setState({
 					data:data.data
 				})
+				bee.cache('user_type',data.data.type);
 			}
 		},true);
 	}
@@ -128,7 +129,6 @@ class MyInformationPage extends React.Component{
 		
 		let sData1=this.state.data1;
 		let newImg=this.state.newImg;
-		
 		return(
 			<View>
 			<Container scrollable={true}>
@@ -136,7 +136,7 @@ class MyInformationPage extends React.Component{
 					
 					<div className='myHead'>
 						<Link to='/'>
-							<img className='myHeadImg' src={this.state.data.avatar!==''?this.state.data.avatar:this.state.headImages}/>
+							<img className='myHeadImg' src={this.state.data.avatar!==''?this.state.data.avatar+'/origin':this.state.headImages}/>
 						</Link>
 					</div>
 					<p className='myHeadText'>
@@ -147,32 +147,32 @@ class MyInformationPage extends React.Component{
 					</Link>
 				</div>
 				<div className='myOrders'>
-					<div className='myOrdersTop'>
+					<Link className='myOrdersTop' to='/MyOrdersPage' onClick={this.postState} data-state="">
 						<span className='myOrdersTopText'>我的订单</span>
-						<Link className='myOrdersTopTo' to='/'>
+						<span className='myOrdersTopTo'>
 							查看全部订单
-						</Link>
-					</div>
+						</span>
+					</Link>
 					<Grid className='myOrdersTopContainer' avg={4}>
 						<Col className='myOrdersCol' style={this.props.bgImage}>
-			            	<Link className='ordersTitle  waitPayImage'to='/index/HomePage'>
-								<div className='ordersNum'>1</div>
+			            	<Link className='ordersTitle  waitPayImage' onClick={this.postState} to='/MyOrdersPage' data-state="not_payed">
+								<div className={this.state.data.not_pay_count===0?'ordersNum2':'ordersNum1'}>{this.state.data.not_pay_count}</div>
 				            	<p>待付款</p>
 		            		</Link>
 			            </Col>
 			            <Col className='myOrdersCol' style={this.props.bgImage}>
-			            	<Link className='ordersTitle  waitShouImage' to='/index/ProductDtailPage'>
-				            	<div className='ordersNum'>1</div>
+			            	<Link className='ordersTitle  waitShouImage' to='/MyOrdersPage' onClick={this.postState} data-state="not_receive">
+				            	<div className={this.state.data.not_receive===0?'ordersNum2':'ordersNum1'}>{this.state.data.not_receive}</div>
 				            	<p>待收货</p>
 		            		</Link>
 			            </Col>
 			            <Col className='myOrdersCol' style={this.props.bgImage}>
-			            	<Link className='ordersTitle alreadyImage' to='/index/AboutUsPage'>
+			            	<Link className='ordersTitle alreadyImage' to='/MyOrdersPage' onClick={this.postState} data-state="finish">
 				            	<p>已完成</p>
 		            		</Link>
 			            </Col>
 			            <Col className='myOrdersCol' style={this.props.bgImage}>
-			            	<Link className='ordersTitle  noSuccessImage' to='/index/ServiceCenterPage'>
+			            	<Link className='ordersTitle  noSuccessImage' to='/MyOrdersPage' onClick={this.postState} data-state="cancel">
 				            	<p>未成功</p>
 		            		</Link>
 			            </Col>

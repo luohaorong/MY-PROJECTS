@@ -6,6 +6,7 @@ import pureRender from 'pure-render-decorator';
 import headerImgRight from '../assets/images/productList/magnifier.png';
 import HomeHotProduct from '../components/HomeHotProduct';
 import {Container,View} from 'amazeui-touch';
+import PropTypes from 'prop-types';
 let goodsUuid;
 class ProductListPage extends React.Component{
 	constructor(props){
@@ -34,6 +35,7 @@ class ProductListPage extends React.Component{
 		bee.addUnloadImg();
 	}
 	componentDidMount(){
+		bee.pushUrl();
 		document.title = '商品列表';
 		let typeUuid=bee.getQueryString('uuid');
 		let honor=bee.getQueryString('honor');
@@ -165,17 +167,24 @@ class ProductListPage extends React.Component{
 					document.querySelector('.scrollWrapper').scrollTop=0;
 					if(data.data.goods.length===0){
 								This.setState({
-									noListData:true
+									page:2,
+									count:2,
+									noListData:true,
+									noData:'preLoad',
+									titleData:data.data.goodsCategory,
+									Data:data.data.goods
 								})
+					}else{
+						This.setState({
+							page:2,
+							count:2,
+							noListData:false,
+							noData:'preLoad',
+							titleData:data.data.goodsCategory,
+							Data:data.data.goods
+						})
 					}
-					This.setState({
-						page:2,
-						count:2,
-						noData:false,
-						noData:'preLoad',
-						titleData:data.data.goodsCategory,
-						Data:data.data.goods
-					})
+					
 				}
 			},true);
 	}
@@ -250,6 +259,11 @@ class ProductListPage extends React.Component{
 				}
 			},true);
 	}
+	getChildContext() {
+      return {
+      	category : this.state.loadUuid
+      };
+  }
 	render(){
 		let middleImg=true;
 		let middleTop=true;
@@ -262,13 +276,13 @@ class ProductListPage extends React.Component{
 								title:'综合'
 								,name:'zonghe'
 								,img:''
-								,selectTab:bee.getQueryString('latest')?false:true
+								,selectTab:!bee.getQueryString('latest')
 							}
 							,{
 								title:'最新'
 								,name:'latest'
 								,img:''
-								,selectTab:bee.getQueryString('latest')?true:false
+								,selectTab:!!bee.getQueryString('latest')
 							}
 							,{
 								title:'价格'
@@ -281,6 +295,7 @@ class ProductListPage extends React.Component{
 								,name:'change'
 								,img:'../assets/images/productList/shaixuan.png'
 								,selectTab:false
+								,isFilter:true//是否开启侧滑
 							}
 						]
 		let productListData=this.state.Data;
@@ -294,6 +309,9 @@ class ProductListPage extends React.Component{
 			</View>
 		)
 	}
+}
+ProductListPage.childContextTypes={
+	category: React.PropTypes.string //向AttributeFilter里面传递category
 }
 ProductListPage.contextTypes={
 	router: React.PropTypes.object.isRequired // 向模块组件中，注入路由

@@ -13,12 +13,19 @@ class TransitionPage extends React.Component{
 	componentDidMount(){
 		let This=this;
 		let time=this.state.time;
+		let share_code=bee.cache('share_code');
 		timer=setInterval(function(){
 			This.setState({
 				time:time--
 			})
-			if(time===0){
-				window.location.href=bee.cache('redirectUri')
+			if(time === -1){
+				//判断是否从分享页面过来
+				if(!share_code && bee.cache('redirectUri').indexOf('/GuidePage') === -1){
+					window.location.href = bee.cache('redirectUri');
+				}else{
+					This.context.router.push('/index/HomePage'); // 手动路由
+				}
+				clearInterval(timer);
 			}
 		},1000)
 	}
@@ -29,9 +36,9 @@ class TransitionPage extends React.Component{
 		return (
 			<Container>
 				<img className='transitionImg' src='/assets/images/transition.png'/>
-				<a href='http://app.qq.com/#id=detail&appid=1106222451' className='transitionText androidText'>Android 安卓应用市场下载</a>
-				<a href='https://itunes.apple.com/app/id1258403931' className='transitionText iosText'>iOS  苹果App Store下载</a>
-				<p className='goToIndex'><span style={{color:'#ff0000'}}>{this.state.time}</span>后跳到首页</p>
+				<a href={bee.link.downLoadApp} className='transitionText androidText'>Android 安卓应用市场下载</a>
+				<a href={bee.link.downLoadApp} className='transitionText iosText'>iOS  苹果App Store下载</a>
+				<p className='goToIndex'><span style={{color:'#ff0000'}}>{this.state.time}</span>后跳往商城</p>
 			</Container>
 		)
 	}

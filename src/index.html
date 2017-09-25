@@ -6,7 +6,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="description" content="">
 		<meta name="keywords" content="">
-		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
 		<title>荟酒网</title>
 		<meta name="renderer" content="webkit">
 		<!-- No Baidu Siteapp-->
@@ -20,19 +21,71 @@
 
 	<body>
 		<div id="app" style="height: 100%;"></div>
+		<style type="text/css">
+			#waiting{
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.waitingWrapper{
+				width: 100%;
+				height: 3rem;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-top: -1.5rem;
+				margin-left: -50%;
+				text-align: center;
+			}
+			#waiting .waitingImg{
+				width: 2rem;
+				height: 2rem;
+			}
+			#waitingText{
+				font-size: 1rem;
+				color: #999999;
+			}
+		</style>
+		<div id="waiting">
+			<div class="waitingWrapper">
+				<img class="waitingImg" src="/assets/images/waiting.gif"/>
+				<p id="waitingText"></p>
+			</div>
+		</div>
 		<script>
 			__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__
 		</script>
-		<script type="text/javascript" src="common.js"></script>
+		<!--<script type="text/javascript" src="common.js"></script>-->
 		<script type="text/javascript">
-			(function() {
-				if (!bee.cache('token')&& window.location.href.indexOf('/index/HomePage') === -1  && window.location.href.indexOf('BindAccountPage') === -1 && window.location.href.indexOf('RegisterCompanyAccountPage') === -1 && window.location.href.indexOf('RegisterAgencyPage') === -1 && window.location.href.indexOf('RegisterCompanyPage') === -1) {
-					bee.cache('redirectUri', window.location.href);
-					alert(window.location.href);
-					bee.getCode('login');
-				}
-			})();
+//			(function() {
+//				if (!bee.localCache('token')&& window.location.href.indexOf('/index/HomePage') === -1  && window.location.href.indexOf('BindAccountPage') === -1 && window.location.href.indexOf('RegisterCompanyAccountPage') === -1 && window.location.href.indexOf('RegisterAgencyPage') === -1 && window.location.href.indexOf('RegisterCompanyPage') === -1) {
+//					bee.cache('redirectUri', window.location.href);
+//					bee.getCode('login');
+//				}
+//			})();
+			(function(){
+				window.onpopstate = function(event) {
+					var stateUrl = sessionStorage.getItem('Urlstate');
+					stateUrl = JSON.parse(stateUrl);
+					stateUrl.pop();
+					sessionStorage.setItem('Urlstate',JSON.stringify(stateUrl));
+					var state = {
+						url : stateUrl
+					}
+					var len = state.url.length;
+					if(len === 0){
+						history.pushState(state,null,'/index/HomePage');
+					}else{
+						history.pushState(state,null,state.url[len-1]);
+					}
+//				  alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
+				};
+			})()
 		</script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 		<script type="text/javascript" src="/assets/app.js"></script>
 	</body>
 

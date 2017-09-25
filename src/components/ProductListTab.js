@@ -4,6 +4,7 @@ import pureRender from 'pure-render-decorator';
 import {Grid,Col,OffCanvasTrigger,OffCanvas} from 'amazeui-touch';
 import priceDown from '../assets/images/productList/priceD.png';
 import priceUp from '../assets/images/productList/priceTop.png';
+import AttributeFilter from './AttributeFilter';
 let type;
 let isPrice="DESC";
 class ProductListTab extends React.Component{
@@ -54,7 +55,7 @@ class ProductListTab extends React.Component{
 			 <Grid className='productListTab'>
 			 {
 	         	this.props.listData&&this.props.listData.map(function(i,k){
-	         		if(k<=2){
+	         		if(!i.isFilter){
 			           return <Col key={k}  onClick={this.clickHander} data-type={i.name} className={this.state.isSelect[k]?'listTab fontColor':'listTab'} data-index={k}><span >{i.title}</span>{i.img?(<img src={k==2?(isPrice==="ASC"?priceUp:priceDown):(i.img)}/>):''}</Col>
 	         		}else{
 	         			return (
@@ -63,7 +64,7 @@ class ProductListTab extends React.Component{
 					            animation="push"
 					            pageContainer="#sk-root"
 					            placement="right"
-					            offCanvas={<OffCanvas>筛选组件</OffCanvas>}
+					            offCanvas={<OffCanvas><AttributeFilter /></OffCanvas>}
 					          >
 					            <Col onClick={this.clickHander} data-type={i.name} className={this.state.isSelect[k]?'listTab fontColor':'listTab'} data-index={k}><span >{i.title}</span>{i.img?(<img src={k==2?(isPrice==="ASC"?priceUp:priceDown):(i.img)}/>):''}</Col>
 					          </OffCanvasTrigger>
@@ -77,3 +78,4 @@ class ProductListTab extends React.Component{
 	}
 }
 export default pureRender(ProductListTab);
+

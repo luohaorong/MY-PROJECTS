@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container,View,Tabs,Card,Button} from 'amazeui-touch';
+import {Container,View,Tabs,Card,Button,Notification} from 'amazeui-touch';
 import SearchBar from '../components/SearchBar';
 import ClassTabs from '../components/ClassTabs';
 import pureRender from 'pure-render-decorator';
@@ -7,108 +7,102 @@ class ClassTypePage extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			
-			products:{}
+			albums:[],
+			products:[]
 		}
+		this.closeNotification = this.closeNotification.bind(this);
+		this.thumbClick = this.thumbClick.bind(this);
 	}
+	// 打开对话框
+    openNotification() {
+	    this.setState({
+	      visible: true
+	    });
+    }
 	
+	// 关闭对话框
+	closeNotification() {
+	    // 判断是否需要清除定时器
+	    if(this.state.timeId){
+	    	clearTimeout(this.state.timeId);
+	    }
+	    this.setState({
+	      visible: false,
+	      timeId : null
+	    })
+	}
+	thumbClick(data){
+		let This = this;
+		bee.post('/wechat/goods/attr',{
+			uuid:data
+		},function(data){
+			This.setState({
+				products:data.data
+			})
+		},true)
+	}
 	componentDidMount(){
+		bee.pushUrl();
+		document.title='分类筛选';
 		let This=this;
+		let uuid;
 		bee.post('/wechat/goods/categories',{},function(data) {
 			if(data.error_code) {
-				alert(data.info);
+				let Error=data.msg;
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
+				This.setState({
+					timeId : timeId,
+					promptError:Error
+				});
 				return;
 			}else{
 				This.setState({
 					albums:data.data
-				})
+				});
+				bee.post('/wechat/goods/attr',{
+					uuid : data.data[0].uuid
+				},function(dataContent){
+					if(dataContent.error_code){
+						let Error=dataContent.msg;
+						// 如果失败，提示！！
+						This.openNotification();
+						//  callback
+						var timeId = setTimeout(This.closeNotification,3000);
+						This.setState({
+							timeId : timeId,
+							promptError:Error
+						});
+						return;
+					}else{
+						bee.cache('typeProduct',dataContent.data);
+						This.setState({
+							products:dataContent.data
+						})
+					}
+				},true)
 			}
 		},true);
 	}
 	render(){
-		
-const products=[
-			
-				
-				{
-				pTitle:'产品',
-				pAdvice:[
-					{
-						title:'法国',
-						uuid:'1'
-					},
-					{
-						title:'西班牙',
-						uuid:'2'	
-					},
-					{
-						title:'澳大利亚',
-						uuid:'3'	
-					},
-					{
-						title:'智利',
-						uuid:'4'	
-					}
-				],
-				uuid:'1'
-			},
-			{
-				pTitle:'价格',
-				pAdvice:[
-					{
-						title:'0-20元',
-						uuid:'5'
-					},
-					{
-						title:'21-30元',
-						uuid:'6'	
-					},
-					{
-						title:'31-40元',
-						uuid:'7'	
-					},
-					{
-						title:'41-50元',
-						uuid:'8'	
-					}
-				],
-				uuid:'2'
-			},
-			{
-				pTitle:'产品',
-				pAdvice:[
-					{
-						title:'法国',
-						uuid:'9'
-					},
-					{
-						title:'西班牙',
-						uuid:'10'	
-					},
-					{
-						title:'澳大利亚',
-						uuid:'11'	
-					},
-					{
-						title:'智利',
-						uuid:'12'	
-					}
-				],
-				uuid:'3'
-			}
-			
-
-	]
-		
-    
-     
+		let {albums,products} = this.state;
 		return(
-      <View>
-				
+      		<View>
+				<Notification
+				      title="荟酒国际提示"
+			          amStyle='alert'
+			          visible={this.state.visible}
+			          animated
+			          onDismiss={this.closeNotification}
+			        >
+				         {this.state.promptError}
+			        </Notification>
 					<SearchBar/>
-					<ClassTabs album={this.state.albums} products={products}/>
+					<ClassTabs thumbClick = {this.thumbClick} album={albums} products = {products}/>
           
-      </View>
+     	 	</View>
 			)
 	}
 }

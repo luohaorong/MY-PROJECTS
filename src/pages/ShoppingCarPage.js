@@ -13,6 +13,7 @@ class ShoppingCarPage extends React.Component{
 		}
 	}
 	componentDidMount(){
+		bee.pushUrl();
 		document.title = this.state.title;
 	}
 	render(){

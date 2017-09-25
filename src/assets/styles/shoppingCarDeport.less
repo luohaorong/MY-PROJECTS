@@ -84,6 +84,23 @@
                         font-size: 0.875rem;
                         padding-top: 0.9rem;
                     }
+                    .priceUnit{
+                        width: 90%;
+                        height: auto;
+                        overflow: hidden;
+                         .goodsPrice{
+                            color: #ea0000;
+                            font-size: 0.75rem;
+                            float: left;
+                            padding-top: 0.6rem;
+                        }
+                        .goodsUnit{
+                            color: #666666;
+                            font-size: 0.75rem;
+                            float: right;
+                            padding-top: 0.6rem;
+                        }
+                    }
                     .priceNumber{
                         width: 90%;
                         height: 1.43rem;
@@ -102,17 +119,28 @@
                     .typeNumber{
                         width: 90%;
                         height: auto;
-                        margin-top: 1rem;
+                        margin-top: 0.3rem;
                         overflow: hidden;
-                        .goodsType{
-                            color: @fontColor9;
-                            font-size: 0.75rem;
-                            float: left;
-                            padding-top: 1rem;
-                        }
                         .countWrap{
                             float: right;
                         }
+                        .goodsType{
+                            color: #661b18;
+                            font-size: 0.75rem;
+                            padding-top: 0.6rem;
+                            float: left;
+                            width: 48%;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            overflow: hidden;
+                        }
+                    }
+                    .returnCoin{
+                         color: #ea0000;
+                        font-size: 0.75rem;
+                        text-align: right;
+                        width: 90%;
                     }
                 }
             }

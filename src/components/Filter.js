@@ -7,17 +7,20 @@ const isChoose=[];
 class Filter extends React.Component{
 	constructor(props){
 		super(props);
+		this.state={
+			isSelected:[]
+		}
 		this.checkFilter = this.checkFilter.bind(this);
 	}
   //组件渲染之前先定义状态，状态的结构和数据结构保持一致。
-  componentWillMount(){
-    let products=this.props.products;
+  componentDidMount(){
+    let products=JSON.parse(bee.cache('typeProduct'));
     let arr=[];
-    let sessionUuid=window.sessionStorage.getItem('uuid');
+    let sessionUuid=sessionStorage.getItem('uuid');
     let sessionArr=sessionUuid?sessionUuid.split(','):[];
     products.map(function(j,i){
         let tmp=[];
-        j.pAdvice.map(function(p,q){
+        j.attrValues.map(function(p,q){
           tmp.push(this.inArr(p.uuid,sessionArr));
         },this)
         arr.push(tmp)
@@ -93,7 +96,7 @@ class Filter extends React.Component{
           let products=this.props.products;
           products.map(function(j,i){
               let tmp=[];
-              j.pAdvice.map(function(p,q){
+              j.attrValues.map(function(p,q){
                 tmp.push(this.inArr(p.uuid,sessionArr));
               },this)
               arr.push(tmp)
@@ -135,7 +138,7 @@ class Filter extends React.Component{
     let postP=!!this.and(arr);//用add方法把arr转化成一个bool值
     this.props.postParent(postP);//将bool值传到父组件（ClassTabs）
     this.props.getActive(active);//将当前被点击的元素传到父组件（ClassTabs）
-    window.sessionStorage.setItem('uuid',isChoose)
+    sessionStorage.setItem('uuid',isChoose)
 	}
   //把二维数组进行位与运算，最终输出一个值（0或者1，在此定义非0为true）。
 	and (arr) {
@@ -155,44 +158,42 @@ class Filter extends React.Component{
     }
 	render(){
 		let products=this.props.products;
-    let firstItem;
-
+        let firstItem;
     this.props.data&&this.props.data.map(function(item, i) {
         if (i==0) {
           firstItem=item;
         }
     })
     let firstUrl=firstItem&&firstItem.thumb;
-     	const productdetail=(
-     				products.map(function(j,i){
-     					return (
-     					<div data-index={i} key={j.uuid} className='tabsRightContent'>
-     						<p className='tabsRightTitle'>{j.pTitle}</p>
-     						<div className='tabNameFather'>
-     						{
-     							j.pAdvice.map(function(item,index){
-     								return(
-                         
-                            <Link data-index={index} data-uuid={item.uuid} key={item.uuid}  onClick={this.checkFilter} className={this.state.isSelected[i][index]?'tabName checkStyle':'tabName'}>
-                              {item.title}
-                              <img className={this.state.isSelected[i][index]?'bgImage':'bgImage unBlock'} src='../assets/images/classtype/danxuan.png'/>
-                            </Link>
-                          
-     								)
-     							},this)
-     						}
-     						</div>
-     					</div>
-     					)
-     				},this)
-     			
-     		
-     	)
 		return(
               <Container className='TabsContainerRight' scrollable={true}>
-              		<img style={this.props.isShow} className='classImg' src={this.props.url?bee.image(this.props.url,796,276):bee.image(firstUrl,796,276)}/>
+              		<img style={this.props.isShow} className='classImg' src={this.props.url?bee.image(this.props.url):bee.image(firstUrl)}/>
               		<div className='tabsRightContainer'>
-              			{productdetail}
+              			<div>
+				 			{
+				 				products.map(function(j,i){
+				 					return (
+					 					<div data-index={i} key={j.uuid} className='tabsRightContent'>
+					 						<p className='tabsRightTitle'>{j.name}</p>
+					 						<div className='tabNameFather'>
+					 						{
+					 							j.attrValues.map(function(item,index){
+					 								return(
+							                            <Link to = {'/ProductListPage?uuid=' + (this.props.name==="葡萄酒" ? 'putao' : 'jiushipin') + '&title=' + this.props.name + '&filter=' + item.uuid} data-index={index} data-uuid={item.uuid} key={item.uuid}  onClick={this.checkFilter} className='tabName'>
+							                              {item.name}
+							                              <img className='unBlock' src='../assets/images/classtype/danxuan.png'/>
+							                            </Link>
+					 								)
+					 							},this)
+					 						}
+					 						</div>
+					 					</div>
+				 					)
+				 				},this)
+				 				
+				 			}
+ 			
+ 						</div>
 		             	<div style={{height:'10rem'}}></div>
               		</div>
               		

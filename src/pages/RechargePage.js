@@ -9,22 +9,20 @@ class RechargePage extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			PayWaysData:{},
+			PayWaysData:[],
 			btnValue:'充值'
 		}
-		
+		this.postType=this.postType.bind(this);
 	}
 	componentWillMount(){
+		bee.pushUrl();
+		document.title="充值";
 		const PayWaysData=[
-			{
-				img:'../assets/images/recharge/yinlian.png',
-				title:'银联卡支付',
-				describ:'推荐大额订单使用'
-			},
 			{
 				img:'../assets/images/recharge/wechat.png',
 				title:'微信',
-				describ:'推荐安装微信5.0及以上版本用户使用'
+				describ:'推荐安装微信5.0及以上版本用户使用',
+				type:'weixin'
 			}
 
 		];
@@ -32,7 +30,9 @@ class RechargePage extends React.Component{
 			PayWaysData:PayWaysData
 		})
 	}
-	
+	postType(type){
+		console.log(type)
+	}
 	render(){
 		let PayWaysData=this.state.PayWaysData;
 		
@@ -44,10 +44,10 @@ class RechargePage extends React.Component{
 					</div>
 					<div className='rechargeNumContainer'>
 						<p className='rechargeNumTitile'>充值金额</p>
-						<input className='rechargeNumeText' type='text' placeholder='请输入充值金额' />
+						<input className='rechargeNumeText' type='text' placeholder='请输入充值金额' value='' />
 					</div>
 					<div className='rechargePayTitle'>支付方式</div>
-					<PayWays PayWaysData={PayWaysData}/>
+					<PayWays PayWaysData={PayWaysData} postType={this.postType}/>
 					<Button className='rechargeBtn' btnClass='rechargeBtn' content='充值'/>
 				</Container>
 			)

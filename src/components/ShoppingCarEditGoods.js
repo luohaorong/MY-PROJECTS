@@ -4,7 +4,7 @@ import pureRender from 'pure-render-decorator';
 import '../assets/styles/shoppingCarEditGoods.less';
 import noSelect from '../assets/images/shoppingCar/ischeck_false.png';
 import Selected from '../assets/images/shoppingCar/ischeck_true.png';
-import {Container} from 'amazeui-touch';
+import {Container,Notification} from 'amazeui-touch';
 class ShoppingCarEditGoods extends React.Component{
 	constructor(props){
 		super(props);
@@ -15,6 +15,26 @@ class ShoppingCarEditGoods extends React.Component{
 			goods_total:0
 		};
 		this.editClick=this.editClick.bind(this);
+		this.clickHeadle=this.clickHeadle.bind(this);
+		this.closeNotification = this.closeNotification.bind(this);
+	}
+	// 打开对话框
+    openNotification() {
+	    this.setState({
+	      visible: true
+	    });
+    }
+	
+	// 关闭对话框
+	closeNotification() {
+	    // 判断是否需要清除定时器
+	    if(this.state.timeId){
+	    	clearTimeout(this.state.timeId);
+	    }
+	    this.setState({
+	      visible: false,
+	      timeId : null
+	    })
 	}
 	componentWillReceiveProps(nextProps){
 		this.setState({
@@ -26,10 +46,34 @@ class ShoppingCarEditGoods extends React.Component{
 	editClick(){
 		this.state.isEdit?this.setState({isEdit:false}):this.setState({isEdit:true})
 	}
+	clickHeadle(){
+		if(this.props.isJump){
+			this.context.router.push('/ConfirmOrderPage'); // 手动路由
+		}else{
+				// 如果失败，提示！！
+				this.openNotification();
+				//  callback
+				var timeId = setTimeout(this.closeNotification,3000);
+				this.setState({
+					timeId : timeId,
+					promptError:'您还没有选择任何商品'
+				});
+				return;
+		}
+	}
 	render(){
 		let bottom = this.props.bottom||false;
 		return(
 			<Container>
+				<Notification
+				      title="荟酒国际提示"
+			          amStyle='alert'
+			          visible={this.state.visible}
+			          animated
+			          onDismiss={this.closeNotification}
+			        >
+				         {this.state.promptError}
+			    </Notification>
 				{
 					bottom?(<div className='editGoodsWrap bottomStyle'>
 					<div className='bottomSelect'>
@@ -58,9 +102,9 @@ class ShoppingCarEditGoods extends React.Component{
 							</span>
 						</p>
 					</div>
-					<Link className='bottomBtn' to='/ConfirmOrderPage'>
+					<p className='bottomBtn' onClick={this.clickHeadle}>
 						结算
-					</Link>
+					</p>
 				</div>):(<div className='editGoodsWrap topGoodsWrap'>
 					<div>
 						<p onClick={this.props.onClick}>
@@ -89,4 +133,8 @@ class ShoppingCarEditGoods extends React.Component{
 		)
 	}
 }
+// 静态属性
+ShoppingCarEditGoods.contextTypes = {
+    router: React.PropTypes.object.isRequired // 向模块组件中，注入路由
+};
 export default pureRender(ShoppingCarEditGoods);

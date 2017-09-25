@@ -3,14 +3,18 @@ import {render} from 'react-dom';
 import {
   Router,
   Route,
-  hashHistory,
+  browserHistory,
   IndexRedirect
 } from 'react-router';
+import bee from '../components/Common';//引入common.js
 // Pages
 import AllRoute from './AllRoute';//带有下导航的页面都在APP路由下
 import App from './App';//带有下导航的页面都在APP路由下
+import JumpPage from './JumpPage';//引入jump页面
 import LoginPage from './LoginPage';//登录页面
+import GuidePage from './GuidePage';//引导页
 import BindAccountPage from './BindAccountPage';//绑定页面入口
+import RegistrationPortalPage from './RegistrationPortalPage';//注册类型选择
 import RegisterCompanyAccountPage from './RegisterCompanyAccountPage';//注册入口页面
 import RegisterAgencyPage from './RegisterAgencyPage';//经销商注册
 import RegisterCompanyPage from './RegisterCompanyPage';//公司注册
@@ -33,16 +37,23 @@ import RechargePage from './RechargePage';//充值
 import RechargeRecordPage from './RechargeRecordPage';//充值记录
 import AddressAdminPage from './AddressAdminPage';//地址管理
 import AddDeliveryPage from './AddDeliveryPage';//新增收货地址
+import AddMainPage from './AddMainPage';//新增主营地区
 import ProductListPage from './ProductListPage';//商品列表
 import ConfirmOrderPage from './ConfirmOrderPage';//确认订单
+import MyOrdersPage from './MyOrdersPage';//我的订单
+import PayPage from './PayPage';//我的订单
+import SearchPage from './SearchPage';//搜索页面
+import SearchResultPage from './SearchResultPage';//搜索结果页面
 // withRouter HoC
 // @see https://github.com/reactjs/react-router/blob/0616f6e14337f68d3ce9f758aa73f83a255d6db3/upgrade-guides/v2.4.0.md#v240-upgrade-guide
 // <IndexRedirect to='/login' />
-
 const routes=(
 				<Route path="/" component={AllRoute}>
+					<Route path="/JumpPage" component={JumpPage}/>
 			    <Route path="/LoginPage" component={LoginPage}/>
+			    <Route path="/GuidePage" component={GuidePage}/>
 			    <Route path="/BindAccountPage" component={BindAccountPage}/>
+			    <Route path="/RegistrationPortalPage" component={RegistrationPortalPage}/>
 			    <Route path="/RegisterAgencyPage" component={RegisterAgencyPage}/>
 			    <Route path="/RegisterCompanyAccountPage" component={RegisterCompanyAccountPage}/>
 			    <Route path="/RegisterCompanyPage" component={RegisterCompanyPage}/>
@@ -59,10 +70,15 @@ const routes=(
 			    <Route path='/RechargeRecordPage' component={RechargeRecordPage}/>
 		    	<Route path='/AddressAdminPage' component={AddressAdminPage}/>
 		    	<Route path='/AddDeliveryPage' component={AddDeliveryPage}/>
+		    	<Route path='/AddMainPage' component={AddMainPage}/>
 		    	<Route path="/ServiceCenterPage" component={ServiceCenterPage}/>
 		    	<Route path="/ProductListPage" component={ProductListPage}/>
 		    	<Route path="/ConfirmOrderPage" component={ConfirmOrderPage}/>
 		    	<Route path="/TransitionPage" component={TransitionPage}/>
+		    	<Route path="/MyOrdersPage" component={MyOrdersPage}/>
+		    	<Route path="/PayPage" component={PayPage}/>
+		    	<Route path="/SearchPage" component={SearchPage}/>
+		    	<Route path="/SearchResultPage" component={SearchResultPage}/>
 		    	<IndexRedirect to='/index'/>
 			    <Route path="/index" component={App}>
 			    	<IndexRedirect to='/index/HomePage'/>
@@ -73,4 +89,4 @@ const routes=(
 		    	</Route>
 			 	</Route>
 )
- render(<Router routes={routes} history={hashHistory}/>, document.getElementById('app'));
+ render(<Router routes={routes} history={browserHistory}/>, document.getElementById('app'));

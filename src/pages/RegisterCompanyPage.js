@@ -30,11 +30,6 @@ class RegisterCompanyPage extends React.Component{
 	getValue(key){
 		return this.refs[key].getValue();
 	}
-	componentWillMount(){
-		if(bee.cache('token')){
-			this.context.router.push('/index/HomePage');
-      	}
-	}
 	getCountyUuid(dataKey){
 		this.setState({
 			countyUuid:dataKey
@@ -65,9 +60,9 @@ class RegisterCompanyPage extends React.Component{
 		let This=this;//将this存储下来
 		bee.post('/wechat/register',postData, function (data) {
 						if (data.error_code===0) {
-							bee.cache('token',data.data.token);
-							bee.cache('salt',data.data.salt);
-							bee.cache('diffTimestamp', data.data.timestamp - Math.floor(new Date().getTime() / 1000));
+							bee.localCache('token',data.data.token);
+							bee.localCache('salt',data.data.salt);
+							bee.localCache('diffTimestamp', data.data.timestamp - Math.floor(new Date().getTime() / 1000));
 							This.context.router.push('/TransitionPage');
 						}else if(data.error_code === -3){
 								bee.getCode('RegisterCompanyPage');
@@ -87,6 +82,7 @@ class RegisterCompanyPage extends React.Component{
 		
 	}
 	componentDidMount(){
+		bee.pushUrl();
 		document.title = '用户注册';
 		if(bee.getQueryString('code')){
 			let postData=sessionStorage.getItem('angencyData');
@@ -104,38 +100,26 @@ class RegisterCompanyPage extends React.Component{
 		let idCartNumber=this.getValue('idCartNumber');
 		let registerEntry=bee.cache('registerEntry');
 			registerEntry=JSON.parse(registerEntry);
-		let code=bee.cache('registerEntry');
+		let code=bee.getQueryString('code')?bee.getQueryString('code'):sessionStorage.getItem('code');//获取code
 		let countyUuid=this.state.countyUuid;
+		let share_code=bee.cache('share_code');
 		let This=this;//将this存储下来
 		let postData={
 				"mobile":registerEntry.mobile,//电话
-				"password":registerEntry.passwordInput,//密码
-				"sms_code":registerEntry.sms_code,//短信验证码
-				"type":'enterprises',//用户注册类型
+				"password":bee.md5(registerEntry.passwordInput),//密码
+				"sms_code":registerEntry.smsCode,//短信验证码
+				"type":'enterprise',//用户注册类型
 				"code":code,//微信code
-				"addressUuid":countyUuid,//三级联动uuid
+				"address_uuid":countyUuid,//三级联动uuid
 				"path_img":prompt,//单位证明图片url
 				"real_name":purchaserName,//采购人姓名
 				"id_card":idCartNumber,//身份证
-				"id_card_img":idCard//采购人身份证图片url
+				"id_card_img":idCard,//采购人身份证图片url
+				"share_code":share_code
 			};
 			bee.cache('angencyData',postData);
 		if(prompt&&idCard&&purchaserName&&countyUuid&&idCartNumber){
-//			console.log(prompt,idCard,companyaddress,purchaserName,userId,email,userPosition)
 			this.registerPostData(postData);
-			// .then(function (response) {
-			//     console.log(response);
-			//   })
-			//   .catch(function (error) {
-			//   	// 如果失败，提示！！
-			// 		This.openNotification();
-			// 		//  callback
-			// 		var timeId = setTimeout(This.closeNotification,3000);
-			// 		This.setState({
-			// 			timeId : timeId,
-			// 			errorContent:error
-			// 		});
-			//   })
 		}else{
 			// 如果失败，提示！！
 			This.openNotification();
@@ -148,13 +132,6 @@ class RegisterCompanyPage extends React.Component{
 				}
 			});
 		}
-	}
-	componentWillUnmount(){
-		this.setState({
-			visible : null,
-			errorContent:null,
-			dataAttr:null
-		})
 	}
 	render(){
 		let middleSub=true;

@@ -5,6 +5,9 @@ import '../assets/styles/aboutUs.less';
 import pureRender from 'pure-render-decorator';
 //定义
 class AboutUsPage extends React.Component{
+	componentDidMount(){
+		bee.pushUrl();
+	}
 	//渲染
 	render(){
 		return(
