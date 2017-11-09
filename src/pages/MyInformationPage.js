@@ -1,8 +1,10 @@
+
 import React from 'react';
 import {Container,Col,Grid,View} from 'amazeui-touch';
 import '../assets/styles/myInformation.less';
 import {Link} from 'react-router';
 import Row from '../components/Row';
+import Bottom from '../components/Bottom';
 import pureRender from 'pure-render-decorator';
 class MyInformationPage extends React.Component{
 	constructor(props){
@@ -11,77 +13,22 @@ class MyInformationPage extends React.Component{
 			data:{},
 			head:{},
 			data1:{},
-			newImg:{},
-			myInContainer:''
+			newImg:[],
+			headImages:'',
+			myInContainer:'',
+			cartsnum:0
 		}
+		this.postState=this.postState.bind(this)
+	}
+	postState(e){
+		let active=e.currentTarget;
+		let state=active.getAttribute('data-state');
+		bee.cache('orders_states',state);
 	}
 	componentWillMount(){
-		const headImages={
-			img:'../assets/images/myinformation/touxiang.png'
-		}
-		
-		const Data1={
-			balance:'￥2000',
-			coup:'4张',
-			gold:'100',
-			point:'5000'
-		};
-		const newImg=[
-			{
-				img:'../assets/images/myinformation/myrecharge.png',
-				tit:'充值'
-			}
-			,{
-				img:'../assets/images/myinformation/myrecharge-cord.png',
-				tit:'充值记录'
-			}
-			,{
-				img:'../assets/images/myinformation/parchase-cord.png',
-				tit:'消费记录'
-			}
-			,{
-				img:'../assets/images/myinformation/my-collection.png',
-				tit:'我的收藏'
-			}
-			,{
-				img:'../assets/images/myinformation/my-dingzhi.png',
-				tit:'我的定制'
-			}
-			,{
-				img:'../assets/images/myinformation/my-oem.png',
-				tit:'我的独家'
-			}
-			,{
-				img:'../assets/images/myinformation/adress.png',
-				tit:'地址管理'
-			}
-			,{
-				img:'../assets/images/myinformation/my-foot.png',
-				tit:'我的足迹'
-			}
-			,{
-				img:'../assets/images/myinformation/service-center.png',
-				tit:'服务中心'
-			}
-			,{
-				img:'../assets/images/myinformation/agree-back.png',
-				tit:'意见反馈'
-			}
-			,{
-				img:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABTCAYAAAAx4jFYAAAAxklEQVR4nO3QQQ3AIADAQMC/Z8DC+iFL7hQ0nfsafLZeB/yVcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXHRAbIVBKJD8frrAAAAAElFTkSuQmCC',
-				tit:""
-			}
-			,{
-				img:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABTCAYAAAAx4jFYAAAAxklEQVR4nO3QQQ3AIADAQMC/Z8DC+iFL7hQ0nfsafLZeB/yVcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXHRAbIVBKJD8frrAAAAAElFTkSuQmCC',
-				tit:""
-			}
-		];
-		
+	const headImages='../assets/images/myinformation/touxiang.png';
 		this.setState({
-			
-			data1:Data1,
-			newImg:newImg,
-			head:headImages
+			headImages:headImages
 		});
 		 var ua = navigator.userAgent.toLowerCase(); 
 		    if(ua.match(/iPad/i)=="ipad") { 
@@ -95,10 +42,96 @@ class MyInformationPage extends React.Component{
 		    } 
 	}
 	componentDidMount(){
+		bee.pushUrl();
+		document.title="个人中心";
 		let This=this;
-		let token=bee.cache('token');
-		bee.post('/wechat/center',{'token':token},function(data) {
-			console.log(data)
+		let newImg1=[
+			{
+				img:'../assets/images/myinformation/myrecharge.png',
+				tit:'充值',
+				hrf:'/RechargePage'
+			}
+			,{
+				img:'../assets/images/myinformation/myrecharge-cord.png',
+				tit:'充值记录',
+				hrf:'/RechargeRecordPage?isRecharge=true'
+
+			}
+			,{
+				img:'../assets/images/myinformation/parchase-cord.png',
+				tit:'消费记录',
+				hrf:'/RechargeRecordPage?isRecharge=false'
+			}
+			,{
+				img:'../assets/images/myinformation/my-collection.png',
+				tit:'我的收藏',
+				hrf:'/MyCollectionPage'
+			}
+			,{
+				img:'../assets/images/myinformation/service-center.png',
+				tit:'服务中心',
+				hrf:'/ServiceCenterPage'
+			}
+			,{
+				img:'../assets/images/myinformation/my-oem.png',
+				tit:'我的独家',
+				hrf:'/MyExclusivePage'
+			}
+			,{
+				img:'../assets/images/myinformation/adress.png',
+				tit:"地址管理",
+				hrf:'/AddressAdminPage'
+			}
+			,{
+				img:'../assets/images/myinformation/share.png',
+				tit:"我的分享",
+				hrf:'/MySharePage'
+			}
+		];
+		let newImg2=[
+			{
+				img:'../assets/images/myinformation/myrecharge.png',
+				tit:'充值',
+				hrf:'/RechargePage'
+			}
+			,{
+				img:'../assets/images/myinformation/myrecharge-cord.png',
+				tit:'充值记录',
+				hrf:'/RechargeRecordPage?isRecharge=true'
+
+			}
+			,{
+				img:'../assets/images/myinformation/parchase-cord.png',
+				tit:'消费记录',
+				hrf:'/RechargeRecordPage?isRecharge=false'
+			}
+			,{
+				img:'../assets/images/myinformation/my-collection.png',
+				tit:'我的收藏',
+				hrf:'/MyCollectionPage'
+			}
+			,{
+				img:'../assets/images/myinformation/service-center.png',
+				tit:'服务中心',
+				hrf:'/ServiceCenterPage'
+			}
+			,{
+				img:'../assets/images/myinformation/adress.png',
+				tit:"地址管理",
+				hrf:'/AddressAdminPage'
+			}
+			,{
+				img:'../assets/images/myinformation/share.png',
+				tit:"我的分享",
+				hrf:'/MySharePage'
+			}
+			,{
+				img:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABTCAYAAAAx4jFYAAAAxklEQVR4nO3QQQ3AIADAQMC/Z8DC+iFL7hQ0nfsafLZeB/yVcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXGRcZFxkXHRAbIVBKJD8frrAAAAAElFTkSuQmCC',
+				tit:"",
+				hrf:''
+			}
+		];
+		bee.post('/wechat/center',{},function(data) {
 			if(data.error_code) {
 				alert(data.info);
 				return;
@@ -106,26 +139,39 @@ class MyInformationPage extends React.Component{
 				This.setState({
 					data:data.data
 				})
+				if(data.data.type=='agency'){
+					This.setState({
+						newImg:newImg1
+					})
+				}else{
+					This.setState({
+						newImg:newImg2
+					})
+				}
+				bee.cache('user_type',data.data.type);
 			}
 		},true);
+		let token=localStorage.getItem('token');
+		if (token) {
+		    bee.post('/wechat/carts/count',{},function(data){
+		      if (data.error_code==0) {
+		      		This.setState({
+		      			cartsnum:+data.data.count
+		      		})
+		      }
+		    },true);
+		};
 	}
 	render(){
-		const Data={
-				title:'用户名',
-				num:'18349141210'
-			};
-		let headImages=this.state.head;
 		let sData1=this.state.data1;
 		let newImg=this.state.newImg;
-		
 		return(
 			<View>
 			<Container scrollable={true}>
 				<div className='myInformationTop'>
-					
 					<div className='myHead'>
-						<Link to='/'>
-							<img className='myHeadImg' src={this.state.data.avatar}/>
+						<Link to='/AccountInformationPage'>
+							<img className='myHeadImg' src={this.state.data.avatar!==''?this.state.data.avatar:this.state.headImages}/>
 						</Link>
 					</div>
 					<p className='myHeadText'>
@@ -136,32 +182,32 @@ class MyInformationPage extends React.Component{
 					</Link>
 				</div>
 				<div className='myOrders'>
-					<div className='myOrdersTop'>
+					<Link className='myOrdersTop' to='/MyOrdersPage' onClick={this.postState} data-state="">
 						<span className='myOrdersTopText'>我的订单</span>
-						<Link className='myOrdersTopTo' to='/'>
+						<span className='myOrdersTopTo'>
 							查看全部订单
-						</Link>
-					</div>
+						</span>
+					</Link>
 					<Grid className='myOrdersTopContainer' avg={4}>
 						<Col className='myOrdersCol' style={this.props.bgImage}>
-			            	<Link className='ordersTitle  waitPayImage'to='/index/HomePage'>
-								<div className='ordersNum'>1</div>
+			            	<Link className='ordersTitle  waitPayImage' onClick={this.postState} to='/MyOrdersPage' data-state="not_payed">
+								<div className={this.state.data.not_pay_count===0?'ordersNum2':'ordersNum1'}>{this.state.data.not_pay_count}</div>
 				            	<p>待付款</p>
 		            		</Link>
 			            </Col>
 			            <Col className='myOrdersCol' style={this.props.bgImage}>
-			            	<Link className='ordersTitle  waitShouImage' to='/index/ProductDtailPage'>
-				            	<div className='ordersNum'>1</div>
+			            	<Link className='ordersTitle  waitShouImage' to='/MyOrdersPage' onClick={this.postState} data-state="not_receive">
+				            	<div className={this.state.data.not_receive===0?'ordersNum2':'ordersNum1'}>{this.state.data.not_receive}</div>
 				            	<p>待收货</p>
 		            		</Link>
 			            </Col>
 			            <Col className='myOrdersCol' style={this.props.bgImage}>
-			            	<Link className='ordersTitle alreadyImage' to='/index/AboutUsPage'>
+			            	<Link className='ordersTitle alreadyImage' to='/MyOrdersPage' onClick={this.postState} data-state="finish">
 				            	<p>已完成</p>
 		            		</Link>
 			            </Col>
 			            <Col className='myOrdersCol' style={this.props.bgImage}>
-			            	<Link className='ordersTitle  noSuccessImage' to='/index/ServiceCenterPage'>
+			            	<Link className='ordersTitle  noSuccessImage' to='/MyOrdersPage' onClick={this.postState} data-state="cancel">
 				            	<p>未成功</p>
 		            		</Link>
 			            </Col>
@@ -173,25 +219,24 @@ class MyInformationPage extends React.Component{
 					</div>
 					<Grid className='myMoney' avg={2}>
 						<Col className='myMoneyCol'>
-							<Link className='myMoneyColTo myMoneyBalance' to='/'>
+							<Link className='myMoneyColTo myMoneyBalance' to='/MyBalancePage'>
 								<span className='myMoneyCommon'>余额</span>
-								<span className='myMoneyContent'>￥{this.state.data.balance}</span>
+								<span className='myMoneyContent'>￥{bee.currency(this.state.data.balance)}</span>
 							</Link>
 						</Col>
 						<Col className='myMoneyCol'>
-							<Link className='myMoneyColTo myMoneyCoup' to='/index/MyInformationPage'>
-								<span className='myMoneyCommon'>样品券</span>
-								<span className='myMoneyContent'>0张</span>
+							<Link className='myMoneyColTo myMoneyCoup' to='/CardNavPage'>
+								<span className='myMoneyCommon'>卡券</span>
 							</Link>
 						</Col>
 						<Col className='myMoneyCol'>
-							<Link className='myMoneyColTo myMoneyGold' to='/index/AboutUsPage'>
+							<Link className='myMoneyColTo myMoneyGold' to='/GoldCornPage'>
 								<span className='myMoneyCommon'>金币</span>
 								<span className='myMoneyContent'>{this.state.data.corns}</span>
 							</Link>
 						</Col>
 						<Col className='myMoneyCol'>
-							<Link className='myMoneyColTo myMoneyPoint' to='/index/ServiceCenterPage'>
+							<Link className='myMoneyColTo myMoneyPoint' to='/GoldPointPage'>
 								<span className='myMoneyCommon myMoneySpecail'>积分</span>
 								<span className='myMoneyContent'>{this.state.data.points}</span>
 							</Link>
@@ -203,7 +248,7 @@ class MyInformationPage extends React.Component{
 				<div className={this.state.myInContainer}></div>
 				<div style={{height:'3.5rem'}}></div>
 			</Container>
-
+			<Bottom cartsnum={this.state.cartsnum}/>
 			</View>
 			
 			

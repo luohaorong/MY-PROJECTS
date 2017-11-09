@@ -15,6 +15,14 @@ class FileInput extends React.Component {
 	this.changeHandler=this.changeHandler.bind(this);
 	this.getValue=this.getValue.bind(this);
 	}
+	componentDidMount(){
+		let u = navigator.userAgent;
+		if(u.indexOf('android')>-1){
+		 document.querySelector('.fileInput').setAttribute('capture','camera');
+		}else if(u.indexOf('iPhone')>-1){         
+		  document.querySelector('.fileInput').removeAttribute('capture');
+		}
+	}
 	getValue(){
 		if(this.state.pass==='yes'){
 			return this.state.dataUrl
@@ -55,12 +63,10 @@ class FileInput extends React.Component {
 					},
 					pass:'yes'
 		        })
-		        Axios.post('http://admin.weifanyun.com/upload/register',param)
+		        Axios.post(bee.link.uploadImg+'/register',param)
 				.then(function (response) {
-				   	active.setAttribute('data-url',response.data.files[0].url)
-				   	let dataUrl=active.getAttribute('data-url');
 				   	that.setState({
-				   		dataUrl:dataUrl,
+				   		dataUrl:response.data.files[0].url,
 				   		describe:'图片上传完成',
 						describeCss:{
 							color:'#999999'

@@ -34,6 +34,9 @@ class LoginPhonePage extends React.Component {
 		this.clickHandler=this.clickHandler.bind(this);
 		this.closeNotification = this.closeNotification.bind(this);
 	}
+	componentDidMount(){
+		bee.pushUrl();
+	}
 	//获取组件的值
 	getValue(key){
 		return this.refs[key].getValue();
@@ -67,7 +70,6 @@ class LoginPhonePage extends React.Component {
 		let phone=this.getValue('phone');
 		let verification=this.getValue('verification');
 		let This=this;
-		console.log(phone,verification)
 		if(phone&&verification){
 			this.context.router.push('/index'); // 手动路由
 			Axios.post('/register',{

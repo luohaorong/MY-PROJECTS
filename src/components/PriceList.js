@@ -26,6 +26,8 @@ class PriceList extends React.Component{
 		}
 	clickHandler(event){
 		let active=event.currentTarget;//绑定事件的元素   而target是触发事件的元素
+		let priceUuid=active.getAttribute('data-uuid');
+		this.props.getPriceUuid(priceUuid);
 		active.style.border='0.07rem solid #9e1b1b';
 		let parentElement=active.parentNode;
 		this.siblings(parentElement).map(function(item,i){
@@ -34,17 +36,23 @@ class PriceList extends React.Component{
 	}
 	render(){
 		const priceListData=this.props.priceListData;
+		let dataPrice=priceListData.price;
+		let dataDescrib=priceListData.attribute_labels;
 		const ListData=(
 			<div className="swiper-container priceListContainer">
 				<div className="swiper-wrapper">
 					    {
-					    	priceListData.map(function(item,i,arr){
+					    	JSON.stringify(priceListData)!=='{}'&&priceListData.value.map(function(item,i){
 					    		return(
 					    			<div key={i} className='swiper-slide'>
-						    			<div className='priceListWrap' onClick={this.clickHandler}>
-							            	<p className='listOrigin'>{item.origin}</p>
-							            	<p className='listPrice'>{item.price}</p>
-							            	<p className='listType'>{item.type}</p>
+						    			<div className='priceListWrap' onClick={this.clickHandler} data-uuid={item.uuid}>
+							            	<p className='listOrigin'>{item.name}</p>
+							            	<p className='listPrice'>{dataPrice.map(function(j,k){
+							            		if(i===k){return '￥'+bee.currency(j)}
+							            	})}</p>
+							            	<p className='listType'>{dataDescrib.map(function(n,m){
+							            		if (i===m) {return n}
+							            	})}</p>
 					            		</div>
 					    			</div>
 								)

@@ -1,0 +1,53 @@
+@import 'base';
+.attrGroup{
+    margin: 0;
+    .group-header{
+        color: #333333;
+        font-size: 1.2rem;
+    }
+    .attrItem{
+        color: #333333;
+        font-size: 0.9rem;
+        border: @borderInterval;
+        border-radius: 2rem;
+        text-align: center;
+        margin-left: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding: 0.3rem 0.6rem;
+    }
+    .activeItem{
+        background-color: #9e1b1b;
+        color: #FFFFFF;
+    }
+        
+    
+}
+.bottomBtm{
+    width: 16.875rem;
+    height: 3rem;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    .btnContainer{
+        width: 100%;
+        height: auto;
+        display: flex;
+        .btnFilter{
+            flex: 1;
+            font-size: 1.125rem;
+            color: #FFFFFF;
+            text-align: center;
+            height: 3rem;
+            line-height: 3rem;
+        }
+        .btnLeft{
+            background-color: #f69812;
+        }
+        .btnRight{
+            background-color: #9e1b1b;
+        }
+    }
+}
+    
+

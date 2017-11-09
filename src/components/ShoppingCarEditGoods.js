@@ -4,23 +4,80 @@ import pureRender from 'pure-render-decorator';
 import '../assets/styles/shoppingCarEditGoods.less';
 import noSelect from '../assets/images/shoppingCar/ischeck_false.png';
 import Selected from '../assets/images/shoppingCar/ischeck_true.png';
-import {Container} from 'amazeui-touch';
+import {Container,Notification} from 'amazeui-touch';
 class ShoppingCarEditGoods extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			isEdit:false
-			
+			isEdit:false,
+			price_amount:0,
+			goods_amount:0,
+			goods_total:0
 		};
 		this.editClick=this.editClick.bind(this);
+		this.clickHeadle=this.clickHeadle.bind(this);
+		this.closeNotification = this.closeNotification.bind(this);
+	}
+	// 打开对话框
+    openNotification() {
+	    this.setState({
+	      visible: true
+	    });
+    }
+	
+	// 关闭对话框
+	closeNotification() {
+	    // 判断是否需要清除定时器
+	    if(this.state.timeId){
+	    	clearTimeout(this.state.timeId);
+	    }
+	    this.setState({
+	      visible: false,
+	      timeId : null
+	    })
+	}
+	componentWillReceiveProps(nextProps){
+		this.setState({
+			price_amount:+nextProps.price_amount,
+			goods_amount:+nextProps.goods_amount,
+			goods_total:+nextProps.goods_total
+		})
 	}
 	editClick(){
 		this.state.isEdit?this.setState({isEdit:false}):this.setState({isEdit:true})
+	}
+	clickHeadle(){
+		let This = this;
+		bee.post('/wechat/carts/check',{},function(data){
+			if (data.error_code===0&&This.props.isJump) {
+				This.context.router.push('/ConfirmOrderPage'); // 手动路由
+			}else{
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
+				This.setState({
+					timeId : timeId,
+					promptError:data.msg
+				});
+				return;
+			}
+		},true)
+		
 	}
 	render(){
 		let bottom = this.props.bottom||false;
 		return(
 			<Container>
+				<Notification
+				      title="荟酒国际提示"
+			          amStyle='alert'
+			          visible={this.state.visible}
+			          animated
+			          onDismiss={this.closeNotification}
+			        >
+				         {this.state.promptError}
+			    </Notification>
 				{
 					bottom?(<div className='editGoodsWrap bottomStyle'>
 					<div className='bottomSelect'>
@@ -37,21 +94,21 @@ class ShoppingCarEditGoods extends React.Component{
 								合计：
 							</span>
 							<span>
-								￥2542.00
+								￥{bee.currency(this.state.price_amount)}
 							</span>
 						</p>
 						<p className='bottomBox'>
 							<span>
-								共30箱
+								共{this.state.goods_amount}箱
 							</span>
 							<span>
-								（60瓶/箱）
+								（{this.state.goods_total}瓶(支)）
 							</span>
 						</p>
 					</div>
-					<Link className='bottomBtn'>
+					<p className='bottomBtn' onClick={this.clickHeadle}>
 						结算
-					</Link>
+					</p>
 				</div>):(<div className='editGoodsWrap topGoodsWrap'>
 					<div>
 						<p onClick={this.props.onClick}>
@@ -80,4 +137,8 @@ class ShoppingCarEditGoods extends React.Component{
 		)
 	}
 }
+// 静态属性
+ShoppingCarEditGoods.contextTypes = {
+    router: React.PropTypes.object.isRequired // 向模块组件中，注入路由
+};
 export default pureRender(ShoppingCarEditGoods);

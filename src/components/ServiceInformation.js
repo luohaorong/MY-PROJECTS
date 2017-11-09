@@ -6,11 +6,11 @@ class ServiceInformation extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			borderStyle:{}
-			
+			borderStyle:{},
+			content:''
 		}
 	}
-	componentWillMount(){
+	componentDidMount(){
 		let noBorder=this.props.noBorder||false;
 		if(noBorder){
 			this.setState({
@@ -19,6 +19,11 @@ class ServiceInformation extends React.Component{
 				}
 			})
 		}
+	}
+	componentWillReceiveProps(nextProps){
+		this.setState({
+			content:nextProps.content
+		});
 	}
 	render(){
 		return(

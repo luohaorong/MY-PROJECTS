@@ -1,0 +1,49 @@
+@import 'base';
+.orderGoodsContainer{
+    width: 100%;
+    min-height: 7.375rem;
+    padding-left: 2%;
+    border-bottom: @borderInterval;
+    display: table;
+    .orderGoodsImgWrap{
+        width: 30%;
+        height: 7.375rem;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+        .orderGoodsImg{
+            width: 4.375rem;
+            height: 6.25rem;
+        }
+    }
+    .orderGoodsDescribe{
+        width: 70%;
+        height: 100%;
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 0.875rem;
+        color: @fontColor9;
+        .title{
+            color: @titleColor;
+        }
+        .priceBottle{
+            color: @fontColor9;
+            .price{
+                display: inline-block;
+                font-size: 0.9375rem;
+                width: 50%;
+                color: #9e1b1b;
+            }
+            .bottleNum{
+                display: inline-block;
+                width: 48%;
+                text-align: right;
+                padding-right: 2%;
+            }
+        }
+        .type{
+            font-size: 0.75rem;
+            color: @fontColor9;
+        }
+    }
+}

@@ -8,6 +8,7 @@ class RegisterInput extends React.Component {
 			redBorder:{},
 			inputStyle:{},
 			valText:this.props.vText,
+			showState:true,
 			pass:'no'
 		}
 	this.changeHandler=this.changeHandler.bind(this);
@@ -18,17 +19,28 @@ class RegisterInput extends React.Component {
 	componentDidMount(){
 		//以下代码用于向父组件传值      这里要注意：setState 是一个异步方法，所以需要操作缓存的当前值
     	let content=this.refs['inp'].value;
-		!!("callbackParent" in this.props)&&this.props.callbackParent(content);
+		!!this.props.callbackParent&&this.props.callbackParent(content);
+		!!this.props.getV&&this.props.getV(content);
+		this.props.show==false?this.setState({
+			showState:false
+		}):this.setState({
+			showState:true
+		});
+		this.setState({
+			value:this.props.showFirst
+		})
+		
 	}
 	getValue(){
 		if(this.state.pass==='yes'){
-			return this.state.value;
+			return this.state.value.replace(/\s+/g,'');
 		}
 	}
 	inpKeyUp(){
 		//以下代码用于向父组件传值      这里要注意：setState 是一个异步方法，所以需要操作缓存的当前值
-    	let content=this.state.value;
-		!!("callbackParent" in this.props)&&this.props.callbackParent(content);
+    	let content=this.state.value.replace(/\s+/g,'');
+		!!this.props.callbackParent&&this.props.callbackParent(content);
+		!!this.props.getV&&this.props.getV(content);
 	}
 	inpBlur(){
 		let checkphone = /^1[34578]\d{9}$/;
@@ -54,13 +66,14 @@ class RegisterInput extends React.Component {
 		          valText:this.props.vText
 		        });
 	      	}else{
-	      		this.setState({
-		          inputStyle:{
-		            backgroundColor:'transparent',
-		            textAlign:'right'
-		          },
-		          valText:this.props.vText
-		        });
+		      		this.setState({
+			          inputStyle:{
+			            backgroundColor:'transparent',
+			            textAlign:'right'
+			          },
+			          valText:this.props.vText
+			        });
+	      		
 	      	}
 	      }else{
 	        this.setState({
@@ -107,12 +120,12 @@ class RegisterInput extends React.Component {
 			        });
 		      	}
 		      }else{
-		    	this.setState({
-		          redBorder:{
-		            borderBottom:'1px solid #999999'
-		          },
-		          pass:'yes'
-		        });
+			    	this.setState({
+			          redBorder:{
+			            borderBottom:'1px solid #999999'
+			          },
+			          pass:'yes'
+			        });
 		    	}
 		    }
 		    if (inName=='age') {
@@ -192,23 +205,31 @@ class RegisterInput extends React.Component {
 		        });
 		    }
 		    }
+		    if(inName=='picture'){
+		    	this.setState({
+		          pass:'yes'
+		        });
+		        
+		    }
 	      }
 	}
 	inpFocus(){
-		this.setState({
-	          valText:'',
-	          inputStyle:{
-	            outline: 'none',
-	            backgroundColor: 'transparent',
-	            textIndent: '1rem',
-	            color: '#333333',
-	            textAlign:'left'
-	          }
-	        });
+		if(bee.getQueryString('edit')!=='true'){
+			this.setState({
+		          valText:'',
+		          inputStyle:{
+		            outline: 'none',
+		            backgroundColor: 'transparent',
+		            textIndent: '1rem',
+		            color: '#333333',
+		            textAlign:'left'
+		          }
+		        });
+		}
 	}
 	changeHandler(event){
 		// 获取输入框的新内容
-		let content = event.target.value;
+		let content = event.target.value.replace(/\s+/g,'');
 		this.setState({
 			value:content
 		});
@@ -219,13 +240,15 @@ class RegisterInput extends React.Component {
 	    let inputName = this.props.name;
 	    let inputStyle=this.props.inputStyle||this.state.inputStyle;
 	    let bgImgStyle=this.props.bgImgStyle||{};
-	    
 		return(
-			<div className='inputContainer' style={this.state.redBorder}>
-				<span className='promptText' style={bgImgStyle}>
+			<div className='inputContainer' style={this.state.showState==true?this.state.redBorder:this.props.inputWraperStyle}>
+				{
+					this.state.showState==true?(<span className='promptText' style={bgImgStyle}>
 					{this.props.promptText}
-				</span>
-				<input onClick={this.props.onClick} readOnly={this.props.readOnly||''} style={inputStyle}  type={inputType} data-pass={this.state.pass} name={inputName} className='registerInput' value={this.state.value} onKeyUp={this.inpKeyUp} onBlur={this.inpBlur} onFocus={this.inpFocus} onChange={this.changeHandler} placeholder ={this.state.valText} ref='inp' />
+				</span>):''
+				}
+				
+				<input onClick={this.props.onClick} disabled = {this.props.disabled || ''} readOnly={this.props.readOnly||''} style={inputStyle}  type={inputType} data-pass={this.state.pass} name={inputName} className='registerInput' value={this.state.value} onKeyUp={this.inpKeyUp} onBlur={this.inpBlur} onFocus={this.inpFocus} onChange={this.changeHandler} placeholder ={this.state.valText} ref='inp' />
 			</div>
 		)
 	}

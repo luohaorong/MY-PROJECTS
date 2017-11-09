@@ -10,6 +10,7 @@ import HomeDoc from '../components/HomeDoc';
 import HomeHotProduct from '../components/HomeHotProduct';
 import List from '../components/List';
 import {uniqueId} from '../components/Nnique';
+import PropTypes from 'prop-types';
 import hotProductImg from '../assets/images/home/hot_product.png';
 import {
 	Container,
@@ -20,6 +21,7 @@ import {
 	Notification
 } from 'amazeui-touch';
 import '../assets/styles/homePage.less';
+import Bottom from '../components/Bottom';
 import pureRender from 'pure-render-decorator';
 // 定义
 class HomePage extends React.Component{
@@ -30,14 +32,23 @@ class HomePage extends React.Component{
     	slideImg:[],
     	importListImg:{},
     	floors:[],
-    	productListData:[],
+    	ListData:[],
     	bannerImg:[],
     	errorSrc:'',
-    	classN:''
+    	classN:'',
+    	isShow:false,
+    	page:2,
+		count:2,
+		noData:'preLoad',
+		noListData:false,
+		isError:true,
+		cartsnum:0
     }
 	this.closeNotification = this.closeNotification.bind(this);
 	this.errorLoad=this.errorLoad.bind(this);
 	this.loadHeadle=this.loadHeadle.bind(this);
+	this.scrollHeadle=this.scrollHeadle.bind(this);
+	this.isGetData=this.isGetData.bind(this);
  }
 	// 打开对话框
     openNotification() {
@@ -57,12 +68,17 @@ class HomePage extends React.Component{
 	      timeId : null
 	    })
 	}
+	componentWillMount(){
+		bee.addUnloadImg();
+	}
 	componentDidMount(){
+		bee.pushUrl();
+		let This=this;
 		document.title = '首页';
 		sessionStorage.removeItem('bindData');
 		sessionStorage.removeItem('code');
-		let This=this;
 		bee.post('/wechat/index',{},function(data){
+			setTimeout(function(){bee.removeImg()},1000);
 			if(data.error_code){
 				let Error=data.msg;
 				// 如果失败，提示！！
@@ -76,22 +92,97 @@ class HomePage extends React.Component{
 				return;
 			}else{
 				let getPost=data.data;
+				if(data.data.length===0){
+					This.setState({
+						noListData:true
+					})
+				}
 				This.setState({
 					slideImg:getPost.top,//轮播图数据
 					importListImg:getPost.imports,//进口馆数据
-					productListData:getPost.goods,//热销产品数据
+					ListData:getPost.goods,//热销产品数据
 					floors:getPost.floors,//各楼层数据
 					bannerImg:getPost.middle//中间广告banner图
 				})
 			}
 		},true);
-
+		let token=localStorage.getItem('token');
+		if (token) {
+		    bee.post('/wechat/carts/count',{},function(data){
+		      if (data.error_code==0) {
+		      		This.setState({
+		      			cartsnum:+data.data.count
+		      		})
+		      }
+		    },true);
+		};
+	}
+	isGetData(data){
+		if(data){
+			this.getListData()
+		};
+	}
+	//加载商品列表
+	getListData(){
+		let This=this;
+		let page=this.state.page;//第几页
+		let count=this.state.count;//每成功获取一次数据page加1
+		this.setState({
+				noData:'loading'
+			});
+		bee.post('/wechat/index/goods',{
+				page:page,
+				size:10
+			},function(data){
+				if(data.error_code===0){
+					let getPost=data.data;
+					if(getPost.length){
+						let tmp=This.state.ListData;
+						getPost.map(function(item){
+							tmp.push(item);
+						});
+						This.setState({
+							ListData:tmp,
+							noData:'preLoad'
+						});
+						
+					}else{
+						This.setState({
+							noData:'onData'
+						});
+					}
+					count++;
+					This.setState({
+						page:count,
+						count:count,
+						isError:true
+					})
+				}
+			},true);
+	}
+	//搜索框效果
+	scrollHeadle(){
+		let seach=document.querySelector('.seach');
+		let scrollWrapper=document.querySelector('.scrollWrapper');
+		if(seach.offsetTop<=scrollWrapper.scrollTop){
+			this.setState({
+				isShow:true
+			})
+		}else{
+			this.setState({
+				isShow:false
+			})
+		}
+		
+		
 	}
 	//图片加载出错时执行
-	errorLoad(){
+	errorLoad(e){
+		let active=e.currentTarget;
+		active.src='../assets/images/unload.png';
+		active.setAttribute('class','errorLoad');
 		this.setState({
-			errorSrc:'../assets/images/unload.png',
-			classN:'errorLoad'
+			isError:false
 		})
 		
 		
@@ -101,11 +192,10 @@ class HomePage extends React.Component{
 		let active=e.currentTarget;
 		let comp=active.complete;
 		let dataSrc=active.getAttribute('data-src');
-		this.refs['imgNode'].className='errorLoad';
-		if(comp){
-			this.refs['imgNode'].className=''
+		if(comp&&this.state.isError){
 			active.src=dataSrc;
 		}
+		
 	}
 	// 渲染
 	render(){
@@ -119,7 +209,7 @@ class HomePage extends React.Component{
 					          key={i}
 					        >
 					        <Link to={'/ProductDtailPage?uuid='+item.uuid} data-uuid={item.uuid}>
-					          <img onError={this.errorLoad} className={this.state.classN} data-src={bee.image(item.image,750,376)} src={this.state.errorSrc||bee.image(item.image,750,376)}/>
+					          <img onError={this.errorLoad} data-src={bee.image(item.image,750,376)} src={bee.image(item.image,750,376)}/>
 					        </Link>
 					        </Slider.Item>
 					      );
@@ -128,20 +218,20 @@ class HomePage extends React.Component{
 					);
 
 		const featureImg=[
-					  {
-					    img: '../assets/images/home/oem.png'
-					    ,content:'定制'
-					    ,URL:'/ProductListPage?uuid=oem&title=葡萄酒'
-					  },
-					  {
-					    img: '../assets/images/home/refined.png'
-					    ,content:'精品酒'
-					    ,URL:'/ProductListPage?uuid=jingpin&title=葡萄酒'
+					  {	
+					    img: '../assets/images/home/new.png'
+					    ,content:'新品'
+					    ,URL:'/ProductListPage?uuid=putao&title=葡萄酒&latest=true'
 					  },
 					  {
 					    img: '../assets/images/home/spot.png'
-					    ,content:'葡萄酒'
+					    ,content:'现货'
 					    ,URL:'/ProductListPage?uuid=putao&title=葡萄酒'
+					  },
+					  {
+					    img: '../assets/images/home/presell.png'
+					    ,content:'预售'
+					    ,URL:'/ProductListPage?uuid=pre_sale&title=葡萄酒'
 					  },
 					  {
 					    img: '../assets/images/home/win.png'
@@ -149,14 +239,9 @@ class HomePage extends React.Component{
 					    ,URL:'/ProductListPage?honor=true&title=葡萄酒'
 					  },
 					  {
-					    img: '../assets/images/home/new.png'
-					    ,content:'新品'
-					    ,URL:'/ProductListPage?uuid=putao&title=葡萄酒&latest=true'
-					  },
-					  {
-					    img: '../assets/images/home/presell.png'
-					    ,content:'预售'
-					    ,URL:'/ProductListPage?uuid=pre_sale&title=葡萄酒'
+					    img: '../assets/images/home/refined.png'
+					    ,content:'精品酒'
+					    ,URL:'/BoutiquePage'
 					  },
 					  {
 					    img: '../assets/images/home/one.png'
@@ -167,7 +252,14 @@ class HomePage extends React.Component{
 					    img: '../assets/images/home/container.png'
 					    ,content:'酒饰品'
 					    ,URL:'/ProductListPage?uuid=jiushipin&title=酒饰品'
+					  },
+					  {
+					    img: '../assets/images/home/oem.png'
+					    ,content:'定制'
+					    ,URL:'/OemDescribPage'
 					  }
+
+					  
 					];
 
 		//国际进口馆楼层第一行列表图片数据
@@ -191,7 +283,7 @@ class HomePage extends React.Component{
 			}
 		})
 		//热销商品数据
-		const productListData=this.state.productListData;
+		let productListData=this.state.ListData;
 		let bgImage={
 			backgroundImage:'url('+bgImage+')'
 		}
@@ -206,13 +298,21 @@ class HomePage extends React.Component{
 			        >
 				         {this.state.promptError}
 			        </Notification>
-				<Container scrollable={true}>
-					<LazyLoad offsetVertical={200}>
+			        <div className='seachWrp isShow' style={this.state.isShow?{opacity:'1'}:{opacity:'0'}}>
+			        	<Link className="topSeach" to='/SearchPage'>
+							<img src="/assets/images/home/search_home_full.png"/>
+						</Link>
+			        </div>
+				<Container className='scrollWrapper' onScroll={this.scrollHeadle} scrollable={true}>
+					<section className="lunbo">
+						<div>
 						{sliderCaption}
-			        </LazyLoad>
-			        <LazyLoad offsetVertical={200}>
-						<List featureImg={featureImg} avg={4}/>
-					</LazyLoad>
+						<Link className="seach isShow" to='/SearchPage' style={this.state.isShow?{opacity:'0'}:{opacity:'1'}}>
+							<img src="/assets/images/home/search_home_full.png"/>
+						</Link>
+						</div>
+			        </section>
+					<List featureImg={featureImg} avg={4}/>
 					<SmallButton/>
 					<section className='bannerImg'>
 							<Link className='swiperLink guanggao' to={'/ProductDtailPage?uuid='+ (this.state.bannerImg[0]&&this.state.bannerImg[0].uuid)} data-uuid={this.state.bannerImg[0]&&this.state.bannerImg[0].uuid}>
@@ -221,15 +321,13 @@ class HomePage extends React.Component{
 								</LazyLoad>
 							</Link>
 						</section>
-					<LazyLoad offsetVertical={200}>
 						<HomeImportFloor importListImg={importListImg} importMainImg={importMainImg}/>
-					</LazyLoad>
 						{
 							newList&&newList.map(function(item,i){
 								return(
-									<LazyLoad key={"asd"+i} offsetVertical={200}>
+									<section key={"asd"+i}>
 										<HomeNew newImage={item}/>
-									</LazyLoad>
+									</section>
 									)
 							})
 						}					
@@ -243,24 +341,24 @@ class HomePage extends React.Component{
 						{
 							bubbleData&&bubbleData.map(function(item,i){
 									return(
-										<LazyLoad  key={"bas"+i} offsetVertical={200}>
+										<section  key={"bas"+i}>
 											<HomeBubbleSweet bubbleData={item}/>
-										</LazyLoad>
+										</section>
 										)
 							})
 						}
 						{
 							homeDocData&&homeDocData.map(function(item,i){
 								return(
-										<LazyLoad key={"dfd"+i} offsetVertical={200}>
+										<section key={"dfd"+i}>
 											<HomeDoc homeDocData={item} />
-										</LazyLoad>
+										</section>
 										)
 							})
 						}
-		            	<HomeHotProduct loadUrl='/wechat/index/goods' hotProductImg={hotProductImg} productListData={productListData} />
+		            	<HomeHotProduct noData={this.state.noData} noListData={this.state.noListData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} />
 				</Container>
-				
+				<Bottom cartsnum={this.state.cartsnum}/>
 			</View>
 		)
 	}
@@ -268,5 +366,6 @@ class HomePage extends React.Component{
 HomePage.contextTypes={
 	router: React.PropTypes.object.isRequired // 向模块组件中，注入路由
 }
+
 // 导出
 export default pureRender(HomePage);

@@ -8,12 +8,12 @@ class ProductDtailHeader extends React.Component{
 		return(
 			<Grid align="center" className='gridContainer'>
 		            <Col cols={2} className='colWrap'>
-		           		<Link to='/ProductDtailPage' className='product' activeClassName='active'>
+		           		<Link to={'/ProductDtailPage?uuid='+bee.getQueryString('uuid')} className='product' activeClassName='active'>
 		           			商品
 						</Link>		            
 		            </Col>
 		            <Col cols={2} className='colWrap'>
-		            	<Link to='/ProdcutDtailImagePage' className='product' activeClassName='active'>
+		            	<Link to={'/ProdcutDtailImagePage?uuid='+bee.getQueryString('uuid')+'&detail='+this.props.detail} className={bee.getQueryString('detail')?'product active':'product'}>
 		           			详情
 						</Link>
 		            </Col>

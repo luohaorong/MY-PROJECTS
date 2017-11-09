@@ -9,7 +9,8 @@ class ClassTabs extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			isShow:false
+			isShow:false,
+			name:'葡萄酒'
 		}
 
 		this.handleClick = this.handleClick.bind(this);
@@ -55,11 +56,15 @@ class ClassTabs extends React.Component{
     	let active=e.currentTarget;//绑定事件的元素   而target是触发事件的元素
 		//图片url
 		let thum=active.getAttribute('data-thumb');
+		let uuid=active.getAttribute('data-uuid');
+		let name=active.getAttribute('data-name');
+		this.props.thumbClick(uuid);
 		this.setState({
-			url:thum
+			url:thum,
+			name:name
 		})
 		active.style.background='#fff';
-		active.style.color='#9e1b1b';	
+		active.style.color='#9e1b1b';
 		this.siblings(active).map(function(item,i){
 			item.style.background='#efeff4';
 			item.style.color='#333';	
@@ -69,11 +74,11 @@ class ClassTabs extends React.Component{
 
 	render(){
 		let alb=this.props.album&&this.props.album;
-		let products=this.props.products;
+		let products = this.props.products;
 		const classTabs=(
           alb?alb.map(function(item,i){
             return(
-                <div key={i} data-thumb={item.thumb} data-uuid={item.uuid} className='TabsLeftList' onClick={this.handleClick} >{item.name}</div>
+                <div key={i} data-name = {item.name} data-thumb={item.thumb} data-uuid={item.uuid} className='TabsLeftList' onClick={this.handleClick} >{item.name}</div>
               )
           },this):""
       );
@@ -83,7 +88,7 @@ class ClassTabs extends React.Component{
                       {classTabs}
                  </Container>    
 	             <Container direction='column' className='TabsContainerRightBig'>
-	              		<Filter data={alb} url={this.state.url} filterData={this.filterData} isReset={this.state.isReset} isActive={this.state.isActive} getActive={this.getActive} products={products} postParent={this.postParent}/>
+	              		<Filter name={this.state.name} products = {products} data={alb} url={this.state.url} filterData={this.filterData} isReset={this.state.isReset} isActive={this.state.isActive} getActive={this.getActive} postParent={this.postParent}/>
 	             </Container>
           	</Container>
 			)

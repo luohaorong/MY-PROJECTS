@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container} from 'amazeui-touch';
+import {Container,View} from 'amazeui-touch';
 import '../assets/styles/myBalancePage.less';
 import {Link} from 'react-router';
 import BalancePayments from '../components/BalancePayments';
@@ -9,59 +9,107 @@ class MyBalancePage extends React.Component{
 		super(props);
 		this.state={
 			myBalanceHeadMoney:'',
-			DataMoneyDetail:{}
+			DataMoneyDetail:[],
+			noData:'preLoad',
+			page:2,
+			count:2
 		}
+		this.goHref=this.goHref.bind(this);
+		this.getListData=this.getListData.bind(this);
+		this.isGetData=this.isGetData.bind(this);
 	}
-	componentWillMount(){
-		const DataMoney='￥21000';
-		const DataMoneyDetail=[
-			{
-				type:'账户支付成功，订单号：',
-				ordernum:'12121233333',
-				time:'2016-05-05   04:51:32',
-				money:'-4000'
-			},
-			{
-				type:'账户充值成功，订单号：',
-				ordernum:'12331212121',
-				time:'2016-05-05   04:51:32',
-				money:'+4000'
-			},
-			{
-				type:'账户支付成功，订单号：',
-				ordernum:'1444421212121',
-				time:'2016-05-05   04:51:32',
-				money:'-4000'
+	componentDidMount(){
+		bee.pushUrl();
+		document.title="我的余额";
+		let This =this;
+		bee.post('/wechat/balance',{
+			'page':1,
+			'size':6
+		},function(data){
+			if (data.error_code==0) {
+				This.setState({
+					myBalanceHeadMoney:bee.currency(data.data.balance),
+					DataMoneyDetail:data.data.balance_record
+				})
 			}
-
-		]
-		this.setState({
-			myBalanceHeadMoney:DataMoney,
-			DataMoneyDetail:DataMoneyDetail
-		});
+			This.setState({
+				noData:'preLoad'
+			})
+		},true);
+		
 	}
-	
+	isGetData(data){
+		if(data){
+			this.getListData()
+		};
+	}
+	//加载更多商品列表
+	getListData(){
+		let This=this;
+		let page=this.state.page;//第几页
+		let count=this.state.count;//每成功获取一次数据page加1
+		this.setState({
+				noData:'loading'
+			});
+			
+		bee.post('/wechat/balance',{
+				"page":page,
+				"size":3
+			},function(data){
+				if(data.error_code===0){
+					let getPost=data.data.balance_record;
+					let tmp=This.state.DataMoneyDetail;
+						getPost.map(function(item){
+							tmp.push(item);
+						});
+					if(getPost.length){
+						
+						This.setState({
+							DataMoneyDetail:tmp,
+							noData:'preLoad'
+						});
+
+					}else{
+						This.setState({
+							noData:'onData'
+						});
+					}
+					count++;
+					This.setState({
+						page:count,
+						count:count
+						
+					})
+				}
+			},true);
+	}
+	goHref(e){
+		let active = e.currentTarget;
+		let hrf = active.getAttribute('data-hrf');
+		window.location.href=hrf;
+	}
 	render(){
 		let DataMoneyDetail=this.state.DataMoneyDetail;
 		return(
-				<Container scrollable={true} className='myBalance'>
+				
+				<View className='myBalance'>
 					<div className='myBalanceHead'>
-						<div className='myBalanceHeadTop'>我的余额</div>
+						<div className='myBalanceHeadTop'></div>
 						<div className='myBalanceHeadBottom'>
 							<div className='myBalanceHeadBottomLeft'>
 								<p className='myBalanceHeadTitle'>当前余额</p>
-								<p className='myBalanceHeadMoney'>{this.state.myBalanceHeadMoney}</p>
+								<p className='myBalanceHeadMoney'>{'￥'+this.state.myBalanceHeadMoney}</p>
 							</div>
 							<div className='myBalanceHeadBottomRight'>
-								<Link className='myBalanceToRecharge' to='/RechargePage'>前往充值</Link>
+								<Link onClick={this.goHref} className='myBalanceToRecharge' data-hrf='/RechargePage'>前往充值</Link>
 							</div>
 						</div>
 					</div>
 					<div className='myBalanceContainer'>
 						<div className='myBalanceContainerTitle'>收支明细</div>
 					</div>
-					<BalancePayments DataMoneyDetail={DataMoneyDetail}/>
-				</Container>
+					<BalancePayments empty="您还没有收支记录～" noData={this.state.noData} isGetData={this.isGetData} DataMoneyDetail={this.state.DataMoneyDetail} loadStyle={{'height':'1.5rem'}}/>
+				</View>
 			)
 	}
 }

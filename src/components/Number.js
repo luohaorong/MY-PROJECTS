@@ -5,37 +5,72 @@ class Number extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			value:this.props.quantity,
-			pass:'no'
+			value:0
 		};
 		this.changeHandler=this.changeHandler.bind(this);
 		this.blurHandler=this.blurHandler.bind(this);
 		this.minusHandler=this.minusHandler.bind(this);
 		this.addHandler=this.addHandler.bind(this);
 	}
+	componentDidMount(){
+		let moq = bee.cache('resultIfo')&&JSON.parse(bee.cache('resultIfo')).moq;
+		if (this.props.dataNum) {
+			this.setState({
+				value: +this.props.dataNum
+			});
+		}else{
+			this.setState({
+				value: +moq
+			});
+		}
+	}
+	componentWillReceiveProps(nextProps){
+		if (nextProps.dataNum!==this.props.dataNum) {
+			this.setState({
+				value:+nextProps.dataNum
+			})
+			this.props.valueData(nextProps.dataNum);
+		}
+	}
 	changeHandler(event){
 		let count=event.target.value;
 		this.setState({
-			value:count
+			value:count.replace(/[^\d]/g,'')
 		})
 	}
 	blurHandler(){
-		console.log(this.state.value)
+		this.props.valueData(+this.state.value,this.props.moq,this.props.stock,this.props.uuid,this.props.index);
 	}
 	addHandler(){
-		console.log(111)
+		let num=this.state.value;
+		num++;
+		this.setState({
+			value:+num
+		});
+		let countNum=this.state.value+1;
+		this.props.valueData(countNum,this.props.moq,this.props.stock,this.props.uuid,this.props.index);
 	}
 	minusHandler(){
-		console.log(111)
-	}
-	getValue(){
-		if(this.state.pass==='yes'){
-			return this.state.value;
+		let num=this.state.value;
+		num--;
+		if(num<=0){
+			num=0
 		}
-	}
+		this.setState({
+			value:num
+		});
+		let countNum=this.state.value-1;
+		this.props.valueData(countNum,this.props.moq,this.props.stock,this.props.uuid,this.props.index);
+}
 	render(){
+		let giyStyle1={
+			float:'right'
+		}
+		let giyStyle2={
+			float:'left'
+		}
 		return(
-			<div className='countWrap'>
+			<div className='countWrap' style={this.props.giyStyle==true?giyStyle1:giyStyle2}>
 				<div className='minusAdd' onClick={this.minusHandler}>
 					-
 				</div>

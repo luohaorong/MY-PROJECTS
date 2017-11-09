@@ -7,7 +7,7 @@ class FloorTitle extends React.Component{
 		return(
 				<p className='floorTitle' style={this.props.bgImg}>
 					{this.props.titleText}
-					<Link style={this.props.more} to='/ProductDtailPage' className='more'>更多</Link>
+					<Link style={this.props.more} to='/ProductListPage?uuid=putao&title=葡萄酒' className='more'>更多</Link>
 				</p>
 			
 		)

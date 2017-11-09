@@ -22,6 +22,8 @@ class PayWays extends React.Component{
 	checkPayWays(e){
 		let active=e.target;
 		let activeIndex=active.getAttribute('data-index');
+		let type = active.getAttribute('data-type');
+		this.props.postType(type);
 		let tmp=[];
 		this.state.isSelect.map(function(i,k){
 			k==activeIndex?tmp.push(selected):tmp.push(unSelect)
@@ -38,10 +40,13 @@ class PayWays extends React.Component{
 					<div key={i} className='payWaysContent'>
 						<img className='payWaysImg' src={item.img}/>
 						<div className='payWaysDescrib'>
-							<p className='payWaysDescribTop'>{item.title}</p>
+							<p className='payWaysDescribTop'>
+								<span>{item.title}</span>
+								<span className="payWaysDescribTopNum">{item.balanceNum}</span>
+							</p>
 							<p className='payWaysDescribBottom'>{item.describ}</p>
 						</div>
-						<img data-index={i}  src={this.state.isSelect[i]} className='payWaysCircle' onClick={this.checkPayWays} />
+						<img data-type={item.type} data-index={i}  src={this.state.isSelect[i]} className='payWaysCircle' onClick={this.checkPayWays} />
 					</div>
 						)
 				},this)

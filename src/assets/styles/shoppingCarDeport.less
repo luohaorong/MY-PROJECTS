@@ -2,9 +2,24 @@
 .deportContainer{
     width: 100%;
     height: auto;
+    .isEmptyWrapper{
+        width: 80%;
+        height: 8.4rem;
+        margin: 0 auto;
+        text-align: center;
+        .isEmptyImg{
+            max-width: 100%;
+            max-height: 80%;
+        }
+        .isEmptyText{
+            font-size: 1rem;
+            color: #333333;
+        }
+    }
     .deportWrap{
         width: 100%;
         height: auto;
+        overflow:hidden;
         .deportTitle{
             width: 100%;
             height: 2.78rem;
@@ -25,9 +40,11 @@
             width: 100%;
             height: auto;
             background-color: #FFFFFF;
+            overflow:hidden;
             .deportContent{
                 width: 95%;
-                height: 8.64rem;
+                height: auto;
+                overflow:hidden;
                 margin-left: 5%;
                 border-bottom: @borderInterval;
                 overflow: hidden;
@@ -48,13 +65,10 @@
                         line-height: 6.875rem;
                         text-align: center;
                         display: block;
-                        position: absolute;
-                        top: 50%;
-                        left: 10%;
-                        margin-top: -3.4375rem;
+                        margin-top: 1rem;
                         .productImg{
-                            width: 1.28rem;
-                            height: 5.22rem;
+                            width: 4.75rem;
+                            height: 6.875rem;
                         }
                     }
                     .activeStyle{
@@ -69,6 +83,23 @@
                         color: @titleColor;
                         font-size: 0.875rem;
                         padding-top: 0.9rem;
+                    }
+                    .priceUnit{
+                        width: 90%;
+                        height: auto;
+                        overflow: hidden;
+                         .goodsPrice{
+                            color: #ea0000;
+                            font-size: 0.75rem;
+                            float: left;
+                            padding-top: 0.6rem;
+                        }
+                        .goodsUnit{
+                            color: #666666;
+                            font-size: 0.75rem;
+                            float: right;
+                            padding-top: 0.6rem;
+                        }
                     }
                     .priceNumber{
                         width: 90%;
@@ -88,17 +119,28 @@
                     .typeNumber{
                         width: 90%;
                         height: auto;
-                        margin-top: 1rem;
+                        margin-top: 0.3rem;
                         overflow: hidden;
-                        .goodsType{
-                            color: @fontColor9;
-                            font-size: 0.75rem;
-                            float: left;
-                            padding-top: 1rem;
-                        }
                         .countWrap{
                             float: right;
                         }
+                        .goodsType{
+                            color: #661b18;
+                            font-size: 0.75rem;
+                            padding-top: 0;
+                            float: right;
+                            width: 48%;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            overflow: hidden;
+                        }
+                    }
+                    .returnCoin{
+                         color: #ea0000;
+                        font-size: 0.75rem;
+                        text-align: right;
+                        width: 90%;
                     }
                 }
             }

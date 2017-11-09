@@ -187,9 +187,9 @@ class Header extends React.Component {
 				</Container>
 				<ul className='selectList' style={this.state.selectListStyle}>
 					{
-						headerListContent.map(function (item) {
+						headerListContent.map(function (item,i) {
 		
-							return 	<li ref='list' key={item.uuid} data-key={item.uuid} onClick={This.listChange} className='listItem'>{item.name}</li>;
+							return 	<li ref='list' key={i} data-key={item.uuid} onClick={This.listChange} className='listItem'>{item.name}</li>;
 									
 						})
 					}

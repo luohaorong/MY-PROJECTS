@@ -1,14 +1,15 @@
-window.bee = {};
-var allData={};
+var bee = {};
 /**
  * 所有路径
  */
 bee.link = {
-	'server': 'http://wechat.huijiuguoji.com',
+	'server': 'http://wechat.luo.com:8080',
 	'weixin':'http://agency.huijiuguoji.com',
 	'cloud': 'http://cloud.huijiuguoji.com',
-	'image': 'http://image.weifanyun.com',
-	'uploadImg':'http://admin.weifanyun.com/upload'
+	'image': 'http://image.huijiuguoji.com',
+	'uploadImg':'http://admin.weifanyun.com/upload',
+	'downLoadApp':'http://www.huijiuguoji.com/qrcode',
+	'xieyi':'http://www.zongjiuhui.com/agreement'
 }
 
 /**
@@ -49,14 +50,21 @@ bee.cache = function (key, value) {
 	}
 	sessionStorage.setItem(key, value);
 }
-
+bee.localCache = function (key, value) {
+	if (value === undefined) {
+		return localStorage.getItem(key);
+	}else if(typeof value === 'object'){
+		value=JSON.stringify(value);
+	}
+	localStorage.setItem(key, value);
+}
 /**
  * 获取授权码
  */
 bee.getCode = function (origin) {
 	var queryString = {
 		appid: 'wx500d1d09ee93a851',
-		redirect_uri: encodeURIComponent(bee.link.cloud + '/wechat/redirectUri?ru=' + bee.link.weixin + '/jump.html&origin=' + origin),
+		redirect_uri: encodeURIComponent(bee.link.cloud + '/wechat/redirectUri?ru=' + bee.link.weixin + '/jump.html?origin=' + origin),
 		response_type: 'code',
 		scope: 'snsapi_userinfo',
 		state: 'STATE#wechat_redirect',
@@ -331,9 +339,9 @@ bee.sign = function (str, salt) {
  * @param object data
  */
 bee.requestSign = function (data) {
-	data.token = bee.cache('token');
-	data.timestamp = parseInt(bee.cache('diffTimestamp')) + Math.floor(new Date().getTime() / 1000);
-	data.sign = bee.sign(bee.parseQueryString(data), bee.cache('salt'));
+	data.token = bee.localCache('token');
+	data.timestamp = parseInt(bee.localCache('diffTimestamp')) + Math.floor(new Date().getTime() / 1000);
+	data.sign = bee.sign(bee.parseQueryString(data), bee.localCache('salt'));
 }
 
 /**
@@ -377,6 +385,20 @@ bee.get = function (url, data, fn, isSign) {
  */
 bee.post = function (url, data, fn, isSign,isFile) {
 	var result = {};
+	var waiting=document.getElementById('waiting');
+	var waitingText=document.getElementById('waitingText');
+	if(waiting){
+		var timer=setTimeout(function(){
+				waiting.style.display='block';
+				waitingText.innerHTML ='请稍等...'
+			},1000);
+		var timer1=setTimeout(function(){
+			waitingText.innerHTML ='请求超时...';
+		},20000);
+		var timer2=setTimeout(function(){
+			waiting.style.display='none';
+		},21000);
+	}
     var obj = new XMLHttpRequest();
 	for (var i in data) {
 		if (data.hasOwnProperty(i)) {
@@ -399,12 +421,23 @@ bee.post = function (url, data, fn, isSign,isFile) {
 		obj.send(bee.parseQueryString(result));
 	}
 		obj.onreadystatechange = function() {
+			clearTimeout(timer);
+			clearTimeout(timer1);
+			clearTimeout(timer2);
+			if(waiting){
+				waiting.style.display='none';
+			}
 			if(obj.readyState == 4 && (obj.status == 200 || obj.status == 304)) {// 304未修改
-				if(JSON.parse(obj.responseText).error_code=== -1){
-						bee.cache('redirectUri', window.location.href);
-						window.location.href=bee.link.weixin + '#/BindAccountPage';
-						return;
-					}
+				if(JSON.parse(obj.responseText).error_code === -11 || JSON.parse(obj.responseText).error_code === 103 || JSON.parse(obj.responseText).error_code === 3){
+						if(window.location.href.indexOf('/BindAccountPage') === -1){
+							window.location.href = bee.link.weixin + '#/BindAccountPage';
+							return;
+						}
+				}
+				if(JSON.parse(obj.responseText).error_code === 205){
+					bee.cache('redirectUri', window.location.href);
+					bee.getCode('login');
+				}
 				fn.call(this, JSON.parse(obj.responseText));
 			}
 		};
@@ -429,9 +462,9 @@ bee.image = function (image, width, height) {
 	}
 	return bee.link.image + image + '/' + width + 'x' + height;
 }
-bee.bottomUpwardSlidingDo=function (callback) {
+bee.bottomUpwardSlidingDo=function (wrapper,callback) {
 				var start, end, slideNum, winH, bodyH,
-					bodyEle = document.querySelector("body"),//获取到body
+					bodyEle = document.querySelector(wrapper),//获取到wrapper
 					docEle = document.documentElement,//获取html
 					UA = navigator.userAgent,
 					isUC = UA.indexOf("UCBrowser") != -1 || UA.indexOf("Baidu") != -1 || UA.indexOf("MQQBrowser") != -1,
@@ -461,11 +494,10 @@ bee.bottomUpwardSlidingDo=function (callback) {
 					if(start - end > slideNum) {
 						var scrollTop = bodyEle.scrollTop;//滚动的高度
 						winH = docEle.clientHeight;//内容可视区域的高度
-						bodyH = docEle.scrollHeight;//body的高度
+						bodyH = bodyEle.scrollHeight;//body的高度
 						scrollTop + winH + 1 >= bodyH && callback(); //之所以加1是因为某些情况下会有1PX偏差，当然也可以稍微加大更加灵敏
 					}
-					console.log(winH,scrollTop,bodyH)
-//					console.log(end,start,end-start,bodyH-scrollTop-winH);
+					console.log(slideNum,end-start,bodyH-scrollTop-winH);
 			
 				}
 			
@@ -475,3 +507,37 @@ bee.bottomUpwardSlidingDo=function (callback) {
 			}
 			document.addEventListener("touchmove",lockHtml,false);
 			document.removeEventListener("touchmove",lockHtml,false);
+bee.addUnloadImg=function(){
+	var boxNode=document.getElementById('unloadWrap');
+	var img=document.createElement('img');
+	var box=document.createElement('div');
+	box.setAttribute('id','unloadWrap');
+	img.setAttribute('src','/assets/images/loading.gif');
+	img.style.position='absolute';
+	img.style.top='50%';
+	img.style.left='50%';
+	img.style.marginTop='-50px';
+	img.style.marginLeft='-50px';
+	img.style.width='100px';
+	img.style.height='100px';
+	box.style.width='100%';
+	box.style.height='100%';
+	box.style.position='fixed';
+	box.style.top='0';
+	box.style.left='0';
+	box.style.zIndex='1000';
+	box.style.backgroundColor='#ffffff';
+	if(boxNode){
+		bee.removeImg();
+		document.body.appendChild(box);
+		box.appendChild(img);
+	}else{
+		document.body.appendChild(box);
+		box.appendChild(img);
+	}
+	
+}
+bee.removeImg=function(){
+	var box=document.getElementById('unloadWrap');
+	document.body.removeChild(box);
+}

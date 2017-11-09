@@ -8,4 +8,5 @@
 import 'amazeui-touch/dist/amazeui.touch.min.css';
 import 'swiper/dist/css/swiper.min.css';
 // 引入入口组件
-import './pages/Routes';
+import '/src/pages/Routes';
+

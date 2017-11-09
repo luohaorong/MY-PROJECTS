@@ -24,7 +24,7 @@ class RegionalLinkage extends React.Component {
 			},
 			pass:'no',
 			regionalLayerStyle:{},
-			listItemStyle:{}
+			listItemStyle:{},
 		};
 		this.clickHeadler=this.clickHeadler.bind(this);
 		this.provinceClick=this.provinceClick.bind(this);
@@ -32,11 +32,24 @@ class RegionalLinkage extends React.Component {
 		this.areaClick=this.areaClick.bind(this);
 	}
 	componentDidMount(){
+		let This = this;
 		this.setState({
 			addressData:addressJson
-		})
-		
+		});
+		if (bee.getQueryString('edit')) {
+			let uuid = JSON.parse(bee.cache('addressEdit')).uuid;
+			bee.post('/wechat/get/address',{
+				'uuid':uuid
+			},function(data){
+				if (data.error_code===0) {
+					This.refs['mainRegion'].refs['inp'].value=data.data.area.province+data.data.area.city+data.data.area.area;
+					// sessionStorage.removeItem('addressEdit');
+					This.props.getEditAreaUuid(data.data.areas_uuid);
+				}
+			},true);
+		}
 	}
+
 	clickHeadler(){
 		if(this.props.type==='warehouse'||this.props.type==='time'){
 			 this.setState({
@@ -45,7 +58,8 @@ class RegionalLinkage extends React.Component {
 				},
 				regionalLayerStyle:{
 					width:'90%',
-					margin:'0 auto'
+//					margin:'0 auto'
+				    marginLeft: '4%'
 				},
 				listItemStyle:{
 					margin:'0 auto'
@@ -59,16 +73,18 @@ class RegionalLinkage extends React.Component {
 			 })
 		}
 	}
+	
 	//点击省
 	provinceClick(event){
 		let targ=event.target;
 		let dataKey=targ.getAttribute('data-Key');
+		this.props.type==='warehouse'&&this.props.getStationUuid(dataKey);
 		//获得dataKey以后发送给后台，拿到新的城市信息并更新,cityData:[]状态将areaData:[]清空
 		let province=targ.innerHTML;
 		this.refs['mainRegion'].state.value=province;
 		this.refs['mainRegion'].state.redBorder={borderBottom:'1px solid #ea0000'};
 		this.refs['mainRegion'].state.pass='no';
-		let cityData=[]
+		let cityData=[];
 		this.state.addressData&&this.state.addressData.map(function(i){
 			if(i.uuid===dataKey){
 				i.city.map(function(j){
@@ -171,7 +187,13 @@ class RegionalLinkage extends React.Component {
 	}
 	render(){
 		let This=this;
-		let provinceData=this.state.addressData;
+		let provinceData;
+		if(this.props.type==='warehouse'||this.props.type==='time'){
+			provinceData=this.props.data;
+		}else{
+			provinceData=this.state.addressData;
+		}
+
 		return(
 			<div className='regional' style={this.props.regionalStyle}>
 				<RegisterInput regional={true} readOnly={this.props.readOnly} inputStyle={this.props.inputStyle} onClick={this.clickHeadler} promptText={this.props.promptText} name={this.props.name} vText={this.props.vText} ref='mainRegion'/>
@@ -179,7 +201,7 @@ class RegionalLinkage extends React.Component {
 					<div className='regionalLayer' style={this.state.regionalLayerStyle}>
 						{
 							provinceData&&provinceData.map(function (item,index) {
-								return 	<p style={This.state.listItemStyle} onClick={This.provinceClick} ref='list' key={index} data-Key={item.uuid} className='listItem'>{item.name}</p>;
+								return 	<p style={This.state.listItemStyle} onClick={This.provinceClick} ref='list' key={index} data-uuid={item.data_uuid || ''} data-Key={item.uuid} className='listItem listItemPro'>{item.name}</p>;
 								})
 						}
 					</div>

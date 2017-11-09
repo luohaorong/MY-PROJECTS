@@ -9,135 +9,433 @@ import noSelect from '../assets/images/shoppingCar/ischeck_false.png';
 import Selected from '../assets/images/shoppingCar/ischeck_true.png';
 import hotProductImg from '../assets/images/shoppingCar/love.png'
 import pureRender from 'pure-render-decorator';
-import {Container,View} from 'amazeui-touch';
+import {Container,View,Notification} from 'amazeui-touch';
 class ShoppingCarDeport extends React.Component{
 	constructor(props){
 		super(props);
+		this.state={
+			shoppingData:{},
+			cartsData:[],
+			isSelect:[],
+			productIfo:[],
+			bottleNum:0,
+			noData:'preLoad',
+			page:2,
+			count:2,
+			isError:true,//控制是否显示加载失败时的默认图片
+			isEmpty:false,//购物车为空时显示			
+			returnCoin:0//返金币
+		}
+		this.closeNotification = this.closeNotification.bind(this);
 		this.selectClick=this.selectClick.bind(this);
 		this.deportSelectClick=this.deportSelectClick.bind(this);
 		this.allSelected=this.allSelected.bind(this);
 		this.collectionClick=this.collectionClick.bind(this);
 		this.deletClick=this.deletClick.bind(this);
+		this.errorLoad=this.errorLoad.bind(this);
+		this.loadHeadle=this.loadHeadle.bind(this);
+		this.valueData=this.valueData.bind(this);
+		this.isGetData=this.isGetData.bind(this);
+	}
+	// 打开对话框
+    openNotification() {
+	    this.setState({
+	      visible: true
+	    });
+    }
+	
+	// 关闭对话框
+	closeNotification() {
+	    // 判断是否需要清除定时器
+	    if(this.state.timeId){
+	    	clearTimeout(this.state.timeId);
+	    }
+	    this.setState({
+	      visible: false,
+	      timeId : null
+	    })
+	}
+	//图片加载出错时执行
+	errorLoad(e){
+		let active=e.currentTarget;
+		active.src='../assets/images/unload.png';
+		active.setAttribute('class','errorLoad');
+		this.setState({
+			isError:false
+		})
+		
+		
+	}
+	//图片加载完成前
+	loadHeadle(e){
+		let active=e.currentTarget;
+		let comp=active.complete;
+		let dataSrc=active.getAttribute('data-src');
+		if(comp&&this.state.isError){
+			active.src=dataSrc;
+		}
+		
 	}
 	componentWillMount(){
-		this.CWM(this.props.data)
+		bee.addUnloadImg();
 	}
+	componentDidMount(){
+		let This=this;
+		bee.post('/wechat/carts/list',{},function(data){
+			setTimeout(function(){bee.removeImg(),1000});
+			if(data.error_code){
+				let Error=data.msg;
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
+				This.setState({
+					timeId : timeId,
+					promptError:Error
+				});
+				return;
+			}else{
+				let dataCWM=data.data.carts;
+				if(!dataCWM.length){
+					This.setState({
+						isEmpty:true
+					})
+				}
+				let productIfo=[];
+				let returnCoin=[];
+				dataCWM.map(function(item){
+					let tmpCoin=[];
+					let tmp=[];
+					item.goods.map(function(j){
+						tmp.push({"uuid":j.uuid,"num":j.goods_num,"select":j.selected==='true'?true:false})
+						tmpCoin.push(j.return_corn)
+					});
+					productIfo.push(tmp);
+					returnCoin.push(tmpCoin);
+				});
+				This.CWM(dataCWM);
+				This.setState({
+					shoppingData:data.data,//所有数据
+					cartsData:data.data.carts,//购物车商品数据
+					productIfo:productIfo,//用户交互时需要提交的数据
+					productListData:data.data.scan,//猜你喜欢
+					goods_amount:data.data.goods_amount,//总共的箱数
+					goods_total:data.data.goods_total,//总共的瓶数
+					price_amount:data.data.price_amount,//总价
+					returnCoin:returnCoin
+				});
+			}
+		},true);
+	}
+	
 	//记录组件渲染前的状态
 	CWM(data){
 		let deportSelectArr=[];
-		data.map(function(i,k){
+		data&&data.map(function(i,k){
 			let tmp = [];
-			i.detailData.map(function(j,h){
-				tmp.push(j.selected==='yes');//j.selected获取数据中初始化的状态
+			i.goods.map(function(j,h){
+				tmp.push(j.selected==='true');//j.selected获取数据中初始化的状态
 			})
 			deportSelectArr.push(tmp);
 		})
 		this.setState({
-			isSelect:deportSelectArr,
-			data:data
-		})
-		
+			isSelect:deportSelectArr
+		});
 	}
 	//全选
 	allSelected(){
 		let data=this.state.isSelect;
+		let productIfo=this.state.productIfo;
 		let deportSelectArr = [];
+		let This=this;
 		data.map(function(i,k){
 			let tmp = [];
 			i.map(function(j,h){
 				tmp.push(!this.and(data));
+				productIfo[k][h].select=!this.and(data);
 			},this)
 			deportSelectArr.push(tmp);
-		},this)
-		this.setState({
-			isSelect:deportSelectArr
-		})
+		},this);
+		productIfo=JSON.stringify(productIfo);
+		bee.post('/wechat/carts/update',{
+			"type":"update",
+			"carts":productIfo
+		},function(data){
+			if(data.error_code){
+				let Error=data.msg;
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
+				This.setState({
+					timeId : timeId,
+					promptError:Error
+				});
+			}else{
+				This.setState({
+					isSelect:deportSelectArr
+				})
+				
+			}
+			
+		},true);
 	}
 	//选择仓库
 	deportSelectClick(event){
 		let data=this.state.isSelect;
+		let productIfo=this.state.productIfo;
 		let active=event.target;
 		let parentActive=active.parentNode.parentNode;
-		let index=parentActive.getAttribute('data-uuid');
+		let index=+parentActive.getAttribute('data-index');
 		let deportSelectArr = [];
+		let This=this;
 		data.map(function(i,k){
 			let tmp = [];
 			i.map(function(j,h){
-				if(k==index){
-					tmp.push(!this.and(data[k]))
+				if(k===index){
+					tmp.push(!this.and(data[k]));
+					productIfo[k][h].select=!this.and(data[k]);
 				}else{
 					tmp.push(j)
 				}
 			},this)
 			deportSelectArr.push(tmp);
-		},this)
-		this.setState({
-			isSelect:deportSelectArr
-		})
+		},this);
+		productIfo=JSON.stringify(productIfo);
+		bee.post('/wechat/carts/update',{
+			"type":"update",
+			"carts":productIfo
+		},function(data){
+			if(data.error_code){
+				let Error=data.msg;
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
+				This.setState({
+					timeId : timeId,
+					promptError:Error
+				});
+			}else{
+				This.setState({
+					isSelect:deportSelectArr
+				})
+				
+			}
+			
+		},true);
 	}
 	//选择单个商品
 	selectClick(event){
 		let data=this.state.isSelect;
+		let productIfo=this.state.productIfo;
 		let deportSelectArr = [];
 		let active=event.target;
 		let parentActive=active.parentNode.parentNode.parentNode.parentNode;
 		let myselfActive=active.parentNode.parentNode.parentNode;
-		let parentIndex=parentActive.getAttribute('data-uuid');
-		let myselfIndex=myselfActive.getAttribute('data-uuid');
+		let parentIndex=parentActive.getAttribute('data-index');
+		let myselfIndex=myselfActive.getAttribute('data-index');
+		let This=this;
 		data.map(function(i,k){
 			let tmp = [];
 			i.map(function(j,h){
 				if (k == parentIndex && h == myselfIndex) {
 					tmp.push(!j);
+					productIfo[k][h].select=!j;
 				} else {
 					tmp.push(j);
 				}
 			},this)
 			deportSelectArr.push(tmp);
-		},this)
-		this.setState({
-			isSelect:deportSelectArr
-		})
+		},this);
+		productIfo=JSON.stringify(productIfo);
+		bee.post('/wechat/carts/update',{
+			"type":"update",
+			"carts":productIfo
+		},function(data){
+			if(data.error_code){
+				let Error=data.msg;
+				// 如果失败，提示！！
+				This.openNotification();
+				//  callback
+				var timeId = setTimeout(This.closeNotification,3000);
+				This.setState({
+					timeId : timeId,
+					promptError:Error
+				});
+			}else{
+				This.setState({
+					isSelect:deportSelectArr,
+					goods_amount:data.data.goods_amount||0,//总共的箱数
+					goods_total:data.data.goods_total||0,//总共的瓶数
+					price_amount:data.data.price_amount||0//总价
+				})
+				
+			}
+		},true);
+		
+	}
+	//更新商品数量
+	valueData(data,moq,stock,uuid,index){
+		let productIfo=[{
+			"uuid":uuid,
+			"num":data,
+			"select":index
+		}];
+		let This=this;
+		let ifoData=this.state.productIfo;
+		productIfo=JSON.stringify(productIfo);
+		ifoData.map(function(item,k){
+			item.map(function(j,h){
+				if(j.uuid===uuid){
+					ifoData[k][h].num=data;
+				}
+			});
+		});
+		if(data<moq){
+			let Error='商品购买量不能低于起订量（'+moq+'箱）';
+			// 如果失败，提示！！
+			this.openNotification();
+			//  callback
+			let timeId = setTimeout(this.closeNotification,3000);
+			this.setState({
+				timeId : timeId,
+				promptError:Error
+			});
+		}
+		if(data>stock){
+			let Error='商品购买量不能高于库存量（'+stock+'箱）';
+			// 如果失败，提示！！
+			this.openNotification();
+			//  callback
+			let timeId = setTimeout(this.closeNotification,3000);
+			this.setState({
+				timeId : timeId,
+				promptError:Error
+			});
+		}
+		if(data>=moq&&data<=stock){
+			bee.post('/wechat/carts/update',{
+				"carts":productIfo,
+				"type":'update'
+			},function(data){
+				if(data.error_code){
+					// 如果失败，提示！！
+					This.openNotification();
+					//  callback
+					let timeId = setTimeout(This.closeNotification,3000);
+					This.setState({
+						timeId : timeId,
+						promptError:data.msg
+					});
+				}else{
+					let returnCoin=[];
+					data.data.carts.map(function(item){
+						let tmpCoin=[];
+						item.goods.map(function(j){
+							tmpCoin.push(j.return_corn)
+						});
+						returnCoin.push(tmpCoin);
+					});
+					This.setState({
+						goods_amount:data.data.goods_amount||0,//总共的箱数
+						goods_total:data.data.goods_total||0,//总共的瓶数
+						price_amount:data.data.price_amount||0,//总价
+						returnCoin:returnCoin //返金币数量
+					})
+					
+				}
+			},true);
+		}
 	}
 	//点击移入收藏夹
 	collectionClick (){
-		let data=this.state.isSelect;
-		let collectionArr=[];
-		let tmpData = [];
-		data.map(function(i,k){
-			let tmp = [];
+		let selectData=this.state.isSelect;
+		let preData=this.state.productIfo;
+		let productIfo=[];
+		let This=this;
+		selectData.map(function(i,k){
+			let tmp=[]
 			i.map(function(h,q){
-				if (h) {
-					collectionArr.push(this.props.data[k].detailData[q].uuid);//记录被选中的UUID，以便传给服务器
-				} else {
-					tmp.push(this.props.data[k].detailData[q]);//手动删除被选中的数据
-				}
-			},this)
-			if (tmp.length) {
-				tmpData.push({ title: this.props.data[k].title, detailData: tmp });
-			}
-		},this)
-		this.CWM(tmpData)
+				h&&tmp.push(preData[k][q]);//手动删除被选中的数据
+			},This);
+			tmp.length&&productIfo.push(tmp);
+		},This);
+		productIfo=JSON.stringify(productIfo);
+		bee.post('/wechat/carts/update',{
+						carts:productIfo,
+						type:'move'
+					},function(data){
+						if(data.error_code){
+							let Error=data.msg;
+							// 如果失败，提示！！
+							This.openNotification();
+							//  callback
+							var timeId = setTimeout(This.closeNotification,3000);
+							This.setState({
+								timeId : timeId,
+								promptError:Error
+							});
+						}else{
+							if(!preData.length){
+								This.setState({
+									isEmpty:true
+								})
+							}
+							This.setState({
+								cartsData:data.data.carts,
+								goods_amount:data.data.goods_amount||0,//总共的箱数
+								goods_total:data.data.goods_total||0,//总共的瓶数
+								price_amount:data.data.price_amount||0//总价
+							})
+							This.CWM(data.data.carts);
+							
+						}
+					},true);
 	}
 	//删除
 	deletClick(){
-		let data=this.state.isSelect;
-		let collectionArr=[];
-		let tmpData = [];
-		data.map(function(i,k){
-			let tmp = [];
+		let selectData=this.state.isSelect;
+		let preData=this.state.productIfo;
+		let productIfo=[];
+		let This=this;
+		selectData.map(function(i,k){
+			let tmp=[]
 			i.map(function(h,q){
-				if (h) {
-					collectionArr.push(this.props.data[k].detailData[q].uuid);
-				} else {
-					tmp.push(this.props.data[k].detailData[q]);
-				}
-			},this)
-			if (tmp.length) {
-				tmpData.push({ title: this.props.data[k].title, detailData: tmp });
-			}
-		},this)
-		this.CWM(tmpData)
+				h&&tmp.push(preData[k][q]);//手动删除被选中的数据
+			},This);
+			tmp.length&&productIfo.push(tmp);
+		},This);
+		productIfo=JSON.stringify(productIfo);
+		bee.post('/wechat/carts/update',{
+						carts:productIfo,
+						type:'delete'
+					},function(data){
+						if(data.error_code){
+							let Error=data.msg;
+								// 如果失败，提示！！
+								This.openNotification();
+								//  callback
+								var timeId = setTimeout(This.closeNotification,3000);
+								This.setState({
+									timeId : timeId,
+									promptError:Error
+								});
+						}else{
+							if(!preData.length){
+								This.setState({
+									isEmpty:true
+								})
+							}
+							This.setState({
+								cartsData:data.data.carts,
+								goods_amount:data.data.goods_amount||0,//总共的箱数
+								goods_total:data.data.goods_total||0,//总共的瓶数
+								price_amount:data.data.price_amount||0//总价
+							})
+							This.CWM(data.data.carts);
+						}
+					},true);
 	}
 	//多维数组位运算
 	and (arr) {
@@ -155,48 +453,101 @@ class ShoppingCarDeport extends React.Component{
 	        return arr;
         }
     }
+	isGetData(data){
+		if(data){
+			this.getListData()
+		};
+	}
+	//加载商品列表
+	getListData(){
+		let This=this;
+		let page=this.state.page;//第几页
+		let count=this.state.count;//每成功获取一次数据page加1
+		this.setState({
+				noData:'loading'
+			});
+		bee.post('/wechat/index/goods',{
+				page:page,
+				size:10
+			},function(data){
+				if(data.error_code===0){
+					let getPost=data.data;
+					if(getPost.length){
+						let tmp=This.state.productListData;
+						getPost.map(function(item){
+							tmp.push(item);
+						});
+						This.setState({
+							productListData:tmp,
+							noData:'preLoad'
+						});
+						
+					}else{
+						This.setState({
+							noData:'onData'
+						});
+					}
+					count++;
+					This.setState({
+						page:count,
+						count:count,
+						isError:true
+					})
+				}
+			},true);
+	}
 	render(){
 		let deprotData=(
-			this.state.data.map(function(item,index){
+			this.state.cartsData&&this.state.cartsData.map(function(item,index){
 				return(
-					<div className='deportWrap' key={index} data-uuid={index}>
+					<div className='deportWrap' key={index} data-index={index}>
 					<div className='deportTitle'>
 						<img className='deportImg' onClick={this.deportSelectClick} src={this.and(this.state.isSelect[index]) ? Selected:noSelect}/>
 						<span className='deportTitleText text-truncate'>
-							{item.title}
+							{item.station}
 						</span>
 					</div>
 					{
-						item.detailData.map(function(j,i){
+						item.goods.map(function(j,i){
+							let returnCoinNum = this.state.returnCoin[index][i];
 							return(
-								<div className='deportContentWrap' key={i} data-uuid={i}>
-									<div className={i===item.detailData.length-1?'deportContent  noBorder':'deportContent'}>
+								<div className='deportContentWrap' key={i} data-index={i}>
+									<div className={i===item.goods.length-1?'deportContent  noBorder':'deportContent'}>
 										<div className='selectWrap'>
 											<img className='deportImg' onClick={this.selectClick} src={this.and(this.state.isSelect[index][i]) ? Selected:noSelect}/>
 										</div>
 										<div className='productWraper'>
-											<Link to='/ProductDtailPage' className={this.and(this.state.isSelect[index][i]) ?'activeStyle productImgWrap':'productImgWrap'}>
-												<img className='productImg' src={j.img}/>
+											<Link to={'/ProductDtailPage?uuid='+j.goods_uuid} className={this.and(this.state.isSelect[index][i]) ?'activeStyle productImgWrap':'productImgWrap'}>
+												<img onError={this.errorLoad} onLoad={this.loadHeadle} className='productImg' data-src={bee.image(j.image_path,280,400)} src='../assets/images/preLoad.gif'/>
 											</Link>
 										</div>
 										<div className='productContent'>
 											<p className='productName text-truncate'>
-												{j.productName}
+												{j.goods_chinese_name}
 											</p>
-											<div className='priceNumber'>
-												<p className='singlePrice'>
-													{j.price}
+											<div className='priceUnit'>
+												<p className='goodsPrice'>
+													{'￥'+bee.currency(j.goods_price)}
 												</p>
-												<p className='productNum'>
-													{j.goodsNumber}
+												<p className='goodsUnit'>
+													{j.stocking_pricing_ratio + '支装'}
 												</p>
 											</div>
 											<div className='typeNumber'>
-												<p className='goodsType'>
-													{j.type}
-												</p>
-												<Number quantity={j.quantity}/>
+												<Number valueData={this.valueData} dataNum={+j.goods_num} moq={+j.moq} stock={+j.stock} uuid={j.uuid} index={this.and(this.state.isSelect[index][i])}/>
+												{
+													j.sub_label.map(function(p,q){
+														return (
+															<p key = {q} className = 'goodsType'>
+																{p.name + p.remark}
+															</p>
+														)
+													})
+												}
 											</div>
+											<p className='returnCoin'>
+												{'预计返金币' + returnCoinNum}
+											</p>
 										</div>
 									</div>
 								</div>
@@ -204,81 +555,53 @@ class ShoppingCarDeport extends React.Component{
 							)
 							
 						},this)
-						
 					}
 				</div>
 				)
 			},this)
 		)
+		let arr = [];
+		let isSubmint;
+		this.state.isSelect.map(function(item){
+			arr.push(item.some(function(i){
+				return i;
+			}))
+		})
+		isSubmint = arr.some(function(j){
+			return j;
+		});
+
 		//热销商品数据
-		let productListData=[
-								{
-								newImgSrc:'../assets/images/home/product.png',
-								flagImg:'../assets/images/home/flag.png',
-								chName:'布拉沃山丘赤霞珠美乐干',
-								enName:'Bravo hills Miller Cabernet sauv',
-								country:'法国',
-								origin:'产地等级',
-								price:'￥ 150'
-								}
-								,{
-								newImgSrc:'../assets/images/home/product.png',
-								flagImg:'../assets/images/home/flag.png',
-								chName:'布拉沃山丘赤霞珠美乐干',
-								enName:'Bravo hills Miller Cabernet sauv',
-								country:'法国',
-								origin:'产地等级',
-								price:'￥ 150'
-								}
-								,{
-								newImgSrc:'../assets/images/home/product.png',
-								flagImg:'../assets/images/home/flag.png',
-								chName:'布拉沃山丘赤霞珠美乐干',
-								enName:'Bravo hills Miller Cabernet sauv',
-								country:'法国',
-								origin:'产地等级',
-								price:'￥ 150'
-								}
-								,{
-								newImgSrc:'../assets/images/home/product.png',
-								flagImg:'../assets/images/home/flag.png',
-								chName:'布拉沃山丘赤霞珠美乐干',
-								enName:'Bravo hills Miller Cabernet sauv',
-								country:'法国',
-								origin:'产地等级',
-								price:'￥ 150'
-								}
-								,{
-								newImgSrc:'../assets/images/home/product.png',
-								flagImg:'../assets/images/home/flag.png',
-								chName:'布拉沃山丘赤霞珠美乐干',
-								enName:'Bravo hills Miller Cabernet sauv',
-								country:'法国',
-								origin:'产地等级',
-								price:'￥ 150'
-								}
-								,{
-								newImgSrc:'../assets/images/home/product.png',
-								flagImg:'../assets/images/home/flag.png',
-								chName:'布拉沃山丘赤霞珠美乐干',
-								enName:'Bravo hills Miller Cabernet sauv',
-								country:'法国',
-								origin:'产地等级',
-								price:'￥ 150'
-								}
-							]
+		let productListData=JSON.stringify(this.state.shoppingData)!=='{}'&&this.state.productListData;
 		return(
 			<Container direction="column">
-				<Container scrollable={true}>
+				<Notification
+				      title="荟酒国际提示"
+			          amStyle='alert'
+			          visible={this.state.visible}
+			          animated
+			          onDismiss={this.closeNotification}
+			        >
+				         {this.state.promptError}
+			        </Notification>
+				<Container className='scrollWrapper' scrollable={true}>
 					<div className='deportContainer'>
 						<ShoppingCarEditGoods collectionClick={this.collectionClick} deletClick={this.deletClick} onClick={this.allSelected} src={this.and(this.state.isSelect) ? Selected:noSelect}/>
 						<div style={{width:'100%',height:'2rem'}}></div>
-						{deprotData}
-						<HomeHotProduct hotProductImg={hotProductImg} productListData={productListData} />
+					{
+						this.state.isEmpty?(<div className='isEmptyWrapper'>
+											<img className='isEmptyImg' src='/assets/images/shoppingCar/null_cart.png' />
+											<p className='isEmptyText'>购物车空空如也!!</p>
+										</div>):(
+											
+												deprotData
+										)
+					}
+						<HomeHotProduct isError={this.state.isError} noData={this.state.noData} isGetData={this.isGetData} hotProductImg={hotProductImg} productListData={productListData} loadStyle={{'height':'1.5rem'}}/>
 						<div style={{height:'7rem'}}></div>
 					</div>
 				</Container>
-				<ShoppingCarEditGoods onClick={this.allSelected} src={this.and(this.state.isSelect) ? Selected:noSelect} bottom={true}/>
+				<ShoppingCarEditGoods isJump={isSubmint} price_amount={this.state.price_amount} goods_amount={this.state.goods_amount} goods_total={this.state.goods_total} onClick={this.allSelected} src={this.and(this.state.isSelect) ? Selected:noSelect} bottom={true}/>
 			</Container>
 		)
 	}

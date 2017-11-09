@@ -1,30 +1,36 @@
 @import 'base';
-.proDeInfoContainer{
+#proDeInfoContainer{
     width:100%;
     height:auto;
     overflow:hidden;
     margin:10px 0 0 0;
     background:#fff;
-    .btn-primary{
-        border: none;
-        font-size: 1rem;
-        color: @titleColor;
-        .underLine{
-            background-color:#9e1b1b;
-            width:1.875rem;
-            height:5px;
-            border-radius:2.5px;
-            margin: 4px auto;
-            visibility:hidden;
+    .tabs-nav{
+        border: none !important;
+        height: 3rem;
+        margin-bottom: 0;
+        .btn-primary{
+            border: none;
+            font-size: 1rem;
+            color: @titleColor !important;
+            line-height: 1rem;
+            .underLine{
+                background-color:#9e1b1b;
+                width:1.875rem;
+                height:5px;
+                border-radius:2.5px;
+                margin: 4px auto;
+                visibility:hidden;
+            }
+           
         }
-       
-    }
-    .active{
-        background-color: #FFFFFF !important;
-        color: #9e1b1b !important;
-        display: block;
-         .underLine{
-            visibility:visible
+        .active{
+            background-color: #FFFFFF !important;
+            color: #9e1b1b !important;
+            display: block;
+             .underLine{
+                visibility:visible
+            }
         }
     }
     .tabs-body{
@@ -39,7 +45,7 @@
                 color: @fontColor9;
                 font-size: 0.875rem;
                 .col{
-                    padding: 0;
+                    padding: 0.1rem;
                     .g{
                         margin-right: 0.3rem;
                     }

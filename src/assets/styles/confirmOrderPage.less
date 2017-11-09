@@ -1,0 +1,116 @@
+@import 'base';
+.remark{
+    background-color: #FFFFFF;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+.coinCards{
+    width: 100%;
+    height: auto;
+    .coinCardsTitle{
+        width: 100%;
+        height: 2rem;
+        font-size: 0.75rem;
+        color: #999999;
+        line-height: 2rem;
+        padding: 0 2%;
+        .titleLeft{
+            display: inline-block;
+            width: 50%;
+        }
+        .titleRight{
+            display: inline-block;
+            width: 50%;
+            text-align: right;
+        }
+    }
+    .useCoin{
+        width: 100%;
+        background-color: #FFFFFF;
+        overflow: hidden;
+        font-size: 0.75rem;
+        color: @titleColor;
+        padding: 0 2%;
+        border: @borderInterval;
+        .useCoinNum{
+            float: left;
+            height: 2.7rem;
+            line-height: 2.7rem;
+        }
+        .isUseCoin{
+            float: right;
+            height: 2.7rem;
+            line-height: 2.7rem;
+            padding:0 1rem;
+            .deductible{
+                color: #9e1b1b;
+                padding-right: 0.5rem;
+            }
+            img{
+                width: 1.125rem;
+                height: 1.125rem;
+            }
+        }
+    }
+}
+.sampleLayer{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    background:#fff;
+    .sampleLayerTop{
+        width:100%;
+        height:auto;
+        background:#661b18;
+        text-align:center;
+        color:#fff;
+        padding:0.4rem 0;
+        font-size:0.9rem;
+        margin-bottom:0.4rem;
+    }
+    .sampleLayerContent{
+        width:100%;
+        padding:0 2%;
+        height:auto;
+        overflow:hidden;
+        .sampleCheckContainer{
+            width:100%;
+            height:auto;
+            margin-bottom:1rem;
+            overflow:hidden;
+            .sampleLeftImg{
+                float:left;
+                display:block;
+                width:1.125rem;
+                margin-top:3.5rem;
+            }
+            .sampleRight{
+                height:auto;
+                overflow:hidden;
+                float:right;
+                width:90%;
+                position:relative;
+                img{
+                    width:100%;
+                }
+                .sampleRightMoney{
+                    position: absolute;
+                    top: 1rem;
+                    left: 1rem;
+                    color: #fff;
+                    span{
+                        font-size:2rem;
+                    }
+                }
+                .sampleRightDate{
+                    position: absolute;
+                    top: 4rem;
+                    left: 1rem;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

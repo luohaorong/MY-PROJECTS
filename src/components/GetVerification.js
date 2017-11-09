@@ -42,52 +42,97 @@ class GetVerification extends React.Component {
 		let This=this;
 		let phoneNumber=This.props.phoneNumber;
 		let checkphone = /^1[234567890]\d{9}$/;
-		if (!(checkphone.test(phoneNumber))) {
-				// 如果失败，提示！！
-					This.openNotification();
-					//  callback
-					var timeId = setTimeout(This.closeNotification,3000);
-					This.setState({
-						timeId : timeId
-					});
-		      }else{
-		      	if(this.state.sign==='yes'){
-					This.setState({
-						sign:'no'
-					})
-				timer=setInterval(function(){
-					count--;
-					This.setState({
-						btnContent:count+'s'
-					});
-					if(count===0){
-					clearInterval(timer);
-					This.setState({
-						btnContent:'重新获取验证码',
-						sign:'yes'
-						})
-					}
-				},1000);
-				bee.post('/wechat/get/code', {
-					'mobile':This.props.phoneNumber,
-					'sms_type' :This.props.smsType
-				}, function (data) {
-						if (data.error_code) {
-							let Error=data.msg;
-							// 如果失败，提示！！
+		let picture=this.props.picture;
+		let captchaUuid=this.props.captchaUuid;
+		if(This.state.sign==='yes'){
+			This.setState({
+				sign:'no'
+			})
+			if(This.props.smsType=='reset_passwd'||This.props.smsType=='balance_pay'){
+						bee.post('/wechat/get/code', {
+						'mobile':This.props.phoneNumber,
+						'sms_type' :This.props.smsType
+					}, function (data) {
+							if (data.error_code) {
+								let Error=data.msg;
+								// 如果失败，提示！！
+								This.openNotification();
+								//  callback
+								var timeId = setTimeout(This.closeNotification,3000);
+								This.setState({
+									timeId : timeId,
+									promptError:Error,
+									sign:'yes'
+								});
+								return;
+							}else{
+								timer=setInterval(function(){
+									count--;
+									This.setState({
+										btnContent:count+'s'
+									});
+									if(count===0){
+									clearInterval(timer);
+									This.setState({
+										btnContent:'重新获取验证码',
+										sign:'yes'
+										})
+									}
+								},1000);
+							}
+						});
+			}else{
+				if (checkphone.test(phoneNumber)&&picture) {
+						bee.post('/wechat/get/code', {
+							'mobile':This.props.phoneNumber,
+							'sms_type' :This.props.smsType,
+							'captcha':picture,
+							'captchaUuid':captchaUuid
+						}, function (data) {
+								if (data.error_code) {
+									let Error=data.msg;
+									// 如果失败，提示！！
+									This.openNotification();
+									//  callback
+									var timeId = setTimeout(This.closeNotification,3000);
+									This.setState({
+										timeId : timeId,
+										promptError:Error,
+										sign:'yes'
+									});
+									This.props.getPic(true);
+									return;
+								}else{
+									timer=setInterval(function(){
+										count--;
+										This.setState({
+											btnContent:count+'s'
+										});
+										if(count===0){
+										clearInterval(timer);
+										This.setState({
+											btnContent:'重新获取验证码',
+											sign:'yes'
+											})
+										}
+									},1000);
+								}
+							});
+				      }else{
+						// 如果失败，提示！！
 							This.openNotification();
 							//  callback
 							var timeId = setTimeout(This.closeNotification,3000);
 							This.setState({
 								timeId : timeId,
-								promptError:Error
+								promptError:'请填写图形验证码和手机号码',
+								sign:'yes'
 							});
-							return;
-						}
-					});
+				      	
+				    }
 				
-				}
-		    }
+			}
+		}
 	}
 	componentWillUnmount(){
 		clearInterval(timer);
@@ -107,7 +152,7 @@ class GetVerification extends React.Component {
 			          animated
 			          onDismiss={this.closeNotification}
 			        >
-				         '请填写正确的手机号码'
+				         {this.state.promptError}
 			        </Notification>
 				<p className='btnVer' style={btnStyle} data-sign={this.state.sign} onClick={this.clickHeadler}>{this.state.btnContent}</p>
 			</div>

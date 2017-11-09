@@ -5,41 +5,32 @@ import HomeHotTitle from './HomeHotTitle';
 import LoadMore from './LoadMore';
 import {Grid,Col} from 'amazeui-touch';
 import LazyLoad from 'react-lazy-load';
+import exclusive from '../assets/images/productDtail/exclusive.png';
+import new_p from '../assets/images/productDtail/new.png';
+import pre_sale from '../assets/images/productDtail/pre_sale.png';
+import win_list from '../assets/images/home/win_list.png';
 import pureRender from 'pure-render-decorator';
 class HomeHotProduct extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			productListData:[],
-			reGet:false,
+			pListData:[],
 			errorSrc:"",
-			classN:"",
+			Reset:false,
+			noData:false,
+			isError:true
 		};
 		this.errorLoad=this.errorLoad.bind(this);
 		this.loadHeadle=this.loadHeadle.bind(this);
 	}
-	//获取LoadMore传来的数据
-	reGetData(data){
-		let tmp=this.props.productListData;
-		if(data){
-			data.map(function(item){
-				tmp.push(item)
-			})
-			this.setState({
-				reGet:true,
-				productListData:tmp
-			})
-		}else{
-			this.setState({
-				reGet:false
-			})
-		}
-	}
+	
 	//图片加载出错时执行
-	errorLoad(){
+	errorLoad(e){
+		let active=e.currentTarget;
+		active.src='../assets/images/unload.png';
+		active.setAttribute('class','errorLoad');
 		this.setState({
-			errorSrc:'../assets/images/unload.png',
-			classN:'errorLoad'
+			isError:false
 		})
 		
 		
@@ -49,29 +40,39 @@ class HomeHotProduct extends React.Component{
 		let active=e.currentTarget;
 		let comp=active.complete;
 		let dataSrc=active.getAttribute('data-src');
-		this.setState({
-			classN:'errorLoad'
-		});
-		if(comp){
-			this.setState({
-				classN:''
-			})
+		if(comp&&this.state.isError){
 			active.src=dataSrc;
 		}
+		
 	}
+	//offsetVertical={200}
 	render(){
+		let producStyle1={
+			display:'none'
+		};
+		let producStyle2={
+			display:'block'
+		};
 		// 定义热销商品列表
-		let productListData=this.props.productListData||this.state.productListData;
+		let productListData=this.props.productListData;
 		let len=productListData.length;
-		const productList = (
+		let productList = (
 				  <Grid avg={2}>
 				  	{productListData&&productListData.map(function(item,i){
 				  		return (
 					  			<Col key={i} className='productCol'>
 					            	<Link className='productListStyle' to={'/ProductDtailPage?uuid=' + item.uuid} data-uuid={item.uuid}>
-							  			<LazyLoad offsetVertical={50} className={i===len-1?'hotImgLast hotImgWrapper':'hotImgWrapper'}>
-						            		<img onError={this.errorLoad} className={this.state.classN||'productImg'}  onLoad={this.loadHeadle} data-src={bee.image(item.thumb,280,400)} src={this.state.errorSrc||'../assets/images/preLoad.gif'}/>
-						            	</LazyLoad>	
+							  			<div className="productListImgContainer">
+							  				<img style={item.is_exclusive=="no"?producStyle1:producStyle2} src={exclusive}/>
+							  				<img style={item.is_new=="no"?producStyle1:producStyle2} src={new_p}/>
+							  				<img style={item.is_presale=="no"?producStyle1:producStyle2} src={pre_sale}/>
+							  			</div>
+							  			<div className="productListImgContainerLeft">
+							  				<img style={item.honor=="no"?producStyle1:producStyle2} src={win_list}/>
+							  			</div>
+							  			<p  className='hotImgWrapper'>
+						            		<img onError={this.errorLoad} className='productImg'  onLoad={this.loadHeadle} data-src={bee.image(item.thumb,280,400)} src='../assets/images/preLoad.gif'/>
+						            	</p>	
 						            	<div className='productDiscribe'>
 							            	<p className='productChName text-truncate'>{item.chinese_name}</p>
 							            	<p className='productEnName text-truncate'>{item.english_name}</p>
@@ -87,14 +88,14 @@ class HomeHotProduct extends React.Component{
 		            
 		          </Grid>
 		         );
-
+		
 		return (
 		     <div className='hotProductContainer'>
-				<HomeHotTitle hotProductImg={this.props.hotProductImg}/>
+				<HomeHotTitle height={this.props.height||''} hotProductImg={this.props.hotProductImg}/>
 		 		<section className='mainWap'>
 			 		{productList}
 				</section>
-				<LoadMore loadUrl={this.props.loadUrl} reGetData={this.reGetData.bind(this)} reGete={this.state.reGet} loadStyle={this.props.loadStyle} loadUuid={this.props.loadUuid}/>
+				<LoadMore isGetData={this.props.isGetData} noListData={this.props.noListData} noData={this.props.noData} Reset={this.state.Reset} loadUrl={this.props.loadUrl} loadStyle={this.props.loadStyle}/>
 			</div>
 	)
 	}

@@ -17,9 +17,31 @@
                 background-color: #FFFFFF;
                 color:@titleColor;
                 overflow: hidden;
+                position:relative;
+                .productListImgContainer{
+                    position:absolute;
+                    width:auto;
+                    height:auto;
+                    right:0.2rem;
+                    top:0.2rem;
+                    overflow:hidden;
+                    img{
+                        display:block;
+                        margin-top:0.2rem;
+                    }
+                }
+                .productListImgContainerLeft{
+                    position:absolute;
+                    width:auto;
+                    height:auto;
+                    left:0.2rem;
+                    top:0.2rem;
+                    overflow:hidden;
+                }
                 .hotImgWrapper{
                     width: 100%;
                     height: 8.25rem;
+                    position: relative;
                     .productImg{
                         width: 5.6875rem;
                         height: 8.25rem;

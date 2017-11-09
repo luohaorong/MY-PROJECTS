@@ -8,6 +8,22 @@ class ProductDetailBttom extends React.Component{
 		this.state={
 			isExclusive:this.props.isExclusive
 		}
+		this.clickHeadle=this.clickHeadle.bind(this);
+		this.clickExclusive=this.clickExclusive.bind(this);
+	}
+	componentWillReceiveProps(nextprops){
+		this.setState({
+			isExclusive:nextprops.isExclusive
+		})
+	}
+	//加入购物车点击事件
+	clickHeadle(e){
+		this.props.submitCar(true);
+	}
+	//跳转独家协议页面点击事件
+	clickExclusive(){
+		let exclusive_uuid=this.props.exclusive_uuid;
+		bee.cache('exclusive_uuid',exclusive_uuid);
 	}
 	render(){
 		return(
@@ -16,12 +32,13 @@ class ProductDetailBttom extends React.Component{
 					<div className='detailBottomContainer'>
 						<Link to='/index/ShoppingCarPage' className='detailLeft'>
 								采购车
+								<span className='shoppingNumber'>{this.props.shoppingNum}</span>
 						</Link>
 						<div className='detailRight'>
-							<div className='detailRightShoppingCar'>
+							<div className='detailRightShoppingCar' onClick={this.clickHeadle}>
 								加入购物车
 							</div>
-							<Link to='/SoleAgencyPage' className='detailRightExclusive'>
+							<Link to='/SoleAgencyPage' onClick={this.clickExclusive} className='detailRightExclusive'>
 								独家代理
 							</Link>
 						</div>
@@ -30,8 +47,9 @@ class ProductDetailBttom extends React.Component{
 					<div className='detailBottomContainer'>
 						<Link to='/index/ShoppingCarPage' className='detailLeft'>
 								采购车
+								<span className='shoppingNumber'>{this.props.shoppingNum}</span>
 						</Link>
-						<div className='detailRight'>
+						<div className='detailRight' onClick={this.clickHeadle}>
 								加入采购车
 						</div>
 					</div>)}

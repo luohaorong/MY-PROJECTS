@@ -1,0 +1,78 @@
+@import 'base';
+.payWrapper{
+    background-color: #FFFFFF;
+    .orderContainer{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+    .payWrapperTip{
+    	height:auto;
+    	width:96%;
+    	text-align:left;
+    	color:#9e1b1b;
+    	font-size:0.75rem;
+    	margin:0.4rem 0;
+    	margin-left:4%;
+    }
+    .balanceLayerStyle{
+        display:none;
+    }
+    .balanceLayer{
+    	width:100%;
+    	height:100%;
+    	background:rgba(0,0,0,0.5);
+    	position:absolute;
+    	top:0;
+    	left:0;
+    	z-index:2;
+    	.balanceLayerContainer{
+		    width: 70%;
+            height: auto;
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            margin-top: -50%;
+            left: 15%;
+            background: #fff;
+            padding: 0.5rem;
+            text-align: center;
+            border-radius:0.4rem;
+    		.balanceLayerTitle{
+    			color:#333;
+    			font-size:1rem;
+    			margin-top:0.2rem;
+    		}
+    		.balanceLayerTitle2{
+    			color:#333;
+    			font-size:0.7rem;
+    			margin-top:0.2rem;
+    			margin-bottom:1rem;
+    		}
+            .balanceLayerBottom{
+                width:100%;
+                height:auto;
+                float:left;
+                overflow:hidden;
+                margin-top:1.5rem;
+                 border:0.07rem solid #ccc;
+                .balanceLayerBottomLeft{
+                    width:50%;
+                    line-height:3rem;
+                    float:left;
+                    border-right:0.07rem solid #ccc;
+                    text-align:center;
+                    color:#333;
+                }
+                .balanceLayerBottomRight{
+                    width:50%;
+                    line-height:3rem;
+                    float:left;
+                    text-align:center;
+                    background:#9e1b1b;
+                    color:#fff;
+                }
+            }
+    	}
+    }
+}

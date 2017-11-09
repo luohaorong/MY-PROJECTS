@@ -1,5 +1,4 @@
 import React from 'react';
-import Bottom from '../components/Bottom';
 import '../assets/styles/app.less';
 import {
   Link
@@ -52,9 +51,7 @@ import pureRender from 'pure-render-decorator';
         >
 	      {children}
         </Container>
-       <Container> 
-				<Bottom/>
-			</Container>
+      
 
       </Container>
     

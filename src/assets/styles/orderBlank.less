@@ -1,0 +1,41 @@
+@import 'base';
+.OrderBlankSec{
+    width: 100%;
+    height: auto;
+    background-color: #FFFFFF;
+    .OrderBlank{
+        width: 100%;
+        height: 2.265rem;
+        line-height: 2.265rem;
+        background-color: #efeff4;
+        .OrderBlankNum{
+            font-size: 1.06rem;
+            color: #333333;
+            padding-left: 2%;
+            padding-right: 1rem;
+        }
+        .orderBlankStation{
+          font-size: 0.94rem;
+          color: @fontColor9;  
+        }
+    }
+    .orderBlankContainer{
+        padding: 0.8rem 0 0 2%;
+        .countBottleNum{
+            font-size: 0.875rem;
+            color: #333333;
+        }
+        .countPrice{
+            font-size: 0.875rem;
+            color: @fontColor9;
+            border-bottom: @borderInterval;
+            .countPriceNum{
+                font-size: 0.9375rem;
+                color: #9e1b1b;
+                padding-left: 0.5rem;
+                display: inline-block;
+                width: 30%;
+            }
+        }
+    }
+}

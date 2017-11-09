@@ -12,26 +12,12 @@ class ServiceCenterPage extends React.Component{
 		}
 	}
 	 componentWillMount(){
+	 	bee.pushUrl();
+	 	document.title='服务中心';
 	 	const Data=[
 	 				
 					{
-						title:'可主营地区',
-						detailData:[
-										{
-											title:'姓名',
-											content:'老王',
-											uuid:'1'
-										}
-										,{
-											title:'手机',
-											content:'15898959865',
-											uuid:'2'
-										}
-									],
-						uuid:'1'			
-					}
-					,{
-						title:'人工客服',
+						title:'人工服务',
 						detailData:[
 										{
 											title:'座机',

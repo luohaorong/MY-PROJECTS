@@ -1,45 +1,62 @@
 import React from 'react';
-import {Container} from 'amazeui-touch';
+import {Container,View} from 'amazeui-touch';
 import '../assets/styles/balancePayments.less';
+import orders_empty from '../assets/images/orders_empty.png';
+import LoadMore from './LoadMore';
+import pureRender from 'pure-render-decorator';
 class BalancePayments extends React.Component{
 	constructor(props){
 		super(props);
-		
+		this.state={
+			noData:false
+		}
 	}
 	render(){
 		let DataMoneyDetail=this.props.DataMoneyDetail;
-		const MoneyDetail=(
-				DataMoneyDetail.map(function(item,i){
-					let str=item.type;
-					if (str.indexOf('支付')!==-1) {
-						return(
-							<div key={i} className='dataMoneyDetail'>
-								<p className='dataMoneyDetailWords'>{item.type}</p>
-								<p className='dataMoneyDetailOrder'>{item.ordernum}</p>
-								<p className='dataMoneyDetailTime'>{item.time}</p>
-								<p className='dataMoneyDetailMoney1'>{item.money}</p>
-							</div>	
-							)
-					}else{
-						return(
-							<div key={i} className='dataMoneyDetail'>
-								<p className='dataMoneyDetailWords'>{item.type}</p>
-								<p className='dataMoneyDetailOrder'>{item.ordernum}</p>
-								<p className='dataMoneyDetailTime'>{item.time}</p>
-								<p className='dataMoneyDetailMoney2'>{item.money}</p>
-							</div>	
-							)
-					}
-						
+		let MoneyDetail;
+		let bool = this.props.wordShow;
+		if (DataMoneyDetail.length>0) {
+			MoneyDetail=(
+					DataMoneyDetail&&DataMoneyDetail.map(function(item,i){
+						let str=item.inout;
+						if (str==='out') {
+							return(
+								<div key={i} className='dataMoneyDetail'>
+									<p className='dataMoneyDetailWords'>{bool==true?item.note:item.order_sn}</p>
+									<p className='dataMoneyDetailTime'>{item.created_at}</p>
+									<p className='dataMoneyDetailMoney1'>{'-'+item.amount}</p>
+								</div>	
+								)
+						}else{
+							return(
+								<div key={i} className='dataMoneyDetail'>
+									<p className='dataMoneyDetailWords'>{bool==true?item.note:item.order_sn}</p>
+									<p className='dataMoneyDetailTime'>{item.created_at}</p>
+									<p className='dataMoneyDetailMoney2'>{'+'+item.amount}</p>
+								</div>	
+								)
+						}
 					})
-					
-			)
+						
+				)
+		}else{
+			MoneyDetail=(
+					<div className="MoneyDetailEmptyContainer">
+						<img className='MoneyDetailEmptyContainerImg' src={orders_empty}/>
+						<p>{this.props.empty}</p>
+					</div>
+				)
+		}
 		return(
-		<Container className='dataMoneyContainer'>
+		
+		<Container className='dataMoneyContainer scrollWrapper' scrollable={true}>
 			{MoneyDetail}
-		</Container>	
+			<LoadMore isGetData={this.props.isGetData} noData={this.props.noData} loadStyle={this.props.loadStyle}/>
+		</Container>
+		
 		)
 			
 	}
 }
-export default BalancePayments;
+
+export default pureRender(BalancePayments);
