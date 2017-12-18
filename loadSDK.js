@@ -177,6 +177,16 @@ hxr.get("http://127.0.0.1:3000/123",null,function(data){
 
 
 
+
+
+
+
+
+
+
+
+
+
 //
 //var _self = this;
 //		request.onerror = function(e) {
