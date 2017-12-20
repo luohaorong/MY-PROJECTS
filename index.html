@@ -6,6 +6,16 @@
 	</head>
 	<body>
 		<script src="loadSDK.js"></script>
-		<!--<script src="indexdb.js"></script>-->
+		<script type="text/javascript">
+			var data = {
+					name: 'luohaorong',
+					storeName:'dataFiles',
+					version:1,
+					delet:false,
+					dataList:["/views/loadSDK/jquery.js","/views/loadSDK/common.js","/views/loadSDK/wx.js"]
+				}
+			var indexDB = new dataSDK(data.name,data.storeName,data.version);
+			window.uilt.implement(data,indexDB)
+		</script>
 	</body>
 </html>

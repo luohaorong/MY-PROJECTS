@@ -12,7 +12,7 @@ app.all('*', function(req, res, next) {
 });
 
 var questions = {
-	name: 'test',
+	name: 'luohaorong',
 	storeName:'dataFiles',
 	version:1,
 	delet:false
