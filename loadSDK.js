@@ -1,8 +1,8 @@
-;
-(function(window, undefind) {
+;(function(window, undefind) {
 	window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 	window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
 	window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+	var count = 0;
 	//创建ajax
 	window.ajaxFactory = function() {
 		this.init.apply(this, arguments);
@@ -71,27 +71,47 @@
 		this.request.onupgradeneeded = function(e) {
 			var db = e.target.result;
 			if(!db.objectStoreNames.contains(storeName)) {
-				db.createObjectStore(storeName, {
-					keyPath: "id"
-				});
+				var store = db.createObjectStore(storeName);
+				store.createIndex("nameIndex","name",{unique:true});
 			};
 			console.log("数据库版本更改为" + version);
 		};
 	};
 	//添加数据
-	dataSDK.prototype.addData = function(dataFelis) {
+	dataSDK.prototype.addData = function(dataFelis,fn) {
 		var This = this;
 		var result = this.request;
+		
 		result.onsuccess = function(e) {
 			var db = e.target.result;
 			var transaction = db.transaction(This.storeName, 'readwrite');
 			var store = transaction.objectStore(This.storeName);
-			store.add(dataFelis);
+			var addRequset = store.add(dataFelis,dataFelis.name);
+			addRequset.onsuccess = function(e){
+				var data = e;
+				fn.call(this,data);
+			}
 		};
 		result.onerror = function(e) {
 			console.log(e)
 		}
 	};
+	//更新数据
+	dataSDK.prototype.updateDataByKey = function(name,newData){
+			var This = this;
+			var result = this.request;
+			result.onsuccess = function(e) {
+				var db = e.target.result;
+				var transaction=db.transaction(This.storeName,'readwrite'); 
+				var store=transaction.objectStore(This.storeName); 
+				var request=store.get(name); 
+				request.onsuccess=function(e){ 
+				    var oldData=e.target.result;
+				    oldData = newData;
+				    store.put(oldData); 
+				};
+			}
+}
 	//获取数据
 	dataSDK.prototype.getDataByKey = function(srcList, fn) {
 		var This = this;
@@ -100,11 +120,10 @@
 			var db = e.target.result;
 			var transaction = db.transaction(This.storeName, 'readwrite');
 			var store = transaction.objectStore(This.storeName);
-			srcList.map(function(item, index) {
-				var indexId = 1000 + index;
-				var getRequest = store.get(indexId);
-				getRequest.onsuccess = function(e) {
-					data = e.target.result;
+			srcList.map(function(item) {
+				var index = store.index("nameIndex");
+				index.get(item.name).onsuccess = function(e) {
+					var data = e.target.result;
 					fn.call(this, data);
 				};
 			});
@@ -122,70 +141,171 @@
 		addScriptInnerHtml: function(data) {
 			var script = document.createElement("script");
 			script.setAttribute("type", "text/javascript");
-			script.innerHTML = data;
-			document.getElementsByTagName("head")[0].appendChild(script);
+			script.setAttribute("id", data.name);
+			script.setAttribute("data-id", data.id);
+			script.innerHTML = data.data;
+			var head = document.getElementsByTagName("head");
+			if(head.length){
+				head[0].appendChild(script);
+			}else{
+				document.documentElement.appendChild(script)
+			}
 		},
 		creatScript: function(data) {
 			var wrap = document.createDocumentFragment();
 			data.map(function(item) {
 				var script = document.createElement("script");
 				script.setAttribute("type", "text/javascript");
-				script.setAttribute("src", item);
+				script.setAttribute("src", item.resourcesSrc);
+				script.setAttribute("id", item.name);
 				wrap.appendChild(script);
 			});
-			document.getElementsByTagName("head")[0].appendChild(wrap);
+			var head = document.getElementsByTagName("head");
+			if(head.length){
+				head[0].appendChild(wrap);
+			}else{
+				document.documentElement.appendChild(wrap)
+			}
+			
+		},
+		addStyleInnerHtml: function(data) {
+			var styleDOM = document.createElement("style");
+			styleDOM.setAttribute("type", "text/css");
+			styleDOM.setAttribute("id", data.name);
+			styleDOM.setAttribute("data-id", data.id);
+			if(styleDOM.stylesheet){
+				//IE
+				styleDOM.stylesheet.cssText = data.data;
+			}else{
+				var cssText = document.createTextNode(data.data);
+				styleDOM.appendChild(cssText);
+			}
+			var head = document.getElementsByTagName("head");
+			if(head.length){
+				head[0].appendChild(styleDOM);
+			}else{
+				document.documentElement.appendChild(styleDOM)
+			}
+		},
+		creatStyle: function(data){
+			var wrap = document.createDocumentFragment();
+			data.map(function(item) {
+				var linkDOM = document.createElement("link");
+				linkDOM.setAttribute("rel", "stylesheet");
+				linkDOM.setAttribute("type", "text/css");
+				linkDOM.setAttribute("href", item.resourcesSrc);
+				linkDOM.setAttribute("id", item.name);
+				wrap.appendChild(linkDOM);
+			});
+			var head = document.getElementsByTagName("head");
+			if(head.length){
+				head[0].appendChild(wrap);
+			}else{
+				document.documentElement.appendChild(wrap)
+			}
 		},
 		pullData: function(dataList, num, data) {
 			var isArray = Object.prototype.toString.call(dataList) === "[object Array]";
+			var This = this;
+			var dataLength = data.dataList.length;
 			if(isArray) {
+				console.log("数组")
+				var len = dataList.length;
 				dataList.map(function(item, index) {
-					var indexID = 1000 + index;
-					hxr.get(item, null, function(newData) {
+					hxr.get(item.resourcesSrc, null, function(newData) {
 						var dataFelis = {
-							id: indexID,
+							id: index,
+							name:item.name,
+							type:item.type,
 							data: newData
 						};
 						var indexDB = new dataSDK(data.name, data.storeName, data.version);
-						indexDB.addData(dataFelis, indexID);
-						window.uilt.addScriptInnerHtml(newData);
-					})
+						indexDB.addData(dataFelis);
+						if(index === len - 1){
+							indexDB.getDataByKey(dataList,function(newData){
+								This.innerDataByLocal(newData);
+							})
+						}
+					});
 				});
 			} else {
-				hxr.get(dataList, null, function(newData) {
+				console.log("不是数组")
+				hxr.get(dataList.resourcesSrc, null, function(newData) {
 					var dataFelis = {
 						id: num,
+						name:dataList.name,
+						type:dataList.type,
 						data: newData
 					};
 					var indexDB = new dataSDK(data.name, data.storeName, data.version);
-					indexDB.addData(dataFelis, num);
-					window.uilt.addScriptInnerHtml(newData);
+					indexDB.addData(dataFelis,function(){
+						++count;
+						if(count === dataLength){
+							var getDB = new dataSDK(data.name, data.storeName, data.version);
+							getDB.getDataByKey(data.dataList,function(getD){
+								This.innerDataByLocal(getD);
+							})
+						}
+					});
+
 				});
+			}
+		},
+		getDataByRemote: function(data){
+			var tmpJs = [];
+			var tmpCss = [];
+			data.map(function(item){
+				var type = item.type;
+				switch(type){
+					case "js":
+					tmpJs.push(item);
+					break;
+					case "css":
+					tmpCss.push(item);
+					break;
+					default:;
+				}
+			})
+			window.uilt.creatStyle(tmpCss);
+			window.uilt.creatScript(tmpJs);
+		},
+		innerDataByLocal: function(data){
+			switch(data.type){
+				case "js":
+				window.uilt.addScriptInnerHtml(data);
+				break;
+				case "css":
+				window.uilt.addStyleInnerHtml(data);
+				break;
+				default:;
 			}
 		},
 		implement: function(data, firstIndexDB) {
 			hxr = new ajaxFactory;
+			var This = this;
 			if(!window.indexedDB){
-				window.uilt.creatScript(data.dataList);
+				this.getDataByRemote(data.dataList);
 				return;
 			};
 			if(data.delet) {
 				firstIndexDB.deleteDB(data.name);
-				window.uilt.creatScript(data.dataList);
+				this.getDataByRemote(data.dataList);
 				return;
 			} else {
 				var oldVersionData = JSON.parse(sessionStorage.getItem("versionData"));
 				var oldV = oldVersionData ? +oldVersionData.version : 0;
+				var oldSubV = oldVersionData ? +oldVersionData.dataList.version : 0;
 				if(oldV != +data.version) {
 					window.uilt.pullData(data.dataList, null, data)
 				} else {
-					var id = 1000;
+					var id = 0;
 					var indexDB = new dataSDK(data.name, data.storeName, data.version);
 					indexDB.getDataByKey(data.dataList, function(getData) {
 						if(getData) {
 							id = getData.id + 1;
-							window.uilt.addScriptInnerHtml(getData.data);
+							This.innerDataByLocal(getData);
 						} else {
-							window.uilt.pullData(data.dataList[id - 1000], id, data);
+							window.uilt.pullData(data.dataList[id], id, data);
 							++id;
 						}
 					})

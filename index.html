@@ -10,9 +10,33 @@
 			var data = {
 					name: 'luohaorong',
 					storeName:'dataFiles',
-					version:1,
+					version:16,
 					delet:false,
-					dataList:["/views/loadSDK/jquery.js","/views/loadSDK/common.js","/views/loadSDK/wx.js"]
+					dataList:[{
+						name:"common.css",
+						type:"css",
+						version:1,
+						resourcesSrc:"/views/loadSDK/common.css"
+					},{
+						name:"equipmentDetailMAC.css",
+						type:"css",
+						version:1,
+						resourcesSrc:"/views/loadSDK/equipmentDetailMAC.css"
+					},{
+						name:"jquery.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/views/loadSDK/jquery.js"
+					},{
+						name:"common.js",
+						type:"js",
+						resourcesSrc:"/views/loadSDK/common.js"
+					},{
+						name:"wx.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/views/loadSDK/wx.js"
+					}]
 				}
 			var indexDB = new dataSDK(data.name,data.storeName,data.version);
 			window.uilt.implement(data,indexDB)
