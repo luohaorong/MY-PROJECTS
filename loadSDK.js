@@ -44,7 +44,7 @@
 			obj.open("GET", newUrl, true);
 			obj.onreadystatechange = function() {
 				if(obj.readyState === 4 && (obj.status === 200 || obj.status == 304)) {
-					fn.call(this, obj.responseText); //从服务器获得数据
+					fn && fn.call(this, obj.responseText); //从服务器获得数据
 				}
 			};
 			obj.send(null);
@@ -56,7 +56,7 @@
 			obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // 发送信息至服务器时内容编码类型
 			obj.onreadystatechange = function() {
 				if(obj.readyState === 4 && (obj.status === 200 || obj.status == 304)) {
-					fn.call(this, obj.responseText); //从服务器获得数据
+					fn && fn.call(this, obj.responseText); //从服务器获得数据
 				}
 			};
 			obj.send(dataParams);
@@ -89,7 +89,7 @@
 			var addRequset = store.add(dataFelis,dataFelis.name);
 			addRequset.onsuccess = function(e){
 				var data = e;
-				fn.call(this,data);
+				fn && fn.call(this,data);
 			}
 		};
 		result.onerror = function(e) {
@@ -124,7 +124,7 @@
 				var index = store.index("nameIndex");
 				index.get(item.name).onsuccess = function(e) {
 					var data = e.target.result;
-					fn.call(this, data);
+					fn && fn.call(this, data);
 				};
 			});
 		}
@@ -220,12 +220,15 @@
 							data: newData
 						};
 						var indexDB = new dataSDK(data.name, data.storeName, data.version);
-						indexDB.addData(dataFelis);
-						if(index === len - 1){
-							indexDB.getDataByKey(dataList,function(newData){
-								This.innerDataByLocal(newData);
-							})
-						}
+						indexDB.addData(dataFelis,function(){
+							++count;
+							if(count === dataLength){
+								var getDB = new dataSDK(data.name, data.storeName, data.version);
+								getDB.getDataByKey(dataList,function(getD){
+									This.innerDataByLocal(getD);
+								})
+							}
+						});
 					});
 				});
 			} else {
