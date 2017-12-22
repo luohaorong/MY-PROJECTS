@@ -9,6 +9,11 @@ ul{
 a{
 	text-decoration: none;
 }
+.box{
+	width: 100px;
+	height: 100px;
+	background-color: #FFA344;
+}
 /*设备详情布局样式*/
 .container{
 	width: 100%;

@@ -2,28 +2,23 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>test1</title>
 	</head>
 	<body>
 		<div class="box">
-			<a href="test1.html">test1</a>
+			<a href="index.html">index</a>
 		</div>
 		<script src="loadSDK.js"></script>
 		<script type="text/javascript">
 			var data = {
-					name: 'luohaorong',
-					storeName:'index',
+					name: 'test',
+					storeName:'test',
 					version:1,
 					dataList:[{
 						name:"common.css",
 						type:"css",
 						version:1,
 						resourcesSrc:"/views/loadSDK/common.css"
-					},{
-						name:"equipmentDetailMAC.css",
-						type:"css",
-						version:1,
-						resourcesSrc:"/views/loadSDK/equipmentDetailMAC.css"
 					},{
 						name:"jquery.js",
 						type:"js",
@@ -35,10 +30,10 @@
 						version:1,
 						resourcesSrc:"/views/loadSDK/common.js"
 					},{
-						name:"wx.js",
-						type:"js",
+						name:"test.css",
+						type:"css",
 						version:1,
-						resourcesSrc:"/views/loadSDK/wx.js"
+						resourcesSrc:"/views/loadSDK/test.css"
 					}]
 				}
 			var indexDB = new dataSDK(data.name,data.storeName,data.version);

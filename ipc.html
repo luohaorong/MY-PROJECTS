@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="/static/plugin/loadSDK.js"></script>
+
+<script type="text/javascript">
+	var data = {
+					name: 'rms',
+					storeName:'dataFiles',
+					version:2,
+					delet:false,
+					dataList:[{
+						name:"aliplayer.css",
+						type:"css",
+						version:1,
+						resourcesSrc:"/static/plugin/aliplayer/aliplayer.css"
+					},{
+						name:"webuploader.css",
+						type:"css",
+						version:1,
+						resourcesSrc:"/static/plugin/fex-webuploader/dist/webuploader.css"
+					},{
+						name:"jquery.js",
+						type:"js",
+						resourcesSrc:"/static/plugin/jquery-1.11.3.js"
+					},{
+						name:"clipboard.min.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/clipboard/clipboard.min.js"
+					},{
+						name:"webuploader.min.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/fex-webuploader/dist/webuploader.min.js"
+					},{
+						name:"aliplayer.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/aliplayer/aliplayer.js"
+					},{
+						name:"md5.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/util/md5.js"
+					},{
+						name:"layer.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/layer/layer.js"
+					},{
+						name:"crypto-js.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/util/crypto-js.js"
+					},{
+						name:"sakura-auth.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/sakura/sakura-auth.js"
+					},{
+						name:"sakura-combo.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/sakura/sakura-combo.js"
+					},{
+						name:"sakura-combobox.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/sakura/sakura-combobox.js"
+					},{
+						name:"sakura-form.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/sakura/sakura-form.js"
+					},{
+						name:"laydate.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/laydate/laydate.js"
+					},{
+						name:"director.min.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/director.min.js"
+					},{
+						name:"spark-md5.js",
+						type:"js",
+						version:1,
+						resourcesSrc:"/static/plugin/sparkmd5/spark-md5.js"
+					}]
+				};
+			var indexDB = new dataSDK(data.name,data.storeName,data.version);
+			window.uilt.implement(data,indexDB)
+</script>
+	</body>
+</html>

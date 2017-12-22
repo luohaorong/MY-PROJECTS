@@ -1,6 +1,10 @@
 var a = 2.0;
 ;
 (function(window, doc, undefind) {
+	console.log($("body .box").css({
+		width:200
+	}));
+	//test00000
 	var _TOOLS = {};
 	/**
 	 * 请求路径2017/12/7
