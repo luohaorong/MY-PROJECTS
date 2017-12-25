@@ -8,32 +8,32 @@
 		<div class="box">
 			<a href="index.html">index</a>
 		</div>
-		<script src="loadSDK.js"></script>
+		<script src="/js/loadSDK.js"></script>
 		<script type="text/javascript">
 			var data = {
-					name: 'test',
-					storeName:'test',
-					version:1,
+					name: 'luohaorong',
+					storeName:'index',
+					version:5,
 					dataList:[{
 						name:"common.css",
 						type:"css",
 						version:1,
-						resourcesSrc:"/views/loadSDK/common.css"
+						resourcesSrc:"/css/common.css"
 					},{
 						name:"jquery.js",
 						type:"js",
 						version:1,
-						resourcesSrc:"/views/loadSDK/jquery.js"
+						resourcesSrc:"/js/jquery.js"
 					},{
 						name:"common.js",
 						type:"js",
 						version:1,
-						resourcesSrc:"/views/loadSDK/common.js"
+						resourcesSrc:"/js/common.js"
 					},{
 						name:"test.css",
 						type:"css",
 						version:1,
-						resourcesSrc:"/views/loadSDK/test.css"
+						resourcesSrc:"/css/test.css"
 					}]
 				}
 			var indexDB = new dataSDK(data.name,data.storeName,data.version);

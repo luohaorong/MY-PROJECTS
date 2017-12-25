@@ -8,41 +8,85 @@
 		<div class="box">
 			<a href="test1.html">test1</a>
 		</div>
-		<script src="loadSDK.js"></script>
+		<ul>
+			<li>
+				<img class="huanbao" data-name="1.jpg" src=""/>
+			</li>
+			<li>
+				<img class="timgsa" data-name="2.jpg" src=""/>
+			</li>
+			<li>
+				<img class="huijiuguoji1" data-name="3.png" src=""/>
+			</li>
+			<li>
+				<img class="huijiuguoji2" data-name="4.png" src=""/>
+			</li>
+			<li>
+				<img class="huijiuguoji3" data-name="5.png" src=""/>
+			</li>
+			
+		</ul>
+		<script src="/js/loadSDK.js"></script>
 		<script type="text/javascript">
 			var data = {
 					name: 'luohaorong',
 					storeName:'index',
-					version:1,
+					version:5,
 					dataList:[{
 						name:"common.css",
 						type:"css",
 						version:1,
-						resourcesSrc:"/views/loadSDK/common.css"
+						resourcesSrc:"/css/common.css"
 					},{
 						name:"equipmentDetailMAC.css",
 						type:"css",
 						version:1,
-						resourcesSrc:"/views/loadSDK/equipmentDetailMAC.css"
+						resourcesSrc:"/css/equipmentDetailMAC.css"
 					},{
 						name:"jquery.js",
 						type:"js",
 						version:1,
-						resourcesSrc:"/views/loadSDK/jquery.js"
+						resourcesSrc:"/js/jquery.js"
 					},{
 						name:"common.js",
 						type:"js",
-						version:1,
-						resourcesSrc:"/views/loadSDK/common.js"
+						version:2,
+						resourcesSrc:"/js/common.js"
 					},{
 						name:"wx.js",
 						type:"js",
 						version:1,
-						resourcesSrc:"/views/loadSDK/wx.js"
+						resourcesSrc:"/js/wx.js"
+					},{
+						name:"1.jpg",
+						type:'img',
+						version:1,
+						resourcesSrc:"/images/1.jpg"
+					},{
+						name:"2.jpg",
+						type:'img',
+						version:2,
+						resourcesSrc:"/images/2.jpg"
+					},{
+						name:"3.png",
+						type:'img',
+						version:1,
+						resourcesSrc:"/images/3.jpg"
+					},{
+						name:"4.png",
+						type:'img',
+						version:1,
+						resourcesSrc:"/images/4.jpg"
+					},{
+						name:"5.png",
+						type:'img',
+						version:1,
+						resourcesSrc:"/images/5.jpg"
 					}]
 				}
-			var indexDB = new dataSDK(data.name,data.storeName,data.version);
-			window.uilt.implement(data,indexDB)
+			window.uilt.implement(data);
+			var img = document.getElementsByTagName("img");
+			window.uilt.showImg(data,img);
 		</script>
 	</body>
 </html>
