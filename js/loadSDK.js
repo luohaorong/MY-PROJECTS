@@ -42,7 +42,8 @@
 		get: function(url, data, fn ,isBlob) {
 			var obj = this.creatXhr();
 			var dataParams = this.param(data);
-			var newUrl = dataParams ? url + "?" + dataParams : url;
+			var time = new Date().getTime();
+			var newUrl = dataParams ? url + "?" + dataParams: url;
 			if(isBlob){
 				obj.responseType = "blob";
 				obj.open("GET", newUrl, true);
@@ -388,11 +389,11 @@
 		},
 		//显示图片
 		showImg : function(el,data){
-			var arr = [].slice.call(el);
+			var arr = el && [].slice.call(el);
 			var UrlObj = window.URL || window.webkitURL;  
 		    var imgUrl = UrlObj.createObjectURL(data.data);  
 			if(Object.prototype.toString.call(arr) == "[object Array]"){
-				arr.map(function(item){
+				arr&&arr.map(function(item){
 					var imgName = item.getAttribute("data-name");
 					if(imgName === data.name){
 						imgName && item.setAttribute("src",imgUrl);
@@ -400,7 +401,7 @@
 					
 				})
 			}else{
-				var imgName = el.getAttribute("data-name");
+				var imgName = el && el.getAttribute("data-name");
 				imgName && el.setAttribute("src",imgUrl);
 			}
 		},
