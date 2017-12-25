@@ -4,6 +4,7 @@
 	window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
 	window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 	var count = 0;
+	var imgDOM;
 	//创建ajax
 	window.ajaxFactory = function() {
 		this.init.apply(this, arguments);
@@ -379,32 +380,34 @@
 				case "css":
 					window.uilt.addStyleInnerHtml(data);
 					break;
+				case "img":
+					window.uilt.showImg(imgDOM,data)
 				default:
 					;
 			}
 		},
 		//显示图片
-		showImg : function(data,el){
+		showImg : function(el,data){
 			var arr = [].slice.call(el);
+			var UrlObj = window.URL || window.webkitURL;  
+		    var imgUrl = UrlObj.createObjectURL(data.data);  
 			if(Object.prototype.toString.call(arr) == "[object Array]"){
 				arr.map(function(item){
-					var getImgDB = new dataSDK(data.name, data.storeName, data.version);
 					var imgName = item.getAttribute("data-name");
-					imgName && getImgDB.getImgSrc(imgName,function(imgUrl){
-						item && item.setAttribute("src",imgUrl);
-					})
+					if(imgName === data.name){
+						imgName && item.setAttribute("src",imgUrl);
+					}
+					
 				})
 			}else{
-				var getImgDB = new dataSDK(data.name, data.storeName, data.version);
 				var imgName = el.getAttribute("data-name");
-				imgName && getImgDB.getImgSrc(imgName,function(imgUrl){
-					el && el.setAttribute("src",imgUrl);
-				})
+				imgName && el.setAttribute("src",imgUrl);
 			}
 		},
 		//入口方法
-		implement: function(data) {
+		implement: function(data,img) {
 			hxr = new ajaxFactory;
+			imgDOM = img;
 			var oldVersionData = JSON.parse(sessionStorage.getItem("versionIformation"));
 			var oldV = oldVersionData ? +oldVersionData.version : 0;
 			var oldSubV = oldVersionData ? +oldVersionData.dataList.version : 0;
@@ -429,31 +432,56 @@
 					var newName = item.name;
 					var oldName = oldVersionData.dataList[index] ? oldVersionData.dataList[index].name : "";
 					if(newVersion != oldVersion && newName === oldName) {
+						item.idIndex = index;
 						resourcesArr.push(item);
 					}
 				});
 				resourcesArr.length && resourcesArr.map(function(item, index) {
-					hxr.get(item.resourcesSrc, null, function(pullData) {
-						var newData = {
-							id: item.index,
-							name: item.name,
-							type: item.type,
-							version: item.version,
-							data: pullData
-						}
-						var changeDB = new dataSDK(data.name, data.storeName, data.version);
-						var dataLength = resourcesArr.length - 1;
-						changeDB.updateDataByKey(item.name, newData, function(e) {
-							//为了保证文件输出到页面的顺序,所以必须要全部更新完成后才能去获取
-							if(index === dataLength) {
-								var getDB = new dataSDK(data.name, data.storeName, data.version);
-								//文件全部更新完成后,按照用户给定的文件顺序获取并输出文件到页面
-								getDB.getDataByKey(data.dataList, function(getD) {
-									This.innerDataByLocal(getD);
-								})
+					if(item.type === "img"){
+						hxr.get(item.resourcesSrc, null, function(pullData) {
+							var newData = {
+								id: item.idIndex,
+								name: item.name,
+								type: item.type,
+								version: item.version,
+								data: pullData
 							}
-						});
-					})
+							var changeDB = new dataSDK(data.name, data.storeName, data.version);
+							var dataLength = resourcesArr.length - 1;
+							changeDB.updateDataByKey(item.name, newData, function(e) {
+								//为了保证文件输出到页面的顺序,所以必须要全部更新完成后才能去获取
+								if(index === dataLength) {
+									var getDB = new dataSDK(data.name, data.storeName, data.version);
+									//文件全部更新完成后,按照用户给定的文件顺序获取并输出文件到页面
+									getDB.getDataByKey(data.dataList, function(getD) {
+										This.innerDataByLocal(getD);
+									})
+								}
+							});
+						},true);
+					}else{
+						hxr.get(item.resourcesSrc, null, function(pullData) {
+							var newData = {
+								id: item.idIndex,
+								name: item.name,
+								type: item.type,
+								version: item.version,
+								data: pullData
+							}
+							var changeDB = new dataSDK(data.name, data.storeName, data.version);
+							var dataLength = resourcesArr.length - 1;
+							changeDB.updateDataByKey(item.name, newData, function(e) {
+								//为了保证文件输出到页面的顺序,所以必须要全部更新完成后才能去获取
+								if(index === dataLength) {
+									var getDB = new dataSDK(data.name, data.storeName, data.version);
+									//文件全部更新完成后,按照用户给定的文件顺序获取并输出文件到页面
+									getDB.getDataByKey(data.dataList, function(getD) {
+										This.innerDataByLocal(getD);
+									})
+								}
+							});
+						})
+					}
 				})
 			}
 			//每个文件都不需要更新,直接从本地获取
