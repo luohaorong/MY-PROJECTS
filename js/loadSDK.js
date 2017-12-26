@@ -5,6 +5,8 @@
 	window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 	var count = 0;
 	var imgDOM;
+	var countLen = [];
+	var dataArray = [];
 	//创建ajax
 	window.ajaxFactory = function() {
 		this.init.apply(this, arguments);
@@ -296,14 +298,14 @@
 		//添加数据到数据库并且输出到页面
 		getDataAddInnerData: function(data, dataFelis) {
 			var indexDB = new dataSDK(data.name, data.storeName, data.version);
-			var dataLength = data.dataList.length;
 			var This = this;
 			indexDB.addData(dataFelis, function() {
 				++count;
-				if(count === dataLength) {
+				if(count === countLen.length) {
 					var getDB = new dataSDK(data.name, data.storeName, data.version);
-					getDB.getDataByKey(data.dataList, function(getD) {
-						This.innerDataByLocal(getD);
+					getDB.getDataByKey(countLen, function(getD) {
+						dataArray.push(getD);
+						This.sortAddInnerData(dataArray,data);
 					})
 				}
 			});
@@ -387,6 +389,19 @@
 					;
 			}
 		},
+		sortAddInnerData:function(data,uerData){
+			var dataLen = data.length;
+			var uerDataLen = uerData.dataList.length;
+			if(dataLen === uerDataLen){
+				for(var i = 0; i<uerDataLen; i++){
+					for(var k = 0;k<dataLen; k++){
+						if(uerData.dataList[i].name === data[k].name){
+							this.innerDataByLocal(data[k]);
+						}
+					}
+				}
+			}
+		},
 		//显示图片
 		showImg : function(el,data){
 			var arr = el && [].slice.call(el);
@@ -406,9 +421,9 @@
 			}
 		},
 		//入口方法
-		implement: function(data,img) {
+		implement: function(data,img,fn) {
 			hxr = new ajaxFactory;
-			imgDOM = img;
+			imgDOM = img;//img标签
 			var oldVersionData = JSON.parse(sessionStorage.getItem("versionIformation"));
 			var oldV = oldVersionData ? +oldVersionData.version : 0;
 			var oldSubV = oldVersionData ? +oldVersionData.dataList.version : 0;
@@ -418,12 +433,14 @@
 			//判断是否支持本地存储
 			if(!window.indexedDB) {
 				this.getDataByRemote(data.dataList);
+				fn&&fn();
 				return false;
 			};
 			if(oldV != +data.version) {
 				//所有文件更新
 				this.updateData(data);
 				sessionStorage.setItem("versionIformation", JSON.stringify(data));
+				fn&&fn();
 				return false;
 			} else {
 				//更新个别文件
@@ -494,9 +511,15 @@
 					if(getData) {
 						//获取到数据直接输出到页面
 						++id;
-						This.innerDataByLocal(getData);
+						dataArray.push(getData);
+						if(data.dataList.length === dataArray.length){
+							dataArray.map(function(item){
+								This.innerDataByLocal(item);
+							})
+						}
 					} else {
 						//没有获取本地到数据,去远程拉去数据
+						countLen.push(data.dataList[id]);
 						This.pullData(data.dataList[id], id, data);
 						++id;
 					}
@@ -504,6 +527,7 @@
 
 			}
 			sessionStorage.setItem("versionIformation", JSON.stringify(data));
+			fn&&fn();
 		}
 	}
 })(window);

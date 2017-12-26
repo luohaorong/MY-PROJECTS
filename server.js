@@ -43,3 +43,4 @@ var server= http.createServer(function(req,res){
 }).listen(8888);
 
 console.log('服务器开启成功');
+console.log('请在浏览器中访问localhost:8888/index.html');
