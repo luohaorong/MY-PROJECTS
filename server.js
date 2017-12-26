@@ -1,18 +1,19 @@
 var http = require('http');
 var fs = require('fs');//引入文件读取模块
-
+var mine = require("./mineType.js");//引入mineType
+var path=require('path');
 var documentRoot = __dirname;
 //需要访问的文件的存放目录
 var server= http.createServer(function(req,res){
+	var url = req.url; 
 
-    var url = req.url; 
+    var ext = path.extname(url);
+    ext = ext ? ext.slice(1) : 'unknown';
     //客户端输入的url，例如如果输入localhost:8888/index.html
     //那么这里的url == /index.html 
-
     var file = documentRoot + url;
 //  console.log(file);
     //E:/PhpProject/html5/websocket/www/index.html 
-
 
     fs.readFile( file , function(err,data){
     /*
@@ -29,7 +30,7 @@ var server= http.createServer(function(req,res){
             res.end();
         }else{
             res.writeHeader(200,{
-                'content-type' : 'text/html;charset="utf-8"'
+                'content-type' : mine.types[ext] + ';charset="utf-8"'
             });
             res.write(data);//将index.html显示在客户端
             res.end();

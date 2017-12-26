@@ -97,11 +97,8 @@
 	dataSDK.prototype.creatStore = function(){
 		var This = this;
 		var result = this.request;
-		console.log(result);
-		debugger;
 		result.onsuccess = function(e) {
 			var db = e.target.result;
-			console.log(db.objectStoreNames.contains(This.storeName))
 			if(!db.objectStoreNames.contains(This.storeName)) {
 				var store = db.createObjectStore(This.storeName);
 				console.log(store);
@@ -402,7 +399,7 @@
 				}
 			}
 		},
-		//显示图片
+		//从数据库获取图片内容并显示图片
 		showImg : function(el,data){
 			var arr = el && [].slice.call(el);
 			var UrlObj = window.URL || window.webkitURL;  
@@ -420,6 +417,24 @@
 				imgName && el.setAttribute("src",imgUrl);
 			}
 		},
+		//直接显示图片
+		directShowImg:function(data,el){
+			var arr = el && [].slice.call(el);
+			if(Object.prototype.toString.call(arr) == "[object Array]"){
+				arr&&arr.map(function(item){
+					var imgName = item.getAttribute("data-name");
+						data.dataList.map(function(i){
+							if(imgName === i.name){
+								imgName && item.setAttribute("src",i.resourcesSrc);
+							}
+						})
+				})
+				
+			}else{
+				var imgName = el && el.getAttribute("data-name");
+				imgName && el.setAttribute("src",data.dataList[0].resourcesSrc);
+			}
+		},
 		//入口方法
 		implement: function(data,img,fn) {
 			hxr = new ajaxFactory;
@@ -433,6 +448,14 @@
 			//判断是否支持本地存储
 			if(!window.indexedDB) {
 				this.getDataByRemote(data.dataList);
+				fn&&fn();
+				return false;
+			};
+			if(data.delet){
+				indexedDB.deleteDatabase(data.name);
+				this.getDataByRemote(data.dataList);
+				this.directShowImg(data,img);
+				sessionStorage.setItem("versionIformation", JSON.stringify(data));
 				fn&&fn();
 				return false;
 			};
