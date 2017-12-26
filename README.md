@@ -24,7 +24,6 @@ resourcesSrc是文件加载的路径；<br/>
 2、第二个参数是图片显示的img标签（可选）；<br/>
 3、第三个参数是该方法执行完后的回调函数（可选）；<br/>
 如果要存储和显示图片，那么一定要在需要显示图片的img标签上添加data-name的属性,属性值是存储图片时的name属性值；<br/>
-例如：'<img class="huanbao" data-name="1.jpg" src=""/>'
 
 		<script type="text/javascript">
 			var data = {
