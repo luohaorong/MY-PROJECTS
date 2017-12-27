@@ -448,6 +448,7 @@
 			//判断是否支持本地存储
 			if(!window.indexedDB) {
 				this.getDataByRemote(data.dataList);
+				this.directShowImg(data,img);
 				fn&&fn();
 				return false;
 			};
