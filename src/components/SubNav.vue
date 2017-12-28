@@ -1,7 +1,11 @@
 <template>
 	<section class="sax_sub_nav">
 		<ul class="sub_nav_list">
-			<li class="sub_list_item" v-for="(item,index) in subNav" :class="{sub_active:subActive === index}" @click="changeNav(index)">{{ item }}</li>
+			<li class="sub_list_item" v-for="(item,index) in subNav" @click="changeNav(index)">
+				<router-link :to="item.src" class="sub_item_link" :class="{sub_active:subActive === index}">
+					{{ item.title }}
+				</router-link>
+			</li>
 		</ul>
 		
 	</section>
@@ -41,10 +45,15 @@
 	.sub_list_item{
 		width: 100px;
 		height: 50px;
+		cursor: pointer;
+	}
+	.sub_item_link{
+		width: 100px;
+		height: 50px;
+		display: block;
 		line-height: 50px;
 		font-size: 14px;
 		color: #000000;
-		cursor: pointer;
 	}
 	.sub_active{
 		color:  #E57738;

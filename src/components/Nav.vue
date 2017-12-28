@@ -1,7 +1,11 @@
 <template>
 	<section class="sax_nav">
 		<ul class="nav_list">
-			<li class="list_item"  v-for="(item,index) in dataNav" :class="{active_nav:index === nowIndex}" @click="checked(index)">{{ item }}</li>
+			<li class="list_item"  v-for="(item,index) in dataNav"  @click="checked(index)">
+				<router-link :to="item.src" class="item_link" :class="{active_nav:index === nowIndex}">
+					{{ item.title }}
+				</router-link>
+			</li>
 		</ul>
 	</section>
 </template>
@@ -40,12 +44,17 @@
 	.list_item{
 		width: 140px;
 		height: 78px;
+		cursor: pointer;
+	}
+	.item_link{
+		width: 140px;
+		height: 78px;
+		display: block;
 		line-height: 78px;
 		font-size: 20px;
 		color: #FFFFFF;
 		letter-spacing: 0;
 		text-align: center;
-		cursor: pointer;
 	}
 	.active_nav{
 	    color: #FFA671;

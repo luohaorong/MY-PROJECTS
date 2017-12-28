@@ -1,10 +1,10 @@
 <template>
-  <section class="sax_header">
+  <header class="sax_header">
     <div class="sax_title">
     	<p class="title_cn">管理注册中心</p>
     	<p class="title_en">REGISTER MANAGEMENT SYSTEM</p>
     </div>
-  </section>
+  </header>
 </template>
 
 <script>
