@@ -6,7 +6,7 @@ export default {
 		count:(state,n) => {
 			let num = n || 1;
 			state.number += num;
-			
+			console.log(state.number)
 		}
 	},
 	actions:{
