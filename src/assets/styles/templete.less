@@ -1,0 +1,41 @@
+.widthHeightBbRadius(@width, @height, @bgColor, @bdradius) {
+    width: @width;
+    height: @height;
+    background: @bgColor;
+    border-radius: @bdradius;
+}
+
+.positionR(@top, @right) {
+    position: absolute;
+    top: @top;
+    right: @right;
+}
+
+.marginTopFontSLineH(@marginT, @fontS, @lineH) {
+    margin-top: @marginT;
+    font-size: @fontS;
+    line-height: @lineH;
+}
+
+.centerLinehFontsColor(@lineH, @fontS) {
+    line-height: @lineH;
+    font-size: @fontS;
+}
+
+.positionL(@top, @left) {
+    position: absolute;
+    top: @top;
+    left: @left;
+}
+
+.inputComponent (@width, @height, @bgColor, @bdradius, @textIndent) {
+    .widthHeightBbRadius(@width, @height, @bgColor, @bdradius);
+    text-indent: @textIndent;
+    border: 1px solid #BEBEBE;
+}
+
+.transition (@mins) {
+    -moz-transition: all @mins linear .1s;
+    -webkit-transition: all @mins linear .1s;
+    -o-transition: all @mins linear .1s;
+}

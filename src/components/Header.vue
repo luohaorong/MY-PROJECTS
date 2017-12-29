@@ -22,7 +22,7 @@ export default {
 		overflow: hidden;
 	}
 	.sax_title{
-		margin-left: 113px;
+		margin-left: 6%;
 		margin-top: 43px;
 		font-size: 26px;
 		color: #FFA972;

@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<h1>domain</h1>
+		<router-view></router-view>
 	</section>
 </template>
 
@@ -8,5 +8,4 @@
 </script>
 
 <style>
-
 </style>

@@ -5,14 +5,15 @@
 		<section>
 			<router-view></router-view>
 		</section>
-
 	</article>
 </template>
 
 <script>
 	import NavBar from "@/components/Nav"
 	import SubNav from "@/components/SubNav"
+
 	import { mapState } from 'vuex';
+
 	export default {
 		name: "index",
 		components: {
@@ -23,7 +24,7 @@
 			return {
 				dataNav: [{
 					title: "设备管理",
-					src: "/IPC"
+					src: "/Equipment"
 				}, {
 					title: "域名管理",
 					src: "/Domain"
@@ -37,13 +38,13 @@
 				showIndex: 0,
 				subNav: [{
 					title: "IPC管理",
-					src: "/IPC"
+					src: "/Equipment/IPC"
 				}, {
 					title: "屏设备管理",
-					src: "/Screen"
+					src: "/Equipment/Screen"
 				}, {
 					title: "NVR管理",
-					src: "/NVR"
+					src: "/Equipment/NVR"
 				}]
 			}
 		},
