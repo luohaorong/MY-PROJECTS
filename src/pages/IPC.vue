@@ -9,6 +9,8 @@
 			<select-unit class="address" :select-item="provinceItem" @selectValue="getProvince"></select-unit>
 			<select-unit class="address" :select-item="cityItem" @selectValue="getCity"></select-unit>
 			<select-unit class="address" :select-item="countyItem" @selectValue="getCounty"></select-unit>
+			<select-unit class="pushType" :select-item="pushType" @selectValue="push"></select-unit>
+			<select-unit class="onlineType" :select-item="onlineType" @selectValue="online"></select-unit>
 		</div>
 		
 	</div>
@@ -41,6 +43,16 @@
 					name:"showCounty",
 					gray:"请选择县",
 					list:["请选择县","成都","北京","上海","天津","石家庄","三亚"]
+				},
+				pushType:{
+					name:"pushType",
+					gray:"推流状态",
+					list:["推流状态","IPC","NVR"]
+				},
+				onlineType:{
+					name:"onlineType",
+					gray:"在线状态",
+					list:["在线状态","IPC","NVR"]
 				}
 			}
 		},
@@ -49,6 +61,9 @@
 				console.log(`page:${val}`)
 			},
 			getProvince(val){
+				TOOLS.get("/region",{"pid":1},res=>{
+					console.log(res);
+				})
 				console.log(`address:${val}`)
 			},
 			getCity(val){
@@ -65,6 +80,13 @@
 			}).then(res=>{
 				console.log(res);
 			})
+			},
+			push(val){
+				console.log(val)
+				
+			},
+			online(val){
+				console.log(val)
 			}
 		},
 		mounted(){
@@ -95,7 +117,7 @@
 				width: 50px;
 			}
 		}
-		.address{
+		.address,.pushType,.onlineType{
 			width: 100px;
 		}
 	}

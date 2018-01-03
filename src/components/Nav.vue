@@ -10,6 +10,7 @@
 			</ul>
 			<div class="nav_right">
 				<SearchInput v-if="nowIndex==0" />
+				<Admin :admin-items="adminItems" />
 			</div>
 		</div>
 	</section>
@@ -17,16 +18,28 @@
 
 <script>
 	import SearchInput from "@/components/SearchInput"
+	import Admin from "@/components/Admin"
 	export default {
 		props: ["dataNav"],
 		name: "NavBar",
 		data() {
 			return {
-				nowIndex: 0
+				nowIndex: 0,
+				adminItems: [{
+					title: "账号管理",
+					src: "/accounts"
+				}, {
+					title: "修改密码",
+					src: "/modifyPassword"
+				}, {
+					title: "退出登录",
+					src: "/logout"
+				}]
 			}
 		},
 		components: {
-			SearchInput
+			SearchInput,
+			Admin
 		},
 		methods: {
 			checked(index) {
@@ -37,18 +50,18 @@
 	}
 </script>
 
-<style>
+<style lang="less">
 	.sax_nav {
 		background-color: #363636;
 		width: 100%;
 		height: 82px;
 	}
-	.nav_wrap{
+	
+	.nav_wrap {
 		margin: 0 auto;
 		width: 90%;
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
 	}
 	
 	.nav_list {
@@ -77,5 +90,12 @@
 	.active_nav {
 		color: #FFA671;
 		border-bottom: 4px solid #FFA671;
+	}
+	
+	.nav_right {
+		width: 390px;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
 	}
 </style>

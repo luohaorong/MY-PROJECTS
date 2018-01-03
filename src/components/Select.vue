@@ -40,6 +40,9 @@
 			font-size: 14px;
 			color: #CCCCCC;
 			letter-spacing: 0;
+			option{
+				color: #5C5C5C;
+			}
 		}
 		.vertical_line{
 			width: 1px;
@@ -51,7 +54,7 @@
 			background-color: #CCCCCC;
 		}
 		.change{
-			color: #5C5C5C;;
+			color: #5C5C5C;
 		}
 	}
 </style>

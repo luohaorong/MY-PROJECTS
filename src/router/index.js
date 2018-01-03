@@ -9,7 +9,7 @@ import Search from "@/pages/Search"
 import IPC from "@/pages/IPC"
 import Screen from "@/pages/Screen"
 import NVR from "@/pages/NVR"
-
+import Accounts from "@/pages/Accounts"
 
 Vue.use(Router)
 
@@ -29,19 +29,17 @@ export default new Router({
 				path: 'Equipment',
 				redirect: "/Equipment/IPC",
 				component: Equipment,
-				children: [
-					{
-						path: 'IPC',
-						component: IPC
-					}, {
-						path: 'Screen',
-						component: Screen
-					}, {
-						path: 'NVR',
-						component: NVR
-					}
-				]
-			},{
+				children: [{
+					path: 'IPC',
+					component: IPC
+				}, {
+					path: 'Screen',
+					component: Screen
+				}, {
+					path: 'NVR',
+					component: NVR
+				}]
+			}, {
 				path: 'Domain',
 				component: Domain
 			}, {
@@ -50,6 +48,9 @@ export default new Router({
 			}, {
 				path: 'Search',
 				component: Search
+			}, {
+				path: 'accounts',
+				component: Accounts
 			}]
 		}
 	]

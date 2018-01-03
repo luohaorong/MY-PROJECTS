@@ -29,7 +29,7 @@
 					id: "0",
 					type: "text",
 					placeholder: "请输入用户名",
-					background: "#fff url(/src/assets/images/admin.png) no-repeat"
+					background: "#fff url(/src/assets/images/name.png) no-repeat"
 				}, {
 					id: "1",
 					type: "password",

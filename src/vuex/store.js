@@ -1,12 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import index from "./modules/index"
-import countter from "./modules/countter"
+import PromptBox from "./modules/PromptBox"
 Vue.use(Vuex);
 const store = new Vuex.Store({
 	modules:{
 		index:index,
-		countter:countter
+		PromptBox:PromptBox
 	}
 })
 export default store;

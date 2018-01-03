@@ -4,12 +4,22 @@
     	<p class="title_cn">管理注册中心</p>
     	<p class="title_en">REGISTER MANAGEMENT SYSTEM</p>
     </div>
+    <button @click="show">点我</button>
   </header>
 </template>
 
 <script>
+	import { mapState } from "vuex";
 export default {
-  name: 'Header'
+  name: 'Header',
+  computed:{
+  	...mapState(["isShow"])
+  },
+  methods:{
+  	show(){
+  		this.$store.commit("isShow",true);
+  	}
+  }
 }
 </script>
 
