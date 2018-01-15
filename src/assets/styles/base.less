@@ -17,10 +17,86 @@ input {
     outline: none;
     border: none;
 }
-button{
+
+button {
     outline: none;
     border: 0;
 }
+
 main {
     display: block;
+}
+
+.v-checkbox-checked .v-checkbox-inner,
+.v-checkbox-indeterminate .v-checkbox-inner {
+    background-color: #FFA671 !important;
+    border-color: #FFA671 !important;
+}
+
+.v-checkbox-input:focus+.v-checkbox-inner, .v-checkbox-wrapper:hover .v-checkbox-inner, .v-checkbox:hover .v-checkbox-inner{
+    border-color: #FFA671 !important;
+}
+.v-table-header-row{
+    background-image: linear-gradient(-270deg, #FFCE76 0%, #FFA671 100%);
+    height: 70px;
+    font-size: 16px;
+    color: #5C5C5C;
+}
+
+.v-table-title-cell {
+    border: none !important;
+}
+
+.v-table-views{
+    height: 100%!important;
+}
+
+.v-table-body-cell {
+    font-size: 14px;
+    color: #5C5C5C;
+}
+
+.v-table-row {
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.optionBtn {
+    width: 80px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        cursor: pointer;
+    }
+}
+.v-page-ul{
+    margin: 2rem 4px !important;
+    float: right;
+}
+.v-checkbox-group{
+    .v-table-btable{
+        tbody{
+            tr:last-child{
+               td{
+                   >div{
+                       border-bottom: none !important;
+                   }
+               }
+            }
+        }
+    }
+}
+.v-table-empty-content{
+    position: absolute;
+    top:50% !important;
+    margin-top: -25px;
+}
+
+//公共样式显示
+.activeColor {
+    color: #FFA671;
+}
+.v-table-leftview, .v-table-rightview{
+    position: initial !important;
 }

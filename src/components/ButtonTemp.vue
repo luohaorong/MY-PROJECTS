@@ -10,7 +10,7 @@
 		},
 		methods: {
 			myClick(){
-				this.$emit("clickLogin",this)
+				this.$emit("btnClick",this)
 			}
 		}
 	}

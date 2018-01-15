@@ -6,7 +6,7 @@
 			<p>{{text2}}</p>
 			<form>
 				<LoginInput v-for="item in items" v-bind:key="item.id" :placeholder="item.placeholder" :background="item.background" :type="item.type" @inputValue="getVal" />
-				<ButtonTemp :message="message" class="button-style" @clickLogin="clickLogin" />
+				<ButtonTemp :message="message" class="button-style" @btnClick="clickLogin" />
 			</form>
 		</div>
 	</div>
@@ -35,7 +35,9 @@
 					type: "password",
 					placeholder: "请输入密码",
 					background: "#fff url(/src/assets/images/key.png) no-repeat"
-				}]
+				}],
+				username:"",
+				password:""
 			}
 		},
 		components: {
@@ -43,16 +45,27 @@
 			ButtonTemp
 		},
 		methods: {
-			getVal(val) {
+			getVal(val) {	
 				if(val.type == "text") {
-					let username = val.value
+					this.username = val.value
 				}
 				if(val.type == "password") {
-					let password = val.value
+					this.password = val.value
 				}
 			},
 			clickLogin(val) {
-				console.log(val)
+				TOOLS.post("/user/login", {
+					password: this.password,
+					username: this.username
+				}).then(res=>{
+					if( +res.data.code === 0){
+						TOOLS.cache("token",res.data.data.token);
+						TOOLS.cache("roleType",res.data.data.roleType);
+						TOOLS.cache("userId",res.data.data.id);
+						TOOLS.cache("username",res.data.data.name);
+						this.$router.push("/Equipment/IPC")
+					}
+				})
 			}
 		}
 	}

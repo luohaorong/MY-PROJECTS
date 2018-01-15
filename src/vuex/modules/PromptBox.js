@@ -1,10 +1,14 @@
 export default {
 	state:{
-		isShow:false
+		isShow:false,
+		tipInputData:{}
 	},
 	mutations:{
 		isShow:(state,bol) => {
 			state.isShow = bol;
+		},
+		tipInputData:(state,data) => {
+			state.tipInputData = data;
 		}
 	},
 	actions:{

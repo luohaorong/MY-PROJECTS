@@ -27,13 +27,13 @@
 				nowIndex: 0,
 				adminItems: [{
 					title: "账号管理",
-					src: "/accounts"
+					attr: "accounts"
 				}, {
 					title: "修改密码",
-					src: "/modifyPassword"
+					attr: "modifyPassword"
 				}, {
 					title: "退出登录",
-					src: "/logout"
+					attr: "logout"
 				}]
 			}
 		},
@@ -51,10 +51,9 @@
 </script>
 
 <style lang="less">
+	@import url("../assets/styles/templete.less");
 	.sax_nav {
-		background-color: #363636;
-		width: 100%;
-		height: 82px;
+		.widthHeightBgColor(100%, 82px, #363636)
 	}
 	
 	.nav_wrap {
@@ -66,25 +65,23 @@
 	
 	.nav_list {
 		height: 82px;
-		display: flex;
-		justify-content: flex-start;
+		.flexJustifyCentFlexstart();
 	}
 	
 	.list_item {
-		width: 140px;
-		height: 78px;
+		.widthHeight(140px, 78px);
 		cursor: pointer;
 	}
 	
 	.item_link {
-		width: 140px;
-		height: 78px;
 		display: block;
-		line-height: 78px;
-		font-size: 20px;
 		color: #FFFFFF;
-		letter-spacing: 0;
-		text-align: center;
+		.widthHeightCenterLinehFontsColor(140px, 82px, 78px, 20px);
+		&:hover {
+			color: #FFA671;
+			border-bottom: 4px solid #FFA671;
+			.transition (.3s);
+		}
 	}
 	
 	.active_nav {
@@ -94,8 +91,7 @@
 	
 	.nav_right {
 		width: 390px;
-		display: flex;
-		justify-content: flex-end;
 		align-items: center;
+		.flexJustifyCentFlexend();
 	}
 </style>

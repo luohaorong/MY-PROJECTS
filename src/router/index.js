@@ -10,6 +10,7 @@ import IPC from "@/pages/IPC"
 import Screen from "@/pages/Screen"
 import NVR from "@/pages/NVR"
 import Accounts from "@/pages/Accounts"
+import NotFound from "@/pages/NotFound"
 
 Vue.use(Router)
 
@@ -52,6 +53,14 @@ export default new Router({
 				path: 'accounts',
 				component: Accounts
 			}]
+		},
+		{
+			path: '/logout',
+			name: 'logout',
+			component: Login
+		}, {
+			path: '*',
+			component: NotFound
 		}
 	]
 })

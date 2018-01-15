@@ -1,37 +1,37 @@
 <template>
-  <header class="sax_header">
-    <div class="sax_title">
-    	<p class="title_cn">管理注册中心</p>
-    	<p class="title_en">REGISTER MANAGEMENT SYSTEM</p>
-    </div>
-    <button @click="show">点我</button>
-  </header>
+	<header class="sax_header">
+		<div class="sax_title">
+			<p class="title_cn">管理注册中心</p>
+			<p class="title_en">REGISTER MANAGEMENT SYSTEM</p>
+		</div>
+	</header>
 </template>
 
 <script>
 	import { mapState } from "vuex";
-export default {
-  name: 'Header',
-  computed:{
-  	...mapState(["isShow"])
-  },
-  methods:{
-  	show(){
-  		this.$store.commit("isShow",true);
-  	}
-  }
-}
+	export default {
+		name: 'Header',
+		computed: {
+			...mapState(["isShow"])
+		},
+		methods: {
+			show() {
+				this.$store.commit("isShow", true);
+			}
+		}
+	}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	.sax_header{
+	.sax_header {
 		width: 100%;
 		height: 148px;
 		background-color: #4C4C4C;
 		overflow: hidden;
 	}
-	.sax_title{
+	
+	.sax_title {
 		margin-left: 6%;
 		margin-top: 43px;
 		font-size: 26px;
