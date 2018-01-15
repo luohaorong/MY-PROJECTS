@@ -23,6 +23,7 @@
 	import selectUnit from "@/components/Select"
 	import ButtonTemp from "@/components/ButtonTemp"
 	import TableUnit from "@/components/TableUnit"
+	import TableOperation from "@/components/TableOperation"
 	import { mapState } from "vuex"
 	export default {
 		name: "IPC",
@@ -41,6 +42,11 @@
 					list: [10, 15, 20, 25, 30, 35]
 				},
 				items: ["创建账号", "重置密码"],
+				optionsItem: [{
+					type: "delete",
+					src: "./src/assets/images/more.png"
+				}],
+				selectedData: [],
 				tipData: [{
 					title: "创建账号",
 					type: "account",
@@ -81,7 +87,7 @@
 				}],
 				tableData: [],
 				columns: [{
-						width: 60,
+						width: 100,
 						titleAlign: 'center',
 						columnAlign: 'center',
 						type: 'selection',
@@ -90,7 +96,7 @@
 					{
 						field: 'username',
 						title: '账号',
-						width: 80,
+						width: 200,
 						titleAlign: 'center',
 						columnAlign: 'center',
 						isResize: true,
@@ -99,7 +105,7 @@
 					{
 						field: 'createDate',
 						title: '创建时间',
-						width: 150,
+						width: 200,
 						titleAlign: 'center',
 						columnAlign: 'center',
 						isResize: true,
@@ -108,12 +114,10 @@
 					{
 						field: 'id',
 						title: '操作',
-						width: 80,
+						width: 180,
 						titleAlign: 'center',
-						columnAlign: 'center',
-						formatter: function() {
-							return "<img src='/src/assets/images/more.png' />"
-						}
+						columnAlign: 'center'/*,
+						componentName: 'TableOperation'*/
 					}
 				]
 			}
@@ -135,7 +139,18 @@
 				let data = this.tipData[index];
 				this.$store.commit("tipInputData", data);
 				this.$store.commit("isShow", true);
-			}
+			},
+			/*//全选
+			selectALL(selection) {
+				console.log('select-aLL', selection.id);
+			}*/
+			/*selectChange(selection, rowData) {
+				console.log('select-change', selection, rowData.id);
+			},
+
+			selectGroupChange(selection) {
+				console.log('select-group-change', selection);
+			}*/
 		},
 		mounted() {
 			TOOLS.get("/user", {

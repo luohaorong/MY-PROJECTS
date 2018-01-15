@@ -64,7 +64,7 @@
 			//获取弹出框组件传出来的值
 			getValue(data) {
 				
-				console.log(data);
+				console.log("354564564",data)
 				
 				//权限密码申请
 				if(data.option === "rightpwd" && data.data[0]) {
@@ -87,6 +87,9 @@
 						password: newPassword
 					}).then(res => {
 						if(+res.data.code === 0) {
+							
+							console.log(res)
+							
 							this.tableData = res.data.data;
 							this.$store.commit("isShow", false);
 						};
@@ -95,7 +98,9 @@
 			},
 			//确定操作
 			handle(val) {
-				//退出
+				
+				console.log(val)
+				
 				if(val === "logout") {
 					TOOLS.post("/user/logout", {
 						id: TOOLS.cache("userId")

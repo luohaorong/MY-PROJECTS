@@ -1,6 +1,6 @@
 export default {
 	state:{
-		tableData:[],
+		tableData:{},
 		isLoading:true
 	},
 	mutations:{
@@ -16,7 +16,7 @@ export default {
 			}).then(res=>{
 				state.isLoading = false;
 				if(res.data.code === 0){
-					let data = res.data.data;
+					let data = res.data;
 					commit('upDateTableData',data)
 				};
 			}).catch(err=>{
@@ -27,7 +27,7 @@ export default {
 	getters:{
 		//第一个参数是state对象，第二个参数是getter对象；
 		fliterData:(state,getter)=>{
-			state.tableData.map((item)=>{
+			state.tableData.data && state.tableData.data.map((item)=>{
 				item.createDate = getter.creatTime(item.createDate);
 				item.registerTime = getter.creatTime(item.registerTime);
 				item.updateDate = getter.creatTime(item.updateDate);

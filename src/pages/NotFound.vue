@@ -42,7 +42,7 @@
 			.centerLinehFontsColor(66px, 24px);
 		}
 		.btnStyle {
-			.widthHeightBbRadius(106px, 48px, #00b7ee, 12px);
+			.widthHeightBbRadius(132px, 48px, #00b7ee, 12px);
 			.centerLinehFontsColor(48px, 18px);
 			margin: 30% auto;
 			&:hover {

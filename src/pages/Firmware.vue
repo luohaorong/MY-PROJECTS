@@ -7,6 +7,8 @@
 					<span>每页</span>
 					<select-unit class="show_num" :select-item="numItem" @selectValue="getSecVal"></select-unit>
 					<span>条</span>
+					<select-unit class="pushType" :select-item="divceType" @selectValue="push"></select-unit>
+					<select-unit class="onlineType" :select-item="divceState" @selectValue="online"></select-unit>
 				</p>
 			</div>
 			<div class="ipc_top_right">
@@ -43,13 +45,13 @@
 				},
 				divceType: {
 					name: "pushType",
-					gray: "推流状态",
-					list: ["推流状态", "IPC", "NVR"]
+					gray: "设备类型",
+					list: ["设备类型"]
 				},
 				divceState: {
 					name: "onlineType",
-					gray: "在线状态",
-					list: ["在线状态", "IPC", "NVR"]
+					gray: "设备型号",
+					list: ["设备型号"]
 				},
 				tableData: [],
 				columns: [{
@@ -95,10 +97,7 @@
 						titleAlign: 'center',
 						columnAlign: 'center',
 						isResize: true,
-						titleCellClassName: "headerStyle",
-						formatter: function(value, row) {
-							return TOOLS.getDate(value.createDate)
-						}
+						titleCellClassName: "headerStyle"
 					},
 					{
 						field: 'romSize',
@@ -132,12 +131,8 @@
 						title: '操作',
 						width: 80,
 						titleAlign: 'center',
-						columnAlign: 'center',
-						formatter: function() {
-							return "<img src='/src/assets/images/more.png' />"
-						}
+						columnAlign: 'center'
 					}
-
 				]
 
 			}

@@ -28,13 +28,19 @@ main {
 }
 
 .v-checkbox-checked .v-checkbox-inner,
-.v-checkbox-indeterminate .v-checkbox-inner {
+.v-checkbox-indeterminate .v-checkbox-inner,.v-page-li-active {
     background-color: #FFA671 !important;
     border-color: #FFA671 !important;
 }
 
-.v-checkbox-input:focus+.v-checkbox-inner, .v-checkbox-wrapper:hover .v-checkbox-inner, .v-checkbox:hover .v-checkbox-inner{
+.v-checkbox-input:focus+.v-checkbox-inner, .v-checkbox-wrapper:hover .v-checkbox-inner, .v-checkbox:hover .v-checkbox-inner,.v-page-li:hover{
     border-color: #FFA671 !important;
+}
+.v-page-li:hover a{
+    color: #FFA671 !important;
+}
+.v-page-jump-prev:hover i, .v-page-jump-next:hover i{
+    color: #FFA671 !important;
 }
 .v-table-header-row{
     background-image: linear-gradient(-270deg, #FFCE76 0%, #FFA671 100%);
@@ -92,7 +98,6 @@ main {
     top:50% !important;
     margin-top: -25px;
 }
-
 //公共样式显示
 .activeColor {
     color: #FFA671;

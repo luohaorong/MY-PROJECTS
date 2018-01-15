@@ -121,7 +121,6 @@
                     	return "<p class='optionBtn'><img src='/src/assets/images/more.png' /></p>"
                     }}
                     ]
-
 			}
 		},
 		methods: {

@@ -66,7 +66,7 @@
 				let tmp = [];
 				let len = inpArr.length;
 				
-				if(type === "input" || type === "resetpassword" || type === "account") {
+				if(type === "input" || type === "resetpassword" || type === "account" || type === "modifypwd") {
 					for(let i = 0; i < len; i++) {
 						let val = this.$refs[inpArr[i].name][0].value;
 						let reg = inpArr[i].reg;
@@ -147,9 +147,7 @@
 			.prompt_main {
 				width: inherit;
 				min-height: 110px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
+				.flexJustifyCentAlignCent();
 				.prompt_content {
 					width: 100%;
 					height: auto;

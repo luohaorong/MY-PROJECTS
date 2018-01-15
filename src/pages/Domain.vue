@@ -75,10 +75,7 @@
 						titleAlign: 'center',
 						columnAlign: 'center',
 						isResize: true,
-						titleCellClassName: "headerStyle",
-						formatter: function(value, row) {
-							return TOOLS.getDate(value.createDate)
-						}
+						titleCellClassName: "headerStyle"
 					},
 					{
 						field: 'upperLimit',
@@ -112,17 +109,7 @@
 						titleAlign: 'center',
 						columnAlign: 'center',
 						isResize: true,
-						titleCellClassName: "headerStyle",
-						formatter: function(value) {
-							switch(value.playAuthSwtich) {
-								case true:
-									return "<span class='activeColor'>开启</span>";
-									break;
-								case false:
-									return "<span>关闭</span>";
-									break;
-							}
-						}
+						titleCellClassName: "headerStyle"
 					}, {
 						field: 'pushAuthSwtich',
 						title: '推流鉴权状态',
@@ -130,27 +117,14 @@
 						titleAlign: 'center',
 						columnAlign: 'center',
 						isResize: true,
-						titleCellClassName: "headerStyle",
-						formatter: function(value) {
-							switch(value.pushAuthSwtich) {
-								case true:
-									return "<span class='activeColor'>开启</span>";
-									break;
-								case false:
-									return "<span>关闭</span>";
-									break;
-							}
-						}
+						titleCellClassName: "headerStyle"
 					},
 					{
 						field: 'id',
 						title: '操作',
 						width: 80,
 						titleAlign: 'center',
-						columnAlign: 'center',
-						formatter: function() {
-							return "<img src='/src/assets/images/more.png' />"
-						}
+						columnAlign: 'center'
 					}
 
 				]

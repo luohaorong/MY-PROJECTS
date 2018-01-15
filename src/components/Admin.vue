@@ -25,21 +25,21 @@
 					title: "修改密码",
 					type: "modifypwd",
 					tip: [{
-						name: "passWord",
+						name: "currPassword",
 						placeholder: "请输入旧密码",
 						type: "password",
 						maxlength: "20",
 						reg: /^[A-Za-z0-9]{6,20}$/,
 						errorTip: "密码错误"
 					}, {
-						name: "passWord",
+						name: "password",
 						placeholder: "请输入新密码(6-20字以内)",
 						type: "password",
 						maxlength: "20",
 						reg: /^[A-Za-z0-9]{6,20}$/,
 						errorTip: "密码错误"
 					}, {
-						name: "passWord",
+						name: "password",
 						placeholder: "请再次新密码",
 						type: "password",
 						maxlength: "20",
@@ -60,7 +60,7 @@
 		},
 		props: ["adminItems"],
 		created() {
-			if(TOOLS.cache("roleType") == "1") {
+			if(TOOLS.cache("roleType")%2 == 0) {
 				return this.adminItems == this.adminItems.shift();
 			}
 		},
@@ -74,7 +74,7 @@
 			goHandle(id) {
 				if(id == "accounts") this.$router.push("/accounts")
 
-				if(id == "modifyPassword") {
+				if(id === "modifyPassword") {
 					let data = this.tipData[0];
 					this.$store.commit("tipInputData", data);
 					this.$store.commit("isShow", true);

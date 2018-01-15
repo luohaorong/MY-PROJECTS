@@ -6,7 +6,7 @@
 	            row-hover-color="#eee"
 	            row-click-color="#edf7ff"
 	            :columns="columns"
-	            :table-data="tableData"
+	            :table-data="tableData['data']"
 	            :loading-content="loadingContent"
 	            :error-content="errorContent"
 	            :is-loading="isLoading"
@@ -16,8 +16,7 @@
 	            :show-vertical-border="false"
 	            @on-custom-comp="customCompFunc"
 	    ></v-table>
-	     <v-pagination :total="600" :layout="['total', 'prev', 'pager', 'next', 'jumper']" @page-change="pageChange"></v-pagination>
-		
+	     <v-pagination :total="tableData['recordsTotal']" :layout="['total', 'prev', 'pager', 'next', 'jumper']" @page-change="pageChange"></v-pagination>
 	</section>
 </template>
 
@@ -42,23 +41,30 @@
 
                      console.log('select-aLL',selection);
                  },
+			selectChange(selection) {
+				let arr=[];
+				selection.forEach(function(value) {
+					arr.push(value.id);
+				});
+				this.selectdata = arr
+				
+				console.log(this.selectdata)
+				
+			},
 
-                 selectChange(selection,rowData){
-                     console.log('select-change',selection,rowData);
-                 },
-
-                 selectGroupChange(selection){
-                     console.log('select-group-change',selection);
-                 },
-                 customCompFunc(params){
-                 	 console.log(params);
-                 },
-                 pageChange(pageIndex){
-                 	console.log(pageIndex)
-                 }
-         }
-    }
+			selectGroupChange(selection) {
+				//console.log('select-group-change', selection);
+			},
+			customCompFunc(params) {
+				console.log(params);
+			},
+			pageChange(pageIndex){
+				console.log(pageIndex)
+			}
+		}
+	}
 </script>
 
 <style>
+
 </style>
