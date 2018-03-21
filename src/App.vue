@@ -3,7 +3,7 @@
 		<Header></Header>
 		<router-view/>
 		<div class="shade" v-show="isShow">
-			<img src="/src/assets/images/loading.gif"/>
+			<img src="/static/images/loading.gif" />
 		</div>
 		<message-bar></message-bar>
 	</main>
@@ -19,16 +19,16 @@
 			Header,
 			MessageBar
 		},
-		data(){
-			return{
-				isShow:false
+		data() {
+			return {
+				isShow: false
 			}
 		},
-		methods:{
-			showLoading(){
-				setTimeout(()=>{
+		methods: {
+			showLoading() {
+				setTimeout(() => {
 					this.isShow = false;
-				},300)
+				}, 300)
 			}
 		},
 		beforeMount() {
@@ -36,35 +36,53 @@
 			axios.defaults.timeout = 10000
 			// http请求拦截器
 			axios.interceptors.request.use(config => {
+				let isUpLoad = config.url.split("?")[0].split("/")[3];
 				let login = this.$route.path;
 				this.isShow = true;
+				let newParams = {};
+				if(config.data){
+					for(var i in config.data){
+						if(config.data.hasOwnProperty(i) && config.data[i] !== "" && config.data[i] !== undefined) {
+							newParams[i] = config.data[i];
+						}
+					}
+				}else{
+					for(var i in config.params){
+						if(config.params.hasOwnProperty(i) && config.params[i] !== "" && config.params[i] !== undefined) {
+							newParams[i] = config.params[i];
+						}
+					}
+				}
 				//post
-				if(config.method === "post" || config.method === "put"){
-					config.data = TOOLS.auth(config.data,{
-						encrypt:['password','currPassword','newpsd'],
-				        encryptionKey:'123456781234567812345678abcdefgh',
-				        business_type:201,
-				        signStr:'kSmDPItKVbc1on5sMA8643gLfpJd90ih'
+				if(config.method === "post" || config.method === "put") {
+					(TOOLS.cache("token") && login !== "/login") ? newParams.token = TOOLS.cache("token"): "";
+					config.data = TOOLS.auth(newParams, {
+						encrypt: ['password', 'currPassword', 'newpsd'],
+						encryptionKey: '123456781234567812345678abcdefgh',
+						business_type: 201,
+						signStr: 'kSmDPItKVbc1on5sMA8643gLfpJd90ih',
+						sort: 'asc'
 					});
+					if(isUpLoad === "upload"){
+						delete config.data.business_type;
+						delete config.data.sign;
+						delete config.data.timestamp;
+						delete config.data.token;
+						console.log(config.data)
+					}
+
 				}
 				//get,delete
-				if(config.method === "get" || config.method === "delete"){
-					let data = TOOLS.auth(config.params,{
-						encrypt:['password','currPassword','newpsd'],
-				        encryptionKey:'123456781234567812345678abcdefgh',
-				        business_type:201,
-				        signStr:'kSmDPItKVbc1on5sMA8643gLfpJd90ih'
+				if(config.method === "get" || config.method === "delete") {
+					let data = TOOLS.auth(newParams, {
+						encrypt: ['password', 'currPassword', 'newpsd'],
+						encryptionKey: '123456781234567812345678abcdefgh',
+						business_type: 201,
+						signStr: 'kSmDPItKVbc1on5sMA8643gLfpJd90ih',
+						sort: 'asc'
 					});
-					config.params = Object.assign(config.params,data);//合并对象
-				}
-				
-				//如果是登录前无需token
-				if(TOOLS.cache("token") && login !== "/login"){
-					if(config.method === "post" || config.method === "put"){
-						config.data.token = TOOLS.cache("token")
-					} else{
-						config.params.token = TOOLS.cache("token")	
-					}
+					(TOOLS.cache("token") && login !== "/login") ? newParams.token = TOOLS.cache("token"): "";
+					config.params = Object.assign(newParams, data); //合并对象
 				}
 				return config
 			}, error => {
@@ -76,20 +94,22 @@
 				this.showLoading();
 				let code = +data.data.code;
 				let message = data.data.message;
-				if(code !== 0){
+				if(code !== 0) {
 					this.$store.commit("isBlock");
-					this.$store.commit("message",message);
-					this.$store.commit("err",true);
+					this.$store.commit("message", message);
+					this.$store.commit("err", true);
 				}
-				if( code === 403 || code === 401){
+				
+				if(code === 403 || code === 401) {
 					this.$router.push("/login")
-				}
+				} 
+				
 				return data
 			}, error => {
 				this.showLoading();
 				this.$store.commit("isBlock");
-				this.$store.commit("message","服务器未响应");
-				this.$store.commit("err",true);
+				this.$store.commit("message", "服务器未响应");
+				this.$store.commit("err", true);
 				return Promise.reject(error)
 			})
 		}
@@ -97,14 +117,15 @@
 </script>
 
 <style>
-	#app{
+	#app {
 		width: 100%;
 		height: 100%;
 		position: absolute;
 		top: 0;
 		left: 0;
 	}
-	.shade{
+	
+	.shade {
 		width: 100%;
 		height: 100%;
 		position: fixed;
@@ -115,5 +136,4 @@
 		justify-content: center;
 		align-items: center;
 	}
-	
 </style>

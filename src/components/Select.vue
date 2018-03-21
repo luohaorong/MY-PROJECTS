@@ -1,7 +1,7 @@
 <template>
 	<div class="seclect_wrapper">
-		<select class="sec_item" :name="selectItem.name" @click="getItems" v-model="checkItem" @change="changeHandle()" :class="{change:checkItem != this.selectItem.gray}">
-			<option :value="item" v-for="(item,index) in selectItem.list">{{ item }}</option>
+		<select class="sec_item" :name="selectItem.name" v-model="checkItem" @change="changeHandle()" :class="{change:checkItem.name != selectItem.gray}">
+			<option :value="item" :data-id="item.id" v-for="(item,index) in selectItem.list">{{item.name}}</option>
 		</select>
 		<span class="vertical_line"></span>
 	</div>
@@ -10,25 +10,21 @@
 <script>
 	export default {
 		name: "selectBox",
-		props: ["selectItem"],
+		props: ["selectItem","defaultItem"],
 		data() {
 			return {
-				checkItem: this.selectItem.list[0]
+				checkItem: this.defaultItem || this.selectItem.list[0]
 			}
 		},
 		methods: {
 			changeHandle() {
-				console.log(this.checkItem)
 				this.$emit("selectValue", this.checkItem);
-			},
-			getItems(){
-				this.$emit("getItems");
 			}
 		}
 	}
 </script>
 
-<style scoped lang="less">
+<style  lang="less">
 	.seclect_wrapper {
 		width: auto;
 		height: auto;

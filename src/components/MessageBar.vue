@@ -46,18 +46,19 @@
 		display: none;
 		border-radius: 7px;
 		background-color: #333333;
-		position: absolute;
+		position: fixed;
 		top:50%;
 		left: 50%;
 		margin-top: -30px;
 		margin-left: -100px;
+		z-index: 102;
 		.messageText{
 			font-size: 14px;
 			width: 100%;
 			height: 100%;
 			line-height: 60px;
 			text-align: center;
-			color: #FFFFFF;
+			 color: #FFA671;
 		}
 		.errMessage{
 			color: #D0011B;

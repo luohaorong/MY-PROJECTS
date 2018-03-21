@@ -1,6 +1,7 @@
 export default {
 	state:{
 		isShow:false,
+		tableHandleIds: [],
 		tipInputData:{}
 	},
 	mutations:{
@@ -9,6 +10,9 @@ export default {
 		},
 		tipInputData:(state,data) => {
 			state.tipInputData = data;
+		},
+		tableHandleIds: (state, data) => {
+			state.tableHandleIds = data;
 		}
 	},
 	actions:{
@@ -17,5 +21,4 @@ export default {
 	getters:{
 		
 	}
-	
 }

@@ -1,13 +1,11 @@
 <template>
-	<div class="button-temp" @click="myClick">{{message}}</div>
+	<div class="button-temp" :style="{background:message.background}" @click="myClick()">{{message.txt}}</div>
 </template>
 
 <script>
 	export default {
 		name: "button-temp",
-		props: {
-			message: String
-		},
+		props: ["message"],
 		methods: {
 			myClick(){
 				this.$emit("btnClick",this)

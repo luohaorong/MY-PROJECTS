@@ -53,44 +53,54 @@
 			}
 		},
 		computed: {
-			//			...mapState(["tipIsShow"])
 			isShow() {
 				return this.$store.state.PromptBox.isShow
 			}
 		},
 		methods: {
 			sureClick(value) {
-				let inpArr = this.tipInputData.tip || "";
 				let type = this.tipInputData.type;
-				let obj = {type:type}
-				let tmp = [];
-				let len = inpArr.length;
+				let tag = this.tipInputData.tag;
+				let getD = null;
 				
-				if(type === "input" || type === "resetpassword" || type === "account" || type === "modifypwd") {
-					for(let i = 0; i < len; i++) {
-						let val = this.$refs[inpArr[i].name][0].value;
-						let reg = inpArr[i].reg;
-						if(!reg.test(val)) {
-							this.err = true;
-							this.errTip = inpArr[i].errorTip;
-							return false;
-						} else {
-							this.err = false;
-							this.errTip = "";
-						}
-						tmp.push(val);
-					}
-					obj.data = tmp;
-					this.$emit("getV", obj);
-				} else if(type === "handletips" ){
-					this.$emit("handle",value);
-				} else {
-					this.$store.commit("isShow", false);
+				if(type === "handletips"){
+					getD = ""
+				}else{
+					 getD =this.getdata(this)
 				}
+				
+				let obj = {
+					type: type,
+					getD:getD,
+					tag: tag,
+					flag:this.tipInputData.flag,
+					value: value
+				};
+				this.$emit("getV", obj);
 			},
 			cancelClicl() {
 				this.$store.commit("isShow", false);
-			}
+			},
+			getdata(that){
+				let objarr = {};
+				let inpArr = that.tipInputData.tip || "";
+				let len = inpArr.length;
+
+				for(let i = 0; i < len; i++) {
+					let val = that.$refs[inpArr[i].name][0].value;
+					let reg = inpArr[i].reg;
+					if(!reg.test(val)) {
+						that.err = true;
+						that.errTip = that.tipInputData.tip[0].errorTip;
+						return false;
+					} else {
+						that.err = false;
+						that.errTip = "";
+					}
+					objarr[inpArr[i].name] = val;
+				}
+				return objarr;
+			}	
 		},
 		beforeUpdate() {
 			this.val = ""
@@ -103,7 +113,7 @@
 	.prompt_wrapper {
 		width: 100%;
 		height: 100%;
-		position: absolute;
+		position: fixed;
 		left: 0;
 		top: 0;
 		z-index: 9;
@@ -113,7 +123,7 @@
 	.opacityPanel {
 		width: 100%;
 		height: 100%;
-		position: absolute;
+		position: fixed;
 		left: 0;
 		top: 0;
 		z-index: 9;

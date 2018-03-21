@@ -9,7 +9,7 @@
 				</li>
 			</ul>
 			<div class="nav_right">
-				<SearchInput v-if="nowIndex==0" />
+				<!--<SearchInput v-if="nowIndex==0" :msg="msg" />-->
 				<Admin :admin-items="adminItems" />
 			</div>
 		</div>
@@ -19,12 +19,18 @@
 <script>
 	import SearchInput from "@/components/SearchInput"
 	import Admin from "@/components/Admin"
+	let This = {};
 	export default {
 		props: ["dataNav"],
 		name: "NavBar",
 		data() {
 			return {
 				nowIndex: 0,
+				msg: {
+					placeholder: "输入ID/MAC搜索",
+					txt: "",
+					readonly: false
+				},
 				adminItems: [{
 					title: "账号管理",
 					attr: "accounts"
@@ -45,6 +51,17 @@
 			checked(index) {
 				this.nowIndex = index;
 				this.$emit("navIndex", this.nowIndex);
+			}
+		},
+		mounted(){
+			let path = this.$route.params;
+			this.nowIndex = +path.index;
+			This = this;
+		},
+		watch:{
+			$route:(data)=>{
+				let index = +data.params.index;
+				This.nowIndex = index;
 			}
 		}
 	}

@@ -1,9 +1,9 @@
 <template>
-	<div class="admin_wrap" @mouseenter="mouseenter" @mouseleave="mouseleave">
+	<div class="admin_wrap" @mouseover="mouseenter" @mouseout="mouseleave">
 		<div class="admin_pic">
-			<img src="../assets/images/admin.png" alt="" />
+			<img src="/static/images/admin.png" alt="" />
 		</div>
-		<div v-if="isShow" class="admin_list">
+		<div v-show="isShow" class="admin_list">
 			<ul>
 				<li v-for="(item,index) in adminItems" @click="goHandle(item.attr)">
 					{{ item.title }}
@@ -39,7 +39,7 @@
 						reg: /^[A-Za-z0-9]{6,20}$/,
 						errorTip: "密码错误"
 					}, {
-						name: "password",
+						name: "newpassword",
 						placeholder: "请再次新密码",
 						type: "password",
 						maxlength: "20",
@@ -72,7 +72,7 @@
 				this.isShow = false
 			},
 			goHandle(id) {
-				if(id == "accounts") this.$router.push("/accounts")
+				if(id === "accounts") this.$router.push("/accounts")
 
 				if(id === "modifyPassword") {
 					let data = this.tipData[0];
@@ -80,7 +80,7 @@
 					this.$store.commit("isShow", true);
 				}
 
-				if(id == "logout") {
+				if(id === "logout") {
 					let data = this.tipData[1];
 					this.$store.commit("tipInputData", data);
 					this.$store.commit("isShow", true);
@@ -96,7 +96,8 @@
 		position: relative;
 		margin-left: 50px;
 		cursor: pointer;
-		.widthHeightBbRadius(40px, 40px, #363636, 20px);
+		.widthHeightBbRadius(60px, 60px, #363636, 20px);
+		.flexJustifyCentAlignCent();
 		&:hover {
 			.admin_list {
 				display: block;
@@ -105,7 +106,7 @@
 		.admin_list {
 			display: block;
 			.transition (.5);
-			.positionL(54px, 50%);
+			.positionL(64px, 50%);
 			margin-left: -50px;
 			width: 100px;
 			>ul {

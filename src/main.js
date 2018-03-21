@@ -15,6 +15,7 @@ import { VTable, VPagination } from 'vue-easytable'
 Vue.component(VTable.name, VTable)
 Vue.component(VPagination.name, VPagination)
 Vue.config.productionTip = false
+
 /* eslint-disable no-new */
 window.TOOLS = TOOLS;
 new Vue({

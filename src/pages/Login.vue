@@ -22,19 +22,22 @@
 			return {
 				text1: "欢迎使用管理注册中心",
 				text2: "WELCOME TO REGISTER MANAGEMENT SYSTEM",
-				message: "登录",
+				message: {
+					txt: "登陆",
+					background: "xcvxczvxzvxz"
+				},
 				placeholderName: "请输入用户名",
 				placeholderPwd: "请输入密码",
 				items: [{
 					id: "0",
 					type: "text",
 					placeholder: "请输入用户名",
-					background: "#fff url(/src/assets/images/name.png) no-repeat"
+					background: "#fff url(/static/images/name.png) no-repeat"
 				}, {
 					id: "1",
 					type: "password",
 					placeholder: "请输入密码",
-					background: "#fff url(/src/assets/images/key.png) no-repeat"
+					background: "#fff url(/static/images/key.png) no-repeat"
 				}],
 				username:"",
 				password:""
@@ -59,11 +62,12 @@
 					username: this.username
 				}).then(res=>{
 					if( +res.data.code === 0){
-						TOOLS.cache("token",res.data.data.token);
-						TOOLS.cache("roleType",res.data.data.roleType);
-						TOOLS.cache("userId",res.data.data.id);
-						TOOLS.cache("username",res.data.data.name);
-						this.$router.push("/Equipment/IPC")
+						let resdata = res.data.data;
+						TOOLS.cache("token",resdata.token);
+						TOOLS.cache("roleType",resdata.roleType);
+						TOOLS.cache("userId",resdata.id);
+						TOOLS.cache("userName",resdata.username);
+						this.$router.push("/Equipment/0/IPCTable/0")
 					}
 				})
 			}

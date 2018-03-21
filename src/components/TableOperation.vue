@@ -1,32 +1,58 @@
 <template>
-	<span class="table-operation">
-		<a v-for="(item,index) in optionsItem" href="" @click.stop.prevent="handleRow(item,index)"><img :src="item.src"/>{{item.src}}</a>
-	</span>
+	<div class="table-operation">
+		<a v-for="(item,index) in handleData[field]" href="" @click.stop.prevent="handleRow(rowData,item.type,$event)"><img :src="item.src"/></a>
+	</div>
 </template>
 
 <script>
 	export default {
-		name: "table-operation",
+		name: "tableOperation",
 		data() {
-			return{
-				
+			return {
+
 			}
 		},
-		props: ["optionsItem"],
-		methods: {
-			handleRow(val) {
-				/*// 参数根据业务场景随意构造
-				let params = {
-					type: 'edit',
-					index: this.index,
-					rowData: this.rowData
-				};*/
-				this.$emit('onRowHandle', val);
+		computed: {
+			handleData() {
+				return this.$store.state.TableUnit.handleItems;
 			}
+		},
+		props: {
+			rowData: {
+				type: Object 
+			},
+			field:{
+				type:String
+			}
+		},
+		methods: {
+			handleRow(rowData,type,e) {
+				let params = {
+					id: rowData.id,
+					type: type,
+					romurl: rowData.romUrl,
+					gwId: rowData.gwId,
+					e: e,
+					rowData: rowData
+				};
+				this.$emit('on-custom-comp', params);
+			}
+		},
+		mounted() {
+			
 		}
 	}
 </script>
 
-<style>
-
+<style scoped="scoped" lang="less">
+	@import url("../assets/styles/templete.less");
+	.table-operation{
+		width: 100%;
+		height: 100%;
+		.flexJustifyCentAlignCent();
+		>a{
+			.flexJustifyCentAlignCent();
+			margin: 0 5px;
+		}
+	}
 </style>

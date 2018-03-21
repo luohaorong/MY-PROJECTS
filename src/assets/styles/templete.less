@@ -43,6 +43,11 @@
     text-align: center;
 }
 
+.fontSColor(@fontS,@color){
+    font-size: @fontS;
+    color: @color;
+}
+
 //input输入框组合样式
 .inputComponent (@width, @height, @bgColor, @bdradius, @textIndent) {
     .widthHeightBbRadius(@width, @height, @bgColor, @bdradius);
@@ -62,6 +67,12 @@
     align-items: center;
 }
 
+.flexJustifyCentSpaceAround() {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .flexJustifyCentFlexstart {
     display: flex;
     justify-content: flex-start;
@@ -74,11 +85,12 @@
 
 //表单操作按钮样式
 .btnStyle {
+    height: 30px;
     line-height: 30px;
     font-size: 14px;
     color: #FFFFFF;
     letter-spacing: 0;
-    background-image: linear-gradient(-90deg, #FFCE76 0%, #FFA671 100%);
+    background-image: linear-gradient(-270deg, #FFCE76 0%, #FFA671 100%);
     border-radius: 6px;
     padding: 0 16px;
     margin-left: 10px;

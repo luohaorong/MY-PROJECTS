@@ -11,7 +11,10 @@
 		name: "notFound",
 		data() {
 			return {
-				message: "返回上一页"
+				message:{
+					txt: "返回上一页",
+					background: ""
+				}
 			}
 		},
 		components: {
@@ -28,7 +31,7 @@
 <style lang="less" scoped>
 	@import url("../assets/styles/templete.less");
 	.notFound {
-		background-image: url(../assets/images/404.png);
+		background-image: url(/static/images/404.png);
 		-moz-background-size:100% 100%;
 		background-size:100% 100%;  
 		top: 0;

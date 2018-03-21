@@ -13,17 +13,21 @@ const defaultOption = {
 if(!Object.keys) Object.keys = function(o) {
 	if(o !== Object(o))
 		throw new TypeError('Object.keys called on a non-object');
-	var k = [],
-		p;
+	var k = [],p;
 	for(p in o)
 		if(Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
 	return k;
 };
 TOOLS.LINK = {
 	local: "http://localhost:8999",
-	//baseUrl: "http://192.168.0.48:8080", //陈军
-	baseUrl: "http://t.api.live.shianxin.net:8888", //测试服
+	//baseUrl: "http://172.16.18.67:8120", //开发环境
+	baseUrl: "http://t.api.live.shianxin.net:8888", //测试服  映射  
+   	//baseUrl: "http://192.168.0.87:98", //测试服
+   	//baseUrl: "http://172.18.4.46:98", //后台开发环境 本地
+ 	//baseUrl: "http://192.168.0.48:8080", //测试服  chenjun
+//  baseUrl: "http://192.168.3.78:8080", //测试服  liuchun
 	uploadUrl: "http://t.oss.shianxin.net:8888" //上传固件测试服
+//	uploadUrl : "//oss.shianxin.net"; //正式服
 }
 TOOLS.isArray = function(obj) {
 	return Object.prototype.toString.call(obj) === '[object Array]';
@@ -64,10 +68,10 @@ TOOLS.get = (url, param, urlType = "baseUrl") => {
 	});
 }
 //封装axios的post方法
-TOOLS.post = (url, param, urlType = "baseUrl") => {
+TOOLS.post = (url, param, urlType = "baseUrl" ,config) => {
 	return new Promise((resolve, reject) => {
 		let relUrl = TOOLS.LINK[urlType] + url;
-		axios.post(relUrl, param)
+		axios.post(relUrl, param ,config)
 			.then(res => {
 				if(res.request.readyState === 4 && (res.status === 200 || res.status === 304)) {
 					resolve(res)
@@ -121,31 +125,11 @@ TOOLS.all = (reqArr) => {
 	})
 }
 
-//时间格式化
-TOOLS.getDate = (seconds, separator) => {
-	separator = separator || '.';
-
-	if(seconds == '' || typeof seconds == 'undefined' || seconds == -1) {
-		return '';
-	}
-
-	let d = new Date();
-	d.setTime(seconds * 1000);
-
-	let year = d.getFullYear();
-	let month = d.getMonth() + 1;
-	let date = d.getDate();
-	let hh = d.getHours();
-	let mm = d.getMinutes();
-	let ss = d.getSeconds();
-
-	return year + separator + (month < 10 ? '0' + month : month) + separator + (date < 10 ? '0' + date : date) +
-		" " + (hh < 10 ? '0' + hh : hh) + ":" + (mm < 10 ? '0' + mm : mm) + ":" + (ss < 10 ? '0' + ss : ss);
-};
-
 function dealData(data, opt) {
 	data['timestamp'] = new Date().getTime();
-	if(data) data = sortData(data, opt);
+	if(data){
+		data = sortData(data, opt);
+	}
 	if(data) {
 		data['sign'] = md5(getParam(data) + opt.signStr);
 	} else {
@@ -177,10 +161,15 @@ function sortData(data, opt) {
 	var obj = {};
 	var arr = Object.keys(data);
 	if(data && data['sakura-rtf']) rtf = data['sakura-rtf'];
-	if(opt.sort && opt.sort == 'asc') arr.sort(); //升序
-	if(opt.sort && opt.sort == 'desc') arr.sort(function(a, b) { //降序
-		return a < b;
-	});
+	if(opt.sort && opt.sort == 'asc'){
+		arr.sort(); //升序
+	}
+	if(opt.sort && opt.sort == 'desc'){
+		console.log('desc')
+		arr.sort(function(a, b) { //降序
+			return a < b;
+		});
+	}
 	arr.map(function(g, s) {
 		data = _converters(g, data); //数据转换(16位和以上纯字符串数字转化有问题 超过js最大值)
 		if(TOOLS.isArray(opt.encrypt) && opt.encrypt.length > 0) dealEncrypt(g, data, opt); //加密处理
@@ -193,8 +182,8 @@ function sortData(data, opt) {
 				} else {
 					return tmp = key;
 				}
-				data[g] = tmp;
 			});
+			data[g] = tmp;
 		}
 		obj[g] = data[g];
 	});
@@ -220,7 +209,15 @@ function dealReplace(str) {
 	str = str.replace(/<[^<>]+>/g, ""); //处理特殊标签
 	return str;
 };
-
-//
-
+//查找兄弟节点
+TOOLS.siblings = function(elm) {
+		var arr = [];
+		var p = elm.parentNode.children;
+		for(var i = 0, pl = p.length; i < pl; i++) {
+			if(p[i] !== elm) {
+				arr.push(p[i]);
+			}
+		}
+		return arr;
+	};
 export default TOOLS;

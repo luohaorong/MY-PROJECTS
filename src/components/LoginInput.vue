@@ -48,7 +48,7 @@
 		}
 		.click-icon {
 			.positionL(1px, 8px);
-			.widthHeightBbRadius(34px, 60px, #cda, 0);
+			.widthHeightBbRadius(34px, 57px, #cda, 0);
 			cursor: pointer;
 		}
 		.err-show {
