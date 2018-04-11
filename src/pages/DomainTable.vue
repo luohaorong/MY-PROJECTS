@@ -74,6 +74,15 @@
 						text: "该域名下有以发布的设备，不可以删除！"
 					}]
 				},
+				tipDelete: {
+					title: "温馨提示",
+					type: "handletips",
+					flag: false,
+					optiontype: "onoff",
+					tip: [{
+						text: "该域名下有以发布的设备，不可以删除！"
+					}]
+				},
 				columns: [{
 						field: 'pushHost',
 						title: '推流域名',
@@ -157,20 +166,6 @@
 				this.upDateTable("/stream", this.tableState);
 				this.pageSize = val.name;
 			},
-			//推流状态
-			push(val) {
-				console.log(val)
-			},
-			//在线状态
-			online(val) {
-				console.log(val)
-			},
-			//发布推流地址，升级，重启
-			prompt(index) {
-				var data = this.tipData[index];
-				this.$store.commit("tipInputData", data);
-				this.$store.commit("isShow", true);
-			},
 			upDateTable(src, state) {
 				let data = {
 					pageIndex: state.index,
@@ -205,15 +200,11 @@
 					} else {
 						TOOLS.delete("/stream/" + id, {}).then(res => {
 							if(+res.data.code === 0) {
-								this.$store.commit("isBlock");
-								this.$store.commit("message", res.data.message);
-								this.$store.commit("err", false);
+								this.showTips(res.data.message); //提示
 								this.upDateTable("/stream", this.tableState);
 							};
 						}).catch(err => {
-							this.$store.commit("isBlock");
-							this.$store.commit("message", err.message);
-							this.$store.commit("err", false);
+							this.showTips(err.message);//提示
 						})
 					}
 				}
@@ -228,26 +219,30 @@
 						if(+res.data.code === 0) {
 							let data = this.$store.state.TableUnit.priorityFlag;
 							data[params.id] = true;
-							this.$store.commit("isBlock");
-							this.$store.commit("message", res.data.message);
-							this.$store.commit("err", false);
+							
+							this.showTips(res.data.message); //提示
+							
 							this.$store.commit("upDateRankFlag", data);
 							this.upDateTable("/stream", this.tableState);
 						};
 					}).catch(err => {
-						this.$store.commit("isBlock");
-						this.$store.commit("message", err.message);
-						this.$store.commit("err", false);
+						this.showTips(err.message);//提示
 					})
 				}
 			},
 			getSelect(arr) {
 				this.$store.commit("tableHandleIds", arr);
+			},
+			showTips(msg){
+				this.$store.commit("isBlock");
+				this.$store.commit("message", msg);
+				this.$store.commit("err", false);
 			}
 		},
 		beforeMount() {
 			//一下是获取table之前的状态
 			this.size = +this.tableState.size; //获取每页显示多少条
+			this.pageSize = this.tableState.size.name; //获取每页显示多少条,给分页组件
 			this.page = +this.tableState.index; //获取当前是第几页
 			this.$store.commit("upDatehandleFlag", 4);
 		},

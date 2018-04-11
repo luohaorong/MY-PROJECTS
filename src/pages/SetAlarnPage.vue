@@ -87,9 +87,6 @@
 
 					//如果是NVR下挂IPC则会有 视频丢失这个版块  视频丢失数据
 					if(type === "nvripc" && this.lists[1].templateId) {
-
-						console.log("99999999")
-
 						data.ruleData.push({
 							"ruleId": this.lists[1].templateId,
 							"key": "1"

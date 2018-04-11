@@ -38,6 +38,7 @@
 					</ul>
 				</div>
 			</div>
+			<div class="tips"><span>注意：</span>时间不能有交叉，否则设置不成功！</div>
 		</section>
 		<div class="alarm_btn">
 			<ButtonTemp v-for="(item,index) in btnItems" :message="item" :keys="'btn' + index" class="button-style" @btnClick="prompt(index,item.option)"></ButtonTemp>
@@ -352,7 +353,8 @@
 				background: #FFFFFF;
 				border: 1px solid #DDDDDD;
 				border-radius: 10px;
-				margin: 60px 0;
+				margin-top: 60px;
+				margin-bottom: 10px;
 				.modle_name {
 					width: 300px;
 					height: 40px;
@@ -436,6 +438,12 @@
 						}
 					}
 				}
+			}
+			
+			.tips{
+				line-height: 56px;
+				color: #DDDDDD;
+				color: red;
 			}
 		}
 		.alarm_btn {

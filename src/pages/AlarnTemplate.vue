@@ -189,6 +189,7 @@
 		beforeMount() {
 			//一下是获取table之前的状态
 			this.size = +this.tableState.size; //获取每页显示多少条
+			this.pageSize = this.tableState.size.name; //获取每页显示多少条,给分页组件
 			this.page = +this.tableState.index; //获取当前是第几页
 			this.warnState = this.tableState.warnType;
 			this.$store.commit("upDatehandleFlag", 5);
@@ -200,7 +201,6 @@
 </script>
 
 <style scoped lang="less">
-	@import url("../assets/styles/templete.less");
 	@import url("../assets/styles/templete.less");
 	.container {
 		width: 90%;

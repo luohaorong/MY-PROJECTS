@@ -19,7 +19,6 @@
 					<input type="text" class="selectTime" @click="openByDialog" :value="calendar4.display" readonly>
 					<transition name="fade">
 						<div class="calendar-dialog" v-if="calendar4.show">
-							<!--<div class="calendar-dialog-mask" @click="closeByDialog"></div>-->
 							<div class="calendar-dialog-body">
 								<calendar :range="calendar4.range" :zero="calendar4.zero" :lunar="calendar4.lunar" :value="calendar4.value" @select="select"></calendar>
 								<div class="closeByDialog"><span @click="closeByDialog">取消</span></div>
@@ -259,6 +258,10 @@
 				this.calendar4.show = false;
 				this.calendar4.value = [begin, end];
 				this.calendar4.display = beginTime + " ~ " + endTime;
+				
+				let endMS = ["23","59","59"].join(":");
+				
+				endTime = endTime +" "+ endMS;   //endTime  "2018-03-21 23:59:59"
 
 				this.tableState.startTime = this.getTime(beginTime); //设置开始时间
 				this.tableState.endTime = this.getTime(endTime); //设置结束时间
@@ -297,6 +300,10 @@
 
 			this.tableState.startTime = startTime; //设置开始时间
 			this.tableState.endTime = nowTime; //设置现在时间
+			
+			
+			console.log("sdfasdf",this.tableData)
+			console.log("tableState",this.tableState)
 			
 			this.upDateTable("/camera/records?ipcId=" + this.ipcId, this.tableState);
 		}

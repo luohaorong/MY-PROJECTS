@@ -125,6 +125,7 @@
 					tip: [{
 						name: "passWord",
 						placeholder: "请输入权限密码",
+						type: "password",
 						reg: /\w/g,
 						errorTip: "密码错误"
 					}],
@@ -138,6 +139,7 @@
 					tip: [{
 						name: "passWord",
 						placeholder: "请输入权限密码",
+						type: "password",
 						reg: /\w/g,
 						errorTip: "密码错误"
 					}],
@@ -357,6 +359,7 @@
 		beforeMount() {
 			//一下是获取table之前的状态
 			this.size = this.tableState.size; //获取每页显示多少条
+			this.pageSize = this.tableState.size.name; //获取每页显示多少条,给分页组件
 			this.page = +this.tableState.index; //获取当前是第几页
 			this.modeState = this.tableState.modeState; //获取当前NVR 型号
 			this.onlineState = this.tableState.onlineState; //获取当前在线状态
@@ -364,6 +367,8 @@
 			this.$store.commit("tableHandleIds", ""); //在打开页面前清空已经选择的IDS
 		},
 		mounted() {
+			this.upDateTable("/device/nvrs", this.tableState); //获取table数据
+			this.$store.commit("upDatehandleFlag", 4); //更新控制table中操作列显示的状态
 			//获取设备类型
 			TOOLS.get("/device/nvr/models").then(res=>{
 				res.data.data.map((item,index)=>{
@@ -373,8 +378,6 @@
 					})
 				});
 			});
-			this.upDateTable("/device/nvrs", this.tableState); //获取table数据
-			this.$store.commit("upDatehandleFlag", 4); //更新控制table中操作列显示的状态
 		}
 	}
 </script>

@@ -28,7 +28,7 @@
 			showLoading() {
 				setTimeout(() => {
 					this.isShow = false;
-				}, 300)
+				}, 400)
 			}
 		},
 		beforeMount() {

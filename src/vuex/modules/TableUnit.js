@@ -6,6 +6,7 @@ export default {
 		getFiles: [],
 		handleFlag: 1,
 		isClick:false,
+		isPost:true,
 		ipcTableState: {
 			index: 1,
 			size: {
@@ -203,6 +204,10 @@ export default {
 		//是否可以继续点击获取录制视频文件
 		upDateIsClick:(state, data) => {
 			state.isClick = data;
+		},
+		//是否可以再次发请求获取table数据
+		isPost:(state,data) => {
+			state.isPost = data;
 		}
 	},
 	actions: {
@@ -210,16 +215,24 @@ export default {
 			commit,
 			state
 		}, opt) {
-			TOOLS.get(opt.src, opt.state).then(res => {
-				state.isLoading = false;
-				if(+res.data.code === 0) {
-					let data = res.data;
-					commit('upDateTableData', data);
-					opt.fn && opt.fn.call(this, data);
-				};
-			}).catch(err => {
-				state.isLoading = false;
-			})
+			if(state.isPost){
+				TOOLS.get(opt.src, opt.state).then(res => {
+					state.isLoading = false;
+					if(+res.data.code === 0) {
+						let data = res.data;
+						commit('upDateTableData', data);
+						opt.fn && opt.fn.call(this, data);
+					}else{
+						commit('upDateTableData', {});
+					};
+					commit("isPost",true);
+				}).catch(err => {
+					state.isLoading = false;
+					commit("isPost",true);
+				});
+				
+			};
+			commit("isPost",false);
 		}
 	},
 	getters: {
@@ -311,6 +324,9 @@ export default {
 			}
 		},
 		romSize: (state) => (type) => {
+			
+			
+			
 			let bytes = type;
 			if(bytes === 0) return '0 B';
 			let k = 1024;

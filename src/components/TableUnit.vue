@@ -1,5 +1,5 @@
 <template>
-	<section>
+	<section class="v_table">
 		<v-table 
 			is-horizontal-resize 
 			style="width:100%;height: auto;" 
@@ -19,7 +19,7 @@
 			@on-custom-comp="customCompFunc" 
 			ref="table">
 		</v-table>
-		<v-pagination :pageActive="pageState" :total="tableData['recordsTotal']" :page-size="pageSize" :layout="['total', 'prev', 'pager', 'next', 'jumper']" @page-change="pageChange">
+		<v-pagination class="v_pagination" :pageActive="pageState" :total="tableData['recordsTotal']" :page-size="pageSize" :layout="['total', 'prev', 'pager', 'next', 'jumper']" @page-change="pageChange">
 		</v-pagination>
 	</section>
 </template>
@@ -95,6 +95,13 @@
 </script>
 
 <style lang="less">
+	.v_table{
+		.v_pagination{
+			.v-page-li{
+				padding: 0 10px;
+			}
+		}
+	}
 	.headerStyle {
 		height: 70px;
 		font-size: 16px;

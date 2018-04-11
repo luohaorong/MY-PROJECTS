@@ -259,15 +259,11 @@
 					let id = params.id;
 					TOOLS.delete("/rom/del/" + id, {}).then(res => {
 						if(+res.data.code === 0) {
-							this.$store.commit("isBlock");
-							this.$store.commit("message", res.data.message);
-							this.$store.commit("err", false);
+							this.showTips(res.data.message)
 							this.upDateTable("/rom/list", this.tableState);
 						};
 					}).catch(err => {
-						this.$store.commit("isBlock");
-						this.$store.commit("message", err.message);
-						this.$store.commit("err", false);
+						this.showTips(err.message)
 					})
 				}
 
@@ -276,16 +272,20 @@
 					if(params.romurl){
 						window.location.href = params.romurl
 					}else {
-						this.$store.commit("isBlock");
-						this.$store.commit("message", "无效的下载链接");
-						this.$store.commit("err", false);
+						this.showTips("无效的下载链接")
 					}
 				}
+			},
+			showTips(msg){
+				this.$store.commit("isBlock");
+				this.$store.commit("message", msg);
+				this.$store.commit("err", false);
 			}
 		},
 		beforeMount() {
 			//一下是获取table之前的状态
 			this.size = +this.tableState.size; //获取每页显示多少条
+			this.pageSize = this.tableState.size.name; //获取每页显示多少条,给分页组件
 			this.page = +this.tableState.index; //获取当前是第几页
 			this.$store.commit("upDatehandleFlag", 3);
 		},

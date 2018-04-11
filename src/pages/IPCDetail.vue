@@ -35,6 +35,7 @@
 		<div id="playVideo" v-show="isPlayer">
 			<div id="closeVideo" @click="closePlayer"></div>
 			<div id="J_prismPlayer" class="prism-player"></div>
+			<div class="playUrl">播放地址：{{playUrl}}</div>
 		</div>
 	</article>
 </template>
@@ -68,11 +69,11 @@
 					body: []
 				},
 				alarntype: [{
-					name: "视频丢失",
-					flag: ""
-				}, {
 					name: "视频遮挡",
-					flag: ""
+					flag: true
+				}, {
+					name: "视频丢失",
+					flag: true
 				}],
 				stream: '',
 				ration: '',
@@ -134,7 +135,8 @@
 				}],
 				alarmList: {},
 				deviceExceptions: {},
-				alarmType:""
+				alarmType: "",
+				playUrl: ""
 			}
 		},
 		methods: {
@@ -245,7 +247,6 @@
 								message: "只填写数字"
 							} //用于input框验证的正则表达式
 						};
-
 						this.$store.dispatch("pullData", opt);
 						break;
 				};
@@ -262,6 +263,7 @@
 					if(res.data.code === 0) {
 						let liveUrl = res.data.data.liveUrl;
 						let playtDuration = res.data.data.playtDuration * 1000;
+						this.playUrl = liveUrl
 						this.InitPlayer(liveUrl);
 						var timer = setTimeout(() => {
 							this.$store.commit("isBlock", true);
@@ -303,18 +305,24 @@
 				data.ipcId = this.ipcId;
 				let list = this.alarmList[val];
 				data.rulesSetId = list.id;
-				
+
 				if(+list.alarmKey === 1) {
 					data.swithKey = "0"
 				}
 				if(+list.alarmKey === 0) {
 					data.swithKey = "1"
 				}
-				
 				data.ipcType = this.alarmType;
-			
+
 				TOOLS.post("/camera/openclosealarm", data).then(res => {
 					if(+res.data.code === 0) {
+
+						if(this.alarntype[val].flag) {
+							list.alarmKey = "0"
+						} else {
+							list.alarmKey = "1"
+						}
+
 						this.alarntype[val].flag = !this.alarntype[val].flag;
 					}
 				})
@@ -368,14 +376,18 @@
 					this.deviceExceptions = body.deviceExceptions;
 					this.alarmList = body.alarmRulesSet;
 					this.alarmType = body.alarmType;
-					
-					this.alarmList.map((i,index)=>{
-						if(+i.alarmKey === 1){
+
+					this.alarmList.map((i, index) => {
+						if(+i.alarmKey === 1) {
 							this.alarntype[index].flag = true
-						}else{
+						} else {
 							this.alarntype[index].flag = false
 						}
 					})
+
+					if(this.alarmType != "nvripc") {
+						this.data.header.buttonMsg.pop()
+					}
 
 					this.data.body = [{
 							content: [{
@@ -660,6 +672,18 @@
 		width: 650px;
 		height: 360px;
 		background-color: #000000;
+		.playUrl {
+			width: 100%;
+			height: 60px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: 100;
+			background: #ddd;
+			opacity: 0.6;
+			word-break:break-all;
+			padding: 10px;
+		}
 	}
 	
 	#closeVideo {

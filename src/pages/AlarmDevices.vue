@@ -114,10 +114,10 @@
 						id: -1
 					}, {
 						name: "IPC",
-						id: 1
+						id: 5
 					}, {
 						name: "NVR",
-						id: 2
+						id: 4
 					}]
 				},
 				warnType: {
@@ -128,16 +128,16 @@
 						id: -1
 					}, {
 						name: "视频遮挡",
-						id: 1
+						id: 2
 					}, {
 						name: "视频丢失",
-						id: 2
+						id: 1
 					}]
 				},
 				columns: [{
 						field: 'deviceId',
 						title: '设备ID',
-						width: 100,
+						width: 60,
 						titleAlign: 'center',
 						columnAlign: 'center',
 						isResize: true,
@@ -153,7 +153,7 @@
 					{
 						field: 'deviceType',
 						title: '设备类型',
-						width: 100,
+						width: 60,
 						titleAlign: 'center',
 						columnAlign: 'center',
 						isResize: true,
@@ -187,11 +187,27 @@
 					{
 						field: 'warnTypeName',
 						title: '报警类型',
-						width: 120,
+						width: 60,
 						titleAlign: 'center',
 						columnAlign: 'center',
 						isResize: true,
 						titleCellClassName: "headerStyle"
+					},
+					{
+						field: 'warnValue',
+						title: '报警状态',
+						width: 50,
+						titleAlign: 'center',
+						columnAlign: 'center',
+						isResize: true,
+						titleCellClassName: "headerStyle",
+						formatter: function(rowData) {
+							if(+rowData.warnValue === 1) {
+								return "开启"
+							} else if(+rowData.warnValue === 0) {
+								return "关闭"
+							}
+						}
 					},
 					{
 						field: 'upTime',
@@ -199,6 +215,7 @@
 						width: 180,
 						titleAlign: 'center',
 						columnAlign: 'center',
+						isResize: true,
 						titleCellClassName: "headerStyle"
 					}
 				],
@@ -286,9 +303,12 @@
 				this.calendar4.show = false;
 				this.calendar4.value = [begin, end];
 				this.calendar4.display = begin.join("-") + " ~ " + end.join("-");
+
+				let endTime = ["23","59","59"].join(":");
+				endTime = end.join("-") +" "+ endTime;   //endTime  "2018-03-21 23:59:59"
 				
 				this.tableState.startTime = begin.join("-"); //设置开始时间
-				this.tableState.endTime = end.join("-"); //设置结束时间
+				this.tableState.endTime = endTime; //设置结束时间
 				this.$store.commit("upDateAlarmTableState", this.tableState);
 				this.upDateTable("/alarm/list", this.tableState);
 			}
@@ -298,6 +318,7 @@
 			this.startTime = this.tableState.startTime;
 			this.endTime = this.tableState.endTime;
 			this.size = +this.tableState.size; //获取每页显示多少条
+			this.pageSize = this.tableState.size.name; //获取每页显示多少条,给分页组件
 			this.page = +this.tableState.index; //获取当前是第几页
 			this.deviceState = this.tableState.deviceType;
 			this.warnState = this.tableState.warnType;

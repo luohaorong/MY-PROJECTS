@@ -23,8 +23,6 @@
 							<a href="javascript:;" class="a-upload">
 								<input ref="file" type="file" @change="uploaderFile" name="" id="">上传固件
 							</a>
-
-							<!--<progress  class='progressbar' value="0" max="100" style='width:500px;'></progress>-->
 						</div>
 					</div>
 				</div>

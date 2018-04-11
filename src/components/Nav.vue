@@ -3,7 +3,7 @@
 		<div class="nav_wrap">
 			<ul class="nav_list">
 				<li class="list_item" v-for="(item,index) in dataNav" @click="checked(index)">
-					<router-link :to="item.src" class="item_link" :class="{active_nav:index === nowIndex}">
+					<router-link :to="isPost ? item.src : activeSrc" class="item_link" :class="{active_nav:index === nowIndex}">
 						{{ item.title }}
 					</router-link>
 				</li>
@@ -19,13 +19,13 @@
 <script>
 	import SearchInput from "@/components/SearchInput"
 	import Admin from "@/components/Admin"
-	let This = {};
 	export default {
 		props: ["dataNav"],
 		name: "NavBar",
 		data() {
 			return {
 				nowIndex: 0,
+				activeSrc:"",
 				msg: {
 					placeholder: "输入ID/MAC搜索",
 					txt: "",
@@ -47,21 +47,29 @@
 			SearchInput,
 			Admin
 		},
+		computed:{
+			isPost(){
+				return this.$store.state.TableUnit.isPost;
+			}
+		},
 		methods: {
 			checked(index) {
-				this.nowIndex = index;
-				this.$emit("navIndex", this.nowIndex);
+				if(this.isPost){
+					this.nowIndex = index;
+					this.$emit("navIndex", this.nowIndex);
+				}
 			}
 		},
 		mounted(){
 			let path = this.$route.params;
+			this.activeSrc = this.$route.fullPath;
 			this.nowIndex = +path.index;
-			This = this;
 		},
 		watch:{
-			$route:(data)=>{
+			$route:function(data){
 				let index = +data.params.index;
-				This.nowIndex = index;
+				this.activeSrc = data.fullPath;
+				this.nowIndex = index;
 			}
 		}
 	}

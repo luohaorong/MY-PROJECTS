@@ -13,7 +13,8 @@ const defaultOption = {
 if(!Object.keys) Object.keys = function(o) {
 	if(o !== Object(o))
 		throw new TypeError('Object.keys called on a non-object');
-	var k = [],p;
+	var k = [],
+		p;
 	for(p in o)
 		if(Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
 	return k;
@@ -21,7 +22,8 @@ if(!Object.keys) Object.keys = function(o) {
 TOOLS.LINK = {
 	local: "http://localhost:8999",
 	//baseUrl: "http://172.16.18.67:8120", //开发环境
-	baseUrl: "http://t.api.live.shianxin.net:8888", //测试服  映射  
+	//baseUrl: "http://t.api.live.shianxin.net:8888", //测试服  映射  
+	baseUrl: "http://api.live.shianxin.net", //测试服  映射  
    	//baseUrl: "http://192.168.0.87:98", //测试服
    	//baseUrl: "http://172.18.4.46:98", //后台开发环境 本地
  	//baseUrl: "http://192.168.0.48:8080", //测试服  chenjun
@@ -68,10 +70,10 @@ TOOLS.get = (url, param, urlType = "baseUrl") => {
 	});
 }
 //封装axios的post方法
-TOOLS.post = (url, param, urlType = "baseUrl" ,config) => {
+TOOLS.post = (url, param, urlType = "baseUrl", config) => {
 	return new Promise((resolve, reject) => {
 		let relUrl = TOOLS.LINK[urlType] + url;
-		axios.post(relUrl, param ,config)
+		axios.post(relUrl, param, config)
 			.then(res => {
 				if(res.request.readyState === 4 && (res.status === 200 || res.status === 304)) {
 					resolve(res)
@@ -127,7 +129,7 @@ TOOLS.all = (reqArr) => {
 
 function dealData(data, opt) {
 	data['timestamp'] = new Date().getTime();
-	if(data){
+	if(data) {
 		data = sortData(data, opt);
 	}
 	if(data) {
@@ -161,10 +163,10 @@ function sortData(data, opt) {
 	var obj = {};
 	var arr = Object.keys(data);
 	if(data && data['sakura-rtf']) rtf = data['sakura-rtf'];
-	if(opt.sort && opt.sort == 'asc'){
+	if(opt.sort && opt.sort == 'asc') {
 		arr.sort(); //升序
 	}
-	if(opt.sort && opt.sort == 'desc'){
+	if(opt.sort && opt.sort == 'desc') {
 		console.log('desc')
 		arr.sort(function(a, b) { //降序
 			return a < b;
@@ -211,13 +213,13 @@ function dealReplace(str) {
 };
 //查找兄弟节点
 TOOLS.siblings = function(elm) {
-		var arr = [];
-		var p = elm.parentNode.children;
-		for(var i = 0, pl = p.length; i < pl; i++) {
-			if(p[i] !== elm) {
-				arr.push(p[i]);
-			}
+	var arr = [];
+	var p = elm.parentNode.children;
+	for(var i = 0, pl = p.length; i < pl; i++) {
+		if(p[i] !== elm) {
+			arr.push(p[i]);
 		}
-		return arr;
-	};
+	}
+	return arr;
+};
 export default TOOLS;

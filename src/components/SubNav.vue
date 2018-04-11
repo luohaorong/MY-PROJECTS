@@ -2,7 +2,7 @@
 	<section class="sax_sub_nav">
 		<ul class="sub_nav_list">
 			<li class="sub_list_item" v-for="(item,index) in subNav" @click="changeNav(index)">
-				<router-link :to="item.src" class="sub_item_link" :class="{sub_active:subActive === index}">
+				<router-link :to="isPost ? item.src : activeSrc" class="sub_item_link" :class="{sub_active:subActive === index}">
 					{{ item.title }}
 				</router-link>
 			</li>
@@ -11,31 +11,38 @@
 </template>
 
 <script>
-	let This = {};
 	export default {
 		name: "subNav",
 		props: ["subNav"],
 		data() {
 			return {
-				subActive: 0
+				subActive: 0,
+				activeSrc:""
+			}
+		},
+		computed:{
+			isPost(){
+				return this.$store.state.TableUnit.isPost;
 			}
 		},
 		methods: {
 			changeNav(index) {
-//				console.log(this.$route.params)
-				this.subActive = index;
+				if(this.isPost){
+					this.subActive = index;
+				}
 			}
 		},
 		mounted(){
 			let subIndex = +this.$route.params.subIndex;
+			this.activeSrc = this.$route.fullPath;
 			this.subActive = subIndex;
-			This = this;
 		}
 		,
 		watch:{
-			$route:(data)=>{
+			$route:function(data){
 				let subIndex = +data.params.subIndex;
-				This.subActive = subIndex;
+				this.activeSrc = data.fullPath;
+				this.subActive = subIndex;
 			}
 		}
 	}

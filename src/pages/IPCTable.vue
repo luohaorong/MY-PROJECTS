@@ -217,6 +217,7 @@
 						name: "passWord",
 						type: "input",
 						placeholder: "请输入权限密码",
+						type: "password",
 						reg: /\w/g,
 						errorTip: "密码错误"
 					}],
@@ -229,6 +230,7 @@
 					tag: "ipc",
 					tip: [{
 						name: "passWord",
+						type: "password",
 						placeholder: "请输入权限密码",
 						reg: /\w/g,
 						errorTip: "密码错误"
@@ -382,7 +384,7 @@
 						id: -1
 					};
 					this.tableState.county = {
-						name: "请选择市",
+						name: "请选择区/县",
 						id: -1
 					};
 					this.cityItem = {
@@ -410,6 +412,18 @@
 						};
 						this.cityItem = cityItem;
 					});
+					this.tableState.county = {
+						name: "请选择区/县",
+						id: -1
+					};
+					this.countyItem = {
+						name: "showCounty",
+						gray: "请选择区/县",
+						list: [{
+							name: "请选择区/县",
+							id: -1
+						}]
+					}
 				}
 				this.upDateTable("/camera", this.tableState);
 			},
@@ -526,6 +540,7 @@
 		beforeMount() {
 			//一下是获取table之前的状态
 			this.size = this.tableState.size; //获取每页显示多少条
+			this.pageSize = this.tableState.size.name; //获取每页显示多少条,给分页组件
 			this.page = +this.tableState.index; //获取当前是第几页
 			this.province = this.tableState.province; //获取当前省份
 			this.city = this.tableState.city; //获取当前市
